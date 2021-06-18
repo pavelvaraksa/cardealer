@@ -3,7 +3,14 @@ package by.varaksa.webproject.repository.impl;
 import by.varaksa.webproject.entity.Dealer;
 import by.varaksa.webproject.repository.DealerRepository;
 
+import java.util.List;
+
 public class DealerRepositoryImpl implements DealerRepository {
+    @Override
+    public List<Dealer> findAll() {
+        return null;
+    }
+
     @Override
     public Dealer find(Long id) {
         return null;
