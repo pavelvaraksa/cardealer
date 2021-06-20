@@ -1,0 +1,9 @@
+2021-06-20 21:29:23 [main] FATAL varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver can't be loaded.driverName
+2021-06-20 21:29:54 [main] FATAL varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver can't be loaded.java.lang.ClassNotFoundException: driverName
+2021-06-20 21:31:34 [main] FATAL varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver can't be loaded.java.lang.ClassNotFoundException: driverName
+2021-06-20 21:32:11 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception No suitable driver found for url
+2021-06-20 21:44:18 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception ВАЖНО: база данных "/localhost" не существует (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-06-20 21:44:43 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception ВАЖНО: база данных "/web_database" не существует (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-06-20 21:52:45 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception No suitable driver found for url
+2021-06-20 21:53:24 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception java.sql.SQLException: No suitable driver found for url
+2021-06-20 21:54:09 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception.java.sql.SQLException: No suitable driver found for url
