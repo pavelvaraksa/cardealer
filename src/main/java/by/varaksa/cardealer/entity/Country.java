@@ -1,0 +1,13 @@
+package by.varaksa.cardealer.entity;
+
+public enum Country {
+    GERMANY,
+    FRANCE,
+    ITALY,
+    USA,
+    JAPAN,
+    SOUTH_KOREA,
+    UK,
+    CZECH,
+    SWEDEN
+}
