@@ -7,3 +7,7 @@
 2021-06-20 21:52:45 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception No suitable driver found for url
 2021-06-20 21:53:24 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception java.sql.SQLException: No suitable driver found for url
 2021-06-20 21:54:09 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception.java.sql.SQLException: No suitable driver found for url
+2021-06-22 01:13:56 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ResultSet not positioned properly, perhaps you need to call next.
+2021-06-22 01:18:45 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ResultSet not positioned properly, perhaps you need to call next.
+2021-06-22 01:24:08 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ResultSet not positioned properly, perhaps you need to call next.
+2021-06-22 01:27:17 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ResultSet not positioned properly, perhaps you need to call next.

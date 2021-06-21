@@ -29,12 +29,23 @@ public class BodyRepositoryImpl implements BodyRepository {
     private static final String CHANGED = "changed";
     private static final String CAR_ID = "car_id";
 
+    private Body parseResultSet(ResultSet resultSet) throws SQLException {
+        Body body = new Body();
+        body.setId(resultSet.getLong(ID));
+        body.setColor(Color.valueOf(resultSet.getString(COLOR)));
+        body.setBodyType(BodyType.valueOf(resultSet.getString(BODY_TYPE)));
+        body.setVin(resultSet.getString(VIN));
+        body.setCreated(resultSet.getDate(CREATED));
+        body.setChanged(resultSet.getDate(CHANGED));
+        body.setCarId(resultSet.getLong(CAR_ID));
+        return body;
+    }
+
     @Override
     public List<Body> findAll() {
-        final String findAllQuery = "select * from bodies";
+        final String findAllBodies = "select * from bodies";
 
         List<Body> result = new ArrayList<>();
-
         Connection connection;
         Statement statement;
         ResultSet resultSet;
@@ -52,20 +63,10 @@ public class BodyRepositoryImpl implements BodyRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(findAllQuery);
+            resultSet = statement.executeQuery(findAllBodies);
 
             while (resultSet.next()) {
-                Body body = new Body();
-
-                body.setId(resultSet.getLong(ID));
-                body.setColor(Color.valueOf(resultSet.getString(COLOR)));
-                body.setBodyType(BodyType.valueOf(resultSet.getString(BODY_TYPE)));
-                body.setVin(resultSet.getString(VIN));
-                body.setCreated(resultSet.getDate(CREATED));
-                body.setChanged(resultSet.getDate(CHANGED));
-                body.setCarId(resultSet.getLong(CAR_ID));
-
-                result.add(body);
+                result.add(parseResultSet(resultSet));
             }
 
             return result;
@@ -78,7 +79,34 @@ public class BodyRepositoryImpl implements BodyRepository {
 
     @Override
     public Body find(Long id) {
-        return null;
+        final String findBodyById = "select * from bodies where id = ?";
+
+        Connection connection;
+        PreparedStatement statement;
+        ResultSet resultSet;
+
+        try {
+            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
+        } catch (ClassNotFoundException stackTrace) {
+            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+            logger.fatal(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+
+        try {
+            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
+                    reader.getProperty(DATABASE_LOGIN),
+                    reader.getProperty(DATABASE_PASSWORD));
+            statement = connection.prepareStatement(findBodyById);
+            statement.setLong(1, id);
+            resultSet = statement.executeQuery();
+
+            return parseResultSet(resultSet);
+        } catch (SQLException stackTrace) {
+            String errorMessage = "SQL exception." + stackTrace;
+            logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
     }
 
     @Override
