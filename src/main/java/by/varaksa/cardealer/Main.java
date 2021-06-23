@@ -1,5 +1,6 @@
 package by.varaksa.cardealer;
 
+import by.varaksa.cardealer.entity.Body;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.repository.BodyRepository;
@@ -9,13 +10,12 @@ import by.varaksa.cardealer.service.impl.BodyServiceImpl;
 
 public class Main {
     public static void main(String[] args) throws RepositoryException, ServiceException {
+        Body body = new Body();
+
         BodyRepository bodyRepository = new BodyRepositoryImpl();
-        bodyRepository.findAll();
+        //bodyRepository.save(body);
 
-        BodyRepository bodyRepository1 = new BodyRepositoryImpl();
 
-        BodyService bodyService = new BodyServiceImpl(bodyRepository1);
-        bodyService.find(6L);
 
     }
 }
