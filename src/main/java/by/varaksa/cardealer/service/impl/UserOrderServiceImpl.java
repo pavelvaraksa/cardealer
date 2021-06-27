@@ -19,50 +19,6 @@ public class UserOrderServiceImpl implements UserOrderService {
     }
 
     @Override
-    public List<UserOrder> findAll() throws ServiceException {
-        List<UserOrder> existingUserOrders;
-
-        try {
-            existingUserOrders = userOrderRepository.findAll();
-            if (existingUserOrders.isEmpty()) {
-                String errorMessage = "A list is empty";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            } else {
-                logger.info("User orders exist");
-                return existingUserOrders;
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User order service exception while trying to find all user orders." + stackTrace.getMessage());
-        }
-    }
-
-    @Override
-    public UserOrder find(Long id) throws ServiceException {
-        UserOrder userOrderToFindById;
-
-        try {
-            userOrderToFindById = userOrderRepository.find(id);
-            if (userOrderToFindById == null) {
-                String errorMessage = "User order id can't be null";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User order service exception while trying to find an user order." + stackTrace.getMessage());
-        }
-
-        try {
-            logger.info("User order with id " + id + " exists");
-            return userOrderRepository.find(id);
-        } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get an user order";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-    }
-
-    @Override
     public UserOrder save(UserOrder userOrder) throws ServiceException {
         List<UserOrder> existingUserOrders;
 
@@ -89,25 +45,31 @@ public class UserOrderServiceImpl implements UserOrderService {
             logger.info("User order " + userOrder + " was saved");
             return savedUserOrder;
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User order service exception while trying to save an user order." + stackTrace.getMessage());
+            throw new ServiceException("User order service exception while trying to save an user order." + stackTrace);
         }
     }
 
     @Override
-    public UserOrder update(Long id) throws ServiceException {
+    public List<UserOrder> findAll() throws ServiceException {
+        List<UserOrder> existingUserOrders;
 
         try {
-            logger.info("User order with id " + id + " was updated");
-            return userOrderRepository.update(id);
+            existingUserOrders = userOrderRepository.findAll();
+            if (existingUserOrders.isEmpty()) {
+                String errorMessage = "A list is empty";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            } else {
+                logger.info("User orders exist");
+                return existingUserOrders;
+            }
         } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get an user order";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
+            throw new ServiceException("User order service exception while trying to find all user orders." + stackTrace);
         }
     }
 
     @Override
-    public UserOrder delete(Long id) throws ServiceException {
+    public UserOrder find(Long id) throws ServiceException {
         UserOrder userOrderToFindById;
 
         try {
@@ -118,12 +80,50 @@ public class UserOrderServiceImpl implements UserOrderService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User order service exception while trying to delete an user order." + stackTrace.getMessage());
+            throw new ServiceException("User order service exception while trying to find an user order." + stackTrace);
         }
 
         try {
-            logger.info("User order with id " + id + " was deleted");
-            return userOrderRepository.delete(id);
+            logger.info("User order with id " + id + " exists");
+            return userOrderRepository.find(id);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get an user order";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public UserOrder update(UserOrder userOrder) throws ServiceException {
+
+        try {
+            logger.info("User order with id " + userOrder.getId() + " was updated");
+            return userOrderRepository.update(userOrder);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get an user order";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Long delete(UserOrder userOrder) throws ServiceException {
+        UserOrder userOrderToFindById;
+
+        try {
+            userOrderToFindById = userOrderRepository.find(userOrder.getId());
+            if (userOrderToFindById == null) {
+                String errorMessage = "User order id can't be null";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            }
+        } catch (RepositoryException stackTrace) {
+            throw new ServiceException("User order service exception while trying to delete an user order." + stackTrace);
+        }
+
+        try {
+            logger.info("User order with id " + userOrder.getId() + " was deleted");
+            return userOrderRepository.delete(userOrder);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get an user order";
             logger.error(errorMessage);

@@ -1,7 +1,5 @@
 package by.varaksa.cardealer.controller.request;
 
-import java.util.Date;
-
 public class DealerCreateRequest {
     private Long id;
 
@@ -12,10 +10,6 @@ public class DealerCreateRequest {
     private Integer foundationYear;
 
     private String city;
-
-    private Date created;
-
-    private Date changed;
 
     private Long carId;
 
@@ -62,22 +56,6 @@ public class DealerCreateRequest {
         this.city = city;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getChanged() {
-        return changed;
-    }
-
-    public void setChanged(Date changed) {
-        this.changed = changed;
-    }
-
     public Long getCarId() {
         return carId;
     }
@@ -93,8 +71,6 @@ public class DealerCreateRequest {
                 + address.hashCode()
                 + foundationYear.hashCode()
                 + city.hashCode()
-                + created.hashCode()
-                + changed.hashCode()
                 + carId.hashCode());
     }
 
@@ -115,8 +91,6 @@ public class DealerCreateRequest {
                 && (address == dealer.address || address != null && address.equals(dealer.getAddress()))
                 && (foundationYear == dealer.foundationYear || foundationYear != null && foundationYear.equals(dealer.getFoundationYear()))
                 && (city == dealer.city || city != null && city.equals(dealer.getCity()))
-                && (created == dealer.created || created != null && created.equals(dealer.getCreated()))
-                && (changed == dealer.changed || changed != null && changed.equals(dealer.getChanged()))
                 && (carId == dealer.carId || carId != null && carId.equals(dealer.getCarId()));
     }
 
@@ -129,8 +103,6 @@ public class DealerCreateRequest {
         stringBuilder.append("address ").append(address).append(", ");
         stringBuilder.append("foundation year ").append(foundationYear).append(", ");
         stringBuilder.append("city ").append(city).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
         stringBuilder.append("car id ").append(carId);
         return stringBuilder.toString();
     }

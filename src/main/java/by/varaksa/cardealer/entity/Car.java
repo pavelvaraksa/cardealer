@@ -1,7 +1,7 @@
 package by.varaksa.cardealer.entity;
 
 import java.sql.Blob;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Car {
     private Long id;
@@ -10,7 +10,7 @@ public class Car {
 
     private String model;
 
-    private String issueCountry;
+    private Country issueCountry;
 
     private Integer guaranteePeriod;
 
@@ -18,9 +18,9 @@ public class Car {
 
     private Blob image;
 
-    private Date created;
+    private Timestamp created = new Timestamp(System.currentTimeMillis());
 
-    private Date changed;
+    private Timestamp changed = new Timestamp(System.currentTimeMillis());
 
     private Long userOrderId;
 
@@ -51,27 +51,27 @@ public class Car {
         this.model = model;
     }
 
-    public String getIssueCountry() {
+    public Country getIssueCountry() {
         return issueCountry;
     }
 
-    public void setIssueCountry(String issueCountry) {
+    public void setIssueCountry(Country issueCountry) {
         this.issueCountry = issueCountry;
     }
 
-    public int getGuaranteePeriod() {
+    public Integer getGuaranteePeriod() {
         return guaranteePeriod;
     }
 
-    public void setGuaranteePeriod(int guaranteePeriod) {
+    public void setGuaranteePeriod(Integer guaranteePeriod) {
         this.guaranteePeriod = guaranteePeriod;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -83,19 +83,19 @@ public class Car {
         this.image = image;
     }
 
-    public Date getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public Date getChanged() {
+    public Timestamp getChanged() {
         return changed;
     }
 
-    public void setChanged(Date changed) {
+    public void setChanged(Timestamp changed) {
         this.changed = changed;
     }
 

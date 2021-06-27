@@ -36,10 +36,49 @@ public class BodyRepositoryImpl implements BodyRepository {
         body.setColor(Color.valueOf(resultSet.getString(COLOR)));
         body.setBodyType(BodyType.valueOf(resultSet.getString(BODY_TYPE)));
         body.setVin(resultSet.getString(VIN));
-        body.setCreated(resultSet.getDate(CREATED));
-        body.setChanged(resultSet.getDate(CHANGED));
+        body.setCreated(resultSet.getTimestamp(CREATED));
+        body.setChanged(resultSet.getTimestamp(CHANGED));
         body.setCarId(resultSet.getLong(CAR_ID));
         return body;
+    }
+
+    @Override
+    public Body save(Body body) throws RepositoryException {
+        final String saveBody = "insert into bodies (color, body_type, vin, created, changed, car_id) " +
+                "values (?,?,?,?,?,?)";
+
+        Connection connection;
+        PreparedStatement statement;
+
+        try {
+            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
+        } catch (ClassNotFoundException stackTrace) {
+            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+            logger.fatal(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+
+        try {
+            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
+                    reader.getProperty(DATABASE_LOGIN),
+                    reader.getProperty(DATABASE_PASSWORD));
+            statement = connection.prepareStatement(saveBody);
+
+            statement.setString(1, String.valueOf(body.getColor()));
+            statement.setString(2, String.valueOf(body.getBodyType()));
+            statement.setString(3, body.getVin());
+            statement.setTimestamp(4, body.getCreated());
+            statement.setTimestamp(5, body.getChanged());
+            statement.setLong(6, body.getCarId());
+            statement.executeUpdate();
+
+            logger.info("Body with id " + body.getId() + " was saved");
+            return body;
+        } catch (SQLException stackTrace) {
+            String errorMessage = "SQL exception." + stackTrace;
+            logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
     }
 
     @Override
@@ -70,7 +109,7 @@ public class BodyRepositoryImpl implements BodyRepository {
                 result.add(parseResultSet(resultSet));
             }
 
-            logger.info("All bodies: " + findAllBodies);
+            logger.info("All bodies: " + result);
             return result;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;
@@ -104,10 +143,10 @@ public class BodyRepositoryImpl implements BodyRepository {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                logger.info("Body with id " + id + " is found");
+                logger.info("Body with id " + id + " was found");
                 return parseResultSet(resultSet);
             } else {
-                throw new RepositoryException("Body with id " + id + " is not found");
+                throw new RepositoryException("Body with id " + id + " wasn't found");
             }
 
         } catch (SQLException stackTrace) {
@@ -118,46 +157,7 @@ public class BodyRepositoryImpl implements BodyRepository {
     }
 
     @Override
-    public Body save(Body body) throws RepositoryException {
-        final String saveBody = "insert into bodies (color, body_type, vin, created, changed, car_id) " +
-                "values (?,?,?,?,?,?)";
-
-        Connection connection;
-        PreparedStatement statement;
-
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(saveBody);
-
-            statement.setString(1, String.valueOf(body.getColor()));
-            statement.setString(2, String.valueOf(body.getBodyType()));
-            statement.setString(3, body.getVin());
-            statement.setDate(4, (Date) body.getCreated());
-            statement.setDate(5, (Date) body.getChanged());
-            statement.setLong(6, body.getCarId());
-            statement.executeUpdate();
-
-            logger.info("Body " + body + " is saved");
-            return body;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
-            logger.error(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
-    }
-
-    @Override
-    public Body update(Long id) {
+    public Body update(Body body) {
         final String updateBodyById = "update bodies " +
                 "set " +
                 "color = ?,  " +
@@ -170,7 +170,6 @@ public class BodyRepositoryImpl implements BodyRepository {
 
         Connection connection;
         PreparedStatement statement;
-        Body body = new Body();
 
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
@@ -189,12 +188,13 @@ public class BodyRepositoryImpl implements BodyRepository {
             statement.setString(1, String.valueOf(body.getColor()));
             statement.setString(2, String.valueOf(body.getBodyType()));
             statement.setString(3, body.getVin());
-            statement.setDate(4, (Date) body.getCreated());
-            statement.setDate(5, (Date) body.getChanged());
+            statement.setTimestamp(4, body.getChanged());
+            statement.setTimestamp(5, body.getChanged());
             statement.setLong(6, body.getCarId());
+            statement.setLong(7, body.getId());
             statement.executeUpdate();
 
-            logger.info("Body with id " + id + " is updated");
+            logger.info("Body with id " + body.getId() + " was updated");
             return body;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;
@@ -204,12 +204,11 @@ public class BodyRepositoryImpl implements BodyRepository {
     }
 
     @Override
-    public Body delete(Long id) {
+    public Long delete(Body body) {
         final String deleteBodyById = "delete from bodies where id = ?";
 
         Connection connection;
         PreparedStatement statement;
-        Body body = new Body();
 
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
@@ -224,10 +223,11 @@ public class BodyRepositoryImpl implements BodyRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteBodyById);
-            statement.executeUpdate();
+            statement.setLong(1, body.getId());
 
-            logger.info("Body with id " + id + " is deleted");
-            return body;
+            int deletedRows = statement.executeUpdate();
+            logger.info("Body with id " + body.getId() + " was deleted");
+            return (long) deletedRows;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;
             logger.error(errorMessage);

@@ -2,8 +2,6 @@ package by.varaksa.cardealer.controller.request;
 
 import by.varaksa.cardealer.entity.TransmissionType;
 
-import java.util.Date;
-
 public class TransmissionCreateRequest {
     private Long id;
 
@@ -12,10 +10,6 @@ public class TransmissionCreateRequest {
     private Integer gearsCount;
 
     private Double weight;
-
-    private Date created;
-
-    private Date changed;
 
     private Long carId;
 
@@ -54,22 +48,6 @@ public class TransmissionCreateRequest {
         this.weight = weight;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getChanged() {
-        return changed;
-    }
-
-    public void setChanged(Date changed) {
-        this.changed = changed;
-    }
-
     public Long getCarId() {
         return carId;
     }
@@ -84,8 +62,6 @@ public class TransmissionCreateRequest {
                 + transmissionType.hashCode()
                 + gearsCount.hashCode()
                 + weight.hashCode()
-                + created.hashCode()
-                + changed.hashCode()
                 + carId.hashCode());
     }
 
@@ -105,8 +81,6 @@ public class TransmissionCreateRequest {
                 && (transmissionType == transmission.transmissionType || transmissionType != null && transmissionType.equals(transmission.getTransmissionType()))
                 && (gearsCount == transmission.gearsCount || gearsCount != null && gearsCount.equals(transmission.getGearsCount()))
                 && (weight == transmission.weight || weight != null && weight.equals(transmission.getWeight()))
-                && (created == transmission.created || created != null && created.equals(transmission.getCreated()))
-                && (changed == transmission.changed || changed != null && changed.equals(transmission.getChanged()))
                 && (carId == transmission.carId || carId != null && carId.equals(transmission.getCarId()));
     }
 
@@ -118,8 +92,6 @@ public class TransmissionCreateRequest {
         stringBuilder.append("transmission type ").append(transmissionType).append(", ");
         stringBuilder.append("gears count ").append(gearsCount).append(", ");
         stringBuilder.append("weight ").append(weight).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
         stringBuilder.append("car id ").append(carId);
         return stringBuilder.toString();
     }

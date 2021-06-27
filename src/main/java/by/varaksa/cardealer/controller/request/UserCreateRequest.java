@@ -21,10 +21,6 @@ public class UserCreateRequest {
 
     private boolean isBlocked;
 
-    private Date created;
-
-    private Date changed;
-
     public UserCreateRequest() {
     }
 
@@ -92,22 +88,6 @@ public class UserCreateRequest {
         isBlocked = blocked;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getChanged() {
-        return changed;
-    }
-
-    public void setChanged(Date changed) {
-        this.changed = changed;
-    }
-
     @Override
     public int hashCode() {
         return (int) (11 * id
@@ -116,9 +96,7 @@ public class UserCreateRequest {
                 + birthDate.hashCode()
                 + login.hashCode()
                 + password.hashCode()
-                + role.hashCode()
-                + created.hashCode()
-                + changed.hashCode());
+                + role.hashCode());
     }
 
     @Override
@@ -139,9 +117,7 @@ public class UserCreateRequest {
                 && (birthDate == user.birthDate || birthDate != null && birthDate.equals(user.getBirthDate()))
                 && (login == user.login || login != null && login.equals(user.getLogin()))
                 && (password == user.password || password != null && password.equals(user.getPassword()))
-                && (role == user.role || role != null && role.equals(user.getRole()))
-                && (created == user.created || created != null && created.equals(user.getCreated()))
-                && (changed == user.changed || changed != null && changed.equals(user.getChanged()));
+                && (role == user.role || role != null && role.equals(user.getRole()));
     }
 
     @Override
@@ -155,9 +131,8 @@ public class UserCreateRequest {
         stringBuilder.append("login ").append(login).append(", ");
         stringBuilder.append("password ").append(password).append(", ");
         stringBuilder.append("role ").append(role).append(", ");
-        stringBuilder.append("is blocked ").append(isBlocked).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
+        stringBuilder.append("is blocked ").append(isBlocked);
+
         return stringBuilder.toString();
     }
 }

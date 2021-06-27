@@ -6,13 +6,13 @@ import by.varaksa.cardealer.exception.ServiceException;
 import java.util.List;
 
 public interface OrderService {
+    Order save(Order order) throws ServiceException;
+
     List<Order> findAll() throws ServiceException;
 
     Order find(Long id) throws ServiceException;
 
-    Order save(Order order) throws ServiceException;
+    Order update(Order order) throws ServiceException;
 
-    Order update(Long id) throws ServiceException;
-
-    Order delete(Long id) throws ServiceException;
+    Long delete(Order order) throws ServiceException;
 }

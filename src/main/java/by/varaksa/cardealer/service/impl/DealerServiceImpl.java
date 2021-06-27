@@ -19,50 +19,6 @@ public class DealerServiceImpl implements DealerService {
     }
 
     @Override
-    public List<Dealer> findAll() throws ServiceException {
-        List<Dealer> existingDealers;
-
-        try {
-            existingDealers = dealerRepository.findAll();
-            if (existingDealers.isEmpty()) {
-                String errorMessage = "A list is empty";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            } else {
-                logger.info("Dealers exist");
-                return existingDealers;
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Dealer service exception while trying to find all dealers." + stackTrace.getMessage());
-        }
-    }
-
-    @Override
-    public Dealer find(Long id) throws ServiceException {
-        Dealer dealerToFindById;
-
-        try {
-            dealerToFindById = dealerRepository.find(id);
-            if (dealerToFindById == null) {
-                String errorMessage = "Dealer id can't be null";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Dealer service exception while trying to find a dealer." + stackTrace.getMessage());
-        }
-
-        try {
-            logger.info("Dealer with id " + id + " exists");
-            return dealerRepository.find(id);
-        } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get a dealer";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-    }
-
-    @Override
     public Dealer save(Dealer dealer) throws ServiceException {
         List<Dealer> existingDealers;
 
@@ -89,25 +45,31 @@ public class DealerServiceImpl implements DealerService {
             logger.info("Dealer " + dealer + " was saved");
             return savedDealer;
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Dealer service exception while trying to save a dealer." + stackTrace.getMessage());
+            throw new ServiceException("Dealer service exception while trying to save a dealer." + stackTrace);
         }
     }
 
     @Override
-    public Dealer update(Long id) throws ServiceException {
+    public List<Dealer> findAll() throws ServiceException {
+        List<Dealer> existingDealers;
 
         try {
-            logger.info("Dealer with id " + id + " was updated");
-            return dealerRepository.update(id);
+            existingDealers = dealerRepository.findAll();
+            if (existingDealers.isEmpty()) {
+                String errorMessage = "A list is empty";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            } else {
+                logger.info("Dealers exist");
+                return existingDealers;
+            }
         } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get a dealer";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
+            throw new ServiceException("Dealer service exception while trying to find all dealers." + stackTrace);
         }
     }
 
     @Override
-    public Dealer delete(Long id) throws ServiceException {
+    public Dealer find(Long id) throws ServiceException {
         Dealer dealerToFindById;
 
         try {
@@ -118,12 +80,50 @@ public class DealerServiceImpl implements DealerService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Dealer service exception while trying to delete a dealer." + stackTrace.getMessage());
+            throw new ServiceException("Dealer service exception while trying to find a dealer." + stackTrace);
         }
 
         try {
-            logger.info("Dealer with id " + id + " was deleted");
-            return dealerRepository.delete(id);
+            logger.info("Dealer with id " + id + " exists");
+            return dealerRepository.find(id);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get a dealer";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Dealer update(Dealer dealer) throws ServiceException {
+
+        try {
+            logger.info("Dealer with id " + dealer.getId() + " was updated");
+            return dealerRepository.update(dealer);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get a dealer";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Long delete(Dealer dealer) throws ServiceException {
+        Dealer dealerToFindById;
+
+        try {
+            dealerToFindById = dealerRepository.find(dealer.getId());
+            if (dealerToFindById == null) {
+                String errorMessage = "Dealer id can't be null";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            }
+        } catch (RepositoryException stackTrace) {
+            throw new ServiceException("Dealer service exception while trying to delete a dealer." + stackTrace);
+        }
+
+        try {
+            logger.info("Dealer with id " + dealer.getId() + " was deleted");
+            return dealerRepository.delete(dealer);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get a dealer";
             logger.error(errorMessage);

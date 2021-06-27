@@ -19,50 +19,6 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public List<Engine> findAll() throws ServiceException {
-        List<Engine> existingEngines;
-
-        try {
-            existingEngines = engineRepository.findAll();
-            if (existingEngines.isEmpty()) {
-                String errorMessage = "A list is empty";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            } else {
-                logger.info("Engines exist");
-                return existingEngines;
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Engine service exception while trying to find all engines." + stackTrace.getMessage());
-        }
-    }
-
-    @Override
-    public Engine find(Long id) throws ServiceException {
-        Engine engineToFindById;
-
-        try {
-            engineToFindById = engineRepository.find(id);
-            if (engineToFindById == null) {
-                String errorMessage = "Engine id can't be null";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Engine service exception while trying to find an engine." + stackTrace.getMessage());
-        }
-
-        try {
-            logger.info("Engine with id " + id + " exists");
-            return engineRepository.find(id);
-        } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get an engine";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-    }
-
-    @Override
     public Engine save(Engine engine) throws ServiceException {
         List<Engine> existingEngines;
 
@@ -89,25 +45,31 @@ public class EngineServiceImpl implements EngineService {
             logger.info("Engine " + engine + " was saved");
             return savedEngine;
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Engine service exception while trying to save an engine." + stackTrace.getMessage());
+            throw new ServiceException("Engine service exception while trying to save an engine." + stackTrace);
         }
     }
 
     @Override
-    public Engine update(Long id) throws ServiceException {
+    public List<Engine> findAll() throws ServiceException {
+        List<Engine> existingEngines;
 
         try {
-            logger.info("Engine with id " + id + " was updated");
-            return engineRepository.update(id);
+            existingEngines = engineRepository.findAll();
+            if (existingEngines.isEmpty()) {
+                String errorMessage = "A list is empty";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            } else {
+                logger.info("Engines exist");
+                return existingEngines;
+            }
         } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get an engine";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
+            throw new ServiceException("Engine service exception while trying to find all engines." + stackTrace);
         }
     }
 
     @Override
-    public Engine delete(Long id) throws ServiceException {
+    public Engine find(Long id) throws ServiceException {
         Engine engineToFindById;
 
         try {
@@ -118,12 +80,50 @@ public class EngineServiceImpl implements EngineService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Engine service exception while trying to delete an engine." + stackTrace.getMessage());
+            throw new ServiceException("Engine service exception while trying to find an engine." + stackTrace);
         }
 
         try {
-            logger.info("Engine with id " + id + " was deleted");
-            return engineRepository.delete(id);
+            logger.info("Engine with id " + id + " exists");
+            return engineRepository.find(id);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get an engine";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Engine update(Engine engine) throws ServiceException {
+
+        try {
+            logger.info("Engine with id " + engine.getId() + " was updated");
+            return engineRepository.update(engine);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get an engine";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Long delete(Engine engine) throws ServiceException {
+        Engine engineToFindById;
+
+        try {
+            engineToFindById = engineRepository.find(engine.getId());
+            if (engineToFindById == null) {
+                String errorMessage = "Engine id can't be null";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            }
+        } catch (RepositoryException stackTrace) {
+            throw new ServiceException("Engine service exception while trying to delete an engine." + stackTrace);
+        }
+
+        try {
+            logger.info("Engine with id " + engine.getId() + " was deleted");
+            return engineRepository.delete(engine);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get an engine";
             logger.error(errorMessage);

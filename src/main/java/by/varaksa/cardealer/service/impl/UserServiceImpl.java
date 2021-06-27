@@ -19,50 +19,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() throws ServiceException {
-        List<User> existingUsers;
-
-        try {
-            existingUsers = userRepository.findAll();
-            if (existingUsers.isEmpty()) {
-                String errorMessage = "A list is empty";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            } else {
-                logger.info("Users exist");
-                return existingUsers;
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User service exception while trying to find all users." + stackTrace.getMessage());
-        }
-    }
-
-    @Override
-    public User find(Long id) throws ServiceException {
-        User userToFindById;
-
-        try {
-            userToFindById = userRepository.find(id);
-            if (userToFindById == null) {
-                String errorMessage = "User id can't be null";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User service exception while trying to find an user." + stackTrace.getMessage());
-        }
-
-        try {
-            logger.info("User with id " + id + " exists");
-            return userRepository.find(id);
-        } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get an user";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-    }
-
-    @Override
     public User save(User user) throws ServiceException {
         List<User> existingUsers;
 
@@ -89,25 +45,31 @@ public class UserServiceImpl implements UserService {
             logger.info("User " + user + " was saved");
             return savedUser;
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User service exception while trying to save an user." + stackTrace.getMessage());
+            throw new ServiceException("User service exception while trying to save an user." + stackTrace);
         }
     }
 
     @Override
-    public User update(Long id) throws ServiceException {
+    public List<User> findAll() throws ServiceException {
+        List<User> existingUsers;
 
         try {
-            logger.info("User with id " + id + " was updated");
-            return userRepository.update(id);
+            existingUsers = userRepository.findAll();
+            if (existingUsers.isEmpty()) {
+                String errorMessage = "A list is empty";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            } else {
+                logger.info("Users exist");
+                return existingUsers;
+            }
         } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get an user";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
+            throw new ServiceException("User service exception while trying to find all users." + stackTrace);
         }
     }
 
     @Override
-    public User delete(Long id) throws ServiceException {
+    public User find(Long id) throws ServiceException {
         User userToFindById;
 
         try {
@@ -118,12 +80,50 @@ public class UserServiceImpl implements UserService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User service exception while trying to delete an user." + stackTrace.getMessage());
+            throw new ServiceException("User service exception while trying to find an user." + stackTrace);
         }
 
         try {
-            logger.info("User with id " + id + " was deleted");
-            return userRepository.delete(id);
+            logger.info("User with id " + id + " exists");
+            return userRepository.find(id);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get an user";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public User update(User user) throws ServiceException {
+
+        try {
+            logger.info("User with id " + user.getId() + " was updated");
+            return userRepository.update(user);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get an user";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Long delete(User user) throws ServiceException {
+        User userToFindById;
+
+        try {
+            userToFindById = userRepository.find(user.getId());
+            if (userToFindById == null) {
+                String errorMessage = "User id can't be null";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            }
+        } catch (RepositoryException stackTrace) {
+            throw new ServiceException("User service exception while trying to delete an user." + stackTrace);
+        }
+
+        try {
+            logger.info("User with id " + user.getId() + " was deleted");
+            return userRepository.delete(user);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get an user";
             logger.error(errorMessage);

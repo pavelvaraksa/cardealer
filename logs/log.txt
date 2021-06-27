@@ -12,3 +12,158 @@
 2021-06-22 01:24:08 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ResultSet not positioned properly, perhaps you need to call next.
 2021-06-22 01:27:17 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ResultSet not positioned properly, perhaps you need to call next.
 2021-06-22 01:37:54 [main] ERROR varaksa.cardealer.repository.impl.BodyRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ResultSet not positioned properly, perhaps you need to call next.
+2021-06-25 23:06:37 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:18:53 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:19:13 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:21:29 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:23:05 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:23:05 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User User: id 2, name b, surname b, birth date 3921-05-11, login q, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11,  is saved
+2021-06-25 23:25:12 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:25:13 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "users_login_uindex"
+  Подробности: Ключ "(login)=(q)" уже существует.
+2021-06-25 23:25:42 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:25:42 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "users_login_uindex"
+  Подробности: Ключ "(login)=(q)" уже существует.
+2021-06-25 23:25:53 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:25:54 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "users_login_uindex"
+  Подробности: Ключ "(login)=(q)" уже существует.
+2021-06-25 23:26:12 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:26:13 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login q1 is saved
+2021-06-25 23:26:27 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:26:27 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login q2 is saved
+2021-06-25 23:27:05 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:27:05 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "users_login_uindex"
+  Подробности: Ключ "(login)=(q2)" уже существует.
+2021-06-25 23:27:25 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:27:26 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login q5 is saved
+2021-06-25 23:32:31 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:32:31 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "users_login_uindex"
+  Подробности: Ключ "(login)=(q5)" уже существует.
+2021-06-25 23:32:51 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:32:51 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login q6 is saved
+2021-06-25 23:32:51 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:32:51 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 11 is found
+2021-06-25 23:34:17 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:34:18 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login q7 is saved
+2021-06-25 23:37:31 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:37:32 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login q8 is saved
+2021-06-25 23:38:03 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:41:56 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:41:56 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 1.
+2021-06-25 23:44:27 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:44:27 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 1.
+2021-06-25 23:44:39 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:44:39 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 1.
+2021-06-25 23:46:29 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:46:29 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 1.
+2021-06-25 23:50:19 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:50:19 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 1.
+2021-06-25 23:53:34 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:53:34 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 1.
+2021-06-25 23:57:15 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:57:15 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 1.
+2021-06-25 23:57:45 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:57:45 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 1.
+2021-06-25 23:58:05 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-25 23:58:06 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 1.
+2021-06-26 00:01:12 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:01:12 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Запрос не вернул результатов.
+2021-06-26 00:01:35 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:01:36 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Запрос не вернул результатов.
+2021-06-26 00:02:21 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:02:22 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Запрос не вернул результатов.
+2021-06-26 00:03:10 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:03:11 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Запрос не вернул результатов.
+2021-06-26 00:04:28 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:04:28 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Запрос не вернул результатов.
+2021-06-26 00:04:51 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:04:51 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: select * from users
+2021-06-26 00:05:26 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:05:26 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 9, name b, surname b, birth date 3921-05-11, login q5, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 11, name b, surname b, birth date 3921-05-11, login q6, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 12, name b, surname b, birth date 3921-05-11, login q7, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 13, name b, surname b, birth date 3921-05-11, login q8, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, ]
+2021-06-26 00:05:46 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:05:46 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 9, name b, surname b, birth date 3921-05-11, login q5, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 11, name b, surname b, birth date 3921-05-11, login q6, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 12, name b, surname b, birth date 3921-05-11, login q7, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 13, name b, surname b, birth date 3921-05-11, login q8, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, ]
+
+2021-06-26 00:06:05 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:06:05 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 9, name b, surname b, birth date 3921-05-11, login q5, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 11, name b, surname b, birth date 3921-05-11, login q6, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 12, name b, surname b, birth date 3921-05-11, login q7, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 13, name b, surname b, birth date 3921-05-11, login q8, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, ]
+2021-06-26 00:07:41 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:07:41 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 9, name b, surname b, birth date 3921-05-11, login q5, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 11, name b, surname b, birth date 3921-05-11, login q6, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 12, name b, surname b, birth date 3921-05-11, login q7, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 13, name b, surname b, birth date 3921-05-11, login q8, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, ]
+2021-06-26 00:08:49 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:08:49 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 6 is found
+2021-06-26 00:10:04 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:11:29 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:11:29 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 10.
+2021-06-26 00:27:18 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:27:18 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 10.
+2021-06-26 00:28:21 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:28:22 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Не указано значение для параметра 10.
+2021-06-26 00:30:04 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:31:24 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:31:25 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: ошибка синтаксиса (примерное положение: "where")
+  Позиция: 152
+2021-06-26 00:33:52 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:33:52 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: ошибка синтаксиса (примерное положение: "where")
+  Позиция: 152
+2021-06-26 00:35:11 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:35:11 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: ошибка синтаксиса (примерное положение: "where")
+  Позиция: 152
+2021-06-26 00:37:35 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:37:35 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: ошибка синтаксиса (примерное положение: "where")
+  Позиция: 152
+2021-06-26 00:38:25 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:38:26 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: ошибка синтаксиса (примерное положение: "where")
+  Позиция: 152
+2021-06-26 00:39:34 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:39:34 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 9 is updated
+2021-06-26 00:39:34 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:39:34 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 9 is found
+2021-06-26 00:40:15 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:40:15 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 5 is updated
+2021-06-26 00:40:15 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:40:36 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:40:36 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 9 is updated
+2021-06-26 00:40:36 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:40:36 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 9 is found
+2021-06-26 00:41:46 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:41:47 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 9 is updated
+2021-06-26 00:42:10 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:42:10 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 9 is updated
+2021-06-26 00:42:24 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:42:24 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 9 is updated
+2021-06-26 00:43:03 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:43:03 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 11, name b, surname b, birth date 3921-05-11, login q6, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 12, name b, surname b, birth date 3921-05-11, login q7, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 13, name b, surname b, birth date 3921-05-11, login q8, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, , User: id 9, name b, surname b, birth date 3921-05-11, login mike212, password q, role USER, is blocked false, created 3921-05-11, changed 3921-05-11, ]
+2021-06-26 00:43:18 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:43:18 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 9 is found
+2021-06-26 00:43:36 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:43:55 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:43:55 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: Запрос не вернул результатов.
+2021-06-26 00:46:16 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:46:16 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id null is deleted
+2021-06-26 00:46:37 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:46:38 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id null is deleted
+2021-06-26 00:47:10 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:47:11 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 11 is deleted
+2021-06-26 00:47:31 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:47:31 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 11 is deleted
+2021-06-26 00:47:31 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:47:58 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:47:58 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 11 is deleted
+2021-06-26 00:47:58 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:48:14 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:48:15 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 11 is deleted
+2021-06-26 00:48:15 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:49:23 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:49:23 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 12 is deleted
+2021-06-26 00:49:23 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:50:59 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:50:59 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 12 is deleted
+2021-06-26 00:50:59 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:51:47 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:51:47 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:52:08 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:52:08 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:52:35 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:52:35 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 12 is deleted
+2021-06-26 00:52:51 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:52:52 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 13 is deleted
+2021-06-26 00:53:05 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-26 00:53:05 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 144 is deleted

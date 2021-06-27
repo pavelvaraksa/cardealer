@@ -3,7 +3,6 @@ package by.varaksa.cardealer.controller.request;
 import by.varaksa.cardealer.entity.Brand;
 
 import java.sql.Blob;
-import java.util.Date;
 
 public class CarCreateRequest {
     private Long id;
@@ -19,10 +18,6 @@ public class CarCreateRequest {
     private Double price;
 
     private Blob image;
-
-    private Date created;
-
-    private Date changed;
 
     private Long userOrderId;
 
@@ -85,22 +80,6 @@ public class CarCreateRequest {
         this.image = image;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getChanged() {
-        return changed;
-    }
-
-    public void setChanged(Date changed) {
-        this.changed = changed;
-    }
-
     public Long getUserOrderId() {
         return userOrderId;
     }
@@ -118,8 +97,6 @@ public class CarCreateRequest {
                 + guaranteePeriod.hashCode()
                 + price.hashCode()
                 + image.hashCode()
-                + created.hashCode()
-                + changed.hashCode()
                 + userOrderId.hashCode());
     }
 
@@ -142,8 +119,6 @@ public class CarCreateRequest {
                 && (guaranteePeriod == car.guaranteePeriod || guaranteePeriod != null && guaranteePeriod.equals(car.getGuaranteePeriod()))
                 && (price == car.price || price != null && price.equals(car.getPrice()))
                 && (image == car.image || image != null && image.equals(car.getImage()))
-                && (created == car.created || created != null && created.equals(car.getCreated()))
-                && (changed == car.changed || changed != null && changed.equals(car.getChanged()))
                 && (userOrderId == car.userOrderId || userOrderId != null && userOrderId.equals(car.getUserOrderId()));
     }
 
@@ -158,8 +133,6 @@ public class CarCreateRequest {
         stringBuilder.append("guarantee period ").append(guaranteePeriod).append(", ");
         stringBuilder.append("price ").append(price).append(", ");
         stringBuilder.append("image ").append(image).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
         stringBuilder.append("user order id ").append(userOrderId);
         return stringBuilder.toString();
     }

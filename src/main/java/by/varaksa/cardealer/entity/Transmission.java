@@ -1,5 +1,6 @@
 package by.varaksa.cardealer.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Transmission {
@@ -11,9 +12,9 @@ public class Transmission {
 
     private Double weight;
 
-    private Date created;
+    private Timestamp created = new Timestamp(System.currentTimeMillis());
 
-    private Date changed;
+    private Timestamp changed = new Timestamp(System.currentTimeMillis());
 
     private Long carId;
 
@@ -52,19 +53,19 @@ public class Transmission {
         this.weight = weight;
     }
 
-    public Date getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public Date getChanged() {
+    public Timestamp getChanged() {
         return changed;
     }
 
-    public void setChanged(Date changed) {
+    public void setChanged(Timestamp changed) {
         this.changed = changed;
     }
 

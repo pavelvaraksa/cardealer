@@ -6,13 +6,13 @@ import by.varaksa.cardealer.exception.ServiceException;
 import java.util.List;
 
 public interface EngineService {
+    Engine save(Engine engine) throws ServiceException;
+
     List<Engine> findAll() throws ServiceException;
 
     Engine find(Long id) throws ServiceException;
 
-    Engine save(Engine engine) throws ServiceException;
+    Engine update(Engine engine) throws ServiceException;
 
-    Engine update(Long id) throws ServiceException;
-
-    Engine delete(Long id) throws ServiceException;
+    Long delete(Engine engine) throws ServiceException;
 }

@@ -3,8 +3,6 @@ package by.varaksa.cardealer.controller.request;
 import by.varaksa.cardealer.entity.BodyType;
 import by.varaksa.cardealer.entity.Color;
 
-import java.util.Date;
-
 public class BodyCreateRequest {
     private Long id;
 
@@ -13,10 +11,6 @@ public class BodyCreateRequest {
     private BodyType bodyType;
 
     private String vin;
-
-    private Date created;
-
-    private Date changed;
 
     private Long carId;
 
@@ -55,22 +49,6 @@ public class BodyCreateRequest {
         this.vin = vin;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getChanged() {
-        return changed;
-    }
-
-    public void setChanged(Date changed) {
-        this.changed = changed;
-    }
-
     public Long getCarId() {
         return carId;
     }
@@ -85,8 +63,6 @@ public class BodyCreateRequest {
                 + color.hashCode()
                 + bodyType.hashCode()
                 + vin.hashCode()
-                + created.hashCode()
-                + changed.hashCode()
                 + carId.hashCode());
     }
 
@@ -106,8 +82,6 @@ public class BodyCreateRequest {
                 && (color == body.color || color != null && color.equals(body.getColor()))
                 && (bodyType == body.bodyType || bodyType != null && bodyType.equals(body.getBodyType()))
                 && (vin == body.vin || vin != null && vin.equals(body.getVin()))
-                && (created == body.created || created != null && created.equals(body.getCreated()))
-                && (changed == body.changed || changed != null && changed.equals(body.getChanged()))
                 && (carId == body.carId || carId != null && carId.equals(body.getCarId()));
     }
 
@@ -119,8 +93,6 @@ public class BodyCreateRequest {
         stringBuilder.append("color ").append(color).append(", ");
         stringBuilder.append("body type ").append(bodyType).append(", ");
         stringBuilder.append("vin ").append(vin).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
         stringBuilder.append("car id ").append(carId);
         return stringBuilder.toString();
     }

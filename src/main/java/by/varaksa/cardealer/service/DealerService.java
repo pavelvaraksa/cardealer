@@ -6,13 +6,13 @@ import by.varaksa.cardealer.exception.ServiceException;
 import java.util.List;
 
 public interface DealerService {
+    Dealer save(Dealer dealer) throws ServiceException;
+
     List<Dealer> findAll() throws ServiceException;
 
     Dealer find(Long id) throws ServiceException;
 
-    Dealer save(Dealer dealer) throws ServiceException;
+    Dealer update(Dealer dealer) throws ServiceException;
 
-    Dealer update(Long id) throws ServiceException;
-
-    Dealer delete(Long id) throws ServiceException;
+    Long delete(Dealer dealer) throws ServiceException;
 }

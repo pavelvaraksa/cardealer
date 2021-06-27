@@ -19,50 +19,6 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> findAll() throws ServiceException {
-        List<Car> existingCars;
-
-        try {
-            existingCars = carRepository.findAll();
-            if (existingCars.isEmpty()) {
-                String errorMessage = "A list is empty";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            } else {
-                logger.info("Cars exist");
-                return existingCars;
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Car service exception while trying to find all cars." + stackTrace.getMessage());
-        }
-    }
-
-    @Override
-    public Car find(Long id) throws ServiceException {
-        Car carToFindById;
-
-        try {
-            carToFindById = carRepository.find(id);
-            if (carToFindById == null) {
-                String errorMessage = "Car id can't be null";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Car service exception while trying to find a car." + stackTrace.getMessage());
-        }
-
-        try {
-            logger.info("Car with id " + id + " exists");
-            return carRepository.find(id);
-        } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get a car";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-    }
-
-    @Override
     public Car save(Car car) throws ServiceException {
         List<Car> existingCars;
 
@@ -89,25 +45,31 @@ public class CarServiceImpl implements CarService {
             logger.info("Car " + car + " was saved");
             return savedCar;
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Car service exception while trying to save a car." + stackTrace.getMessage());
+            throw new ServiceException("Car service exception while trying to save a car." + stackTrace);
         }
     }
 
     @Override
-    public Car update(Long id) throws ServiceException {
+    public List<Car> findAll() throws ServiceException {
+        List<Car> existingCars;
 
         try {
-            logger.info("Car with id " + id + " was updated");
-            return carRepository.update(id);
+            existingCars = carRepository.findAll();
+            if (existingCars.isEmpty()) {
+                String errorMessage = "A list is empty";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            } else {
+                logger.info("Cars exist");
+                return existingCars;
+            }
         } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get a car";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
+            throw new ServiceException("Car service exception while trying to find all cars." + stackTrace);
         }
     }
 
     @Override
-    public Car delete(Long id) throws ServiceException {
+    public Car find(Long id) throws ServiceException {
         Car carToFindById;
 
         try {
@@ -118,12 +80,50 @@ public class CarServiceImpl implements CarService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException stackTrace) {
+            throw new ServiceException("Car service exception while trying to find a car." + stackTrace);
+        }
+
+        try {
+            logger.info("Car with id " + id + " exists");
+            return carRepository.find(id);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get a car";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Car update(Car car) throws ServiceException {
+
+        try {
+            logger.info("Car with id " + car.getId() + " was updated");
+            return carRepository.update(car);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get a car";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Long delete(Car car) throws ServiceException {
+        Car carToFindById;
+
+        try {
+            carToFindById = carRepository.find(car.getId());
+            if (carToFindById == null) {
+                String errorMessage = "Car id can't be null";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            }
+        } catch (RepositoryException stackTrace) {
             throw new ServiceException("Car service exception while trying to delete a car." + stackTrace.getMessage());
         }
 
         try {
-            logger.info("Car with id " + id + " was deleted");
-            return carRepository.delete(id);
+            logger.info("Car with id " + car.getId() + " was deleted");
+            return carRepository.delete(car);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get a car";
             logger.error(errorMessage);

@@ -19,50 +19,6 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
-    public List<Body> findAll() throws ServiceException {
-        List<Body> existingBodies;
-
-        try {
-            existingBodies = bodyRepository.findAll();
-            if (existingBodies.isEmpty()) {
-                String errorMessage = "A list is empty";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            } else {
-                logger.info("Bodies exist");
-                return existingBodies;
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Body service exception while trying to find all bodies." + stackTrace.getMessage());
-        }
-    }
-
-    @Override
-    public Body find(Long id) throws ServiceException {
-        Body bodyToFindById;
-
-        try {
-            bodyToFindById = bodyRepository.find(id);
-            if (bodyToFindById == null) {
-                String errorMessage = "Body id can't be null";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Body service exception while trying to find a body." + stackTrace.getMessage());
-        }
-
-        try {
-            logger.info("Body with id " + id + " exists");
-            return bodyRepository.find(id);
-        } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get a body";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-    }
-
-    @Override
     public Body save(Body body) throws ServiceException {
         List<Body> existingBodies;
 
@@ -89,26 +45,31 @@ public class BodyServiceImpl implements BodyService {
             logger.info("Body " + body + " was saved");
             return savedBody;
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Body service exception while trying to save a body." + stackTrace.getMessage());
+            throw new ServiceException("Body service exception while trying to save a body." + stackTrace);
         }
     }
 
-
     @Override
-    public Body update(Long id) throws ServiceException {
+    public List<Body> findAll() throws ServiceException {
+        List<Body> existingBodies;
 
         try {
-            logger.info("Body with id " + id + " was updated");
-            return bodyRepository.update(id);
+            existingBodies = bodyRepository.findAll();
+            if (existingBodies.isEmpty()) {
+                String errorMessage = "A list is empty";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            } else {
+                logger.info("Bodies exist");
+                return existingBodies;
+            }
         } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get a body";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
+            throw new ServiceException("Body service exception while trying to find all bodies." + stackTrace);
         }
     }
 
     @Override
-    public Body delete(Long id) throws ServiceException {
+    public Body find(Long id) throws ServiceException {
         Body bodyToFindById;
 
         try {
@@ -119,12 +80,50 @@ public class BodyServiceImpl implements BodyService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Body service exception while trying to delete a body." + stackTrace.getMessage());
+            throw new ServiceException("Body service exception while trying to find a body." + stackTrace);
         }
 
         try {
-            logger.info("Body with id " + id + " was deleted");
-            return bodyRepository.delete(id);
+            logger.info("Body with id " + id + " exists");
+            return bodyRepository.find(id);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get a body";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Body update(Body body) throws ServiceException {
+
+        try {
+            logger.info("Body with id " + body.getId() + " was updated");
+            return bodyRepository.update(body);
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Can't get a body";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Long delete(Body body) throws ServiceException {
+        Body bodyToFindById;
+
+        try {
+            bodyToFindById = bodyRepository.find(body.getId());
+            if (bodyToFindById == null) {
+                String errorMessage = "Body id can't be null";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            }
+        } catch (RepositoryException stackTrace) {
+            throw new ServiceException("Body service exception while trying to delete a body." + stackTrace);
+        }
+
+        try {
+            logger.info("Body with id " + body.getId() + " was deleted");
+            return bodyRepository.delete(body);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get a body";
             logger.error(errorMessage);

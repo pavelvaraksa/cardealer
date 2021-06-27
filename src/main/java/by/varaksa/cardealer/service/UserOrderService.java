@@ -6,13 +6,13 @@ import by.varaksa.cardealer.exception.ServiceException;
 import java.util.List;
 
 public interface UserOrderService {
+    UserOrder save(UserOrder userOrder) throws ServiceException;
+
     List<UserOrder> findAll() throws ServiceException;
 
     UserOrder find(Long id) throws ServiceException;
 
-    UserOrder save(UserOrder userOrder) throws ServiceException;
+    UserOrder update(UserOrder userOrder) throws ServiceException;
 
-    UserOrder update(Long id) throws ServiceException;
-
-    UserOrder delete(Long id) throws ServiceException;
+    Long delete(UserOrder userOrder) throws ServiceException;
 }

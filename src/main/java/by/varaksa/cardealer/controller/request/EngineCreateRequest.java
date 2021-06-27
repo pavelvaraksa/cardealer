@@ -3,8 +3,6 @@ package by.varaksa.cardealer.controller.request;
 import by.varaksa.cardealer.entity.EngineType;
 import by.varaksa.cardealer.entity.FuelType;
 
-import java.util.Date;
-
 public class EngineCreateRequest {
     private Long id;
 
@@ -15,10 +13,6 @@ public class EngineCreateRequest {
     private Double volume;
 
     private Integer cylindersCount;
-
-    private Date created;
-
-    private Date changed;
 
     private Long carId;
 
@@ -65,22 +59,6 @@ public class EngineCreateRequest {
         this.cylindersCount = cylindersCount;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getChanged() {
-        return changed;
-    }
-
-    public void setChanged(Date changed) {
-        this.changed = changed;
-    }
-
     public Long getCarId() {
         return carId;
     }
@@ -96,8 +74,6 @@ public class EngineCreateRequest {
                 + fuelType.hashCode()
                 + volume.hashCode()
                 + cylindersCount.hashCode()
-                + created.hashCode()
-                + changed.hashCode()
                 + carId.hashCode());
     }
 
@@ -118,8 +94,6 @@ public class EngineCreateRequest {
                 && (fuelType == engine.fuelType || fuelType != null && fuelType.equals(engine.getFuelType()))
                 && (volume == engine.volume || volume != null && volume.equals(engine.getVolume()))
                 && (cylindersCount == engine.cylindersCount || cylindersCount != null && cylindersCount.equals(engine.getCylindersCount()))
-                && (created == engine.created || created != null && created.equals(engine.getCreated()))
-                && (changed == engine.changed || changed != null && changed.equals(engine.getChanged()))
                 && (carId == engine.carId || carId != null && carId.equals(engine.getCarId()));
     }
 
@@ -132,8 +106,6 @@ public class EngineCreateRequest {
         stringBuilder.append("fuel type ").append(fuelType).append(", ");
         stringBuilder.append("volume ").append(volume).append(", ");
         stringBuilder.append("cylinders count ").append(cylindersCount).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
         stringBuilder.append("car id ").append(carId);
         return stringBuilder.toString();
     }

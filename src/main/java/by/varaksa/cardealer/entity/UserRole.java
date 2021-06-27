@@ -5,6 +5,8 @@ public class UserRole {
 
     private Role roleName;
 
+    private Long userId;
+
     public UserRole() {
     }
 
@@ -22,6 +24,14 @@ public class UserRole {
 
     public void setRoleName(Role roleName) {
         this.roleName = roleName;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -42,7 +52,8 @@ public class UserRole {
         UserRole userRole = (UserRole) object;
 
         return id == userRole.id
-                && (roleName == userRole.roleName || roleName != null && roleName.equals(userRole.getRoleName()));
+                && (roleName == userRole.roleName || roleName != null && roleName.equals(userRole.getRoleName()))
+                && (userId == userRole.userId || userId != null && userId.equals(userRole.getUserId()));
     }
 
     @Override
@@ -50,7 +61,8 @@ public class UserRole {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("User role: ");
         stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("role name ").append(roleName);
+        stringBuilder.append("role name ").append(roleName).append(", ");
+        stringBuilder.append("user id ").append(userId);
         return stringBuilder.toString();
     }
 }

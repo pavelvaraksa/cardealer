@@ -6,13 +6,13 @@ import by.varaksa.cardealer.exception.ServiceException;
 import java.util.List;
 
 public interface UserRoleService {
+    UserRole save(UserRole userRole) throws ServiceException;
+
     List<UserRole> findAll() throws ServiceException;
 
     UserRole find(Long id) throws ServiceException;
 
-    UserRole save(UserRole userRole) throws ServiceException;
+    UserRole update(UserRole userRole) throws ServiceException;
 
-    UserRole update(Long id) throws ServiceException;
-
-    UserRole delete(Long id) throws ServiceException;
+    Long delete(UserRole userRole) throws ServiceException;
 }

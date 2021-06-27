@@ -1,5 +1,6 @@
 package by.varaksa.cardealer.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class User {
@@ -19,11 +20,25 @@ public class User {
 
     private boolean isBlocked;
 
-    private Date created;
+    private Timestamp created = new Timestamp(System.currentTimeMillis());
 
-    private Date changed;
+    private Timestamp changed = new Timestamp(System.currentTimeMillis());
 
     public User() {
+    }
+
+    public User(String name, String surname, Date birthDate, String login, String password,
+                Role role, boolean isBlocked, Timestamp created, Timestamp changed, Long id) {
+        this.name = name;
+        this.surname = surname;
+        this.birthDate = birthDate;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.isBlocked = isBlocked;
+        this.created = created;
+        this.changed = changed;
+        this.id = id;
     }
 
     public Long getId() {
@@ -90,19 +105,19 @@ public class User {
         isBlocked = blocked;
     }
 
-    public Date getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public Date getChanged() {
+    public Timestamp getChanged() {
         return changed;
     }
 
-    public void setChanged(Date changed) {
+    public void setChanged(Timestamp changed) {
         this.changed = changed;
     }
 

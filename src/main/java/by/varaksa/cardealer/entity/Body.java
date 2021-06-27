@@ -1,6 +1,6 @@
 package by.varaksa.cardealer.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Body {
     private Long id;
@@ -11,13 +11,32 @@ public class Body {
 
     private String vin;
 
-    private Date created;
+    private Timestamp created = new Timestamp(System.currentTimeMillis());
 
-    private Date changed;
+    private Timestamp changed = new Timestamp(System.currentTimeMillis());
 
     private Long carId;
 
     public Body() {
+    }
+
+    public Body(Long id, Color color, BodyType bodyType, String vin, Timestamp changed, Long carId) {
+        this.id = id;
+        this.color = color;
+        this.bodyType = bodyType;
+        this.vin = vin;
+        this.changed = changed;
+        this.carId = carId;
+    }
+
+    public Body(Long id, Color color, BodyType bodyType, String vin, Timestamp created, Timestamp changed, Long carId) {
+        this.id = id;
+        this.color = color;
+        this.bodyType = bodyType;
+        this.vin = vin;
+        this.created = created;
+        this.changed = changed;
+        this.carId = carId;
     }
 
     public Long getId() {
@@ -52,19 +71,19 @@ public class Body {
         this.vin = vin;
     }
 
-    public Date getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public Date getChanged() {
+    public Timestamp getChanged() {
         return changed;
     }
 
-    public void setChanged(Date changed) {
+    public void setChanged(Timestamp changed) {
         this.changed = changed;
     }
 
