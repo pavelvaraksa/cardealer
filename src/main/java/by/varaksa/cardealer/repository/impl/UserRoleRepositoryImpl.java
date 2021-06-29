@@ -39,13 +39,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
         Connection connection;
         PreparedStatement statement;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -75,13 +69,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
         Statement statement;
         ResultSet resultSet;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -111,13 +99,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
         PreparedStatement statement;
         ResultSet resultSet;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -152,13 +134,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
         Connection connection;
         PreparedStatement statement;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -187,13 +163,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
         Connection connection;
         PreparedStatement statement;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -208,6 +178,17 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;
             logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+    }
+
+    private void connect() {
+        try {
+            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
+            logger.info("JDBC driver be loaded");
+        } catch (ClassNotFoundException stackTrace) {
+            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+            logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }

@@ -9,6 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,27 +41,23 @@ public class CarRepositoryImpl implements CarRepository {
         car.setGuaranteePeriod(resultSet.getInt(GUARANTEE_PERIOD));
         car.setPrice(resultSet.getDouble(PRICE));
         car.setImage(resultSet.getBlob(IMAGE));
-        car.setCreated(resultSet.getTimestamp(CREATED));
-        car.setChanged(resultSet.getTimestamp(CHANGED));
+        car.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
+        car.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
         car.setUserOrderId(resultSet.getLong(USER_ORDER_ID));
         return car;
     }
 
     @Override
     public Car save(Car car) throws RepositoryException {
-        final String saveCar = "insert into cars (brand, model, issue_country, guarantee_period, price, image, created, changed, user_order_id) " +
+        final String saveCar = "insert into cars (brand, model, issue_country, " +
+                "guarantee_period, price, image, created, changed, user_order_id) " +
                 "values (?,?,?,?,?,?,?,?,?)";
 
         Connection connection;
         PreparedStatement statement;
+        Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -73,8 +71,8 @@ public class CarRepositoryImpl implements CarRepository {
             statement.setInt(4, car.getGuaranteePeriod());
             statement.setDouble(5, car.getPrice());
             statement.setBlob(6, car.getImage());
-            statement.setTimestamp(7, car.getCreated());
-            statement.setTimestamp(8, car.getChanged());
+            statement.setTimestamp(7, creationTimestamp);
+            statement.setTimestamp(8, creationTimestamp);
             statement.setLong(9, car.getUserOrderId());
             statement.executeUpdate();
 
@@ -96,13 +94,7 @@ public class CarRepositoryImpl implements CarRepository {
         Statement statement;
         ResultSet resultSet;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -132,13 +124,7 @@ public class CarRepositoryImpl implements CarRepository {
         PreparedStatement statement;
         ResultSet resultSet;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -172,21 +158,15 @@ public class CarRepositoryImpl implements CarRepository {
                 "guarantee_period = ?,  " +
                 "price = ?,  " +
                 "image = ?,  " +
-                "created = ?,  " +
                 "changed = ?,  " +
                 "user_order_id = ?  " +
                 "where id = ?";
 
         Connection connection;
         PreparedStatement statement;
+        Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -200,10 +180,9 @@ public class CarRepositoryImpl implements CarRepository {
             statement.setInt(4, car.getGuaranteePeriod());
             statement.setDouble(5, car.getPrice());
             statement.setBlob(6, car.getImage());
-            statement.setTimestamp(7, car.getCreated());
-            statement.setTimestamp(8, car.getChanged());
-            statement.setLong(9, car.getUserOrderId());
-            statement.setLong(10, car.getId());
+            statement.setTimestamp(7, updateTimestamp);
+            statement.setLong(8, car.getUserOrderId());
+            statement.setLong(9, car.getId());
             statement.executeUpdate();
 
             logger.info("Car with id " + car.getId() + " was updated");
@@ -222,13 +201,7 @@ public class CarRepositoryImpl implements CarRepository {
         Connection connection;
         PreparedStatement statement;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -243,6 +216,17 @@ public class CarRepositoryImpl implements CarRepository {
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;
             logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+    }
+
+    private void connect() {
+        try {
+            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
+            logger.info("JDBC driver be loaded");
+        } catch (ClassNotFoundException stackTrace) {
+            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+            logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }

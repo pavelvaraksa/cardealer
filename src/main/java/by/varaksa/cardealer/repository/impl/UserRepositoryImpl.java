@@ -9,6 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,14 +37,53 @@ public class UserRepositoryImpl implements UserRepository {
         user.setId(resultSet.getLong(ID));
         user.setName(resultSet.getString(NAME));
         user.setSurname(resultSet.getString(SURNAME));
-        user.setBirthDate(resultSet.getDate(BIRTH_DATE));
+        user.setBirthDate(resultSet.getDate(BIRTH_DATE).toLocalDate());
         user.setLogin(resultSet.getString(LOGIN));
         user.setPassword(resultSet.getString(PASSWORD));
         user.setRole(Role.valueOf(resultSet.getString(ROLE)));
         user.setBlocked(resultSet.getBoolean(IS_BLOCKED));
-        user.setCreated(resultSet.getTimestamp(CREATED));
-        user.setChanged(resultSet.getTimestamp(CHANGED));
+        user.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
+        user.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
         return user;
+    }
+
+    @Override
+    public User save(User user) throws RepositoryException {
+        final String saveUser = "insert into users (name, surname, birth_date, login, password, " +
+                "role, is_blocked, created, changed) " +
+                "values (?,?,?,?,?,?,?,?,?)";
+
+        Connection connection;
+        PreparedStatement statement;
+        Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
+
+        connect();
+
+        try {
+            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
+                    reader.getProperty(DATABASE_LOGIN),
+                    reader.getProperty(DATABASE_PASSWORD));
+            statement = connection.prepareStatement(saveUser);
+
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getSurname());
+            statement.setDate(3, Date.valueOf(user.getBirthDate()));
+            statement.setString(4, user.getLogin());
+            statement.setString(5, user.getPassword());
+            statement.setString(6, String.valueOf(user.getRole()));
+            statement.setBoolean(7, user.isBlocked());
+            statement.setTimestamp(8, creationTimestamp);
+            statement.setTimestamp(9, creationTimestamp);
+
+            statement.executeUpdate();
+
+            logger.info("User with login " + user.getLogin() + " was saved");
+            return user;
+        } catch (SQLException stackTrace) {
+            String errorMessage = "SQL exception." + stackTrace;
+            logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
     }
 
     @Override
@@ -54,14 +95,7 @@ public class UserRepositoryImpl implements UserRepository {
         Statement statement;
         ResultSet resultSet;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -91,14 +125,7 @@ public class UserRepositoryImpl implements UserRepository {
         PreparedStatement statement;
         ResultSet resultSet;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -122,51 +149,6 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User save(User user) throws RepositoryException {
-        final String saveUser = "insert into users (name, surname, birth_date, login, password, " +
-                "role, is_blocked, created, changed) " +
-                "values (?,?,?,?,?,?,?,?,?)";
-
-        Connection connection;
-        PreparedStatement statement;
-
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(saveUser);
-
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getSurname());
-            statement.setDate(3, (Date) user.getBirthDate());
-            statement.setString(4, user.getLogin());
-            statement.setString(5, user.getPassword());
-            statement.setString(6, String.valueOf(user.getRole()));
-            statement.setBoolean(7, user.isBlocked());
-            statement.setTimestamp(8, user.getCreated());
-            statement.setTimestamp(9, user.getChanged());
-
-            statement.executeUpdate();
-
-            logger.info("User with login " + user.getLogin() + " was saved");
-            return user;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
-            logger.error(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
-    }
-
-    @Override
     public User update(User user) throws RepositoryException {
         final String updateUserById = "update users " +
                 "set " +
@@ -177,21 +159,14 @@ public class UserRepositoryImpl implements UserRepository {
                 "password = ?,  " +
                 "role = ?,  " +
                 "is_blocked = ?,  " +
-                "created = ?,  " +
                 "changed = ?  " +
                 "where id = ?";
 
         Connection connection;
         PreparedStatement statement;
+        Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -201,14 +176,13 @@ public class UserRepositoryImpl implements UserRepository {
 
             statement.setString(1, user.getName());
             statement.setString(2, user.getSurname());
-            statement.setDate(3, new Date(user.getBirthDate().getTime()));
+            statement.setDate(3, Date.valueOf(user.getBirthDate()));
             statement.setString(4, user.getLogin());
             statement.setString(5, user.getPassword());
             statement.setString(6, String.valueOf(user.getRole()));
             statement.setBoolean(7, user.isBlocked());
-            statement.setTimestamp(8, user.getCreated());
-            statement.setTimestamp(9, user.getChanged());
-            statement.setLong(10, user.getId());
+            statement.setTimestamp(8, updateTimestamp);
+            statement.setLong(9, user.getId());
             statement.executeUpdate();
 
             logger.info("User with id " + user.getId() + " was updated");
@@ -227,14 +201,7 @@ public class UserRepositoryImpl implements UserRepository {
         Connection connection;
         PreparedStatement statement;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -250,6 +217,17 @@ public class UserRepositoryImpl implements UserRepository {
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;
             logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+    }
+
+    private void connect() {
+        try {
+            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
+            logger.info("JDBC driver be loaded");
+        } catch (ClassNotFoundException stackTrace) {
+            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+            logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }

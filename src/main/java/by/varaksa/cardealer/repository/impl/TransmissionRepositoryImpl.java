@@ -9,6 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +35,8 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
         transmission.setTransmissionType(TransmissionType.valueOf(resultSet.getString(TRANSMISSION_TYPE)));
         transmission.setGearsCount(resultSet.getInt(GEARS_COUNT));
         transmission.setWeight(resultSet.getDouble(WEIGHT));
-        transmission.setCreated(resultSet.getTimestamp(CREATED));
-        transmission.setChanged(resultSet.getTimestamp(CHANGED));
+        transmission.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
+        transmission.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
         transmission.setCarId(resultSet.getLong(CAR_ID));
         return transmission;
     }
@@ -46,14 +48,9 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
         Connection connection;
         PreparedStatement statement;
+        Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -64,8 +61,8 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
             statement.setString(1, String.valueOf(transmission.getTransmissionType()));
             statement.setInt(2, transmission.getGearsCount());
             statement.setDouble(3, transmission.getWeight());
-            statement.setTimestamp(4, transmission.getCreated());
-            statement.setTimestamp(5, transmission.getChanged());
+            statement.setTimestamp(4, creationTimestamp);
+            statement.setTimestamp(5, creationTimestamp);
             statement.setLong(6, transmission.getCarId());
             statement.executeUpdate();
 
@@ -87,13 +84,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
         Statement statement;
         ResultSet resultSet;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -123,13 +114,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
         PreparedStatement statement;
         ResultSet resultSet;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -160,21 +145,15 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
                 "transmission_type = ?,  " +
                 "gears_count = ?,  " +
                 "weight = ?,  " +
-                "created = ?,  " +
                 "changed = ?,  " +
                 "car_id = ?  " +
                 "where id = ?";
 
         Connection connection;
         PreparedStatement statement;
+        Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -185,10 +164,9 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
             statement.setString(1, String.valueOf(transmission.getTransmissionType()));
             statement.setInt(2, transmission.getGearsCount());
             statement.setDouble(3, transmission.getWeight());
-            statement.setTimestamp(4, transmission.getCreated());
-            statement.setTimestamp(5, transmission.getChanged());
-            statement.setLong(6, transmission.getCarId());
-            statement.setLong(7, transmission.getId());
+            statement.setTimestamp(4, updateTimestamp);
+            statement.setLong(5, transmission.getCarId());
+            statement.setLong(6, transmission.getId());
             statement.executeUpdate();
 
             logger.info("Transmission with id " + transmission.getId() + " was updated");
@@ -207,13 +185,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
         Connection connection;
         PreparedStatement statement;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -228,6 +200,17 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;
             logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+    }
+
+    private void connect() {
+        try {
+            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
+            logger.info("JDBC driver be loaded");
+        } catch (ClassNotFoundException stackTrace) {
+            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+            logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }

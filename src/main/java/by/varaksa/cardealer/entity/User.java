@@ -1,7 +1,7 @@
 package by.varaksa.cardealer.entity;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class User {
     private Long id;
@@ -10,7 +10,7 @@ public class User {
 
     private String surname;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 
     private String login;
 
@@ -20,25 +20,21 @@ public class User {
 
     private boolean isBlocked;
 
-    private Timestamp created = new Timestamp(System.currentTimeMillis());
+    private LocalDateTime created;
 
-    private Timestamp changed = new Timestamp(System.currentTimeMillis());
+    private LocalDateTime changed;
 
     public User() {
     }
 
-    public User(String name, String surname, Date birthDate, String login, String password,
-                Role role, boolean isBlocked, Timestamp created, Timestamp changed, Long id) {
+    public User(String name, String surname, LocalDate birthDate, String login, String password,
+                Role role) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
         this.login = login;
         this.password = password;
         this.role = role;
-        this.isBlocked = isBlocked;
-        this.created = created;
-        this.changed = changed;
-        this.id = id;
     }
 
     public Long getId() {
@@ -65,11 +61,11 @@ public class User {
         this.surname = surname;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -105,19 +101,19 @@ public class User {
         isBlocked = blocked;
     }
 
-    public Timestamp getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Timestamp created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Timestamp getChanged() {
+    public LocalDateTime getChanged() {
         return changed;
     }
 
-    public void setChanged(Timestamp changed) {
+    public void setChanged(LocalDateTime changed) {
         this.changed = changed;
     }
 

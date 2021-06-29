@@ -167,3 +167,45 @@
 2021-06-26 00:52:52 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 13 is deleted
 2021-06-26 00:53:05 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
 2021-06-26 00:53:05 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 144 is deleted
+2021-06-27 20:02:54 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-27 20:02:55 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike212 was saved
+2021-06-27 20:04:10 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-27 20:04:11 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike21 was saved
+2021-06-27 20:06:45 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-27 20:06:45 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike44 was saved
+2021-06-28 23:29:25 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:29:26 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike441 was saved
+2021-06-28 23:31:47 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:31:47 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "users_login_uindex"
+  Подробности: Ключ "(login)=(mike441)" уже существует.
+2021-06-28 23:31:59 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:31:59 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike5441 was saved
+2021-06-28 23:35:41 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:35:41 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike5 was saved
+2021-06-28 23:42:21 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:42:21 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike53 was saved
+2021-06-28 23:43:22 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:43:22 [main] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "users_login_uindex"
+  Подробности: Ключ "(login)=(mike53)" уже существует.
+2021-06-28 23:43:31 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:43:31 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike531 was saved
+2021-06-28 23:50:43 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:50:43 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike5311 was saved
+2021-06-28 23:53:42 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:53:43 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike45 was saved
+2021-06-28 23:55:24 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:55:24 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike451 was saved
+2021-06-28 23:56:02 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:56:02 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike121 was saved
+2021-06-28 23:57:44 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-28 23:57:44 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mike1211 was saved
+2021-06-29 00:01:55 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-29 00:01:55 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mi2 was saved
+2021-06-29 00:08:04 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-29 00:08:04 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mi21 was saved
+2021-06-29 00:08:40 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-29 00:08:40 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mi211 was saved
+2021-06-29 00:10:47 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-29 00:10:47 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mi211q was saved
+2021-06-29 00:13:31 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-06-29 00:13:31 [main] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with login mi33 was saved

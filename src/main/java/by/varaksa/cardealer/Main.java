@@ -11,16 +11,19 @@ import by.varaksa.cardealer.repository.impl.BodyRepositoryImpl;
 import by.varaksa.cardealer.repository.impl.UserRepositoryImpl;
 import by.varaksa.cardealer.service.BodyService;
 import by.varaksa.cardealer.service.impl.BodyServiceImpl;
+import org.apache.logging.log4j.core.util.SystemMillisClock;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class Main {
-    public static void main(String[] args) throws RepositoryException, ServiceException {
-        //User user1 = new User("b", "b", new Date(2021, 4, 11), "q8", "q",
-                //Role.USER, false, new Date(2021, 4, 11), new Date(2021, 4, 11), 5L);
 
-        //User user2 = new User("b", "b", new Date(2021, 4, 11), "mike212", "q",
-                //Role.USER, false, new Date(2021, 4, 11), new Date(2021, 4, 11),9L);
+    public static void main(String[] args) throws RepositoryException, ServiceException {
+        Timestamp now = new Timestamp(new java.util.Date().getTime());
+
+
+        User user = new User("b", "b", LocalDate.of(2021,11,22), "mi33", "q",
+                Role.USER);
 
 
         UserRepository userRepository1 = new UserRepositoryImpl();
@@ -30,7 +33,7 @@ public class Main {
         //userRepository2.find(99L);
 
         UserRepository userRepository3 = new UserRepositoryImpl();
-        //userRepository3.save(user);
+        userRepository3.save(user);
 
         UserRepository userRepository4 = new UserRepositoryImpl();
         //userRepository4.update(user2);

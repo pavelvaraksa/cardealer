@@ -1,6 +1,6 @@
 package by.varaksa.cardealer.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Engine {
     private Long id;
@@ -13,9 +13,9 @@ public class Engine {
 
     private Integer cylindersCount;
 
-    private Timestamp created = new Timestamp(System.currentTimeMillis());
+    private LocalDateTime created;
 
-    private Timestamp changed = new Timestamp(System.currentTimeMillis());
+    private LocalDateTime changed;
 
     private Long carId;
 
@@ -62,19 +62,19 @@ public class Engine {
         this.cylindersCount = cylindersCount;
     }
 
-    public Timestamp getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Timestamp created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Timestamp getChanged() {
+    public LocalDateTime getChanged() {
         return changed;
     }
 
-    public void setChanged(Timestamp changed) {
+    public void setChanged(LocalDateTime changed) {
         this.changed = changed;
     }
 

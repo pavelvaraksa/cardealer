@@ -1,15 +1,17 @@
 package by.varaksa.cardealer.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class UserOrder {
     private Long id;
 
+    private String orderName;
+
     private Integer count;
 
-    private Timestamp created = new Timestamp(System.currentTimeMillis());
+    private LocalDateTime created;
 
-    private Timestamp changed = new Timestamp(System.currentTimeMillis());
+    private LocalDateTime changed;
 
     private Long userId;
 
@@ -26,6 +28,14 @@ public class UserOrder {
         this.id = id;
     }
 
+    public String getOrderName() {
+        return orderName;
+    }
+
+    public void setOrderName(String orderName) {
+        this.orderName = orderName;
+    }
+
     public Integer getCount() {
         return count;
     }
@@ -34,19 +44,19 @@ public class UserOrder {
         this.count = count;
     }
 
-    public Timestamp getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Timestamp created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Timestamp getChanged() {
+    public LocalDateTime getChanged() {
         return changed;
     }
 
-    public void setChanged(Timestamp changed) {
+    public void setChanged(LocalDateTime changed) {
         this.changed = changed;
     }
 
@@ -69,6 +79,7 @@ public class UserOrder {
     @Override
     public int hashCode() {
         return (int) (11 * id
+                + orderName.hashCode()
                 + count.hashCode()
                 + created.hashCode()
                 + changed.hashCode()
@@ -89,6 +100,7 @@ public class UserOrder {
         UserOrder userOrder = (UserOrder) object;
 
         return id == userOrder.id
+                && (orderName == userOrder.orderName || orderName != null && orderName.equals(userOrder.getOrderName()))
                 && (count == userOrder.count || count != null && count.equals(userOrder.getCount()))
                 && (created == userOrder.created || created != null && created.equals(userOrder.getCreated()))
                 && (changed == userOrder.changed || changed != null && changed.equals(userOrder.getChanged()))
@@ -101,11 +113,11 @@ public class UserOrder {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("User order: ");
         stringBuilder.append("id ").append(id).append(", ");
+        stringBuilder.append("order name").append(orderName).append(", ");
         stringBuilder.append("count ").append(count).append(", ");
         stringBuilder.append("created ").append(created).append(", ");
         stringBuilder.append("changed ").append(changed).append(", ");
         stringBuilder.append("user id ").append(userId).append(", ");
-        stringBuilder.append("order id ").append(orderId);
         return stringBuilder.toString();
     }
 }

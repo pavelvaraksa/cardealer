@@ -10,6 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +38,8 @@ public class BodyRepositoryImpl implements BodyRepository {
         body.setColor(Color.valueOf(resultSet.getString(COLOR)));
         body.setBodyType(BodyType.valueOf(resultSet.getString(BODY_TYPE)));
         body.setVin(resultSet.getString(VIN));
-        body.setCreated(resultSet.getTimestamp(CREATED));
-        body.setChanged(resultSet.getTimestamp(CHANGED));
+        body.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
+        body.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
         body.setCarId(resultSet.getLong(CAR_ID));
         return body;
     }
@@ -49,14 +51,9 @@ public class BodyRepositoryImpl implements BodyRepository {
 
         Connection connection;
         PreparedStatement statement;
+        Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -67,8 +64,8 @@ public class BodyRepositoryImpl implements BodyRepository {
             statement.setString(1, String.valueOf(body.getColor()));
             statement.setString(2, String.valueOf(body.getBodyType()));
             statement.setString(3, body.getVin());
-            statement.setTimestamp(4, body.getCreated());
-            statement.setTimestamp(5, body.getChanged());
+            statement.setTimestamp(4, creationTimestamp);
+            statement.setTimestamp(5, creationTimestamp);
             statement.setLong(6, body.getCarId());
             statement.executeUpdate();
 
@@ -90,13 +87,7 @@ public class BodyRepositoryImpl implements BodyRepository {
         Statement statement;
         ResultSet resultSet;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -126,13 +117,7 @@ public class BodyRepositoryImpl implements BodyRepository {
         PreparedStatement statement;
         ResultSet resultSet;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -163,21 +148,15 @@ public class BodyRepositoryImpl implements BodyRepository {
                 "color = ?,  " +
                 "body_type = ?,  " +
                 "vin = ?,  " +
-                "created = ?,  " +
                 "changed = ?,  " +
                 "car_id = ?  " +
                 "where id = ?";
 
         Connection connection;
         PreparedStatement statement;
+        Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -188,10 +167,9 @@ public class BodyRepositoryImpl implements BodyRepository {
             statement.setString(1, String.valueOf(body.getColor()));
             statement.setString(2, String.valueOf(body.getBodyType()));
             statement.setString(3, body.getVin());
-            statement.setTimestamp(4, body.getChanged());
-            statement.setTimestamp(5, body.getChanged());
-            statement.setLong(6, body.getCarId());
-            statement.setLong(7, body.getId());
+            statement.setTimestamp(4, updateTimestamp);
+            statement.setLong(5, body.getCarId());
+            statement.setLong(6, body.getId());
             statement.executeUpdate();
 
             logger.info("Body with id " + body.getId() + " was updated");
@@ -210,13 +188,7 @@ public class BodyRepositoryImpl implements BodyRepository {
         Connection connection;
         PreparedStatement statement;
 
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
+        connect();
 
         try {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
@@ -231,6 +203,17 @@ public class BodyRepositoryImpl implements BodyRepository {
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;
             logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+    }
+
+    private void connect() {
+        try {
+            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
+            logger.info("JDBC driver be loaded");
+        } catch (ClassNotFoundException stackTrace) {
+            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+            logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }

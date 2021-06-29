@@ -1,7 +1,7 @@
 package by.varaksa.cardealer.entity;
 
 import java.sql.Blob;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Car {
     private Long id;
@@ -18,9 +18,9 @@ public class Car {
 
     private Blob image;
 
-    private Timestamp created = new Timestamp(System.currentTimeMillis());
+    private LocalDateTime created;
 
-    private Timestamp changed = new Timestamp(System.currentTimeMillis());
+    private LocalDateTime changed;
 
     private Long userOrderId;
 
@@ -83,19 +83,19 @@ public class Car {
         this.image = image;
     }
 
-    public Timestamp getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Timestamp created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Timestamp getChanged() {
+    public LocalDateTime getChanged() {
         return changed;
     }
 
-    public void setChanged(Timestamp changed) {
+    public void setChanged(LocalDateTime changed) {
         this.changed = changed;
     }
 
