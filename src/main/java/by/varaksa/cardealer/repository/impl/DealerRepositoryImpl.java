@@ -184,7 +184,7 @@ public class DealerRepositoryImpl implements DealerRepository {
     }
 
     @Override
-    public Long delete(Dealer dealer) {
+    public Long delete(Long id) {
         final String deleteDealerById = "delete from dealers where id = ?";
 
         Connection connection;
@@ -197,10 +197,10 @@ public class DealerRepositoryImpl implements DealerRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteDealerById);
-            statement.setLong(1, dealer.getId());
+            statement.setLong(1, id);
 
             int deletedRows = statement.executeUpdate();
-            logger.info("Dealer with id " + dealer.getId() + " was deleted");
+            logger.info("Dealer with id " + id + " was deleted");
             return (long) deletedRows;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;

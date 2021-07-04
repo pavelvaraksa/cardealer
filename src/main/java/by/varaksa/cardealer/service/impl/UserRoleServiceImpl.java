@@ -107,11 +107,11 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public Long delete(UserRole userRole) throws ServiceException {
+    public Long delete(Long id) throws ServiceException {
         UserRole userRoleToFindById;
 
         try {
-            userRoleToFindById = userRoleRepository.find(userRole.getId());
+            userRoleToFindById = userRoleRepository.find(id);
             if (userRoleToFindById == null) {
                 String errorMessage = "User role id can't be null";
                 logger.error(errorMessage);
@@ -122,8 +122,8 @@ public class UserRoleServiceImpl implements UserRoleService {
         }
 
         try {
-            logger.info("User role with id " + userRole.getId() + " was deleted");
-            return userRoleRepository.delete(userRole);
+            logger.info("User role with id " + id + " was deleted");
+            return userRoleRepository.delete(id);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get an user role";
             logger.error(errorMessage);

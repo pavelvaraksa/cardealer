@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Finish</title>
+    <title>User page</title>
 </head>
 <body>
-Application was finished!
+${findAllUsers}
+${findOneUser}
 </body>
 </html>

@@ -15,5 +15,5 @@ public interface CarService {
 
     Car update(Car car) throws ServiceException;
 
-    Long delete(Car car) throws ServiceException;
+    Long delete(Long id) throws ServiceException;
 }

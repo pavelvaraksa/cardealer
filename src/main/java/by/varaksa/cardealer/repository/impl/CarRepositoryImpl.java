@@ -195,7 +195,7 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public Long delete(Car car) {
+    public Long delete(Long id) {
         final String deleteCarById = "delete from cars where id = ?";
 
         Connection connection;
@@ -208,10 +208,10 @@ public class CarRepositoryImpl implements CarRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteCarById);
-            statement.setLong(1, car.getId());
+            statement.setLong(1, id);
 
             int deletedRows = statement.executeUpdate();
-            logger.info("Car with id " + car.getId() + " was deleted");
+            logger.info("Car with id " + id + " was deleted");
             return (long) deletedRows;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;

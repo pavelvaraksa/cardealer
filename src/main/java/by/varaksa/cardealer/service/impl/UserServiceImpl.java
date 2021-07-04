@@ -107,11 +107,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Long delete(User user) throws ServiceException {
+    public Long delete(Long id) throws ServiceException {
         User userToFindById;
 
         try {
-            userToFindById = userRepository.find(user.getId());
+            userToFindById = userRepository.find(id);
             if (userToFindById == null) {
                 String errorMessage = "User id can't be null";
                 logger.error(errorMessage);
@@ -122,8 +122,8 @@ public class UserServiceImpl implements UserService {
         }
 
         try {
-            logger.info("User with id " + user.getId() + " was deleted");
-            return userRepository.delete(user);
+            logger.info("User with id " + id + " was deleted");
+            return userRepository.delete(id);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get an user";
             logger.error(errorMessage);

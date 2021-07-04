@@ -107,11 +107,11 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public Long delete(Engine engine) throws ServiceException {
+    public Long delete(Long id) throws ServiceException {
         Engine engineToFindById;
 
         try {
-            engineToFindById = engineRepository.find(engine.getId());
+            engineToFindById = engineRepository.find(id);
             if (engineToFindById == null) {
                 String errorMessage = "Engine id can't be null";
                 logger.error(errorMessage);
@@ -122,8 +122,8 @@ public class EngineServiceImpl implements EngineService {
         }
 
         try {
-            logger.info("Engine with id " + engine.getId() + " was deleted");
-            return engineRepository.delete(engine);
+            logger.info("Engine with id " + id + " was deleted");
+            return engineRepository.delete(id);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get an engine";
             logger.error(errorMessage);

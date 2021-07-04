@@ -107,11 +107,11 @@ public class UserOrderServiceImpl implements UserOrderService {
     }
 
     @Override
-    public Long delete(UserOrder userOrder) throws ServiceException {
+    public Long delete(Long id) throws ServiceException {
         UserOrder userOrderToFindById;
 
         try {
-            userOrderToFindById = userOrderRepository.find(userOrder.getId());
+            userOrderToFindById = userOrderRepository.find(id);
             if (userOrderToFindById == null) {
                 String errorMessage = "User order id can't be null";
                 logger.error(errorMessage);
@@ -122,8 +122,8 @@ public class UserOrderServiceImpl implements UserOrderService {
         }
 
         try {
-            logger.info("User order with id " + userOrder.getId() + " was deleted");
-            return userOrderRepository.delete(userOrder);
+            logger.info("User order with id " + id + " was deleted");
+            return userOrderRepository.delete(id);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get an user order";
             logger.error(errorMessage);

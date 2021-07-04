@@ -107,11 +107,11 @@ public class DealerServiceImpl implements DealerService {
     }
 
     @Override
-    public Long delete(Dealer dealer) throws ServiceException {
+    public Long delete(Long id) throws ServiceException {
         Dealer dealerToFindById;
 
         try {
-            dealerToFindById = dealerRepository.find(dealer.getId());
+            dealerToFindById = dealerRepository.find(id);
             if (dealerToFindById == null) {
                 String errorMessage = "Dealer id can't be null";
                 logger.error(errorMessage);
@@ -122,8 +122,8 @@ public class DealerServiceImpl implements DealerService {
         }
 
         try {
-            logger.info("Dealer with id " + dealer.getId() + " was deleted");
-            return dealerRepository.delete(dealer);
+            logger.info("Dealer with id " + id + " was deleted");
+            return dealerRepository.delete(id);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get a dealer";
             logger.error(errorMessage);

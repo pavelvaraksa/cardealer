@@ -14,5 +14,5 @@ public interface UserService {
 
     User update(User user) throws ServiceException;
 
-    Long delete(User user) throws ServiceException;
+    Long delete(Long id) throws ServiceException;
 }

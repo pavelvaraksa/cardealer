@@ -179,7 +179,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
     }
 
     @Override
-    public Long delete(Transmission transmission) {
+    public Long delete(Long id) {
         final String deleteTransmissionById = "delete from transmissions where id = ?";
 
         Connection connection;
@@ -192,10 +192,10 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteTransmissionById);
-            statement.setLong(1, transmission.getId());
+            statement.setLong(1, id);
 
             int deletedRows = statement.executeUpdate();
-            logger.info("Transmission with id " + transmission.getId() + " was deleted");
+            logger.info("Transmission with id " + id + " was deleted");
             return (long) deletedRows;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;

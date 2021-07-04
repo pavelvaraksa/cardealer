@@ -45,7 +45,7 @@ public class BodyRepositoryImpl implements BodyRepository {
     }
 
     @Override
-    public Body save(Body body) throws RepositoryException {
+    public Body save(Body body) {
         final String saveBody = "insert into bodies (color, body_type, vin, created, changed, car_id) " +
                 "values (?,?,?,?,?,?)";
 
@@ -182,7 +182,7 @@ public class BodyRepositoryImpl implements BodyRepository {
     }
 
     @Override
-    public Long delete(Body body) {
+    public Long delete(Long id) {
         final String deleteBodyById = "delete from bodies where id = ?";
 
         Connection connection;
@@ -195,10 +195,10 @@ public class BodyRepositoryImpl implements BodyRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteBodyById);
-            statement.setLong(1, body.getId());
+            statement.setLong(1, id);
 
             int deletedRows = statement.executeUpdate();
-            logger.info("Body with id " + body.getId() + " was deleted");
+            logger.info("Body with id " + id + " was deleted");
             return (long) deletedRows;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;

@@ -15,8 +15,6 @@ public class UserOrder {
 
     private Long userId;
 
-    private Long orderId;
-
     public UserOrder() {
     }
 
@@ -68,13 +66,6 @@ public class UserOrder {
         this.userId = userId;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
 
     @Override
     public int hashCode() {
@@ -83,8 +74,7 @@ public class UserOrder {
                 + count.hashCode()
                 + created.hashCode()
                 + changed.hashCode()
-                + userId.hashCode())
-                + orderId.hashCode();
+                + userId.hashCode());
     }
 
     @Override
@@ -104,8 +94,7 @@ public class UserOrder {
                 && (count == userOrder.count || count != null && count.equals(userOrder.getCount()))
                 && (created == userOrder.created || created != null && created.equals(userOrder.getCreated()))
                 && (changed == userOrder.changed || changed != null && changed.equals(userOrder.getChanged()))
-                && (userId == userOrder.userId || userId != null && userId.equals(userOrder.getUserId()))
-                && (orderId == userOrder.orderId || orderId != null && orderId.equals(userOrder.getOrderId()));
+                && (userId == userOrder.userId || userId != null && userId.equals(userOrder.getUserId()));
     }
 
     @Override

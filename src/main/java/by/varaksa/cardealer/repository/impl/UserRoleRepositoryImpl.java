@@ -157,7 +157,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
     }
 
     @Override
-    public Long delete(UserRole userRole) {
+    public Long delete(Long id) {
         final String deleteUserRoleById = "delete from roles where id = ?";
 
         Connection connection;
@@ -170,10 +170,10 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteUserRoleById);
-            statement.setLong(1, userRole.getId());
+            statement.setLong(1, id);
 
             int deletedRows = statement.executeUpdate();
-            logger.info("User role with id " + userRole.getId() + " was deleted");
+            logger.info("User role with id " + id + " was deleted");
             return (long) deletedRows;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;

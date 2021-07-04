@@ -107,11 +107,11 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
-    public Long delete(Body body) throws ServiceException {
+    public Long delete(Long id) throws ServiceException {
         Body bodyToFindById;
 
         try {
-            bodyToFindById = bodyRepository.find(body.getId());
+            bodyToFindById = bodyRepository.find(id);
             if (bodyToFindById == null) {
                 String errorMessage = "Body id can't be null";
                 logger.error(errorMessage);
@@ -122,8 +122,8 @@ public class BodyServiceImpl implements BodyService {
         }
 
         try {
-            logger.info("Body with id " + body.getId() + " was deleted");
-            return bodyRepository.delete(body);
+            logger.info("Body with id " + id + " was deleted");
+            return bodyRepository.delete(id);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get a body";
             logger.error(errorMessage);

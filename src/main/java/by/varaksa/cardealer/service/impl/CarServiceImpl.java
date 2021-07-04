@@ -107,11 +107,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Long delete(Car car) throws ServiceException {
+    public Long delete(Long id) throws ServiceException {
         Car carToFindById;
 
         try {
-            carToFindById = carRepository.find(car.getId());
+            carToFindById = carRepository.find(id);
             if (carToFindById == null) {
                 String errorMessage = "Car id can't be null";
                 logger.error(errorMessage);
@@ -122,8 +122,8 @@ public class CarServiceImpl implements CarService {
         }
 
         try {
-            logger.info("Car with id " + car.getId() + " was deleted");
-            return carRepository.delete(car);
+            logger.info("Car with id " + id + " was deleted");
+            return carRepository.delete(id);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get a car";
             logger.error(errorMessage);

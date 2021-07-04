@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Start</title>
+    <title>Error page</title>
 </head>
 <body>
-Application was started!
+Error page
+${trace}
 </body>
 </html>

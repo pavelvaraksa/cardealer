@@ -107,11 +107,11 @@ public class TransmissionServiceImpl implements TransmissionService {
     }
 
     @Override
-    public Long delete(Transmission transmission) throws ServiceException {
+    public Long delete(Long id) throws ServiceException {
         Transmission transmissionToFindById;
 
         try {
-            transmissionToFindById = transmissionRepository.find(transmission.getId());
+            transmissionToFindById = transmissionRepository.find(id);
             if (transmissionToFindById == null) {
                 String errorMessage = "Transmission id can't be null";
                 logger.error(errorMessage);
@@ -122,8 +122,8 @@ public class TransmissionServiceImpl implements TransmissionService {
         }
 
         try {
-            logger.info("Transmission with id " + transmission.getId() + " was deleted");
-            return transmissionRepository.delete(transmission);
+            logger.info("Transmission with id " + id + " was deleted");
+            return transmissionRepository.delete(id);
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get a transmission";
             logger.error(errorMessage);

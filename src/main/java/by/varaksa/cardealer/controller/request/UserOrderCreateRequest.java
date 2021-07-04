@@ -3,11 +3,11 @@ package by.varaksa.cardealer.controller.request;
 public class UserOrderCreateRequest {
     private Long id;
 
+    private String orderName;
+
     private Integer count;
 
     private Long userId;
-
-    private Long orderId;
 
     public UserOrderCreateRequest() {
     }
@@ -18,6 +18,14 @@ public class UserOrderCreateRequest {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getOrderName() {
+        return orderName;
+    }
+
+    public void setOrderName(String orderName) {
+        this.orderName = orderName;
     }
 
     public Integer getCount() {
@@ -36,20 +44,12 @@ public class UserOrderCreateRequest {
         this.userId = userId;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
     @Override
     public int hashCode() {
         return (int) (11 * id
+                + orderName.hashCode()
                 + count.hashCode()
-                + userId.hashCode())
-                + orderId.hashCode();
+                + userId.hashCode());
     }
 
     @Override
@@ -65,9 +65,9 @@ public class UserOrderCreateRequest {
         UserOrderCreateRequest userOrder = (UserOrderCreateRequest) object;
 
         return id == userOrder.id
+                && (orderName == userOrder.orderName || orderName != null && orderName.equals(userOrder.getOrderName()))
                 && (count == userOrder.count || count != null && count.equals(userOrder.getCount()))
-                && (userId == userOrder.userId || userId != null && userId.equals(userOrder.getUserId()))
-                && (orderId == userOrder.orderId || orderId != null && orderId.equals(userOrder.getOrderId()));
+                && (userId == userOrder.userId || userId != null && userId.equals(userOrder.getUserId()));
     }
 
     @Override
@@ -75,9 +75,9 @@ public class UserOrderCreateRequest {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("User order: ");
         stringBuilder.append("id ").append(id).append(", ");
+        stringBuilder.append("order name ").append(orderName).append(", ");
         stringBuilder.append("count ").append(count).append(", ");
-        stringBuilder.append("user id ").append(userId).append(", ");
-        stringBuilder.append("order id ").append(orderId);
+        stringBuilder.append("user id ").append(userId);
         return stringBuilder.toString();
     }
 }

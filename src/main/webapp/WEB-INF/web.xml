@@ -5,23 +5,37 @@
    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
     <servlet>
-        <servlet-name>StartWeb</servlet-name>
-        <jsp-file>/WEB-INF/jsp/start.jsp</jsp-file>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>by.varaksa.cardealer.controller.UserController</servlet-class>
     </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/user-controller</url-pattern>
+    </servlet-mapping>
 
     <servlet>
-        <servlet-name>FinishWeb</servlet-name>
-        <jsp-file>/WEB-INF/jsp/finish.jsp</jsp-file>
+        <servlet-name>User</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>StartWeb</servlet-name>
-        <url-pattern>/start</url-pattern>
+        <servlet-name>User</servlet-name>
+        <url-pattern>/user</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Error</servlet-name>
+        <jsp-file>/WEB-INF/jsp/error.jsp</jsp-file>
+    </servlet>
+
     <servlet-mapping>
-        <servlet-name>FinishWeb</servlet-name>
-        <url-pattern>/finish</url-pattern>
+        <servlet-name>Error</servlet-name>
+        <url-pattern>/error</url-pattern>
     </servlet-mapping>
+
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
 
 </web-app>

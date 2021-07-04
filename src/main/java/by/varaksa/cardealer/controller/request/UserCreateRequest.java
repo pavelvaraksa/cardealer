@@ -24,6 +24,24 @@ public class UserCreateRequest {
     public UserCreateRequest() {
     }
 
+    public UserCreateRequest(Long id,
+                             String name,
+                             String surname,
+                             Date birthDate,
+                             String login,
+                             String password,
+                             Role role,
+                             boolean isBlocked) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.birthDate = birthDate;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.isBlocked = isBlocked;
+    }
+
     public Long getId() {
         return id;
     }

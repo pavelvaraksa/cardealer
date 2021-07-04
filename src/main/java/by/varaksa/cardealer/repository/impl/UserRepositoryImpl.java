@@ -195,7 +195,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Long delete(User user) throws RepositoryException {
+    public Long delete(Long id) throws RepositoryException {
         final String deleteUserById = "delete from users where id = ?";
 
         Connection connection;
@@ -208,11 +208,10 @@ public class UserRepositoryImpl implements UserRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteUserById);
-            statement.setLong(1, user.getId());
-            statement.executeUpdate();
+            statement.setLong(1, id);
 
             int deletedRows = statement.executeUpdate();
-            logger.info("User with id " + user.getId() + " was deleted");
+            logger.info("User with id " + id + " was deleted");
             return (long) deletedRows;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;

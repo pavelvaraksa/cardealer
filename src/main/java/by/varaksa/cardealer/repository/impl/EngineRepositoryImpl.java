@@ -185,7 +185,7 @@ public class EngineRepositoryImpl implements EngineRepository {
     }
 
     @Override
-    public Long delete(Engine engine) {
+    public Long delete(Long id) {
         final String deleteEngineById = "delete from engines where id = ?";
 
         Connection connection;
@@ -198,10 +198,10 @@ public class EngineRepositoryImpl implements EngineRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteEngineById);
-            statement.setLong(1, engine.getId());
+            statement.setLong(1, id);
 
             int deletedRows = statement.executeUpdate();
-            logger.info("Engine with id " + engine.getId() + " was deleted");
+            logger.info("Engine with id " + id + " was deleted");
             return (long) deletedRows;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;

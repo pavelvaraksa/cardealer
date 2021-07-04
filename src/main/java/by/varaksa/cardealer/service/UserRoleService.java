@@ -14,5 +14,5 @@ public interface UserRoleService {
 
     UserRole update(UserRole userRole) throws ServiceException;
 
-    Long delete(UserRole userRole) throws ServiceException;
+    Long delete(Long id) throws ServiceException;
 }

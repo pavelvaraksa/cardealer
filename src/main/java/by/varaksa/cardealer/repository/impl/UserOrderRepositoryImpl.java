@@ -173,7 +173,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     }
 
     @Override
-    public Long delete(UserOrder userOrder) {
+    public Long delete(Long id) {
         final String deleteUserOrderById = "delete from user_orders where id = ?";
 
         Connection connection;
@@ -186,10 +186,10 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteUserOrderById);
-            statement.setLong(1, userOrder.getId());
+            statement.setLong(1, id);
 
             int deletedRows = statement.executeUpdate();
-            logger.info("User order with id " + userOrder.getId() + " was deleted");
+            logger.info("User order with id " + id + " was deleted");
             return (long) deletedRows;
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;
