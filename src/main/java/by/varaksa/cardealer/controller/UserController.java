@@ -5,6 +5,7 @@ import by.varaksa.cardealer.entity.Role;
 import by.varaksa.cardealer.entity.User;
 import by.varaksa.cardealer.exception.ControllerException;
 import by.varaksa.cardealer.exception.ServiceException;
+import by.varaksa.cardealer.repository.UserRepository;
 import by.varaksa.cardealer.repository.impl.UserRepositoryImpl;
 import by.varaksa.cardealer.service.UserService;
 import by.varaksa.cardealer.service.impl.UserServiceImpl;
@@ -20,50 +21,32 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-
 public class UserController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
     private static Logger logger = LogManager.getLogger();
-    public UserService userService = new UserServiceImpl(new UserRepositoryImpl());
+    public UserRepository userRepository = new UserRepositoryImpl();
+    public UserService userService = new UserServiceImpl(userRepository);
 
     public UserController() {
         super();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processGetRequestOrResponse(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        doGet(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processGetRequestOrResponse(request, response);
-    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    private void processGetRequestOrResponse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        try {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/user");
-            if (dispatcher != null) {
-                resolveGetRequestCommands(request, response);
-                dispatcher.forward(request, response);
-            }
-        } catch (Exception e) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/error");
-            if (dispatcher != null) {
-                request.setAttribute("trace", e.getMessage());
-                dispatcher.forward(request, response);
-            }
-        }
-    }
-
-    private void resolveGetRequestCommands(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, ServiceException, ControllerException {
-        Commands commandName = Commands.findByCommandName(request.getParameter("command"));
+        Commands commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
             switch (commandName) {
-                case SHOW:
-                    showNewForm(request, response);
+                case LOGIN:
+                    login(request, response);
+                    break;
+                case CREATE:
+                    saveUser(request, response);
                     break;
                 case FIND_ALL:
                     findAllUsers(request, response);
@@ -71,72 +54,58 @@ public class UserController extends HttpServlet {
                 case FIND_BY_ID:
                     findUser(request, response);
                     break;
-                default:
-                    break;
-            }
-        } catch (IOException stackTrace) {
-            String errorMessage = ("User controller exception!");
-            logger.error(errorMessage);
-            throw new ControllerException(errorMessage);
-        }
-    }
-
-    private void resolvePostRequestCommands(HttpServletRequest request, HttpServletResponse response)
-            throws ServiceException, ControllerException {
-        Commands commandName = Commands.findByCommandName(request.getParameter("command"));
-        try {
-            switch (commandName) {
-                case CREATE:
-                    saveUser(request, response);
-                    break;
                 case UPDATE:
                     updateUser(request, response);
                     break;
                 case DELETE:
                     deleteUser(request, response);
                     break;
+                default:
+                    break;
             }
-        } catch (IOException stackTrace) {
-            String errorMessage = ("User controller exception!");
+        } catch (ServiceException | ControllerException stackTrace) {
+            String errorMessage = "Login or password weren't corrected!" + stackTrace;
             logger.error(errorMessage);
-            throw new ControllerException(errorMessage);
+            response.sendRedirect("/login-auth");
         }
     }
 
-    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
-        dispatcher.forward(request, response);
+    public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
+        String userLogin = request.getParameter("login");
+        String userPassword = request.getParameter("password");
+        User userParameters = new User();
+        userParameters.setLogin(userLogin);
+        userParameters.setPassword(userPassword);
+
+        if (userService.isLoginValidate(userParameters)) {
+            response.sendRedirect("/loginsuccess");
+        }
     }
 
-    private void saveUser(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServiceException {
+    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         LocalDate birthDate = LocalDate.parse(request.getParameter("birth_date"));
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        Role role = Role.valueOf(request.getParameter("role"));
-        boolean isBlocked = Boolean.parseBoolean(request.getParameter("is_blocked"));
-        User newUser = new User(name, surname, birthDate, login, password, role, isBlocked);
+        User newUser = new User(name, surname, birthDate, login, password);
         userService.save(newUser);
-        response.sendRedirect("list");
     }
 
     private void findAllUsers(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, ServiceException {
         List<User> listUser = userService.findAll();
         request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user.jsp");
         dispatcher.forward(request, response);
     }
 
     private void findUser(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ServiceException {
+            throws ServletException, IOException, ServiceException, ControllerException {
         long id = Long.parseLong(request.getParameter("id"));
         User existingUser = userService.find(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
-        request.setAttribute("user", existingUser);
+        request.setAttribute("oneUser", existingUser);
         dispatcher.forward(request, response);
     }
 

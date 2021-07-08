@@ -1,7 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Home page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -15,12 +15,10 @@
 
 <body>
 <div align="center">
-    <h2>----- CAR DEALER APPLICATION -----</h2>
-
-    <a class="btn btn-outline-info" href="http://localhost:8080/login-auth" role="button">Login</a>
-    <a class="btn btn-outline-info" href="http://localhost:8080/register" role="button">Sign up</a>
-    <a class="btn btn-outline-info" href="http://localhost:8080/company" role="button">About us</a>
-    <a class="btn btn-outline-info" href="http://localhost:8080/request-information" role="button">Contacts</a>
+    <h2>Register form</h2>
+    <label>
+        <input class="btn btn-outline-info btn-sm" onclick="history.back();" value="Return to previous page"/>
+    </label>
 </div>
 </body>
 </html>

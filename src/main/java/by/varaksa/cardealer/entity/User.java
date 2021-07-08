@@ -1,9 +1,5 @@
 package by.varaksa.cardealer.entity;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 
@@ -31,15 +27,12 @@ public class User {
     public User() {
     }
 
-    public User(String name, String surname, LocalDate birthDate, String login, String password,
-                Role role, boolean isBlocked) {
+    public User(String name, String surname, LocalDate birthDate, String login, String password) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
         this.login = login;
         this.password = password;
-        this.role = role;
-        this.isBlocked = isBlocked;
     }
 
     public User(String name, String surname, LocalDate birthDate, String login, String password,

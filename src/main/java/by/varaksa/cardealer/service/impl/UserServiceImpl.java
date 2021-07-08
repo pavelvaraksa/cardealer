@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService {
 
         try {
             existingUsers = userRepository.findAll();
+
             if (existingUsers.isEmpty()) {
                 String errorMessage = "A list is empty";
                 logger.error(errorMessage);
@@ -74,6 +75,7 @@ public class UserServiceImpl implements UserService {
 
         try {
             userToFindById = userRepository.find(id);
+
             if (userToFindById == null) {
                 String errorMessage = "User id can't be null";
                 logger.error(errorMessage);
@@ -112,6 +114,7 @@ public class UserServiceImpl implements UserService {
 
         try {
             userToFindById = userRepository.find(id);
+
             if (userToFindById == null) {
                 String errorMessage = "User id can't be null";
                 logger.error(errorMessage);
@@ -127,6 +130,31 @@ public class UserServiceImpl implements UserService {
         } catch (RepositoryException stackTrace) {
             String errorMessage = "Can't get an user";
             logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public boolean isLoginValidate(User user) throws ServiceException {
+        boolean isStatus;
+        String userLogin = user.getLogin();
+        String userPassword = user.getPassword();
+        User userParameters = new User();
+        userParameters.setLogin(userLogin);
+        userParameters.setPassword(userPassword);
+
+        try {
+            isStatus = userRepository.isLoginValidate(userParameters);
+
+            if (!(isStatus)) {
+                String errorMessage = "Login or password weren't corrected! Please,try again";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            }
+            logger.info("Login and password were corrected!");
+            return isStatus;
+        } catch (RepositoryException stackTrace) {
+            String errorMessage = "Service exception while trying to validate login or password." + stackTrace;
             throw new ServiceException(errorMessage);
         }
     }

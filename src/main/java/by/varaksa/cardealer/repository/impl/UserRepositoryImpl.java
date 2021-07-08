@@ -2,7 +2,6 @@ package by.varaksa.cardealer.repository.impl;
 
 import by.varaksa.cardealer.entity.Role;
 import by.varaksa.cardealer.entity.User;
-import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.repository.UserRepository;
 import by.varaksa.cardealer.util.DatabasePropertiesReader;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
-import static by.varaksa.cardealer.util.DatabasePropertiesReader.DATABASE_PASSWORD;
 
 public class UserRepositoryImpl implements UserRepository {
     private static Logger logger = LogManager.getLogger();
@@ -48,7 +46,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User save(User user) throws RepositoryException {
+    public User save(User user) {
         final String saveUser = "insert into users (name, surname, birth_date, login, password, " +
                 "role, is_blocked, created, changed) " +
                 "values (?,?,?,?,?,?,?,?,?)";
@@ -118,7 +116,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User find(Long id) throws RepositoryException {
+    public User find(Long id) {
         final String findUserById = "select * from users where id = ?";
 
         Connection connection;
@@ -135,12 +133,7 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
-                logger.info("User with id " + id + " was found");
-                return parseResultSet(resultSet);
-            } else {
-                throw new RepositoryException("User with id " + id + " wasn't found");
-            }
+            return parseResultSet(resultSet);
         } catch (SQLException stackTrace) {
             String errorMessage = "SQL exception." + stackTrace;
             logger.error(errorMessage);
@@ -149,7 +142,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User update(User user) throws RepositoryException {
+    public User update(User user) {
         final String updateUserById = "update users " +
                 "set " +
                 "name = ?,  " +
@@ -195,7 +188,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Long delete(Long id) throws RepositoryException {
+    public Long delete(Long id) {
         final String deleteUserById = "delete from users where id = ?";
 
         Connection connection;
@@ -220,7 +213,37 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
+    @Override
+    public boolean isLoginValidate(User user) {
+        final String login = "select login, password from users where login = ? and password = ?";
+        boolean isStatus;
+
+        Connection connection;
+        PreparedStatement preparedStatement;
+
+        connect();
+
+        try {
+            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
+                    reader.getProperty(DATABASE_LOGIN),
+                    reader.getProperty(DATABASE_PASSWORD));
+            preparedStatement = connection.prepareStatement(login);
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            isStatus = rs.next();
+        } catch (SQLException stackTrace) {
+            String errorMessage = "SQL exception." + stackTrace;
+            logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+        return isStatus;
+    }
+
     private void connect() {
+
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
             logger.info("JDBC driver be loaded");

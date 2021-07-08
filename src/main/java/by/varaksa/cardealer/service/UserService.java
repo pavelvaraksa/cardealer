@@ -15,4 +15,6 @@ public interface UserService {
     User update(User user) throws ServiceException;
 
     Long delete(Long id) throws ServiceException;
+
+    boolean isLoginValidate(User user) throws ServiceException;
 }

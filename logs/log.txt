@@ -1,80 +1,78 @@
-2021-07-04 14:12:55 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:12:56 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 14:12:56 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:12:56 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 14:13:03 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:43:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:43:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 14:43:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 17 exists
-2021-07-04 14:43:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:43:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 14:44:05 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:44:05 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 15, name b, surname b, birth date 3921-05-11, login mike21, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 16, name b, surname b, birth date 3921-05-11, login mike44, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 17, name b, surname b, birth date 2021-11-11, login mike441, password q, role USER, is blocked false, created 2021-06-28T23:29:25.840425, changed 2021-06-28T23:29:25.840425, ]
-2021-07-04 14:44:05 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
-2021-07-04 14:49:02 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:49:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:49:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 14:49:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 17 exists
-2021-07-04 14:49:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:49:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 14:49:22 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:49:22 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 15, name b, surname b, birth date 3921-05-11, login mike21, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 16, name b, surname b, birth date 3921-05-11, login mike44, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 17, name b, surname b, birth date 2021-11-11, login mike441, password q, role USER, is blocked false, created 2021-06-28T23:29:25.840425, changed 2021-06-28T23:29:25.840425, ]
-2021-07-04 14:49:22 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
-2021-07-04 14:49:32 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:49:32 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 14:49:32 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 17 exists
-2021-07-04 14:49:32 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:49:32 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 14:49:35 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:55:23 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:55:28 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:55:28 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 15 was found
-2021-07-04 14:55:28 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 15 exists
-2021-07-04 14:55:28 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:55:28 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 15 was found
-2021-07-04 14:55:36 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 14:55:36 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 15, name b, surname b, birth date 3921-05-11, login mike21, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 16, name b, surname b, birth date 3921-05-11, login mike44, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 17, name b, surname b, birth date 2021-11-11, login mike441, password q, role USER, is blocked false, created 2021-06-28T23:29:25.840425, changed 2021-06-28T23:29:25.840425, ]
-2021-07-04 14:55:36 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
-2021-07-04 16:02:01 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 16:02:01 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 15, name b, surname b, birth date 3921-05-11, login mike21, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 16, name b, surname b, birth date 3921-05-11, login mike44, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 17, name b, surname b, birth date 2021-11-11, login mike441, password q, role USER, is blocked false, created 2021-06-28T23:29:25.840425, changed 2021-06-28T23:29:25.840425, ]
-2021-07-04 16:02:01 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
-2021-07-04 16:03:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 16:03:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 15, name b, surname b, birth date 3921-05-11, login mike21, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 16, name b, surname b, birth date 3921-05-11, login mike44, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 17, name b, surname b, birth date 2021-11-11, login mike441, password q, role USER, is blocked false, created 2021-06-28T23:29:25.840425, changed 2021-06-28T23:29:25.840425, ]
-2021-07-04 16:03:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
-2021-07-04 16:03:39 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 16:03:39 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 16:03:39 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 17 exists
-2021-07-04 16:03:39 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 16:03:39 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 16:05:37 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 16:05:38 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 15, name b, surname b, birth date 3921-05-11, login mike21, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 16, name b, surname b, birth date 3921-05-11, login mike44, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 17, name b, surname b, birth date 2021-11-11, login mike441, password q, role USER, is blocked false, created 2021-06-28T23:29:25.840425, changed 2021-06-28T23:29:25.840425, ]
-2021-07-04 16:05:38 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
-2021-07-04 16:08:50 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 16:08:50 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 16:08:50 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 17 exists
-2021-07-04 16:08:50 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 16:08:50 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 16:17:48 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 16:17:49 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 15, name b, surname b, birth date 3921-05-11, login mike21, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 16, name b, surname b, birth date 3921-05-11, login mike44, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 17, name b, surname b, birth date 2021-11-11, login mike441, password q, role USER, is blocked false, created 2021-06-28T23:29:25.840425, changed 2021-06-28T23:29:25.840425, ]
-2021-07-04 16:17:49 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
-2021-07-04 16:21:13 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 16:21:13 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 16:21:13 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 17 exists
-2021-07-04 16:21:13 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 16:21:13 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 18:13:08 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 18:13:09 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 18:13:09 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 17 exists
-2021-07-04 18:13:09 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 18:13:09 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 18:13:14 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 18:13:14 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 15, name b, surname b, birth date 3921-05-11, login mike21, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 16, name b, surname b, birth date 3921-05-11, login mike44, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 17, name b, surname b, birth date 2021-11-11, login mike441, password q, role USER, is blocked false, created 2021-06-28T23:29:25.840425, changed 2021-06-28T23:29:25.840425, ]
-2021-07-04 18:13:14 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
-2021-07-04 18:52:34 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 18:52:34 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 18:52:34 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 17 exists
-2021-07-04 18:52:34 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 18:52:34 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- User with id 17 was found
-2021-07-04 18:52:45 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-04 18:52:45 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- All users: [User: id 6, name b, surname b, birth date 3921-05-11, login q1, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 7, name b, surname b, birth date 3921-05-11, login q2, password q, role USER, is blocked false, created 3921-05-11T00:00, changed 3921-05-11T00:00, , User: id 15, name b, surname b, birth date 3921-05-11, login mike21, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 16, name b, surname b, birth date 3921-05-11, login mike44, password q, role USER, is blocked false, created 2021-06-27T00:00, changed 2021-06-27T00:00, , User: id 17, name b, surname b, birth date 2021-11-11, login mike441, password q, role USER, is blocked false, created 2021-06-28T23:29:25.840425, changed 2021-06-28T23:29:25.840425, ]
-2021-07-04 18:52:45 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-09 00:46:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:46:10 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 00:46:18 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:46:18 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 00:47:24 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:47:25 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 00:47:27 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:47:27 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 00:48:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:48:54 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 00:49:07 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:49:07 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 00:51:15 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:51:15 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 00:52:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:52:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 00:52:49 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:52:49 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 00:54:35 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:54:35 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 00:54:48 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:54:48 [http-nio-8080-exec-8] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 00:58:16 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 00:58:18 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:00:58 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:00:58 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 01:01:01 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:01:01 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:01:01 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
+2021-07-09 01:02:08 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:02:09 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:02:09 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
+2021-07-09 01:03:01 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:03:02 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 01:03:03 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:03:03 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:03:03 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
+2021-07-09 01:04:33 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:04:33 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:04:33 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
+2021-07-09 01:04:34 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:04:35 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:04:35 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
+2021-07-09 01:04:36 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:04:36 [http-nio-8080-exec-9] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:04:36 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
+2021-07-09 01:04:40 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:04:40 [http-nio-8080-exec-1] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:04:40 [http-nio-8080-exec-1] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
+2021-07-09 01:08:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:08:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 01:08:55 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:08:55 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:08:55 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!
+2021-07-09 01:09:02 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:09:02 [http-nio-8080-exec-9] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:09:02 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!
+2021-07-09 01:09:05 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:09:05 [http-nio-8080-exec-1] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:09:05 [http-nio-8080-exec-1] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!
+2021-07-09 01:09:08 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:09:08 [http-nio-8080-exec-3] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 01:12:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:12:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-09 01:12:15 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:12:15 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:12:15 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-09 01:12:17 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:12:17 [http-nio-8080-exec-9] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:12:17 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-09 01:12:21 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:12:21 [http-nio-8080-exec-1] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:12:21 [http-nio-8080-exec-1] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-09 01:12:24 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:12:24 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-09 01:12:24 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-09 01:12:27 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-09 01:12:27 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
