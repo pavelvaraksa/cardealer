@@ -1,78 +1,429 @@
-2021-07-09 00:46:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:46:10 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 00:46:18 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:46:18 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 00:47:24 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:47:25 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 00:47:27 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:47:27 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 00:48:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:48:54 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 00:49:07 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:49:07 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 00:51:15 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:51:15 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 00:52:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:52:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 00:52:49 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:52:49 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 00:54:35 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:54:35 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 00:54:48 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:54:48 [http-nio-8080-exec-8] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 00:58:16 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 00:58:18 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:00:58 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:00:58 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 01:01:01 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:01:01 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:01:01 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
-2021-07-09 01:02:08 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:02:09 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:02:09 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
-2021-07-09 01:03:01 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:03:02 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 01:03:03 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:03:03 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:03:03 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
-2021-07-09 01:04:33 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:04:33 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:04:33 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
-2021-07-09 01:04:34 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:04:35 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:04:35 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
-2021-07-09 01:04:36 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:04:36 [http-nio-8080-exec-9] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:04:36 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
-2021-07-09 01:04:40 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:04:40 [http-nio-8080-exec-1] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:04:40 [http-nio-8080-exec-1] ERROR by.varaksa.cardealer.controller.UserController- Login exception!
-2021-07-09 01:08:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:08:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 01:08:55 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:08:55 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:08:55 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!
-2021-07-09 01:09:02 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:09:02 [http-nio-8080-exec-9] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:09:02 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!
-2021-07-09 01:09:05 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:09:05 [http-nio-8080-exec-1] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:09:05 [http-nio-8080-exec-1] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!
-2021-07-09 01:09:08 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:09:08 [http-nio-8080-exec-3] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 01:12:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:12:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
-2021-07-09 01:12:15 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:12:15 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:12:15 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
-2021-07-09 01:12:17 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:12:17 [http-nio-8080-exec-9] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:12:17 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
-2021-07-09 01:12:21 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:12:21 [http-nio-8080-exec-1] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:12:21 [http-nio-8080-exec-1] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
-2021-07-09 01:12:24 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:12:24 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
-2021-07-09 01:12:24 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
-2021-07-09 01:12:27 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
-2021-07-09 01:12:27 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:34:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:34:42 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:34:42 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:34:47 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:34:47 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:34:47 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:34:50 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:34:50 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:35:01 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:35:01 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:35:01 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:36:44 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:36:44 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:36:50 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:36:50 [http-nio-8080-exec-6] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:36:50 [http-nio-8080-exec-6] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:39:04 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:39:05 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:39:05 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:40:40 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:40:40 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:40:40 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:40:54 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:40:54 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:42:18 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:42:18 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:42:18 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:42:28 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:42:28 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:45:31 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:45:31 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:45:42 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:45:42 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:45:42 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:47:18 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:47:18 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:47:18 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:47:23 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:47:23 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:49:20 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:49:21 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:49:24 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:49:24 [http-nio-8080-exec-6] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:49:24 [http-nio-8080-exec-6] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:51:10 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:51:10 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:51:15 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:51:15 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:51:15 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:52:19 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:52:19 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:52:21 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:52:22 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:52:22 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:52:58 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:52:59 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:53:06 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:53:06 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:53:06 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:53:54 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:53:54 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:53:57 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:53:57 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:53:57 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:58:31 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:58:31 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:58:37 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:58:37 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:58:37 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 00:59:26 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:59:26 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:59:26 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:59:26 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 00:59:30 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 00:59:30 [http-nio-8080-exec-6] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 00:59:30 [http-nio-8080-exec-6] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 01:00:17 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:00:17 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 01:00:17 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 01:00:22 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:00:22 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:00:22 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:00:22 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:02:20 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:02:22 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:03:08 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:03:08 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:04:01 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:04:03 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login or password weren't corrected! Please,try again
+2021-07-10 01:04:50 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ServiceException: Login or password weren't corrected! Please,try again
+2021-07-10 01:06:11 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:06:13 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:06:56 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:06:56 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:07:11 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:07:11 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:07:13 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:07:13 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:08:33 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:08:33 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:08:33 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:08:33 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:08:37 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:08:37 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:08:40 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:08:40 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:09:10 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:09:10 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:09:13 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:09:13 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:09:13 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:09:13 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:09:51 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:09:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:10:46 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:10:46 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:10:46 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:10:46 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:18:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:18:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:19:25 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:19:25 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:19:45 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:19:45 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:20:55 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:20:55 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:21:50 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:21:50 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:22:34 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:22:35 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:24:52 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:24:54 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:27:00 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:27:02 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:27:13 [http-nio-8080-exec-4] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:28:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:28:11 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:28:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:28:45 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:28:49 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:28:55 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:29:25 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:29:25 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:29:30 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:29:30 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:29:30 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:29:30 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:29:35 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:29:35 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:29:35 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:29:35 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:29:58 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:29:58 [http-nio-8080-exec-3] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:29:58 [http-nio-8080-exec-3] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:29:58 [http-nio-8080-exec-3] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:30:00 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:30:00 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:30:00 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:30:00 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:30:03 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:30:03 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:30:03 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:30:03 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:30:06 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:30:06 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:30:06 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:30:06 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:30:09 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:30:09 [http-nio-8080-exec-3] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:30:11 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:30:11 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:30:11 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:30:11 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:32:34 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:32:35 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:32:37 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:32:37 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:32:37 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to validate login or password.
+2021-07-10 01:32:37 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Servlet exception!by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to validate login or password.
+2021-07-10 01:34:28 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:34:29 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:34:29 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to validate login or password.by.varaksa.cardealer.exception.ControllerException
+2021-07-10 01:34:36 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:34:36 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:34:36 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to validate login or password.by.varaksa.cardealer.exception.ControllerException
+2021-07-10 01:34:50 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:34:50 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:34:50 [http-nio-8080-exec-10] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to validate login or password.by.varaksa.cardealer.exception.ControllerException
+2021-07-10 01:36:51 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:36:52 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:36:52 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:36:52 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to validate login or password.by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:36:58 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:36:58 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:36:58 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't corrected! Please,try again
+2021-07-10 01:36:58 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to validate login or password.by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:44:05 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:44:05 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:44:05 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to validate login or password.by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:44:13 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:44:13 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:44:13 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to validate login or password.by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:44:36 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:44:36 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:46:47 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:46:48 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:46:48 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:46:57 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:48:11 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:48:12 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:48:26 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:48:26 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Controller exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:51:21 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:51:21 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 01:51:47 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:51:47 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Controller exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:52:57 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:52:58 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:53:06 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:53:06 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Controller exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 01:53:11 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 01:53:11 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Controller exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 12:20:49 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 12:20:50 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 12:28:45 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 12:28:46 [http-nio-8080-exec-8] ERROR by.varaksa.cardealer.controller.UserController- User controller exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 12:30:34 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 12:30:35 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 12:33:31 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 12:33:31 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 12:34:43 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 12:34:43 [http-nio-8080-exec-1] ERROR by.varaksa.cardealer.controller.UserController- User controller exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 12:54:39 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 12:54:39 [http-nio-8080-exec-5] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ВАЖНО: пользователь "postgres" не прошёл проверку подлинности (по паролю) (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-07-10 12:56:46 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 12:56:46 [http-nio-8080-exec-5] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ВАЖНО: пользователь "postgres" не прошёл проверку подлинности (по паролю) (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-07-10 12:56:46 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Service exception!Login and password weren't corrected!by.varaksa.cardealer.exception.RepositoryException: SQL exception.org.postgresql.util.PSQLException: ВАЖНО: пользователь "postgres" не прошёл проверку подлинности (по паролю) (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-07-10 12:56:46 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception!by.varaksa.cardealer.exception.ServiceException: Service exception!Login and password weren't corrected!by.varaksa.cardealer.exception.RepositoryException: SQL exception.org.postgresql.util.PSQLException: ВАЖНО: пользователь "postgres" не прошёл проверку подлинности (по паролю) (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-07-10 12:58:59 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 12:58:59 [http-nio-8080-exec-5] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ВАЖНО: пользователь "postgres" не прошёл проверку подлинности (по паролю) (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-07-10 12:58:59 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Service exception!Login and password weren't corrected!by.varaksa.cardealer.exception.RepositoryException: SQL exception.org.postgresql.util.PSQLException: ВАЖНО: пользователь "postgres" не прошёл проверку подлинности (по паролю) (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-07-10 12:58:59 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception!by.varaksa.cardealer.exception.ServiceException: Service exception!Login and password weren't corrected!by.varaksa.cardealer.exception.RepositoryException: SQL exception.org.postgresql.util.PSQLException: ВАЖНО: пользователь "postgres" не прошёл проверку подлинности (по паролю) (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-07-10 12:59:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver be loaded
+2021-07-10 12:59:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 12:59:42 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception!by.varaksa.cardealer.exception.ControllerException: Login or password weren't corrected! Please,try again
+2021-07-10 13:03:34 [http-nio-8080-exec-5] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver can't be loaded.java.lang.ClassNotFoundException: org.postgresql.Drive
+2021-07-10 13:16:26 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:16:26 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 13:16:26 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 13:16:51 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:16:51 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = ''
+2021-07-10 13:16:51 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- User controller exception!by.varaksa.cardealer.exception.ControllerException: Controller exception.Login or password weren't corrected
+2021-07-10 13:19:06 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:19:06 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 13:19:06 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 13:19:09 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:19:09 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'wewef' and password = 'ewfwf'
+2021-07-10 13:19:09 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 13:19:11 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:19:11 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'wefwef' and password = 'wefwf'
+2021-07-10 13:19:11 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 13:41:20 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:41:20 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:41:20 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 13:41:20 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 13:41:20 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 13:41:20 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 13:42:59 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:43:00 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = ''
+2021-07-10 13:43:00 [http-nio-8080-exec-10] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 13:43:00 [http-nio-8080-exec-10] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ServiceException: Login and password weren't corrected!
+2021-07-10 13:44:33 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:44:34 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 13:44:34 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 13:44:34 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 13:44:37 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:44:37 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'rhr' and password = ''
+2021-07-10 13:44:37 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 13:44:37 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ServiceException: Login and password weren't corrected!
+2021-07-10 13:45:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:45:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 13:45:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 13:45:22 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:45:22 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 13:45:22 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 13:45:33 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:45:33 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = ''
+2021-07-10 13:45:33 [http-nio-8080-exec-10] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 13:45:33 [http-nio-8080-exec-10] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ServiceException: Login and password weren't corrected!
+2021-07-10 13:46:44 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:46:44 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 13:46:44 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 13:47:02 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ServiceException: Login and password weren't corrected!
+2021-07-10 13:48:47 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:48:49 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 13:48:49 [http-nio-8080-exec-9] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 13:48:53 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ServiceException: Login and password weren't corrected!
+2021-07-10 13:50:49 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:50:51 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 13:50:51 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 13:50:58 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ServiceException: Login and password weren't corrected!
+2021-07-10 13:51:49 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:51:50 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 13:51:50 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 13:51:50 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 13:51:55 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:51:55 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'hrthr' and password = 'rth'
+2021-07-10 13:51:55 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 13:51:55 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ServiceException: Login and password weren't corrected!
+2021-07-10 13:52:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:52:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 13:52:42 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 13:52:52 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 13:52:52 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = ''
+2021-07-10 13:52:52 [http-nio-8080-exec-7] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 13:52:52 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ServiceException: Login and password weren't corrected!
+2021-07-10 14:01:59 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 14:02:01 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 14:02:01 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 14:02:05 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to authenticate an user
+2021-07-10 14:02:09 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 14:02:41 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 14:02:41 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bdfb' and password = 'dfb'
+2021-07-10 14:02:41 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 14:02:41 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to authenticate an user
+2021-07-10 14:02:41 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 14:03:12 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 14:03:12 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 14:03:12 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 14:21:40 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 14:21:40 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 14:21:40 [http-nio-8080-exec-3] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected!
+2021-07-10 14:21:40 [http-nio-8080-exec-3] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to authenticate an user
+2021-07-10 14:21:40 [http-nio-8080-exec-3] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 14:22:10 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 14:22:10 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 14:22:10 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected!
+2021-07-10 14:43:46 [http-nio-8080-exec-2] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver wasn't loaded.java.lang.ClassNotFoundException: org.postgresql.Drive
+2021-07-10 14:49:16 [http-nio-8080-exec-5] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver wasn't loaded.org.postgresql.Drive
+2021-07-10 14:56:23 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 14:56:23 [http-nio-8080-exec-5] ERROR varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ВАЖНО: пользователь "postgres" не прошёл проверку подлинности (по паролю) (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-07-10 15:13:02 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:13:02 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 15:13:02 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were corrected
+2021-07-10 15:13:23 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:13:23 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'sdfsdsd'
+2021-07-10 15:13:23 [http-nio-8080-exec-10] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected
+2021-07-10 15:13:23 [http-nio-8080-exec-10] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to authenticate an user
+2021-07-10 15:13:23 [http-nio-8080-exec-10] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 15:19:20 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:19:20 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 15:20:42 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't corrected
+2021-07-10 15:20:42 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to authenticate an user
+2021-07-10 15:20:42 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 15:25:00 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:25:00 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 15:25:00 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were correct
+2021-07-10 15:31:21 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:31:21 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'sfsf' and password = 'sdsf'
+2021-07-10 15:31:21 [http-nio-8080-exec-5] ERROR varaksa.cardealer.service.impl.UserServiceImpl- Login and password weren't correct
+2021-07-10 15:31:21 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to authenticate an user
+2021-07-10 15:31:21 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 15:31:30 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:31:30 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 15:31:30 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Login and password were correct
+2021-07-10 15:44:54 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:44:55 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 15:44:55 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to authenticate an user
+2021-07-10 15:46:45 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:47:01 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 15:48:14 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to authenticate an user
+2021-07-10 15:48:48 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:48:49 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 15:50:15 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:50:15 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 15:50:15 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to authenticate an user
+2021-07-10 15:50:15 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- User controller exception.by.varaksa.cardealer.exception.ControllerException: Controller exception while trying to authenticate an user
+2021-07-10 15:51:00 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:51:01 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 15:51:01 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Controller exception while trying to authenticate an user
+2021-07-10 15:51:13 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:51:13 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 15:54:57 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:54:57 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 15:54:57 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-10 15:55:04 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 15:55:04 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'dfb'
+2021-07-10 15:55:04 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login and password weren't correct
+2021-07-10 16:31:44 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 16:31:44 [http-nio-8080-exec-5] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ВАЖНО: база данных "car_dealer" не существует (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-07-10 16:42:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 16:42:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'rgerg' and password = 'errg'
+2021-07-10 16:42:53 [http-nio-8080-exec-5] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: отношение "users" не существует
+  Позиция: 29
+2021-07-10 16:43:53 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 16:43:53 [http-nio-8080-exec-5] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ВАЖНО: пользователь "paulus" не прошёл проверку подлинности (по паролю) (pgjdbc: autodetected server-encoding to be windows-1251, if the message is not readable, please check database logs and/or host, port, dbname, user, password, pg_hba.conf)
+2021-07-10 16:50:28 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 16:50:28 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'wwef'
+2021-07-10 16:50:28 [http-nio-8080-exec-5] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.org.postgresql.util.PSQLException: ОШИБКА: отношение "users" не существует
+  Позиция: 29
+2021-07-10 16:58:50 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 16:58:50 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 16:58:50 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login and password weren't correct
+2021-07-10 16:58:53 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 16:58:53 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '' and password = ''
+2021-07-10 16:58:53 [http-nio-8080-exec-1] ERROR by.varaksa.cardealer.controller.UserController- Login and password weren't correct
+2021-07-10 17:21:28 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 17:21:28 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-10 17:21:28 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-10 17:21:34 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-10 17:21:35 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'bb'
+2021-07-10 17:21:35 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login and password weren't correct
+2021-07-10 23:19:41 [http-nio-8080-exec-6] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver wasn't loaded.org.postgresql.Drive
+2021-07-10 23:43:49 [http-nio-8080-exec-4] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.java.sql.SQLException: No suitable driver found for jdbc:postgresql://localhost:5432/car_dealer
+2021-07-10 23:45:56 [http-nio-8080-exec-5] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.java.sql.SQLException: No suitable driver found for jdbc:postgresql://localhost:5432/car_dealer
+2021-07-10 23:46:43 [http-nio-8080-exec-5] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.java.sql.SQLException: No suitable driver found for jdbc:postgresql://localhost:5432/car_dealer
+2021-07-11 00:09:53 [http-nio-8080-exec-5] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.java.sql.SQLException: No suitable driver found for jdbc:postgresql://localhost:5432/car_dealer
+2021-07-11 00:10:59 [http-nio-8080-exec-6] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.java.sql.SQLException: No suitable driver found for jdbc:postgresql://localhost:5432/car_dealer
+2021-07-11 00:11:11 [http-nio-8080-exec-7] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- SQL exception.java.sql.SQLException: No suitable driver found for jdbc:postgresql://localhost:5432/car_dealer
+2021-07-11 00:12:20 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-11 00:12:20 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-11 00:12:20 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-11 00:12:23 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-11 00:12:23 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'vsdvs'
+2021-07-11 00:12:23 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login and password weren't correct
+2021-07-11 00:21:26 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded
+2021-07-11 00:21:26 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'bob' and password = 'tt'
+2021-07-11 00:21:26 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-11 00:21:56 [http-nio-8080-exec-5] FATAL varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver wasn't loaded.java.lang.ClassNotFoundException: org.postgresql.Drive

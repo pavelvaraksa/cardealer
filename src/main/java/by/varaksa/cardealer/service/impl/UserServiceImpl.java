@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private static Logger logger = LogManager.getLogger();
-    private UserRepository userRepository;
+    private static final Logger logger = LogManager.getLogger();
+    private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -135,27 +135,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean isLoginValidate(User user) throws ServiceException {
-        boolean isStatus;
-        String userLogin = user.getLogin();
-        String userPassword = user.getPassword();
-        User userParameters = new User();
-        userParameters.setLogin(userLogin);
-        userParameters.setPassword(userPassword);
-
+    public boolean isAuthenticate(User user) throws ServiceException {
         try {
-            isStatus = userRepository.isLoginValidate(userParameters);
-
-            if (!(isStatus)) {
-                String errorMessage = "Login or password weren't corrected! Please,try again";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-            logger.info("Login and password were corrected!");
-            return isStatus;
+            return userRepository.isAuthenticate(user);
         } catch (RepositoryException stackTrace) {
-            String errorMessage = "Service exception while trying to validate login or password." + stackTrace;
-            throw new ServiceException(errorMessage);
+            throw new ServiceException("User service exception while trying to authenticate user." + stackTrace);
         }
     }
 }
