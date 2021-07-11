@@ -20,32 +20,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) throws ServiceException {
-        List<User> existingUsers;
-
-        try {
-            existingUsers = userRepository.findAll();
-        } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get all users";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-
-        for (User existingUser : existingUsers) {
-            boolean hasSameUser = existingUser.getId().equals(user.getId());
-
-            if (hasSameUser) {
-                String errorMessage = "User with id " + user.getId() + " already exists";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        }
+//        List<User> existingUsers;
+//
+//        try {
+//            existingUsers = userRepository.findAll();
+//        } catch (RepositoryException exception) {
+//            String errorMessage = "Can't get all users";
+//            logger.error(errorMessage);
+//            throw new ServiceException(errorMessage);
+//        }
+//
+//        for (User existingUser : existingUsers) {
+//            boolean hasSameUser = existingUser.getLogin().equals(user.getLogin());
+//
+//            if (hasSameUser) {
+//                String errorMessage = "User with login " + user.getLogin() + " already exists";
+//                logger.error(errorMessage);
+//                throw new ServiceException(errorMessage);
+//            }
+//        }
 
         try {
             User savedUser = userRepository.save(user);
-            logger.info("User " + user + " was saved");
+            logger.info("User with login " + user.getLogin() + " was saved");
             return savedUser;
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User service exception while trying to save an user." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User service exception while trying to save user." + exception);
         }
     }
 
@@ -64,8 +64,8 @@ public class UserServiceImpl implements UserService {
                 logger.info("Users exist");
                 return existingUsers;
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User service exception while trying to find all users." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User service exception while trying to find all users." + exception);
         }
     }
 
@@ -81,15 +81,15 @@ public class UserServiceImpl implements UserService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User service exception while trying to find an user." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User service exception while trying to find user." + exception);
         }
 
         try {
             logger.info("User with id " + id + " exists");
             return userRepository.find(id);
-        } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get an user";
+        } catch (RepositoryException exception) {
+            String errorMessage = "Can't get user";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -101,8 +101,8 @@ public class UserServiceImpl implements UserService {
         try {
             logger.info("User with id " + user.getId() + " was updated");
             return userRepository.update(user);
-        } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get an user";
+        } catch (RepositoryException exception) {
+            String errorMessage = "Can't get user";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -120,15 +120,15 @@ public class UserServiceImpl implements UserService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User service exception while trying to delete an user." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User service exception while trying to delete user." + exception);
         }
 
         try {
             logger.info("User with id " + id + " was deleted");
             return userRepository.delete(id);
-        } catch (RepositoryException stackTrace) {
-            String errorMessage = "Can't get an user";
+        } catch (RepositoryException exception) {
+            String errorMessage = "Can't get user";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -138,8 +138,8 @@ public class UserServiceImpl implements UserService {
     public boolean isAuthenticate(User user) throws ServiceException {
         try {
             return userRepository.isAuthenticate(user);
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User service exception while trying to authenticate user." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User service exception while trying to authenticate user." + exception);
         }
     }
 }

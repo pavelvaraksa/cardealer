@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class UserController extends HttpServlet {
@@ -54,8 +55,8 @@ public class UserController extends HttpServlet {
                 default:
                     break;
             }
-        } catch (ServiceException stackTrace) {
-            String errorMessage = "User controller exception." + stackTrace;
+        } catch (ServiceException exception) {
+            String errorMessage = "User controller exception." + exception;
             logger.error(errorMessage);
         }
     }
@@ -68,7 +69,7 @@ public class UserController extends HttpServlet {
                 case LOGIN:
                     confirmAuthenticate(request, response);
                     break;
-                case CREATE:
+                case SAVE:
                     saveUser(request, response);
                     break;
                 case UPDATE:
@@ -80,8 +81,8 @@ public class UserController extends HttpServlet {
                 default:
                     break;
             }
-        } catch (ControllerException | ServiceException | IOException stackTrace) {
-            String errorMessage = "User controller exception." + stackTrace;
+        } catch (ControllerException | ServiceException | IOException exception) {
+            String errorMessage = "User controller exception." + exception;
             logger.error(errorMessage);
         }
     }
@@ -97,7 +98,7 @@ public class UserController extends HttpServlet {
 
             if (userService.isAuthenticate(user)) {
                 logger.info("Login and password were correct");
-                response.sendRedirect("/loginsuccess");
+                response.sendRedirect("/main-menu");
                 return;
             }
 
@@ -108,22 +109,55 @@ public class UserController extends HttpServlet {
         }
     }
 
-    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServiceException {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
-        LocalDate birthDate = LocalDate.parse(request.getParameter("birth_date"));
+        LocalDate birthDate;
+
+        if (request.getParameter("birth_date").isEmpty()) {
+            String emptyDate = "01/01/2000";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            birthDate = LocalDate.parse(emptyDate, formatter);
+        } else {
+            birthDate = LocalDate.parse(request.getParameter("birth_date"));
+        }
+
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        User newUser = new User(name, surname, birthDate, login, password);
-        userService.save(newUser);
+
+        User user = new User(name, surname, birthDate, login, password);
+        boolean isStatus;
+
+        if (user.getName().isEmpty()
+                || user.getSurname().isEmpty()
+                || user.getLogin().isEmpty()
+                || user.getPassword().isEmpty()) {
+            isStatus = false;
+        } else {
+            isStatus = true;
+        }
+
+        try {
+
+            if (!(isStatus)) {
+                String errorMessage = "Entered data weren't correct";
+                logger.error(errorMessage);
+                response.sendRedirect("/register-page");
+            } else {
+                userService.save(user);
+                response.sendRedirect("/main-menu");
+            }
+        } catch (ServiceException exception) {
+            throw new ControllerException(exception);
+        }
     }
 
     private void findAllUsers(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, ServiceException {
         List<User> listUser = userService.findAll();
-        request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user.jsp");
-        dispatcher.forward(request, response);
+//        request.setAttribute("listUser", listUser);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("user.jsp");
+//        dispatcher.forward(request, response);
     }
 
     private void findUser(HttpServletRequest request, HttpServletResponse response)

@@ -19,24 +19,24 @@
     <h2>Authentication form</h2>
     <form action="<%=request.getContextPath()%>/login" method="post">
         <table style="with: 100%">
-            <tr>
-                <td>Login</td>
-                <td><label>
-                    <input type="text" name="login"/>
-                </label></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><label>
-                    <input type="password" name="password"/>
-                </label></td>
-            </tr>
+            <div class="col-md-4">
+                <label for="validationLogin" class="form-label">Login</label>
+                <input type="text" class="form-control" id="validationLogin" name="login" required>
+            </div>
+            <div class="col-md-4">
+                <label for="validationPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="validationPassword" name="password" required>
+            </div>
+            <div class="col-12">
+                <input class="btn btn-outline-primary btn-sm" type="submit" value="Log in">
+            </div>
+            <label>
+                <a class="btn btn-outline-info btn-sm" href="http://localhost:8080" role="button">Return to
+                    previous
+                    page</a>
+            </label>
         </table>
-        <input class="btn btn-outline-primary btn-sm" type="submit" value="Log in">
     </form>
-    <label>
-        <a class="btn btn-outline-info btn-sm" href="http://localhost:8080" role="button">Return to previous page</a>
-    </label>
 </div>
 </body>
 </html>

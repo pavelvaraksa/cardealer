@@ -17,7 +17,7 @@ import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
 
 public class UserRepositoryImpl implements UserRepository {
     private static final Logger logger = LogManager.getLogger();
-    public static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
+    private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
     private static final String ID = "id";
     private static final String NAME = "name";
@@ -69,6 +69,7 @@ public class UserRepositoryImpl implements UserRepository {
         Connection connection;
         PreparedStatement statement;
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
+        Role defaultUserRole = Role.USER;
 
         connect();
 
@@ -83,14 +84,13 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setDate(3, Date.valueOf(user.getBirthDate()));
             statement.setString(4, user.getLogin());
             statement.setString(5, user.getPassword());
-            statement.setString(6, String.valueOf(user.getRole()));
+            statement.setString(6, String.valueOf(defaultUserRole));
             statement.setBoolean(7, user.isBlocked());
             statement.setTimestamp(8, creationTimestamp);
             statement.setTimestamp(9, creationTimestamp);
 
             statement.executeUpdate();
 
-            logger.info("User with login " + user.getLogin() + " was saved");
             return user;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -119,7 +119,6 @@ public class UserRepositoryImpl implements UserRepository {
                 result.add(parseResultSet(resultSet));
             }
 
-            logger.info("All users: " + result);
             return result;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;

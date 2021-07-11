@@ -14,13 +14,18 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>Home page</servlet-name>
+        <url-pattern>/save</url-pattern>
+    </servlet-mapping>
+
     <servlet>
-        <servlet-name>User login page</servlet-name>
+        <servlet-name>User login auth</servlet-name>
         <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>User login page</servlet-name>
+        <servlet-name>User login auth</servlet-name>
         <url-pattern>/login-auth</url-pattern>
     </servlet-mapping>
 
@@ -31,7 +36,7 @@
 
     <servlet-mapping>
         <servlet-name>User register page</servlet-name>
-        <url-pattern>/register</url-pattern>
+        <url-pattern>/register-page</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -55,13 +60,23 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>User login success</servlet-name>
-        <jsp-file>/WEB-INF/jsp/loginsuccess.jsp</jsp-file>
+        <servlet-name>User login page</servlet-name>
+        <jsp-file>/WEB-INF/jsp/mainMenu.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>User login success</servlet-name>
-        <url-pattern>/loginsuccess</url-pattern>
+        <servlet-name>User login page</servlet-name>
+        <url-pattern>/main-menu</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Main menu page</servlet-name>
+        <jsp-file>/WEB-INF/jsp/mainMenu.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Main menu page</servlet-name>
+        <url-pattern>/create</url-pattern>
     </servlet-mapping>
 
     <servlet>

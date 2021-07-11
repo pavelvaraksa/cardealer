@@ -35,6 +35,20 @@ public class User {
         this.password = password;
     }
 
+    public User(Long id, String name, String surname, LocalDate birthDate, String login, String password,
+                Role role, boolean isBlocked, LocalDateTime created, LocalDateTime changed) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.birthDate = birthDate;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.isBlocked = isBlocked;
+        this.created = created;
+        this.changed = changed;
+    }
+
     public User(String name, String surname, LocalDate birthDate, String login, String password,
                 Role role, boolean isBlocked, Long id) {
         this.name = name;

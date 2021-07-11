@@ -2,7 +2,7 @@ package by.varaksa.cardealer.command;
 
 public enum Commands {
     LOGIN("/login"),
-    CREATE("/create"),
+    SAVE("/save"),
     FIND_ALL("/findAll"),
     FIND_BY_ID("/findById"),
     UPDATE("/update"),

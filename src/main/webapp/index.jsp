@@ -18,7 +18,7 @@
     <h2>----- CAR DEALER APPLICATION -----</h2>
 
     <a class="btn btn-outline-info" href="http://localhost:8080/login-auth" role="button">Login</a>
-    <a class="btn btn-outline-info" href="http://localhost:8080/register" role="button">Sign up</a>
+    <a class="btn btn-outline-info" href="http://localhost:8080/register-page" role="button">Sign up</a>
     <a class="btn btn-outline-info" href="http://localhost:8080/company" role="button">About us</a>
     <a class="btn btn-outline-info" href="http://localhost:8080/request-information" role="button">Contacts</a>
 </div>

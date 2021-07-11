@@ -15,7 +15,7 @@
 
 <body>
 <div align="center">
-    <h2>Login is correct!</h2>
+    <h2>Welcome to main menu</h2>
     <label>
         <input class="btn btn-outline-info btn-sm" onclick="history.back();" value="Return to previous page"/>
     </label>

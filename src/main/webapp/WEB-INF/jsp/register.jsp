@@ -16,8 +16,37 @@
 <body>
 <div align="center">
     <h2>Register form</h2>
+    <form action="<%=request.getContextPath()%>/save" method="post">
+        <table style="with: 100%">
+            <form class="row g-3">
+                <div class="col-md-4">
+                    <label for="validationName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="validationName" name="name" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationSurname" class="form-label">Surname</label>
+                    <input type="text" class="form-control" id="validationSurname" name="surname" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationBirthDate" class="form-label">Birth date</label>
+                    <input type="date" class="form-control" id="validationBirthDate" name="birth_date">
+                </div>
+                <div class="col-md-4">
+                    <label for="validationLogin" class="form-label">Login</label>
+                    <input type="text" class="form-control" id="validationLogin" name="login" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="validationPassword" name="password" required>
+                </div>
+            </form>
+        </table>
+        <div class="col-12">
+            <input class="btn btn-outline-primary btn-sm" type="submit" value="Register">
+        </div>
+    </form>
     <label>
-        <input class="btn btn-outline-info btn-sm" onclick="history.back();" value="Return to previous page"/>
+        <a class="btn btn-outline-info btn-sm" href="http://localhost:8080" role="button">Return to previous page</a>
     </label>
 </div>
 </body>
