@@ -19,11 +19,11 @@
     <h2>Authentication form</h2>
     <form action="<%=request.getContextPath()%>/login" method="post">
         <table style="with: 100%">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="validationLogin" class="form-label">Login</label>
                 <input type="text" class="form-control" id="validationLogin" name="login" required>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="validationPassword" class="form-label">Password</label>
                 <input type="password" class="form-control" id="validationPassword" name="password" required>
             </div>

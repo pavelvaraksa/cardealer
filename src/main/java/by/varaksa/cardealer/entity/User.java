@@ -6,9 +6,9 @@ import java.time.LocalDate;
 public class User {
     private Long id;
 
-    private String name;
+    private String firstName;
 
-    private String surname;
+    private String lastName;
 
     private LocalDate birthDate;
 
@@ -27,19 +27,19 @@ public class User {
     public User() {
     }
 
-    public User(String name, String surname, LocalDate birthDate, String login, String password) {
-        this.name = name;
-        this.surname = surname;
+    public User(String firstName, String lastName, LocalDate birthDate, String login, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.birthDate = birthDate;
         this.login = login;
         this.password = password;
     }
 
-    public User(Long id, String name, String surname, LocalDate birthDate, String login, String password,
+    public User(Long id, String firstName, String lastname, LocalDate birthDate, String login, String password,
                 Role role, boolean isBlocked, LocalDateTime created, LocalDateTime changed) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
+        this.firstName = firstName;
+        this.lastName = lastname;
         this.birthDate = birthDate;
         this.login = login;
         this.password = password;
@@ -49,10 +49,10 @@ public class User {
         this.changed = changed;
     }
 
-    public User(String name, String surname, LocalDate birthDate, String login, String password,
+    public User(String firstname, String lastName, LocalDate birthDate, String login, String password,
                 Role role, boolean isBlocked, Long id) {
-        this.name = name;
-        this.surname = surname;
+        this.firstName = firstname;
+        this.lastName = lastName;
         this.birthDate = birthDate;
         this.login = login;
         this.password = password;
@@ -69,20 +69,20 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public LocalDate getBirthDate() {
@@ -144,8 +144,8 @@ public class User {
     @Override
     public int hashCode() {
         return (int) (11 * id
-                + name.hashCode()
-                + surname.hashCode()
+                + firstName.hashCode()
+                + lastName.hashCode()
                 + birthDate.hashCode()
                 + login.hashCode()
                 + password.hashCode()
@@ -167,8 +167,8 @@ public class User {
         User user = (User) object;
 
         return id == user.id
-                && (name == user.name || name != null && name.equals(user.getName()))
-                && (surname == user.surname || surname != null && surname.equals(user.getSurname()))
+                && (firstName == user.firstName || firstName != null && firstName.equals(user.getFirstName()))
+                && (lastName == user.lastName || lastName != null && lastName.equals(user.getLastName()))
                 && (birthDate == user.birthDate || birthDate != null && birthDate.equals(user.getBirthDate()))
                 && (login == user.login || login != null && login.equals(user.getLogin()))
                 && (password == user.password || password != null && password.equals(user.getPassword()))
@@ -182,8 +182,8 @@ public class User {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("User: ");
         stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("name ").append(name).append(", ");
-        stringBuilder.append("surname ").append(surname).append(", ");
+        stringBuilder.append("name ").append(firstName).append(", ");
+        stringBuilder.append("lastName ").append(lastName).append(", ");
         stringBuilder.append("birth date ").append(birthDate).append(", ");
         stringBuilder.append("login ").append(login).append(", ");
         stringBuilder.append("password ").append(password).append(", ");

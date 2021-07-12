@@ -4,6 +4,7 @@ import by.varaksa.cardealer.command.Commands;
 import by.varaksa.cardealer.entity.Role;
 import by.varaksa.cardealer.entity.User;
 import by.varaksa.cardealer.exception.ControllerException;
+import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.repository.UserRepository;
 import by.varaksa.cardealer.repository.impl.UserRepositoryImpl;
@@ -52,6 +53,9 @@ public class UserController extends HttpServlet {
                 case FIND_BY_ID:
                     findUser(request, response);
                     break;
+                case LOGOUT:
+                    logOut(request, response);
+                    break;
                 default:
                     break;
             }
@@ -81,7 +85,7 @@ public class UserController extends HttpServlet {
                 default:
                     break;
             }
-        } catch (ControllerException | ServiceException | IOException exception) {
+        } catch (ControllerException | ServiceException | IOException | RepositoryException exception) {
             String errorMessage = "User controller exception." + exception;
             logger.error(errorMessage);
         }
@@ -109,55 +113,52 @@ public class UserController extends HttpServlet {
         }
     }
 
-    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServiceException {
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
+    public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        HttpSession session = request.getSession();
+//        if (session != null) {
+//            session.invalidate();
+//        }
+        logger.info("Logout was completed");
+        response.sendRedirect("/login-auth");
+    }
+
+    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServiceException, RepositoryException {
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
         LocalDate birthDate;
 
         if (request.getParameter("birth_date").isEmpty()) {
-            String emptyDate = "01/01/2000";
+            String defaultDate = "01/01/2000";
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-            birthDate = LocalDate.parse(emptyDate, formatter);
+            birthDate = LocalDate.parse(defaultDate, formatter);
         } else {
             birthDate = LocalDate.parse(request.getParameter("birth_date"));
         }
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+        User user = new User(firstname, lastname, birthDate, login, password);
 
-        User user = new User(name, surname, birthDate, login, password);
-        boolean isStatus;
+        List<User> existingUsers = userService.findAll();
 
-        if (user.getName().isEmpty()
-                || user.getSurname().isEmpty()
-                || user.getLogin().isEmpty()
-                || user.getPassword().isEmpty()) {
-            isStatus = false;
-        } else {
-            isStatus = true;
-        }
+        for (User existingUser : existingUsers) {
+            boolean hasSameUser = existingUser.getLogin().equals(user.getLogin());
 
-        try {
-
-            if (!(isStatus)) {
-                String errorMessage = "Entered data weren't correct";
-                logger.error(errorMessage);
+            if (hasSameUser) {
                 response.sendRedirect("/register-page");
             } else {
                 userService.save(user);
                 response.sendRedirect("/main-menu");
             }
-        } catch (ServiceException exception) {
-            throw new ControllerException(exception);
         }
     }
 
     private void findAllUsers(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, ServiceException {
         List<User> listUser = userService.findAll();
-//        request.setAttribute("listUser", listUser);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("user.jsp");
-//        dispatcher.forward(request, response);
+        request.setAttribute("listUser", listUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void findUser(HttpServletRequest request, HttpServletResponse response)

@@ -16,12 +16,17 @@
 
     <servlet-mapping>
         <servlet-name>Home page</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Home page</servlet-name>
         <url-pattern>/save</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>User login auth</servlet-name>
-        <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/user/login.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
@@ -30,8 +35,18 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>User logout page</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/logout.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>User logout page</servlet-name>
+        <url-pattern>/logout-page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>User register page</servlet-name>
-        <jsp-file>/WEB-INF/jsp/register.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/user/register.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
@@ -41,7 +56,7 @@
 
     <servlet>
         <servlet-name>Company story page</servlet-name>
-        <jsp-file>/WEB-INF/jsp/company.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/company/company.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
@@ -51,7 +66,7 @@
 
     <servlet>
         <servlet-name>Company contacts page</servlet-name>
-        <jsp-file>/WEB-INF/jsp/contacts.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/company/contacts.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
@@ -60,23 +75,13 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>User login page</servlet-name>
-        <jsp-file>/WEB-INF/jsp/mainMenu.jsp</jsp-file>
+        <servlet-name>User authenticate page</servlet-name>
+        <jsp-file>/WEB-INF/jsp/company/mainMenu.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>User login page</servlet-name>
+        <servlet-name>User authenticate page</servlet-name>
         <url-pattern>/main-menu</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Main menu page</servlet-name>
-        <jsp-file>/WEB-INF/jsp/mainMenu.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Main menu page</servlet-name>
-        <url-pattern>/create</url-pattern>
     </servlet-mapping>
 
     <servlet>

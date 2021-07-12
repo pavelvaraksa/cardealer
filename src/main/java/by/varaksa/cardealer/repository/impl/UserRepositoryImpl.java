@@ -20,8 +20,8 @@ public class UserRepositoryImpl implements UserRepository {
     private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
     private static final String ID = "id";
-    private static final String NAME = "name";
-    private static final String SURNAME = "surname";
+    private static final String FIRSTNAME = "firstname";
+    private static final String LASTNAME = "lastname";
     private static final String BIRTH_DATE = "birth_date";
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
@@ -31,14 +31,14 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String CHANGED = "changed";
 
     private static final String FIND_ALL_USERS = "select * from users";
-    private static final String SAVE_USER = "insert into users (name, surname, birth_date, login, password, " +
+    private static final String SAVE_USER = "insert into users (firstname, lastname, birth_date, login, password, " +
             "role, is_blocked, created, changed) " +
             "values (?,?,?,?,?,?,?,?,?)";
     private static final String FIND_USER_BY_ID = "select * from users where id = ?";
     private static final String UPDATE_USER_BY_ID = "update users " +
             "set " +
-            "name = ?,  " +
-            "surname = ?,  " +
+            "firstname = ?,  " +
+            "lastname = ?,  " +
             "birth_date = ?,  " +
             "login = ?,  " +
             "password = ?,  " +
@@ -52,8 +52,8 @@ public class UserRepositoryImpl implements UserRepository {
     private User parseResultSet(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getLong(ID));
-        user.setName(resultSet.getString(NAME));
-        user.setSurname(resultSet.getString(SURNAME));
+        user.setFirstName(resultSet.getString(FIRSTNAME));
+        user.setLastName(resultSet.getString(LASTNAME));
         user.setBirthDate(resultSet.getDate(BIRTH_DATE).toLocalDate());
         user.setLogin(resultSet.getString(LOGIN));
         user.setPassword(resultSet.getString(PASSWORD));
@@ -79,8 +79,8 @@ public class UserRepositoryImpl implements UserRepository {
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(SAVE_USER);
 
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getSurname());
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
             statement.setDate(3, Date.valueOf(user.getBirthDate()));
             statement.setString(4, user.getLogin());
             statement.setString(5, user.getPassword());
@@ -165,8 +165,8 @@ public class UserRepositoryImpl implements UserRepository {
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(UPDATE_USER_BY_ID);
 
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getSurname());
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
             statement.setDate(3, Date.valueOf(user.getBirthDate()));
             statement.setString(4, user.getLogin());
             statement.setString(5, user.getPassword());

@@ -19,25 +19,29 @@
     <form action="<%=request.getContextPath()%>/save" method="post">
         <table style="with: 100%">
             <form class="row g-3">
-                <div class="col-md-4">
-                    <label for="validationName" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="validationName" name="name" required>
+                <div class="col-md-3">
+                    <label for="validationName" class="form-label">Firstname</label>
+                    <input type="text" class="form-control" id="validationName" name="firstname" required>
+                    <span class="badge rounded-pill bg-info">required field</span>
                 </div>
-                <div class="col-md-4">
-                    <label for="validationSurname" class="form-label">Surname</label>
-                    <input type="text" class="form-control" id="validationSurname" name="surname" required>
+                <div class="col-md-3">
+                    <label for="validationSurname" class="form-label">Lastname</label>
+                    <input type="text" class="form-control" id="validationSurname" name="lastname" required>
+                    <span class="badge rounded-pill bg-info">required field</span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="validationBirthDate" class="form-label">Birth date</label>
                     <input type="date" class="form-control" id="validationBirthDate" name="birth_date">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="validationLogin" class="form-label">Login</label>
                     <input type="text" class="form-control" id="validationLogin" name="login" required>
+                    <span class="badge rounded-pill bg-info">required field</span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="validationPassword" class="form-label">Password</label>
                     <input type="password" class="form-control" id="validationPassword" name="password" required>
+                    <span class="badge rounded-pill bg-info">required field</span>
                 </div>
             </form>
         </table>

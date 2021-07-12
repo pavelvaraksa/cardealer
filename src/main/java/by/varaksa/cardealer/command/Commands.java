@@ -2,6 +2,7 @@ package by.varaksa.cardealer.command;
 
 public enum Commands {
     LOGIN("/login"),
+    LOGOUT("/logout"),
     SAVE("/save"),
     FIND_ALL("/findAll"),
     FIND_BY_ID("/findById"),
@@ -9,7 +10,7 @@ public enum Commands {
     DELETE("/delete"),
     DEFAULT("/findAll");
 
-    private String commandName;
+    private final String commandName;
 
     Commands(String commandName) {
         this.commandName = commandName;

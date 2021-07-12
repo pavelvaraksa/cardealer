@@ -14,10 +14,13 @@
 </head>
 
 <body>
+
 <div align="center">
-    <h2>Welcome to main menu</h2>
+    <form action="<%=request.getContextPath()%>/logout" method="get"></form>
     <label>
-        <input class="btn btn-outline-info btn-sm" onclick="history.back();" value="Return to previous page"/>
+        <a class="btn btn-outline-info btn" href="http://localhost:8080/main-menu" role="button">Return to previous
+            page</a>
+        <a class="btn btn-outline-info btn" href="http://localhost:8080/logout" role="button">Log out</a>
     </label>
 </div>
 </body>
