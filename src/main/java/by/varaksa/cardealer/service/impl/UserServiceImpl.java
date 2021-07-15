@@ -20,25 +20,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) throws ServiceException {
-        List<User> existingUsers;
-
-        try {
-            existingUsers = userRepository.findAll();
-        } catch (RepositoryException exception) {
-            String errorMessage = "Can't get all users";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-
-        for (User existingUser : existingUsers) {
-            boolean hasSameUser = existingUser.getLogin().equals(user.getLogin());
-
-            if (hasSameUser) {
-                String errorMessage = "User with login " + user.getLogin() + " already exists";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        }
+//        List<User> existingUsers;
+//
+//        try {
+//            existingUsers = userRepository.findAll();
+//        } catch (RepositoryException exception) {
+//            String errorMessage = "Can't get all users";
+//            logger.error(errorMessage);
+//            throw new ServiceException(errorMessage);
+//        }
+//
+//        for (User existingUser : existingUsers) {
+//            boolean hasSameUser = existingUser.getLogin().equals(user.getLogin());
+//
+//            if (hasSameUser) {
+//                String errorMessage = "User with login " + user.getLogin() + " already exists";
+//                logger.error(errorMessage);
+//                throw new ServiceException(errorMessage);
+//            }
+//        }
 
         try {
             User savedUser = userRepository.save(user);
@@ -140,6 +140,15 @@ public class UserServiceImpl implements UserService {
             return userRepository.isAuthenticate(user);
         } catch (RepositoryException exception) {
             throw new ServiceException("User service exception while trying to authenticate user." + exception);
+        }
+    }
+
+    @Override
+    public void logOut(User user) throws ServiceException {
+        try {
+            userRepository.logOut(user);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User service exception while trying to log out user." + exception);
         }
     }
 }

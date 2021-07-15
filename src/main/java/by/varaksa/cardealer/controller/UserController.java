@@ -10,14 +10,15 @@ import by.varaksa.cardealer.repository.UserRepository;
 import by.varaksa.cardealer.repository.impl.UserRepositoryImpl;
 import by.varaksa.cardealer.service.UserService;
 import by.varaksa.cardealer.service.impl.UserServiceImpl;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -85,13 +86,14 @@ public class UserController extends HttpServlet {
                 default:
                     break;
             }
-        } catch (ControllerException | ServiceException | IOException | RepositoryException exception) {
+        } catch (ControllerException | ServiceException | IOException | RepositoryException | ServletException exception) {
             String errorMessage = "User controller exception." + exception;
             logger.error(errorMessage);
         }
     }
 
     public void confirmAuthenticate(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException {
+        HttpSession session = request.getSession();
         String userLogin = request.getParameter("login");
         String userPassword = request.getParameter("password");
         User user = new User();
@@ -101,28 +103,31 @@ public class UserController extends HttpServlet {
         try {
 
             if (userService.isAuthenticate(user)) {
+                session.setAttribute("user", user);
                 logger.info("Login and password were correct");
                 response.sendRedirect("/main-menu");
                 return;
             }
-
-            logger.error("Login and password weren't correct");
+            logger.error("Login or password weren't correct");
             response.sendRedirect("/login-auth");
+
         } catch (ServiceException exception) {
             throw new ControllerException(exception);
         }
     }
 
     public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        HttpSession session = request.getSession();
-//        if (session != null) {
-//            session.invalidate();
-//        }
+        HttpSession session = request.getSession();
+
+        if (session != null) {
+            session.invalidate();
+        }
+
         logger.info("Logout was completed");
         response.sendRedirect("/login-auth");
     }
 
-    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServiceException, RepositoryException {
+    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServiceException, RepositoryException, ServletException {
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         LocalDate birthDate;
@@ -145,19 +150,22 @@ public class UserController extends HttpServlet {
             boolean hasSameUser = existingUser.getLogin().equals(user.getLogin());
 
             if (hasSameUser) {
+                String errorMessage = "User with login " + user.getLogin() + " already exists";
+                logger.error(errorMessage);
                 response.sendRedirect("/register-page");
-            } else {
-                userService.save(user);
-                response.sendRedirect("/main-menu");
+                throw new ControllerException(errorMessage);
             }
         }
+        userService.save(user);
+        response.sendRedirect("/main-menu");
     }
 
     private void findAllUsers(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, ServiceException {
         List<User> listUser = userService.findAll();
+        logger.info("Users were watched");
         request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users");
         dispatcher.forward(request, response);
     }
 
@@ -165,7 +173,7 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException, ServiceException {
         long id = Long.parseLong(request.getParameter("id"));
         User existingUser = userService.find(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("");
         request.setAttribute("oneUser", existingUser);
         dispatcher.forward(request, response);
     }
@@ -183,14 +191,14 @@ public class UserController extends HttpServlet {
 
         User updateUser = new User(name, surname, birthDate, login, password, role, isBlocked, id);
         userService.update(updateUser);
-        response.sendRedirect("list");
+        response.sendRedirect("");
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServiceException {
         Long id = Long.parseLong(request.getParameter("id"));
         userService.delete(id);
-        response.sendRedirect("list");
+        response.sendRedirect("");
     }
 }
 

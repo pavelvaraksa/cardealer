@@ -1,47 +1,43 @@
-<web-app id="WebApp_ID" version="2.4"
-         xmlns="http://java.sun.com/xml/ns/j2ee"
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
-   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
 
     <servlet>
-        <servlet-name>Home page</servlet-name>
+        <servlet-name>User controller page</servlet-name>
         <servlet-class>by.varaksa.cardealer.controller.UserController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Home page</servlet-name>
+        <servlet-name>User controller page</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>Home page</servlet-name>
+        <servlet-name>User controller page</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>Home page</servlet-name>
+        <servlet-name>User controller page</servlet-name>
         <url-pattern>/save</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>User controller page</servlet-name>
+        <url-pattern>/main-menu/find-all</url-pattern>
+    </servlet-mapping>
+
+
     <servlet>
-        <servlet-name>User login auth</servlet-name>
+        <servlet-name>Login page</servlet-name>
         <jsp-file>/WEB-INF/jsp/user/login.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>User login auth</servlet-name>
+        <servlet-name>Login page</servlet-name>
         <url-pattern>/login-auth</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>User logout page</servlet-name>
-        <jsp-file>/WEB-INF/jsp/user/logout.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>User logout page</servlet-name>
-        <url-pattern>/logout-page</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -53,6 +49,17 @@
         <servlet-name>User register page</servlet-name>
         <url-pattern>/register-page</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Users list page</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/user.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Users list page</servlet-name>
+        <url-pattern>/find-all-users</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>Company story page</servlet-name>
@@ -95,7 +102,7 @@
     </servlet-mapping>
 
     <session-config>
-        <session-timeout>15</session-timeout>
+        <session-timeout>1</session-timeout>
     </session-config>
 
 </web-app>

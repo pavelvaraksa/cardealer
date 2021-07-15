@@ -35,6 +35,19 @@ public class User {
         this.password = password;
     }
 
+    public User(Long id, String firstName, String lastname, LocalDate birthDate, String login,
+                Role role, boolean isBlocked, LocalDateTime created, LocalDateTime changed) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastname;
+        this.birthDate = birthDate;
+        this.login = login;
+        this.role = role;
+        this.isBlocked = isBlocked;
+        this.created = created;
+        this.changed = changed;
+    }
+
     public User(Long id, String firstName, String lastname, LocalDate birthDate, String login, String password,
                 Role role, boolean isBlocked, LocalDateTime created, LocalDateTime changed) {
         this.id = id;
@@ -182,8 +195,8 @@ public class User {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("User: ");
         stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("name ").append(firstName).append(", ");
-        stringBuilder.append("lastName ").append(lastName).append(", ");
+        stringBuilder.append("firstname ").append(firstName).append(", ");
+        stringBuilder.append("lastname ").append(lastName).append(", ");
         stringBuilder.append("birth date ").append(birthDate).append(", ");
         stringBuilder.append("login ").append(login).append(", ");
         stringBuilder.append("password ").append(password).append(", ");

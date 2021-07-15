@@ -17,7 +17,8 @@
 <div align="center">
     <h2>Welcome to main menu</h2>
 
-    <a class="btn btn-outline-info" href="http://localhost:8080/logout-page" role="button">Log out</a>
+    <a class="btn btn-outline-info" href="http://localhost:8080/logout" role="button">Log out</a>
+    <a class="btn btn-outline-info" href="http://localhost:8080/main-menu/find-all" role="button">Users list</a>
 
 </div>
 </body>

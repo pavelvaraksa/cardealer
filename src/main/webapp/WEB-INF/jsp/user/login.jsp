@@ -1,3 +1,4 @@
+<%@ page import="by.varaksa.cardealer.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,7 +15,6 @@
 </head>
 
 <body>
-
 <div align="center">
     <h2>Authentication form</h2>
     <form action="<%=request.getContextPath()%>/login" method="post">

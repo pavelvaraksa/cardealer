@@ -237,6 +237,25 @@ public class UserRepositoryImpl implements UserRepository {
         return isStatus;
     }
 
+    @Override
+    public void logOut(User user) {
+        Connection connection;
+
+        connect();
+
+        try {
+            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
+                    reader.getProperty(DATABASE_LOGIN),
+                    reader.getProperty(DATABASE_PASSWORD));
+
+            logger.info(connection);
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
+            logger.fatal(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+    }
+
     private void connect() {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
