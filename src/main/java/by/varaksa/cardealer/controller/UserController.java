@@ -160,20 +160,19 @@ public class UserController extends HttpServlet {
         response.sendRedirect("/main-menu");
     }
 
-    private void findAllUsers(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException, ServiceException {
-        List<User> listUser = userService.findAll();
+    private void findAllUsers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException {
+        List<User> userList = userService.findAll();
         logger.info("Users were watched");
-        request.setAttribute("listUser", listUser);
+        request.setAttribute("userList", userList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users");
         dispatcher.forward(request, response);
     }
 
     private void findUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ServiceException {
-        long id = Long.parseLong(request.getParameter("id"));
+        Long id = Long.parseLong(request.getParameter("id"));
         User existingUser = userService.find(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("find-by-id");
         request.setAttribute("oneUser", existingUser);
         dispatcher.forward(request, response);
     }
@@ -191,14 +190,14 @@ public class UserController extends HttpServlet {
 
         User updateUser = new User(name, surname, birthDate, login, password, role, isBlocked, id);
         userService.update(updateUser);
-        response.sendRedirect("");
+        response.sendRedirect("find-all");
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServiceException {
         Long id = Long.parseLong(request.getParameter("id"));
         userService.delete(id);
-        response.sendRedirect("");
+        response.sendRedirect("/find-all");
     }
 }
 

@@ -15,11 +15,14 @@
 
 <body>
 <div align="center">
-    <h2>Welcome to main menu</h2>
+    <h2>Would you like to delete user?</h2>
+    Вы действительно хотите удалить пользователя ${param.id}?
 
-    <a class="btn btn-outline-info" href="http://localhost:8080/logout" role="button">Log out</a>
-    <a class="btn btn-outline-info" href="http://localhost:8080/find-all" role="button">Users list</a>
-
+    <form> action= "/users/${param.id}" method="post">
+    <input type="hidden" name="id" value="${param.id}">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Удалить">
+    </form>
 </div>
 </body>
 </html>

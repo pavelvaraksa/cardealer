@@ -4,11 +4,11 @@ public enum Commands {
     LOGIN("/login"),
     LOGOUT("/logout"),
     SAVE("/save"),
-    FIND_ALL("/main-menu/find-all"),
-    FIND_BY_ID("/main-menu/find-by-id"),
-    UPDATE("/main-menu/update"),
-    DELETE("/main-menu/delete"),
-    DEFAULT("/main-menu/find-all");
+    FIND_ALL("/find-all"),
+    FIND_BY_ID("/find-by-id"),
+    UPDATE("/update"),
+    DELETE("/delete"),
+    DEFAULT("/find-all");
 
     private final String commandName;
 

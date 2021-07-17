@@ -143,6 +143,10 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
+            if (resultSet.next()) {
+                parseResultSet(resultSet);
+            }
+
             return parseResultSet(resultSet);
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -200,7 +204,6 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setLong(1, id);
 
             int deletedRows = statement.executeUpdate();
-            logger.info("User with id " + id + " was deleted");
             return (long) deletedRows;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
