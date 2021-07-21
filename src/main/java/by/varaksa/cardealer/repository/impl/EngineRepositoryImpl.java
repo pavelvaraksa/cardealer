@@ -72,8 +72,8 @@ public class EngineRepositoryImpl implements EngineRepository {
 
             logger.info("Engine with id " + engine.getId() + " was saved");
             return engine;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -103,8 +103,8 @@ public class EngineRepositoryImpl implements EngineRepository {
 
             logger.info("All engines: " + result);
             return result;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -135,8 +135,8 @@ public class EngineRepositoryImpl implements EngineRepository {
                 throw new RepositoryException("Engine with id " + id + " wasn't found");
             }
 
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -177,19 +177,20 @@ public class EngineRepositoryImpl implements EngineRepository {
 
             logger.info("Engine with id " + engine.getId() + " was updated");
             return engine;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }
 
     @Override
-    public Long delete(Long id) {
+    public Engine delete(Long id) {
         final String deleteEngineById = "delete from engines where id = ?";
 
         Connection connection;
         PreparedStatement statement;
+        Engine engine = new Engine();
 
         connect();
 
@@ -199,12 +200,11 @@ public class EngineRepositoryImpl implements EngineRepository {
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteEngineById);
             statement.setLong(1, id);
+            statement.executeUpdate();
 
-            int deletedRows = statement.executeUpdate();
-            logger.info("Engine with id " + id + " was deleted");
-            return (long) deletedRows;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+            return engine;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -214,8 +214,8 @@ public class EngineRepositoryImpl implements EngineRepository {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
             logger.info("JDBC driver be loaded");
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+        } catch (ClassNotFoundException exception) {
+            String errorMessage = "JDBC driver can't be loaded." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

@@ -14,10 +14,15 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
+    </div>
+</nav>
 <div align="center">
-    <h2>Contact us</h2>
+    <h2><u>Contact us</u></h2>
     <label>
-        <input class="btn btn-outline-info btn-sm" onclick="history.back();" value="Return to previous page"/>
+        <input class="btn btn-outline-primary btn-sm" onclick="history.back();" value="Return to previous page"/>
     </label>
 </div>
 </body>

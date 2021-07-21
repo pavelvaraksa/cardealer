@@ -14,5 +14,5 @@ public interface TransmissionService {
 
     Transmission update(Transmission transmission) throws ServiceException;
 
-    Long delete(Long id) throws ServiceException;
+    Transmission delete(Long id) throws ServiceException;
 }

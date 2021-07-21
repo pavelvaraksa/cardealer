@@ -24,7 +24,7 @@ public class DealerServiceImpl implements DealerService {
 
         try {
             existingDealers = dealerRepository.findAll();
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get all dealers";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -44,8 +44,8 @@ public class DealerServiceImpl implements DealerService {
             Dealer savedDealer = dealerRepository.save(dealer);
             logger.info("Dealer " + dealer + " was saved");
             return savedDealer;
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Dealer service exception while trying to save a dealer." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Dealer service exception while trying to save a dealer." + exception);
         }
     }
 
@@ -63,8 +63,8 @@ public class DealerServiceImpl implements DealerService {
                 logger.info("Dealers exist");
                 return existingDealers;
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Dealer service exception while trying to find all dealers." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Dealer service exception while trying to find all dealers." + exception);
         }
     }
 
@@ -79,14 +79,14 @@ public class DealerServiceImpl implements DealerService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Dealer service exception while trying to find a dealer." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Dealer service exception while trying to find a dealer." + exception);
         }
 
         try {
             logger.info("Dealer with id " + id + " exists");
             return dealerRepository.find(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a dealer";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -99,7 +99,7 @@ public class DealerServiceImpl implements DealerService {
         try {
             logger.info("Dealer with id " + dealer.getId() + " was updated");
             return dealerRepository.update(dealer);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a dealer";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -107,7 +107,7 @@ public class DealerServiceImpl implements DealerService {
     }
 
     @Override
-    public Long delete(Long id) throws ServiceException {
+    public Dealer delete(Long id) throws ServiceException {
         Dealer dealerToFindById;
 
         try {
@@ -117,14 +117,14 @@ public class DealerServiceImpl implements DealerService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Dealer service exception while trying to delete a dealer." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Dealer service exception while trying to delete a dealer." + exception);
         }
 
         try {
             logger.info("Dealer with id " + id + " was deleted");
             return dealerRepository.delete(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a dealer";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);

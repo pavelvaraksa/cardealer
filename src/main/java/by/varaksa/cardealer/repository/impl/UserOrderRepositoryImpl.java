@@ -64,8 +64,8 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
 
             logger.info("User order with id " + userOrder.getId() + " was saved");
             return userOrder;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -95,8 +95,8 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
 
             logger.info("All user orders: " + result);
             return result;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -127,8 +127,8 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
                 throw new RepositoryException("User order with id " + id + " wasn't found");
             }
 
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -165,19 +165,20 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
 
             logger.info("User order with id " + userOrder.getId() + " was updated");
             return userOrder;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }
 
     @Override
-    public Long delete(Long id) {
+    public UserOrder delete(Long id) {
         final String deleteUserOrderById = "delete from user_orders where id = ?";
 
         Connection connection;
         PreparedStatement statement;
+        UserOrder userOrder = new UserOrder();
 
         connect();
 
@@ -187,12 +188,11 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteUserOrderById);
             statement.setLong(1, id);
+            statement.executeUpdate();
 
-            int deletedRows = statement.executeUpdate();
-            logger.info("User order with id " + id + " was deleted");
-            return (long) deletedRows;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+            return userOrder;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -202,8 +202,8 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
             logger.info("JDBC driver be loaded");
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+        } catch (ClassNotFoundException exception) {
+            String errorMessage = "JDBC driver can't be loaded." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

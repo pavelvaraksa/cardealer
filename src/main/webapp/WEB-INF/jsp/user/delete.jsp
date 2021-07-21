@@ -14,14 +14,18 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
+    </div>
+</nav>
 <div align="center">
-    <h2>Would you like to delete user?</h2>
-    Вы действительно хотите удалить пользователя ${param.id}?
+    <h3><u>Would you like to delete user?</u></h3>
 
-    <form> action= "/users/${param.id}" method="post">
-    <input type="hidden" name="id" value="${param.id}">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Удалить">
+    <form action="delete" method="post">
+        <input type="hidden" name="id" value="${param.id}">
+        <a class="btn btn-outline-success btn-sm" href="http://localhost:8080/find-all" role="button">No</a>
+        <input class="btn btn-outline-danger btn-sm" type="submit" value="Yes">
     </form>
 </div>
 </body>

@@ -16,6 +16,8 @@ public class User {
 
     private String password;
 
+    private String email;
+
     private Role role;
 
     private boolean isBlocked;
@@ -27,51 +29,22 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, LocalDate birthDate, String login, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.login = login;
-        this.password = password;
-    }
-
-    public User(Long id, String firstName, String lastname, LocalDate birthDate, String login,
-                Role role, boolean isBlocked, LocalDateTime created, LocalDateTime changed) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastname;
-        this.birthDate = birthDate;
-        this.login = login;
-        this.role = role;
-        this.isBlocked = isBlocked;
-        this.created = created;
-        this.changed = changed;
-    }
-
-    public User(Long id, String firstName, String lastname, LocalDate birthDate, String login, String password,
-                Role role, boolean isBlocked, LocalDateTime created, LocalDateTime changed) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastname;
-        this.birthDate = birthDate;
-        this.login = login;
-        this.password = password;
-        this.role = role;
-        this.isBlocked = isBlocked;
-        this.created = created;
-        this.changed = changed;
-    }
-
-    public User(String firstname, String lastName, LocalDate birthDate, String login, String password,
-                Role role, boolean isBlocked, Long id) {
+    public User(String firstname, String lastName, LocalDate birthDate, String email, Role role, boolean isBlocked) {
         this.firstName = firstname;
         this.lastName = lastName;
         this.birthDate = birthDate;
-        this.login = login;
-        this.password = password;
+        this.email = email;
         this.role = role;
         this.isBlocked = isBlocked;
-        this.id = id;
+    }
+
+    public User(String firstName, String lastName, LocalDate birthDate, String login, String password, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.login = login;
+        this.password = password;
+        this.email = email;
     }
 
     public Long getId() {
@@ -122,6 +95,14 @@ public class User {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -162,6 +143,7 @@ public class User {
                 + birthDate.hashCode()
                 + login.hashCode()
                 + password.hashCode()
+                + email.hashCode()
                 + role.hashCode()
                 + created.hashCode()
                 + changed.hashCode());
@@ -185,6 +167,7 @@ public class User {
                 && (birthDate == user.birthDate || birthDate != null && birthDate.equals(user.getBirthDate()))
                 && (login == user.login || login != null && login.equals(user.getLogin()))
                 && (password == user.password || password != null && password.equals(user.getPassword()))
+                && (email == user.email || email != null && email.equals(user.getEmail()))
                 && (role == user.role || role != null && role.equals(user.getRole()))
                 && (created == user.created || created != null && created.equals(user.getCreated()))
                 && (changed == user.changed || changed != null && changed.equals(user.getChanged()));
@@ -200,6 +183,7 @@ public class User {
         stringBuilder.append("birth date ").append(birthDate).append(", ");
         stringBuilder.append("login ").append(login).append(", ");
         stringBuilder.append("password ").append(password).append(", ");
+        stringBuilder.append("email ").append(email).append(", ");
         stringBuilder.append("role ").append(role).append(", ");
         stringBuilder.append("is blocked ").append(isBlocked).append(", ");
         stringBuilder.append("created ").append(created).append(", ");

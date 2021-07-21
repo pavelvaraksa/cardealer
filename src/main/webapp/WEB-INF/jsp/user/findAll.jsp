@@ -2,9 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -17,9 +15,13 @@
 </head>
 
 <body>
-
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
+    </div>
+</nav>
 <div align="center">
-    <h2>Users list</h2>
+    <h2><u>Users list</u></h2>
     <form action="<%=request.getContextPath()%>/find-all" method="get">
         <table class="table table-bordered">
             <thead>
@@ -29,6 +31,7 @@
                 <th>Lastname</th>
                 <th>Birth date</th>
                 <th>Login</th>
+                <th>Email</th>
                 <th>Role</th>
                 <th>Is blocked</th>
                 <th>Created</th>
@@ -44,18 +47,25 @@
                 <td>${user.lastName}</td>
                 <td>${user.birthDate}</td>
                 <td>${user.login}</td>
+                <td>${user.email}</td>
                 <td>${user.role}</td>
                 <td>${user.blocked}</td>
                 <td>${user.created}</td>
                 <td>${user.changed}</td>
                 <td>
-                    <form action="update" method="post">
+                    <form action="update-page" method="post">
                         <input type="hidden" class="form-control" name="id" value="${user.id}">
+                        <input type="hidden" class="form-control" name="firstName" value="${user.firstName}">
+                        <input type="hidden" class="form-control" name="lastName" value="${user.lastName}">
+                        <input type="hidden" class="form-control" name="birthDate" value="${user.birthDate}">
+                        <input type="hidden" class="form-control" name="email" value="${user.email}">
+                        <input type="hidden" class="form-control" name="role" value="${user.role}">
+                        <input type="hidden" class="form-control" name="blocked" value="${user.blocked}">
                         <input class="btn btn-outline-warning btn-sm" type="submit" value="Update">
                     </form>
                 </td>
                 <td>
-                    <form action="delete" method="post">
+                    <form action="delete-page" method="post">
                         <input type="hidden" class="form-control" name="id" value="${user.id}">
                         <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete">
                     </form>
@@ -64,7 +74,8 @@
             </c:forEach>
         </table>
         <label>
-            <a class="btn btn-outline-info" href="http://localhost:8080/main-menu" role="button">Return to main menu</a>
+            <a class="btn btn-outline-primary" href="http://localhost:8080/main-menu" role="button">Return to main
+                menu</a>
         </label>
     </form>
 </div>

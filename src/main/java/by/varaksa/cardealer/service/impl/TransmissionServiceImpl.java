@@ -24,7 +24,7 @@ public class TransmissionServiceImpl implements TransmissionService {
 
         try {
             existingTransmissions = transmissionRepository.findAll();
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get all transmissions";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -44,8 +44,8 @@ public class TransmissionServiceImpl implements TransmissionService {
             Transmission savedTransmission = transmissionRepository.save(transmission);
             logger.info("Transmission " + transmission + " was saved");
             return savedTransmission;
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Transmission service exception while trying to save a transmission." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Transmission service exception while trying to save a transmission." + exception);
         }
     }
 
@@ -63,8 +63,8 @@ public class TransmissionServiceImpl implements TransmissionService {
                 logger.info("Transmissions exist");
                 return existingTransmissions;
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Transmission service exception while trying to find all transmissions." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Transmission service exception while trying to find all transmissions." + exception);
         }
     }
 
@@ -79,14 +79,14 @@ public class TransmissionServiceImpl implements TransmissionService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Transmission service exception while trying to find a transmission." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Transmission service exception while trying to find a transmission." + exception);
         }
 
         try {
             logger.info("Transmission with id " + id + " exists");
             return transmissionRepository.find(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a transmission";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -99,7 +99,7 @@ public class TransmissionServiceImpl implements TransmissionService {
         try {
             logger.info("Transmission with id " + transmission.getId() + " was updated");
             return transmissionRepository.update(transmission);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a transmission";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -107,7 +107,7 @@ public class TransmissionServiceImpl implements TransmissionService {
     }
 
     @Override
-    public Long delete(Long id) throws ServiceException {
+    public Transmission delete(Long id) throws ServiceException {
         Transmission transmissionToFindById;
 
         try {
@@ -117,14 +117,14 @@ public class TransmissionServiceImpl implements TransmissionService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Transmission service exception while trying to delete a transmission." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Transmission service exception while trying to delete a transmission." + exception);
         }
 
         try {
             logger.info("Transmission with id " + id + " was deleted");
             return transmissionRepository.delete(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a transmission";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);

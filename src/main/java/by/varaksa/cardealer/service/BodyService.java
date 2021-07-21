@@ -14,5 +14,5 @@ public interface BodyService {
 
     Body update(Body body) throws ServiceException;
 
-    Long delete(Long id) throws ServiceException;
+    Body delete(Long id) throws ServiceException;
 }

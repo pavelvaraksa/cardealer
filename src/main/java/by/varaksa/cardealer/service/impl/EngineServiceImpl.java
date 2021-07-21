@@ -24,7 +24,7 @@ public class EngineServiceImpl implements EngineService {
 
         try {
             existingEngines = engineRepository.findAll();
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get all engines";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -44,8 +44,8 @@ public class EngineServiceImpl implements EngineService {
             Engine savedEngine = engineRepository.save(engine);
             logger.info("Engine " + engine + " was saved");
             return savedEngine;
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Engine service exception while trying to save an engine." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Engine service exception while trying to save an engine." + exception);
         }
     }
 
@@ -63,8 +63,8 @@ public class EngineServiceImpl implements EngineService {
                 logger.info("Engines exist");
                 return existingEngines;
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Engine service exception while trying to find all engines." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Engine service exception while trying to find all engines." + exception);
         }
     }
 
@@ -79,14 +79,14 @@ public class EngineServiceImpl implements EngineService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Engine service exception while trying to find an engine." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Engine service exception while trying to find an engine." + exception);
         }
 
         try {
             logger.info("Engine with id " + id + " exists");
             return engineRepository.find(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get an engine";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -99,7 +99,7 @@ public class EngineServiceImpl implements EngineService {
         try {
             logger.info("Engine with id " + engine.getId() + " was updated");
             return engineRepository.update(engine);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get an engine";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -107,7 +107,7 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public Long delete(Long id) throws ServiceException {
+    public Engine delete(Long id) throws ServiceException {
         Engine engineToFindById;
 
         try {
@@ -117,14 +117,14 @@ public class EngineServiceImpl implements EngineService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Engine service exception while trying to delete an engine." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Engine service exception while trying to delete an engine." + exception);
         }
 
         try {
             logger.info("Engine with id " + id + " was deleted");
             return engineRepository.delete(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get an engine";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);

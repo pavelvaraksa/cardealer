@@ -71,8 +71,8 @@ public class BodyRepositoryImpl implements BodyRepository {
 
             logger.info("Body with id " + body.getId() + " was saved");
             return body;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -102,8 +102,8 @@ public class BodyRepositoryImpl implements BodyRepository {
 
             logger.info("All bodies: " + result);
             return result;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -134,8 +134,8 @@ public class BodyRepositoryImpl implements BodyRepository {
                 throw new RepositoryException("Body with id " + id + " wasn't found");
             }
 
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -174,19 +174,20 @@ public class BodyRepositoryImpl implements BodyRepository {
 
             logger.info("Body with id " + body.getId() + " was updated");
             return body;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }
 
     @Override
-    public Long delete(Long id) {
+    public Body delete(Long id) {
         final String deleteBodyById = "delete from bodies where id = ?";
 
         Connection connection;
         PreparedStatement statement;
+        Body body = new Body();
 
         connect();
 
@@ -196,12 +197,11 @@ public class BodyRepositoryImpl implements BodyRepository {
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteBodyById);
             statement.setLong(1, id);
+            statement.executeUpdate();
 
-            int deletedRows = statement.executeUpdate();
-            logger.info("Body with id " + id + " was deleted");
-            return (long) deletedRows;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+            return body;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -211,8 +211,8 @@ public class BodyRepositoryImpl implements BodyRepository {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
             logger.info("JDBC driver be loaded");
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+        } catch (ClassNotFoundException exception) {
+            String errorMessage = "JDBC driver can't be loaded." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

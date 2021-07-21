@@ -14,5 +14,5 @@ public interface UserOrderService {
 
     UserOrder update(UserOrder userOrder) throws ServiceException;
 
-    Long delete(Long id) throws ServiceException;
+    UserOrder delete(Long id) throws ServiceException;
 }

@@ -13,5 +13,5 @@ public interface CrudRepository<K, V> {
 
     V update(V object) throws RepositoryException;
 
-    K delete(K key) throws RepositoryException;
+    V delete(K key) throws RepositoryException;
 }

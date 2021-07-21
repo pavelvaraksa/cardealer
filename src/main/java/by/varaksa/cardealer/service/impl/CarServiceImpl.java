@@ -24,7 +24,7 @@ public class CarServiceImpl implements CarService {
 
         try {
             existingCars = carRepository.findAll();
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get all cars";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -44,8 +44,8 @@ public class CarServiceImpl implements CarService {
             Car savedCar = carRepository.save(car);
             logger.info("Car " + car + " was saved");
             return savedCar;
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Car service exception while trying to save a car." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Car service exception while trying to save a car." + exception);
         }
     }
 
@@ -63,8 +63,8 @@ public class CarServiceImpl implements CarService {
                 logger.info("Cars exist");
                 return existingCars;
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Car service exception while trying to find all cars." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Car service exception while trying to find all cars." + exception);
         }
     }
 
@@ -79,14 +79,14 @@ public class CarServiceImpl implements CarService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Car service exception while trying to find a car." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Car service exception while trying to find a car." + exception);
         }
 
         try {
             logger.info("Car with id " + id + " exists");
             return carRepository.find(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a car";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -99,7 +99,7 @@ public class CarServiceImpl implements CarService {
         try {
             logger.info("Car with id " + car.getId() + " was updated");
             return carRepository.update(car);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a car";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -107,7 +107,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Long delete(Long id) throws ServiceException {
+    public Car delete(Long id) throws ServiceException {
         Car carToFindById;
 
         try {
@@ -117,14 +117,14 @@ public class CarServiceImpl implements CarService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Car service exception while trying to delete a car." + stackTrace.getMessage());
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Car service exception while trying to delete a car." + exception);
         }
 
         try {
             logger.info("Car with id " + id + " was deleted");
             return carRepository.delete(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a car";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);

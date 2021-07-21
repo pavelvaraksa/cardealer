@@ -59,7 +59,6 @@ public class UserServiceImpl implements UserService {
             if (existingUsers.isEmpty()) {
                 String errorMessage = "A list is empty";
                 logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
             } else {
                 logger.info("Users exist");
                 return existingUsers;
@@ -67,6 +66,7 @@ public class UserServiceImpl implements UserService {
         } catch (RepositoryException exception) {
             throw new ServiceException("User service exception while trying to find all users." + exception);
         }
+        return existingUsers;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Long delete(Long id) throws ServiceException {
+    public User delete(Long id) throws ServiceException {
         User userToFindById;
 
         try {

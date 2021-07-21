@@ -68,8 +68,8 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
             logger.info("Transmission with id " + transmission.getId() + " was saved");
             return transmission;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -99,8 +99,8 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
             logger.info("All transmissions: " + result);
             return result;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -131,8 +131,8 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
                 throw new RepositoryException("Transmission with id " + id + " wasn't found");
             }
 
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -171,19 +171,20 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
             logger.info("Transmission with id " + transmission.getId() + " was updated");
             return transmission;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }
 
     @Override
-    public Long delete(Long id) {
+    public Transmission delete(Long id) {
         final String deleteTransmissionById = "delete from transmissions where id = ?";
 
         Connection connection;
         PreparedStatement statement;
+        Transmission transmission = new Transmission();
 
         connect();
 
@@ -193,12 +194,11 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteTransmissionById);
             statement.setLong(1, id);
+            statement.executeUpdate();
 
-            int deletedRows = statement.executeUpdate();
-            logger.info("Transmission with id " + id + " was deleted");
-            return (long) deletedRows;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+            return transmission;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -208,8 +208,8 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
             logger.info("JDBC driver be loaded");
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+        } catch (ClassNotFoundException exception) {
+            String errorMessage = "JDBC driver can't be loaded." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

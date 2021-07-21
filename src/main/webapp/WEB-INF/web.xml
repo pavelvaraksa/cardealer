@@ -46,19 +46,6 @@
 
 
 
-    <servlet>
-        <servlet-name>Delete page</servlet-name>
-        <jsp-file>/WEB-INF/jsp/user/delete.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Delete page</servlet-name>
-        <url-pattern>/delete-page</url-pattern>
-    </servlet-mapping>
-
-
-
-
 
 
     <servlet>
@@ -73,7 +60,7 @@
 
     <servlet>
         <servlet-name>Authenticate</servlet-name>
-        <jsp-file>/WEB-INF/jsp/company/mainMenu.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/mainMenu.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
@@ -99,6 +86,26 @@
     <servlet-mapping>
         <servlet-name>Users list</servlet-name>
         <url-pattern>/find-all-users</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Update</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/update.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Update</servlet-name>
+        <url-pattern>/update-page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Delete</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/delete.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Delete</servlet-name>
+        <url-pattern>/delete-page</url-pattern>
     </servlet-mapping>
 
     <servlet>

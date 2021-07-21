@@ -14,13 +14,37 @@
 </head>
 
 <body>
-<div align="center">
-    <h2>----- CAR DEALER APPLICATION -----</h2>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
 
-    <a class="btn btn-outline-info" href="http://localhost:8080/login-auth" role="button">Login</a>
-    <a class="btn btn-outline-info" href="http://localhost:8080/register-page" role="button">Sign up</a>
-    <a class="btn btn-outline-info" href="http://localhost:8080/company" role="button">About us</a>
-    <a class="btn btn-outline-info" href="http://localhost:8080/request-information" role="button">Contacts</a>
-</div>
+        <div class="collapse navbar-collapse" id="navbarsExample03">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/login-auth">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/register-page">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/company">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/request-information">Contacts</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                       role="button" data-bs-toggle="dropdown" aria-expanded="false">Language
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                        <li><a class="dropdown-item" href="#">Russian</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 </body>
 </html>

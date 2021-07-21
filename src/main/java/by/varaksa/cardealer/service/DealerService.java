@@ -14,5 +14,5 @@ public interface DealerService {
 
     Dealer update(Dealer dealer) throws ServiceException;
 
-    Long delete(Long id) throws ServiceException;
+    Dealer delete(Long id) throws ServiceException;
 }

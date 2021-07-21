@@ -14,5 +14,5 @@ public interface EngineService {
 
     Engine update(Engine engine) throws ServiceException;
 
-    Long delete(Long id) throws ServiceException;
+    Engine delete(Long id) throws ServiceException;
 }

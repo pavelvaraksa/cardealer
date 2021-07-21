@@ -71,8 +71,8 @@ public class DealerRepositoryImpl implements DealerRepository {
 
             logger.info("Dealer with id " + dealer.getId() + " was saved");
             return dealer;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -102,8 +102,8 @@ public class DealerRepositoryImpl implements DealerRepository {
 
             logger.info("All dealers: " + result);
             return result;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -134,8 +134,8 @@ public class DealerRepositoryImpl implements DealerRepository {
                 throw new RepositoryException("Dealer with id " + id + " wasn't found");
             }
 
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -176,19 +176,20 @@ public class DealerRepositoryImpl implements DealerRepository {
 
             logger.info("Dealer with id " + dealer.getId() + " was updated");
             return dealer;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }
 
     @Override
-    public Long delete(Long id) {
+    public Dealer delete(Long id) {
         final String deleteDealerById = "delete from dealers where id = ?";
 
         Connection connection;
         PreparedStatement statement;
+        Dealer dealer = new Dealer();
 
         connect();
 
@@ -198,12 +199,11 @@ public class DealerRepositoryImpl implements DealerRepository {
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(deleteDealerById);
             statement.setLong(1, id);
+            statement.executeUpdate();
 
-            int deletedRows = statement.executeUpdate();
-            logger.info("Dealer with id " + id + " was deleted");
-            return (long) deletedRows;
-        } catch (SQLException stackTrace) {
-            String errorMessage = "SQL exception." + stackTrace;
+            return dealer;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -213,8 +213,8 @@ public class DealerRepositoryImpl implements DealerRepository {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
             logger.info("JDBC driver be loaded");
-        } catch (ClassNotFoundException stackTrace) {
-            String errorMessage = "JDBC driver can't be loaded." + stackTrace;
+        } catch (ClassNotFoundException exception) {
+            String errorMessage = "JDBC driver can't be loaded." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

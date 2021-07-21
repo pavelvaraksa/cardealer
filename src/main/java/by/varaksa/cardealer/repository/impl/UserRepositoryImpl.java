@@ -2,6 +2,7 @@ package by.varaksa.cardealer.repository.impl;
 
 import by.varaksa.cardealer.entity.Role;
 import by.varaksa.cardealer.entity.User;
+import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.repository.UserRepository;
 import by.varaksa.cardealer.util.DatabasePropertiesReader;
 import org.apache.logging.log4j.LogManager;
@@ -25,6 +26,7 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String BIRTH_DATE = "birth_date";
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
+    private static final String EMAIL = "email";
     private static final String ROLE = "role";
     private static final String IS_BLOCKED = "is_blocked";
     private static final String CREATED = "created";
@@ -32,8 +34,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     private static final String FIND_ALL_USERS = "select * from users";
     private static final String SAVE_USER = "insert into users (firstname, lastname, birth_date, login, password, " +
-            "role, is_blocked, created, changed) " +
-            "values (?,?,?,?,?,?,?,?,?)";
+            "email, role, is_blocked, created, changed) " +
+            "values (?,?,?,?,?,?,?,?,?,?)";
     private static final String FIND_USER_BY_ID = "select * from users where id = ?";
     private static final String UPDATE_USER_BY_ID = "update users " +
             "set " +
@@ -42,6 +44,7 @@ public class UserRepositoryImpl implements UserRepository {
             "birth_date = ?,  " +
             "login = ?,  " +
             "password = ?,  " +
+            "email = ?,  " +
             "role = ?,  " +
             "is_blocked = ?,  " +
             "changed = ?  " +
@@ -57,6 +60,7 @@ public class UserRepositoryImpl implements UserRepository {
         user.setBirthDate(resultSet.getDate(BIRTH_DATE).toLocalDate());
         user.setLogin(resultSet.getString(LOGIN));
         user.setPassword(resultSet.getString(PASSWORD));
+        user.setEmail(resultSet.getString(EMAIL));
         user.setRole(Role.valueOf(resultSet.getString(ROLE)));
         user.setBlocked(resultSet.getBoolean(IS_BLOCKED));
         user.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
@@ -69,7 +73,7 @@ public class UserRepositoryImpl implements UserRepository {
         Connection connection;
         PreparedStatement statement;
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
-        Role defaultUserRole = Role.USER;
+        Role defaultSavedUserRole = Role.USER;
 
         connect();
 
@@ -84,10 +88,11 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setDate(3, Date.valueOf(user.getBirthDate()));
             statement.setString(4, user.getLogin());
             statement.setString(5, user.getPassword());
-            statement.setString(6, String.valueOf(defaultUserRole));
-            statement.setBoolean(7, user.isBlocked());
-            statement.setTimestamp(8, creationTimestamp);
+            statement.setString(6, user.getEmail());
+            statement.setString(7, String.valueOf(defaultSavedUserRole));
+            statement.setBoolean(8, user.isBlocked());
             statement.setTimestamp(9, creationTimestamp);
+            statement.setTimestamp(10, creationTimestamp);
 
             statement.executeUpdate();
 
@@ -144,11 +149,11 @@ public class UserRepositoryImpl implements UserRepository {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                parseResultSet(resultSet);
+                return parseResultSet(resultSet);
+            } else {
+                throw new RepositoryException();
             }
-
-            return parseResultSet(resultSet);
-        } catch (SQLException exception) {
+        } catch (SQLException | RepositoryException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
@@ -174,13 +179,13 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setDate(3, Date.valueOf(user.getBirthDate()));
             statement.setString(4, user.getLogin());
             statement.setString(5, user.getPassword());
-            statement.setString(6, String.valueOf(user.getRole()));
-            statement.setBoolean(7, user.isBlocked());
-            statement.setTimestamp(8, updateTimestamp);
-            statement.setLong(9, user.getId());
+            statement.setString(6, user.getEmail());
+            statement.setString(7, String.valueOf(user.getRole()));
+            statement.setBoolean(8, user.isBlocked());
+            statement.setTimestamp(9, updateTimestamp);
+            statement.setLong(10, user.getId());
             statement.executeUpdate();
 
-            logger.info("User with id " + user.getId() + " was updated");
             return find(user.getId());
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -190,9 +195,10 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Long delete(Long id) {
+    public User delete(Long id) {
         Connection connection;
         PreparedStatement statement;
+        User user = new User();
 
         connect();
 
@@ -202,9 +208,9 @@ public class UserRepositoryImpl implements UserRepository {
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.prepareStatement(DELETE_USER_BY_ID);
             statement.setLong(1, id);
+            statement.executeUpdate();
 
-            int deletedRows = statement.executeUpdate();
-            return (long) deletedRows;
+            return user;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);

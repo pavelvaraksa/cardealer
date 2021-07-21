@@ -142,7 +142,8 @@ public class UserController extends HttpServlet {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        User user = new User(firstname, lastname, birthDate, login, password);
+        String email = request.getParameter("email");
+        User user = new User(firstname, lastname, birthDate, login, password, email);
 
         List<User> existingUsers = userService.findAll();
 
@@ -168,8 +169,7 @@ public class UserController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void findUser(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ServiceException {
+    private void findUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
         Long id = Long.parseLong(request.getParameter("id"));
         User existingUser = userService.find(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("find-by-id");
@@ -177,24 +177,32 @@ public class UserController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void updateUser(HttpServletRequest request, HttpServletResponse response)
-            throws ServiceException, IOException {
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        LocalDate birthDate = LocalDate.parse(request.getParameter("birth_date"));
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        Role role = Role.valueOf(request.getParameter("role"));
-        boolean isBlocked = Boolean.parseBoolean(request.getParameter("is_blocked"));
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
+        User updateUser = userService.find(id);
 
-        User updateUser = new User(name, surname, birthDate, login, password, role, isBlocked, id);
+        updateUser.setFirstName(request.getParameter("firstname"));
+        updateUser.setLastName(request.getParameter("lastname"));
+        LocalDate birthDate;
+
+        if (request.getParameter("birth_date").isEmpty()) {
+            String defaultDate = "01/01/2000";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            birthDate = LocalDate.parse(defaultDate, formatter);
+        } else {
+            birthDate = LocalDate.parse(request.getParameter("birth_date"));
+        }
+
+        updateUser.setBirthDate(birthDate);
+        updateUser.setEmail(request.getParameter("email"));
+        updateUser.setRole(Role.valueOf((request.getParameter("role"))));
+        updateUser.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
+
         userService.update(updateUser);
-        response.sendRedirect("find-all");
+        response.sendRedirect("/find-all");
     }
 
-    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServiceException {
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
         Long id = Long.parseLong(request.getParameter("id"));
         userService.delete(id);
         response.sendRedirect("/find-all");

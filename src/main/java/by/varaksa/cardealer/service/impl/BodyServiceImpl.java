@@ -24,7 +24,7 @@ public class BodyServiceImpl implements BodyService {
 
         try {
             existingBodies = bodyRepository.findAll();
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get all bodies";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -44,8 +44,8 @@ public class BodyServiceImpl implements BodyService {
             Body savedBody = bodyRepository.save(body);
             logger.info("Body " + body + " was saved");
             return savedBody;
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Body service exception while trying to save a body." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Body service exception while trying to save a body." + exception);
         }
     }
 
@@ -63,8 +63,8 @@ public class BodyServiceImpl implements BodyService {
                 logger.info("Bodies exist");
                 return existingBodies;
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Body service exception while trying to find all bodies." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Body service exception while trying to find all bodies." + exception);
         }
     }
 
@@ -79,14 +79,14 @@ public class BodyServiceImpl implements BodyService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Body service exception while trying to find a body." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Body service exception while trying to find a body." + exception);
         }
 
         try {
             logger.info("Body with id " + id + " exists");
             return bodyRepository.find(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a body";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -99,7 +99,7 @@ public class BodyServiceImpl implements BodyService {
         try {
             logger.info("Body with id " + body.getId() + " was updated");
             return bodyRepository.update(body);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a body";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -107,7 +107,7 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
-    public Long delete(Long id) throws ServiceException {
+    public Body delete(Long id) throws ServiceException {
         Body bodyToFindById;
 
         try {
@@ -117,14 +117,14 @@ public class BodyServiceImpl implements BodyService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("Body service exception while trying to delete a body." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Body service exception while trying to delete a body." + exception);
         }
 
         try {
             logger.info("Body with id " + id + " was deleted");
             return bodyRepository.delete(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get a body";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);

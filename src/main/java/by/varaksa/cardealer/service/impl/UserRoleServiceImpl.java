@@ -24,7 +24,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 
         try {
             existingUserRoles = userRoleRepository.findAll();
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get all user roles";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -44,8 +44,8 @@ public class UserRoleServiceImpl implements UserRoleService {
             UserRole savedUserRole = userRoleRepository.save(userRole);
             logger.info("User role " + userRole + " was saved");
             return savedUserRole;
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User role service exception while trying to save an user role." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User role service exception while trying to save an user role." + exception);
         }
     }
 
@@ -63,8 +63,8 @@ public class UserRoleServiceImpl implements UserRoleService {
                 logger.info("User roles exist");
                 return existingUserRoles;
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User role service exception while trying to find all user roles." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User role service exception while trying to find all user roles." + exception);
         }
     }
 
@@ -79,14 +79,14 @@ public class UserRoleServiceImpl implements UserRoleService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User role service exception while trying to find an user role." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User role service exception while trying to find an user role." + exception);
         }
 
         try {
             logger.info("User role with id " + id + " exists");
             return userRoleRepository.find(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get an user role";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -99,7 +99,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         try {
             logger.info("User role with id " + userRole.getId() + " was updated");
             return userRoleRepository.update(userRole);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get an user role";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -107,7 +107,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public Long delete(Long id) throws ServiceException {
+    public UserRole delete(Long id) throws ServiceException {
         UserRole userRoleToFindById;
 
         try {
@@ -117,14 +117,14 @@ public class UserRoleServiceImpl implements UserRoleService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User role service exception while trying to delete an user role." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User role service exception while trying to delete an user role." + exception);
         }
 
         try {
             logger.info("User role with id " + id + " was deleted");
             return userRoleRepository.delete(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get an user role";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);

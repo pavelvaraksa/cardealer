@@ -24,7 +24,7 @@ public class UserOrderServiceImpl implements UserOrderService {
 
         try {
             existingUserOrders = userOrderRepository.findAll();
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get all user orders";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -44,8 +44,8 @@ public class UserOrderServiceImpl implements UserOrderService {
             UserOrder savedUserOrder = userOrderRepository.save(userOrder);
             logger.info("User order " + userOrder + " was saved");
             return savedUserOrder;
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User order service exception while trying to save an user order." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User order service exception while trying to save an user order." + exception);
         }
     }
 
@@ -63,8 +63,8 @@ public class UserOrderServiceImpl implements UserOrderService {
                 logger.info("User orders exist");
                 return existingUserOrders;
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User order service exception while trying to find all user orders." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User order service exception while trying to find all user orders." + exception);
         }
     }
 
@@ -79,14 +79,14 @@ public class UserOrderServiceImpl implements UserOrderService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User order service exception while trying to find an user order." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User order service exception while trying to find an user order." + exception);
         }
 
         try {
             logger.info("User order with id " + id + " exists");
             return userOrderRepository.find(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get an user order";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -99,7 +99,7 @@ public class UserOrderServiceImpl implements UserOrderService {
         try {
             logger.info("User order with id " + userOrder.getId() + " was updated");
             return userOrderRepository.update(userOrder);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get an user order";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
@@ -107,7 +107,7 @@ public class UserOrderServiceImpl implements UserOrderService {
     }
 
     @Override
-    public Long delete(Long id) throws ServiceException {
+    public UserOrder delete(Long id) throws ServiceException {
         UserOrder userOrderToFindById;
 
         try {
@@ -117,14 +117,14 @@ public class UserOrderServiceImpl implements UserOrderService {
                 logger.error(errorMessage);
                 throw new ServiceException(errorMessage);
             }
-        } catch (RepositoryException stackTrace) {
-            throw new ServiceException("User order service exception while trying to delete an user order." + stackTrace);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User order service exception while trying to delete an user order." + exception);
         }
 
         try {
             logger.info("User order with id " + id + " was deleted");
             return userOrderRepository.delete(id);
-        } catch (RepositoryException stackTrace) {
+        } catch (RepositoryException exception) {
             String errorMessage = "Can't get an user order";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
