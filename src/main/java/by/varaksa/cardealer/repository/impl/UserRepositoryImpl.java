@@ -93,7 +93,6 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setBoolean(8, user.isBlocked());
             statement.setTimestamp(9, creationTimestamp);
             statement.setTimestamp(10, creationTimestamp);
-
             statement.executeUpdate();
 
             return user;

@@ -24,14 +24,14 @@
         <table style="with: 100%">
             <form class="row g-3">
                 <div class="col-md-2">
-                    <label for="validationName" class="form-label"><u>Firstname <span
+                    <label for="validationFirstname" class="form-label"><u>Firstname <span
                             class="badge rounded-pill bg-danger">required field</span></u></label>
-                    <input type="text" class="form-control" id="validationName" name="firstname" required>
+                    <input type="text" class="form-control" id="validationFirstname" name="firstname" required>
                 </div>
                 <div class="col-md-2">
-                    <label for="validationSurname" class="form-label"><u>Lastname <span
+                    <label for="validationLastname" class="form-label"><u>Lastname <span
                             class="badge rounded-pill bg-danger">required field</span></u></label>
-                    <input type="text" class="form-control" id="validationSurname" name="lastname" required>
+                    <input type="text" class="form-control" id="validationLastname" name="lastname" required>
                 </div>
                 <div class="col-md-2">
                     <label for="validationBirthDate" class="form-label"><u>Birth date</u></label>

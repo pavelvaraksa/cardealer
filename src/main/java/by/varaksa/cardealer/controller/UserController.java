@@ -165,7 +165,7 @@ public class UserController extends HttpServlet {
         List<User> userList = userService.findAll();
         logger.info("Users were watched");
         request.setAttribute("userList", userList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-page");
         dispatcher.forward(request, response);
     }
 
@@ -179,10 +179,10 @@ public class UserController extends HttpServlet {
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
-        User updateUser = userService.find(id);
+        User user = userService.find(id);
 
-        updateUser.setFirstName(request.getParameter("firstname"));
-        updateUser.setLastName(request.getParameter("lastname"));
+        user.setFirstName(request.getParameter("firstname"));
+        user.setLastName(request.getParameter("lastname"));
         LocalDate birthDate;
 
         if (request.getParameter("birth_date").isEmpty()) {
@@ -193,12 +193,12 @@ public class UserController extends HttpServlet {
             birthDate = LocalDate.parse(request.getParameter("birth_date"));
         }
 
-        updateUser.setBirthDate(birthDate);
-        updateUser.setEmail(request.getParameter("email"));
-        updateUser.setRole(Role.valueOf((request.getParameter("role"))));
-        updateUser.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
+        user.setBirthDate(birthDate);
+        user.setEmail(request.getParameter("email"));
+        user.setRole(Role.valueOf((request.getParameter("role"))));
+        user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
 
-        userService.update(updateUser);
+        userService.update(user);
         response.sendRedirect("/find-all");
     }
 

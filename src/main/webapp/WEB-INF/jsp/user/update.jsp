@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="by.varaksa.cardealer.entity.Role" %>
 
 <html>
 <head>
@@ -21,39 +22,62 @@
 </nav>
 <div align="center">
     <h2><u>Update form</u></h2>
-
     <form action="update" method="post">
-        <input type="hidden" name="id" value="${param.id}">
-        <label>
-            <input type="text" name="firstname" value="${param.firstName}" placeholder=${param.firstName}>
-        <label>
-            <input type="text" name="lastname" value="${param.lastName}" placeholder=${param.lastName}>
-        </label>
-        <label>
-            <input type="date" name="birth_date" value="${param.birthDate}" placeholder=${param.birthDate} >
-        </label>
-        <label>
-            <input type="email" name="email" value="${param.email}" placeholder=${param.email}>
-        </label>
-        <label>
-            <input type="text" name="role" value="${param.role}" placeholder=${param.role}>
-            <select class="col-md-3" id="exampleFormControlRole" name="role">
-                <option>USER</option>
-                <option>MANAGER</option>
-                <option>ADMIN</option>
-            </select>
-        </label>
-        <label>
-            <input type="text" name="is_blocked" value="${param.blocked}" placeholder=${param.blocked}>
-            <select class="col-md-3" id="exampleFormControlBlocked" name="is_blocked">
-                <option>false</option>
-                <option>true</option>
-            </select>
-        </label>
-        <input class="btn btn-outline-success btn-sm" type="submit" value="Update">
+        <table style="with: 100%">
+            <form class="row g-3">
+                <div class="col-md-2">
+                    <input type="hidden" name="id" value="${param.id}">
+                </div>
+                <div class="col-md-2">
+                    <label for="validationFirstname" class="form-label"><u>Firstname</u>
+                        <input type="text" class="form-control" id="validationFirstname" name="firstname"
+                               value="${param.firstName}" placeholder=${param.firstName} required>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationLastname" class="form-label"><u>Lastname</u>
+                        <input type="text" class="form-control" id="validationLastname" name="lastname"
+                               value="${param.lastname}" placeholder=${param.lastName} required>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationBirthdate" class="form-label"><u>Birth date</u>
+                        <input type="date" class="form-control" id="validationBirthdate" name="birth_date"
+                               value="${param.birth_date}" placeholder=${param.birthDate}>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationEmail" class="form-label"><u>Email</u>
+                        <input type="text" class="form-control" id="validationEmail" name="email"
+                               value="${param.email}" placeholder=${param.email} required>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label"><u>Role</u>
+                        <select name="role">
+                            <option value="USER">${Role.USER}</option>
+                            <option value="MANAGER">${Role.MANAGER}</option>
+                            <option value="ADMIN">${Role.ADMIN}</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label"><u>Is blocked</u>
+                        <select name="is_blocked">
+                            <option value=false>${false}</option>
+                            <option value=true>${true}</option>
+                        </select>
+                    </label>
+                </div>
+            </form>
+        </table>
+        <div class="col-12">
+            <input class="btn btn-outline-success btn-sm" type="submit" value="Update">
+        </div>
     </form>
     <label>
-        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/find-all" role="button">Return to previous
+        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/find-all" role="button">Return to
+            previous
             page</a>
     </label>
 </div>

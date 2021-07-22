@@ -11,17 +11,17 @@
 
     <servlet-mapping>
         <servlet-name>User controller</servlet-name>
+        <url-pattern>/save</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>User controller</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>User controller</servlet-name>
         <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>User controller</servlet-name>
-        <url-pattern>/save</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -85,7 +85,7 @@
 
     <servlet-mapping>
         <servlet-name>Users list</servlet-name>
-        <url-pattern>/find-all-users</url-pattern>
+        <url-pattern>/find-all-page</url-pattern>
     </servlet-mapping>
 
     <servlet>

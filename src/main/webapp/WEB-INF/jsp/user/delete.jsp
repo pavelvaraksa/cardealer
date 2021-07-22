@@ -20,7 +20,7 @@
     </div>
 </nav>
 <div align="center">
-    <h3><u>Would you like to delete user?</u></h3>
+    <h3><u>Would you like to delete user with id ${param.id}?</u></h3>
 
     <form action="delete" method="post">
         <input type="hidden" name="id" value="${param.id}">

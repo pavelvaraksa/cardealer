@@ -23,6 +23,7 @@
 <div align="center">
     <h2><u>Users list</u></h2>
     <form action="<%=request.getContextPath()%>/find-all" method="get">
+        <tbody>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -38,41 +39,42 @@
                 <th>Changed</th>
             </tr>
             </thead>
-            <tbody>
+
             <c:forEach var="user" items="${userList}">
 
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.firstName}</td>
-                <td>${user.lastName}</td>
-                <td>${user.birthDate}</td>
-                <td>${user.login}</td>
-                <td>${user.email}</td>
-                <td>${user.role}</td>
-                <td>${user.blocked}</td>
-                <td>${user.created}</td>
-                <td>${user.changed}</td>
-                <td>
-                    <form action="update-page" method="post">
-                        <input type="hidden" class="form-control" name="id" value="${user.id}">
-                        <input type="hidden" class="form-control" name="firstName" value="${user.firstName}">
-                        <input type="hidden" class="form-control" name="lastName" value="${user.lastName}">
-                        <input type="hidden" class="form-control" name="birthDate" value="${user.birthDate}">
-                        <input type="hidden" class="form-control" name="email" value="${user.email}">
-                        <input type="hidden" class="form-control" name="role" value="${user.role}">
-                        <input type="hidden" class="form-control" name="blocked" value="${user.blocked}">
-                        <input class="btn btn-outline-warning btn-sm" type="submit" value="Update">
-                    </form>
-                </td>
-                <td>
-                    <form action="delete-page" method="post">
-                        <input type="hidden" class="form-control" name="id" value="${user.id}">
-                        <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete">
-                    </form>
-                </td>
-            </tbody>
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.birthDate}</td>
+                    <td>${user.login}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role}</td>
+                    <td>${user.blocked}</td>
+                    <td>${user.created}</td>
+                    <td>${user.changed}</td>
+                    <td>
+                        <form action="update-page" method="post">
+                            <input type="hidden" class="form-control" name="id" value="${user.id}">
+                            <input type="hidden" class="form-control" name="firstName" value="${user.firstName}">
+                            <input type="hidden" class="form-control" name="lastName" value="${user.lastName}">
+                            <input type="hidden" class="form-control" name="birthDate" value="${user.birthDate}">
+                            <input type="hidden" class="form-control" name="email" value="${user.email}">
+                            <input type="hidden" class="form-control" name="role" value="${user.role}">
+                            <input type="hidden" class="form-control" name="blocked" value="${user.blocked}">
+                            <input class="btn btn-outline-warning btn-sm" type="submit" value="Update">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="delete-page" method="post">
+                            <input type="hidden" class="form-control" name="id" value="${user.id}">
+                            <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
             </c:forEach>
         </table>
+        </tbody>
         <label>
             <a class="btn btn-outline-primary" href="http://localhost:8080/main-menu" role="button">Return to main
                 menu</a>
