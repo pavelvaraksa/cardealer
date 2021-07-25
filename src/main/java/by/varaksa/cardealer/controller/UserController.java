@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@WebServlet(urlPatterns = {"/user/save", "/login", "/user/find-all",
+        "/user/find-by-id", "/user/update", "/user/delete", "/logout"})
 public class UserController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger();
@@ -48,10 +51,10 @@ public class UserController extends HttpServlet {
 
         try {
             switch (commandName) {
-                case FIND_ALL:
+                case FIND_ALL_USERS:
                     findAllUsers(request, response);
                     break;
-                case FIND_BY_ID:
+                case FIND_USER_BY_ID:
                     findUser(request, response);
                     break;
                 case LOGOUT:
@@ -71,16 +74,16 @@ public class UserController extends HttpServlet {
 
         try {
             switch (commandName) {
+                case SAVE_USER:
+                    saveUser(request, response);
+                    break;
                 case LOGIN:
                     confirmAuthenticate(request, response);
                     break;
-                case SAVE:
-                    saveUser(request, response);
-                    break;
-                case UPDATE:
+                case UPDATE_USER:
                     updateUser(request, response);
                     break;
-                case DELETE:
+                case DELETE_USER:
                     deleteUser(request, response);
                     break;
                 default:
@@ -108,9 +111,9 @@ public class UserController extends HttpServlet {
                 response.sendRedirect("/main-menu");
                 return;
             }
+
             logger.error("Login or password weren't correct");
             response.sendRedirect("/login-auth");
-
         } catch (ServiceException exception) {
             throw new ControllerException(exception);
         }
@@ -165,7 +168,7 @@ public class UserController extends HttpServlet {
         List<User> userList = userService.findAll();
         logger.info("Users were watched");
         request.setAttribute("userList", userList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-page");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users-page");
         dispatcher.forward(request, response);
     }
 
@@ -199,13 +202,13 @@ public class UserController extends HttpServlet {
         user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
 
         userService.update(user);
-        response.sendRedirect("/find-all");
+        response.sendRedirect("/user/find-all");
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
         Long id = Long.parseLong(request.getParameter("id"));
         userService.delete(id);
-        response.sendRedirect("/find-all");
+        response.sendRedirect("/user/find-all");
     }
 }
 

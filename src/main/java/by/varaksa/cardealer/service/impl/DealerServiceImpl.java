@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class DealerServiceImpl implements DealerService {
-    private static Logger logger = LogManager.getLogger();
-    private DealerRepository dealerRepository;
+    private static final Logger logger = LogManager.getLogger();
+    private final DealerRepository dealerRepository;
 
     public DealerServiceImpl(DealerRepository dealerRepository) {
         this.dealerRepository = dealerRepository;
@@ -20,32 +20,12 @@ public class DealerServiceImpl implements DealerService {
 
     @Override
     public Dealer save(Dealer dealer) throws ServiceException {
-        List<Dealer> existingDealers;
-
-        try {
-            existingDealers = dealerRepository.findAll();
-        } catch (RepositoryException exception) {
-            String errorMessage = "Can't get all dealers";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-
-        for (Dealer existingDealer : existingDealers) {
-            boolean hasSameDealer = existingDealer.getId().equals(dealer.getId());
-
-            if (hasSameDealer) {
-                String errorMessage = "Dealer with id " + dealer.getId() + " already exists";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        }
-
         try {
             Dealer savedDealer = dealerRepository.save(dealer);
             logger.info("Dealer " + dealer + " was saved");
             return savedDealer;
         } catch (RepositoryException exception) {
-            throw new ServiceException("Dealer service exception while trying to save a dealer." + exception);
+            throw new ServiceException("Dealer service exception while trying to save dealer." + exception);
         }
     }
 
@@ -55,17 +35,19 @@ public class DealerServiceImpl implements DealerService {
 
         try {
             existingDealers = dealerRepository.findAll();
+
             if (existingDealers.isEmpty()) {
-                String errorMessage = "A list is empty";
+                String errorMessage = "Dealers list is empty";
                 logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
             } else {
                 logger.info("Dealers exist");
                 return existingDealers;
             }
+
         } catch (RepositoryException exception) {
             throw new ServiceException("Dealer service exception while trying to find all dealers." + exception);
         }
+        return existingDealers;
     }
 
     @Override
@@ -80,14 +62,14 @@ public class DealerServiceImpl implements DealerService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException exception) {
-            throw new ServiceException("Dealer service exception while trying to find a dealer." + exception);
+            throw new ServiceException("Dealer service exception while trying to find dealer." + exception);
         }
 
         try {
             logger.info("Dealer with id " + id + " exists");
             return dealerRepository.find(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get a dealer";
+            String errorMessage = "Can't get dealer";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -95,12 +77,11 @@ public class DealerServiceImpl implements DealerService {
 
     @Override
     public Dealer update(Dealer dealer) throws ServiceException {
-
         try {
             logger.info("Dealer with id " + dealer.getId() + " was updated");
             return dealerRepository.update(dealer);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get a dealer";
+            String errorMessage = "Can't get dealer";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -118,14 +99,14 @@ public class DealerServiceImpl implements DealerService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException exception) {
-            throw new ServiceException("Dealer service exception while trying to delete a dealer." + exception);
+            throw new ServiceException("Dealer service exception while trying to delete dealer." + exception);
         }
 
         try {
             logger.info("Dealer with id " + id + " was deleted");
             return dealerRepository.delete(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get a dealer";
+            String errorMessage = "Can't get dealer";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }

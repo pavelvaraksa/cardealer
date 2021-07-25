@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class EngineServiceImpl implements EngineService {
-    private static Logger logger = LogManager.getLogger();
-    private EngineRepository engineRepository;
+    private static final Logger logger = LogManager.getLogger();
+    private final EngineRepository engineRepository;
 
     public EngineServiceImpl(EngineRepository engineRepository) {
         this.engineRepository = engineRepository;
@@ -20,32 +20,12 @@ public class EngineServiceImpl implements EngineService {
 
     @Override
     public Engine save(Engine engine) throws ServiceException {
-        List<Engine> existingEngines;
-
-        try {
-            existingEngines = engineRepository.findAll();
-        } catch (RepositoryException exception) {
-            String errorMessage = "Can't get all engines";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-
-        for (Engine existingEngine : existingEngines) {
-            boolean hasSameEngine = existingEngine.getId().equals(engine.getId());
-
-            if (hasSameEngine) {
-                String errorMessage = "Engine with id " + engine.getId() + " already exists";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        }
-
         try {
             Engine savedEngine = engineRepository.save(engine);
             logger.info("Engine " + engine + " was saved");
             return savedEngine;
         } catch (RepositoryException exception) {
-            throw new ServiceException("Engine service exception while trying to save an engine." + exception);
+            throw new ServiceException("Engine service exception while trying to save engine." + exception);
         }
     }
 
@@ -55,17 +35,19 @@ public class EngineServiceImpl implements EngineService {
 
         try {
             existingEngines = engineRepository.findAll();
+
             if (existingEngines.isEmpty()) {
-                String errorMessage = "A list is empty";
+                String errorMessage = "Engines list is empty";
                 logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
             } else {
                 logger.info("Engines exist");
                 return existingEngines;
             }
+
         } catch (RepositoryException exception) {
             throw new ServiceException("Engine service exception while trying to find all engines." + exception);
         }
+        return existingEngines;
     }
 
     @Override
@@ -80,14 +62,14 @@ public class EngineServiceImpl implements EngineService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException exception) {
-            throw new ServiceException("Engine service exception while trying to find an engine." + exception);
+            throw new ServiceException("Engine service exception while trying to find engine." + exception);
         }
 
         try {
             logger.info("Engine with id " + id + " exists");
             return engineRepository.find(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get an engine";
+            String errorMessage = "Can't get engine";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -95,12 +77,11 @@ public class EngineServiceImpl implements EngineService {
 
     @Override
     public Engine update(Engine engine) throws ServiceException {
-
         try {
             logger.info("Engine with id " + engine.getId() + " was updated");
             return engineRepository.update(engine);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get an engine";
+            String errorMessage = "Can't get engine";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -118,14 +99,14 @@ public class EngineServiceImpl implements EngineService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException exception) {
-            throw new ServiceException("Engine service exception while trying to delete an engine." + exception);
+            throw new ServiceException("Engine service exception while trying to delete engine." + exception);
         }
 
         try {
             logger.info("Engine with id " + id + " was deleted");
             return engineRepository.delete(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get an engine";
+            String errorMessage = "Can't get engine";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }

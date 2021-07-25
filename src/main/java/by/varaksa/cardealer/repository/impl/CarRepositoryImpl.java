@@ -18,8 +18,8 @@ import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
 import static by.varaksa.cardealer.util.DatabasePropertiesReader.DATABASE_PASSWORD;
 
 public class CarRepositoryImpl implements CarRepository {
-    private static Logger logger = LogManager.getLogger();
-    public static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
+    private static final Logger logger = LogManager.getLogger();
+    private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
     private static final String ID = "id";
     private static final String BRAND = "brand";
@@ -27,7 +27,6 @@ public class CarRepositoryImpl implements CarRepository {
     private static final String ISSUE_COUNTRY = "issue_country";
     private static final String GUARANTEE_PERIOD = "guarantee_period";
     private static final String PRICE = "price";
-    private static final String IMAGE = "image";
     private static final String CREATED = "created";
     private static final String CHANGED = "changed";
     private static final String USER_ORDER_ID = "user_order_id";
@@ -36,23 +35,35 @@ public class CarRepositoryImpl implements CarRepository {
         Car car = new Car();
         car.setId(resultSet.getLong(ID));
         car.setBrand(Brand.valueOf(resultSet.getString(BRAND)));
-        car.setModel(resultSet.getString(MODEL));
+        car.setModel(Model.valueOf(resultSet.getString(MODEL)));
         car.setIssueCountry(Country.valueOf(resultSet.getString(ISSUE_COUNTRY)));
         car.setGuaranteePeriod(resultSet.getInt(GUARANTEE_PERIOD));
         car.setPrice(resultSet.getDouble(PRICE));
-        car.setImage(resultSet.getBlob(IMAGE));
         car.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
         car.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
         car.setUserOrderId(resultSet.getLong(USER_ORDER_ID));
         return car;
     }
 
-    @Override
-    public Car save(Car car) throws RepositoryException {
-        final String saveCar = "insert into cars (brand, model, issue_country, " +
-                "guarantee_period, price, image, created, changed, user_order_id) " +
-                "values (?,?,?,?,?,?,?,?,?)";
+    private static final String SAVE_CAR = "insert into cars (brand, model, issue_country, " +
+            "guarantee_period, price, created, changed) " +
+            "values (?,?,?,?,?,?,?)";
+    private static final String FIND_ALL_CARS = "select * from cars";
+    private static final String FIND_CAR_BY_ID = "select * from cars where id = ?";
+    private static final String UPDATE_CAR_BY_ID = "update cars " +
+            "set " +
+            "brand = ?,  " +
+            "model = ?,  " +
+            "issue_country = ?,  " +
+            "guarantee_period = ?,  " +
+            "price = ?,  " +
+            "changed = ?,  " +
+            "user_order_id = ?  " +
+            "where id = ?";
+    private static final String DELETE_CAR_BY_ID = "delete from cars where id = ?";
 
+    @Override
+    public Car save(Car car) {
         Connection connection;
         PreparedStatement statement;
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -63,20 +74,18 @@ public class CarRepositoryImpl implements CarRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(saveCar);
+            statement = connection.prepareStatement(SAVE_CAR);
 
             statement.setString(1, String.valueOf(car.getBrand()));
-            statement.setString(2, car.getModel());
+            statement.setString(2, String.valueOf(car.getModel()));
             statement.setString(3, String.valueOf(car.getIssueCountry()));
             statement.setInt(4, car.getGuaranteePeriod());
             statement.setDouble(5, car.getPrice());
-            statement.setBlob(6, car.getImage());
+            statement.setTimestamp(6, creationTimestamp);
             statement.setTimestamp(7, creationTimestamp);
-            statement.setTimestamp(8, creationTimestamp);
-            statement.setLong(9, car.getUserOrderId());
+            //statement.setLong(9, car.getUserOrderId());
             statement.executeUpdate();
 
-            logger.info("Car with id " + car.getId() + " was saved");
             return car;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -87,8 +96,6 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public List<Car> findAll() {
-        final String findAllCars = "select * from cars";
-
         List<Car> result = new ArrayList<>();
         Connection connection;
         Statement statement;
@@ -101,13 +108,12 @@ public class CarRepositoryImpl implements CarRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(findAllCars);
+            resultSet = statement.executeQuery(FIND_ALL_CARS);
 
             while (resultSet.next()) {
                 result.add(parseResultSet(resultSet));
             }
 
-            logger.info("All cars: " + result);
             return result;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -117,9 +123,7 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public Car find(Long id) throws RepositoryException {
-        final String findCarById = "select * from cars where id = ?";
-
+    public Car find(Long id) {
         Connection connection;
         PreparedStatement statement;
         ResultSet resultSet;
@@ -130,18 +134,17 @@ public class CarRepositoryImpl implements CarRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(findCarById);
+            statement = connection.prepareStatement(FIND_CAR_BY_ID);
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                logger.info("Car with id " + id + " was found");
                 return parseResultSet(resultSet);
             } else {
                 throw new RepositoryException("Car with id " + id + " wasn't found");
             }
 
-        } catch (SQLException exception) {
+        } catch (SQLException | RepositoryException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
@@ -150,18 +153,6 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public Car update(Car car) {
-        final String updateCarById = "update cars " +
-                "set " +
-                "brand = ?,  " +
-                "model = ?,  " +
-                "issue_country = ?,  " +
-                "guarantee_period = ?,  " +
-                "price = ?,  " +
-                "image = ?,  " +
-                "changed = ?,  " +
-                "user_order_id = ?  " +
-                "where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -172,21 +163,19 @@ public class CarRepositoryImpl implements CarRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(updateCarById);
+            statement = connection.prepareStatement(UPDATE_CAR_BY_ID);
 
             statement.setString(1, String.valueOf(car.getBrand()));
-            statement.setString(2, car.getModel());
+            statement.setString(2, String.valueOf(car.getModel()));
             statement.setString(3, String.valueOf(car.getIssueCountry()));
             statement.setInt(4, car.getGuaranteePeriod());
             statement.setDouble(5, car.getPrice());
-            statement.setBlob(6, car.getImage());
-            statement.setTimestamp(7, updateTimestamp);
-            statement.setLong(8, car.getUserOrderId());
-            statement.setLong(9, car.getId());
+            statement.setTimestamp(6, updateTimestamp);
+            statement.setLong(7, car.getUserOrderId());
+            statement.setLong(8, car.getId());
             statement.executeUpdate();
 
-            logger.info("Car with id " + car.getId() + " was updated");
-            return car;
+            return find(car.getId());
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
@@ -196,8 +185,6 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public Car delete(Long id) {
-        final String deleteCarById = "delete from cars where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         Car car = new Car();
@@ -208,7 +195,7 @@ public class CarRepositoryImpl implements CarRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(deleteCarById);
+            statement = connection.prepareStatement(DELETE_CAR_BY_ID);
             statement.setLong(1, id);
             statement.executeUpdate();
 
@@ -223,9 +210,9 @@ public class CarRepositoryImpl implements CarRepository {
     private void connect() {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
+            logger.info("JDBC driver was loaded from car repository class");
         } catch (ClassNotFoundException exception) {
-            String errorMessage = "JDBC driver can't be loaded." + exception;
+            String errorMessage = "JDBC driver wasn't loaded from car repository class." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

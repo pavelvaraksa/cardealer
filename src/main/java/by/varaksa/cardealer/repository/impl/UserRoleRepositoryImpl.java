@@ -15,8 +15,8 @@ import java.util.List;
 import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
 
 public class UserRoleRepositoryImpl implements UserRoleRepository {
-    private static Logger logger = LogManager.getLogger();
-    public static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
+    private static final Logger logger = LogManager.getLogger();
+    private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
     private static final String ID = "id";
     private static final String ROLE_NAME = "role_name";
@@ -30,11 +30,19 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
         return userRole;
     }
 
+    private static final String SAVE_USER_ROLE = "insert into roles (role_name, user_id) " +
+            "values (?,?)";
+    private static final String FIND_ALL_USER_ROLES = "select * from roles";
+    private static final String FIND_USER_ROLE_BY_ID = "select * from userRoles where id = ?";
+    private static final String UPDATE_USER_ROLE_BY_ID = "update roles " +
+            "set " +
+            "role_name = ?,  " +
+            "user_id = ?  " +
+            "where id = ?";
+    private static final String DELETE_USER_ROLE_BY_ID = "delete from roles where id = ?";
+
     @Override
     public UserRole save(UserRole userRole) throws RepositoryException {
-        final String saveUserRole = "insert into roles (role_name, user_id) " +
-                "values (?,?)";
-
         Connection connection;
         PreparedStatement statement;
 
@@ -44,13 +52,12 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(saveUserRole);
+            statement = connection.prepareStatement(SAVE_USER_ROLE);
 
             statement.setString(1, String.valueOf(userRole.getRoleName()));
             statement.setLong(2, userRole.getUserId());
             statement.executeUpdate();
 
-            logger.info("User role with id " + userRole.getId() + " was saved");
             return userRole;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -61,8 +68,6 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public List<UserRole> findAll() {
-        final String findAllUserRoles = "select * from roles";
-
         List<UserRole> result = new ArrayList<>();
         Connection connection;
         Statement statement;
@@ -75,13 +80,12 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(findAllUserRoles);
+            resultSet = statement.executeQuery(FIND_ALL_USER_ROLES);
 
             while (resultSet.next()) {
                 result.add(parseResultSet(resultSet));
             }
 
-            logger.info("All user roles: " + result);
             return result;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -92,8 +96,6 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public UserRole find(Long id) throws RepositoryException {
-        final String findUserRoleById = "select * from userRoles where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         ResultSet resultSet;
@@ -104,12 +106,11 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(findUserRoleById);
+            statement = connection.prepareStatement(FIND_USER_ROLE_BY_ID);
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                logger.info("User role with id " + id + " was found");
                 return parseResultSet(resultSet);
             } else {
                 throw new RepositoryException("User role with id " + id + " wasn't found");
@@ -124,12 +125,6 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public UserRole update(UserRole userRole) {
-        final String updateUserRoleById = "update roles " +
-                "set " +
-                "role_name = ?,  " +
-                "user_id = ?  " +
-                "where id = ?";
-
         Connection connection;
         PreparedStatement statement;
 
@@ -139,14 +134,13 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(updateUserRoleById);
+            statement = connection.prepareStatement(UPDATE_USER_ROLE_BY_ID);
 
             statement.setString(1, String.valueOf(userRole.getRoleName()));
             statement.setLong(2, userRole.getUserId());
             statement.setLong(3, userRole.getId());
             statement.executeUpdate();
 
-            logger.info("User role with id " + userRole.getId() + " was updated");
             return userRole;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -157,8 +151,6 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public UserRole delete(Long id) {
-        final String deleteUserRoleById = "delete from roles where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         UserRole userRole = new UserRole();
@@ -169,7 +161,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(deleteUserRoleById);
+            statement = connection.prepareStatement(DELETE_USER_ROLE_BY_ID);
             statement.setLong(1, id);
             statement.executeUpdate();
 
@@ -184,9 +176,9 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
     private void connect() {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
+            logger.info("JDBC driver was loaded from user role repository class");
         } catch (ClassNotFoundException exception) {
-            String errorMessage = "JDBC driver can't be loaded." + exception;
+            String errorMessage = "JDBC driver wasn't loaded from user role repository class." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

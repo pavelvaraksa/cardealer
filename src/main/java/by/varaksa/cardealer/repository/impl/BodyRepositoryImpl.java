@@ -21,23 +21,34 @@ import static by.varaksa.cardealer.util.DatabasePropertiesReader.DATABASE_LOGIN;
 import static by.varaksa.cardealer.util.DatabasePropertiesReader.DATABASE_PASSWORD;
 
 public class BodyRepositoryImpl implements BodyRepository {
-    private static Logger logger = LogManager.getLogger();
-    public static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
+    private static final Logger logger = LogManager.getLogger();
+    private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
     private static final String ID = "id";
     private static final String COLOR = "color";
     private static final String BODY_TYPE = "body_type";
-    private static final String VIN = "vin";
     private static final String CREATED = "created";
     private static final String CHANGED = "changed";
     private static final String CAR_ID = "car_id";
+
+    private static final String SAVE_BODY = "insert into bodies (color, body_type, created, changed, car_id) " +
+            "values (?,?,?,?,?)";
+    private static final String FIND_ALL_BODIES = "select * from bodies";
+    private static final String FIND_BODY_BY_ID = "select * from bodies where id = ?";
+    private static final String UPDATE_BODY_BY_ID = "update bodies " +
+            "set " +
+            "color = ?,  " +
+            "body_type = ?,  " +
+            "changed = ?,  " +
+            "car_id = ?  " +
+            "where id = ?";
+    private static final String DELETE_BODY_BY_ID = "delete from bodies where id = ?";
 
     private Body parseResultSet(ResultSet resultSet) throws SQLException {
         Body body = new Body();
         body.setId(resultSet.getLong(ID));
         body.setColor(Color.valueOf(resultSet.getString(COLOR)));
         body.setBodyType(BodyType.valueOf(resultSet.getString(BODY_TYPE)));
-        body.setVin(resultSet.getString(VIN));
         body.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
         body.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
         body.setCarId(resultSet.getLong(CAR_ID));
@@ -46,9 +57,6 @@ public class BodyRepositoryImpl implements BodyRepository {
 
     @Override
     public Body save(Body body) {
-        final String saveBody = "insert into bodies (color, body_type, vin, created, changed, car_id) " +
-                "values (?,?,?,?,?,?)";
-
         Connection connection;
         PreparedStatement statement;
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -59,17 +67,15 @@ public class BodyRepositoryImpl implements BodyRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(saveBody);
+            statement = connection.prepareStatement(SAVE_BODY);
 
             statement.setString(1, String.valueOf(body.getColor()));
             statement.setString(2, String.valueOf(body.getBodyType()));
-            statement.setString(3, body.getVin());
+            statement.setTimestamp(3, creationTimestamp);
             statement.setTimestamp(4, creationTimestamp);
-            statement.setTimestamp(5, creationTimestamp);
-            statement.setLong(6, body.getCarId());
+            statement.setLong(5, body.getCarId());
             statement.executeUpdate();
 
-            logger.info("Body with id " + body.getId() + " was saved");
             return body;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -80,8 +86,6 @@ public class BodyRepositoryImpl implements BodyRepository {
 
     @Override
     public List<Body> findAll() {
-        final String findAllBodies = "select * from bodies";
-
         List<Body> result = new ArrayList<>();
         Connection connection;
         Statement statement;
@@ -94,13 +98,12 @@ public class BodyRepositoryImpl implements BodyRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(findAllBodies);
+            resultSet = statement.executeQuery(FIND_ALL_BODIES);
 
             while (resultSet.next()) {
                 result.add(parseResultSet(resultSet));
             }
 
-            logger.info("All bodies: " + result);
             return result;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -110,9 +113,7 @@ public class BodyRepositoryImpl implements BodyRepository {
     }
 
     @Override
-    public Body find(Long id) throws RepositoryException {
-        final String findBodyById = "select * from bodies where id = ?";
-
+    public Body find(Long id) {
         Connection connection;
         PreparedStatement statement;
         ResultSet resultSet;
@@ -123,18 +124,17 @@ public class BodyRepositoryImpl implements BodyRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(findBodyById);
+            statement = connection.prepareStatement(FIND_BODY_BY_ID);
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                logger.info("Body with id " + id + " was found");
                 return parseResultSet(resultSet);
             } else {
                 throw new RepositoryException("Body with id " + id + " wasn't found");
             }
 
-        } catch (SQLException exception) {
+        } catch (SQLException | RepositoryException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
@@ -143,15 +143,6 @@ public class BodyRepositoryImpl implements BodyRepository {
 
     @Override
     public Body update(Body body) {
-        final String updateBodyById = "update bodies " +
-                "set " +
-                "color = ?,  " +
-                "body_type = ?,  " +
-                "vin = ?,  " +
-                "changed = ?,  " +
-                "car_id = ?  " +
-                "where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -162,18 +153,16 @@ public class BodyRepositoryImpl implements BodyRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(updateBodyById);
+            statement = connection.prepareStatement(UPDATE_BODY_BY_ID);
 
             statement.setString(1, String.valueOf(body.getColor()));
             statement.setString(2, String.valueOf(body.getBodyType()));
-            statement.setString(3, body.getVin());
-            statement.setTimestamp(4, updateTimestamp);
-            statement.setLong(5, body.getCarId());
-            statement.setLong(6, body.getId());
+            statement.setTimestamp(3, updateTimestamp);
+            statement.setLong(4, body.getCarId());
+            statement.setLong(5, body.getId());
             statement.executeUpdate();
 
-            logger.info("Body with id " + body.getId() + " was updated");
-            return body;
+            return find(body.getId());
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
@@ -183,8 +172,6 @@ public class BodyRepositoryImpl implements BodyRepository {
 
     @Override
     public Body delete(Long id) {
-        final String deleteBodyById = "delete from bodies where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         Body body = new Body();
@@ -195,7 +182,7 @@ public class BodyRepositoryImpl implements BodyRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(deleteBodyById);
+            statement = connection.prepareStatement(DELETE_BODY_BY_ID);
             statement.setLong(1, id);
             statement.executeUpdate();
 
@@ -210,9 +197,9 @@ public class BodyRepositoryImpl implements BodyRepository {
     private void connect() {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
+            logger.info("JDBC driver was loaded from body repository class");
         } catch (ClassNotFoundException exception) {
-            String errorMessage = "JDBC driver can't be loaded." + exception;
+            String errorMessage = "JDBC driver wasn't loaded from body repository class." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

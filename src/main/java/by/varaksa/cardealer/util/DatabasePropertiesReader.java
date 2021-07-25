@@ -13,6 +13,7 @@ public class DatabasePropertiesReader {
     public static final String DATABASE_PASSWORD = "password";
 
     public static DatabasePropertiesReader getInstance() {
+
         if (instance == null) {
             instance = new DatabasePropertiesReader();
             instance.resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME);

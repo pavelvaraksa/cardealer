@@ -31,11 +31,13 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String IS_BLOCKED = "is_blocked";
     private static final String CREATED = "created";
     private static final String CHANGED = "changed";
+//    private static boolean check;
+//    private static String checkString;
 
-    private static final String FIND_ALL_USERS = "select * from users";
     private static final String SAVE_USER = "insert into users (firstname, lastname, birth_date, login, password, " +
             "email, role, is_blocked, created, changed) " +
             "values (?,?,?,?,?,?,?,?,?,?)";
+    private static final String FIND_ALL_USERS = "select * from users";
     private static final String FIND_USER_BY_ID = "select * from users where id = ?";
     private static final String UPDATE_USER_BY_ID = "update users " +
             "set " +
@@ -74,6 +76,8 @@ public class UserRepositoryImpl implements UserRepository {
         PreparedStatement statement;
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
         Role defaultSavedUserRole = Role.USER;
+//        checkString = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+//        check = BCrypt.checkpw(user.getPassword(), checkString);
 
         connect();
 
@@ -150,8 +154,9 @@ public class UserRepositoryImpl implements UserRepository {
             if (resultSet.next()) {
                 return parseResultSet(resultSet);
             } else {
-                throw new RepositoryException();
+                throw new RepositoryException("User with id " + id + " wasn't found");
             }
+
         } catch (SQLException | RepositoryException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
@@ -220,7 +225,6 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public boolean isAuthenticate(User user) {
         boolean isStatus;
-
         Connection connection;
         PreparedStatement preparedStatement;
 
@@ -233,7 +237,6 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement = connection.prepareStatement(CONFIRM_AUTHENTICATE);
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
-
             logger.info(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             isStatus = rs.next();
@@ -267,9 +270,9 @@ public class UserRepositoryImpl implements UserRepository {
     private void connect() {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver was loaded");
+            logger.info("JDBC driver was loaded from user repository class");
         } catch (ClassNotFoundException exception) {
-            String errorMessage = "JDBC driver wasn't loaded." + exception;
+            String errorMessage = "JDBC driver wasn't loaded from user repository class." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

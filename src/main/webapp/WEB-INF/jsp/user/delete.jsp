@@ -24,7 +24,7 @@
 
     <form action="delete" method="post">
         <input type="hidden" name="id" value="${param.id}">
-        <a class="btn btn-outline-success btn-sm" href="http://localhost:8080/find-all" role="button">No</a>
+        <a class="btn btn-outline-success btn-sm" href="http://localhost:8080/user/find-all" role="button">No</a>
         <input class="btn btn-outline-danger btn-sm" type="submit" value="Yes">
     </form>
 </div>

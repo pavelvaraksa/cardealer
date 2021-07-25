@@ -37,18 +37,18 @@
                 <div class="col-md-2">
                     <label for="validationLastname" class="form-label"><u>Lastname</u>
                         <input type="text" class="form-control" id="validationLastname" name="lastname"
-                               value="${param.lastname}" placeholder=${param.lastName} required>
+                               value="${param.lastName}" placeholder=${param.lastName} required>
                     </label>
                 </div>
                 <div class="col-md-2">
                     <label for="validationBirthdate" class="form-label"><u>Birth date</u>
                         <input type="date" class="form-control" id="validationBirthdate" name="birth_date"
-                               value="${param.birth_date}" placeholder=${param.birthDate}>
+                               value="${param.birthDate}" placeholder=${param.birthDate}>
                     </label>
                 </div>
                 <div class="col-md-2">
                     <label for="validationEmail" class="form-label"><u>Email</u>
-                        <input type="text" class="form-control" id="validationEmail" name="email"
+                        <input type="email" class="form-control" id="validationEmail" name="email"
                                value="${param.email}" placeholder=${param.email} required>
                     </label>
                 </div>
@@ -76,7 +76,7 @@
         </div>
     </form>
     <label>
-        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/find-all" role="button">Return to
+        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/user/find-all" role="button">Return to
             previous
             page</a>
     </label>

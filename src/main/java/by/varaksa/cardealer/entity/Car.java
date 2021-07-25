@@ -1,6 +1,5 @@
 package by.varaksa.cardealer.entity;
 
-import java.sql.Blob;
 import java.time.LocalDateTime;
 
 public class Car {
@@ -8,15 +7,13 @@ public class Car {
 
     private Brand brand;
 
-    private String model;
+    private Model model;
 
     private Country issueCountry;
 
     private Integer guaranteePeriod;
 
     private Double price;
-
-    private Blob image;
 
     private LocalDateTime created;
 
@@ -25,6 +22,18 @@ public class Car {
     private Long userOrderId;
 
     public Car() {
+    }
+
+    public Car(Brand brand,
+               Model model,
+               Country issueCountry,
+               Integer guaranteePeriod,
+               Double price) {
+        this.brand = brand;
+        this.model = model;
+        this.issueCountry = issueCountry;
+        this.guaranteePeriod = guaranteePeriod;
+        this.price = price;
     }
 
     public Long getId() {
@@ -43,11 +52,11 @@ public class Car {
         this.brand = brand;
     }
 
-    public String getModel() {
+    public Model getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(Model model) {
         this.model = model;
     }
 
@@ -73,14 +82,6 @@ public class Car {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public Blob getImage() {
-        return image;
-    }
-
-    public void setImage(Blob image) {
-        this.image = image;
     }
 
     public LocalDateTime getCreated() {
@@ -115,7 +116,6 @@ public class Car {
                 + issueCountry.hashCode()
                 + guaranteePeriod.hashCode()
                 + price.hashCode()
-                + image.hashCode()
                 + created.hashCode()
                 + changed.hashCode()
                 + userOrderId.hashCode());
@@ -139,7 +139,6 @@ public class Car {
                 && (issueCountry == car.issueCountry || issueCountry != null && issueCountry.equals(car.getIssueCountry()))
                 && (guaranteePeriod == car.guaranteePeriod || guaranteePeriod != null && guaranteePeriod.equals(car.getGuaranteePeriod()))
                 && (price == car.price || price != null && price.equals(car.getPrice()))
-                && (image == car.image || image != null && image.equals(car.getImage()))
                 && (created == car.created || created != null && created.equals(car.getCreated()))
                 && (changed == car.changed || changed != null && changed.equals(car.getChanged()))
                 && (userOrderId == car.userOrderId || userOrderId != null && userOrderId.equals(car.getUserOrderId()));
@@ -155,7 +154,6 @@ public class Car {
         stringBuilder.append("issue country ").append(issueCountry).append(", ");
         stringBuilder.append("guarantee period ").append(guaranteePeriod).append(", ");
         stringBuilder.append("price ").append(price).append(", ");
-        stringBuilder.append("image ").append(image).append(", ");
         stringBuilder.append("created ").append(created).append(", ");
         stringBuilder.append("changed ").append(changed).append(", ");
         stringBuilder.append("user order id ").append(userOrderId);

@@ -18,8 +18,8 @@ import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
 import static by.varaksa.cardealer.util.DatabasePropertiesReader.DATABASE_PASSWORD;
 
 public class DealerRepositoryImpl implements DealerRepository {
-    private static Logger logger = LogManager.getLogger();
-    public static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
+    private static final Logger logger = LogManager.getLogger();
+    private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
     private static final String ID = "id";
     private static final String NAME = "name";
@@ -43,11 +43,23 @@ public class DealerRepositoryImpl implements DealerRepository {
         return dealer;
     }
 
+    private static final String SAVE_DEALER = "insert into dealers (name, address, foundation_year, city, created, changed, car_id) " +
+            "values (?,?,?,?,?,?,?)";
+    private static final String FIND_ALL_DEALERS = "select * from dealers";
+    private static final String FIND_DEALER_BY_ID = "select * from dealers where id = ?";
+    private static final String UPDATE_DEALER_BY_ID = "update dealers " +
+            "set " +
+            "name = ?,  " +
+            "address = ?,  " +
+            "foundation_year = ?,  " +
+            "city = ?,  " +
+            "changed = ?,  " +
+            "car_id = ?  " +
+            "where id = ?";
+    private static final String DELETE_DEALER_BY_ID = "delete from dealers where id = ?";
+
     @Override
     public Dealer save(Dealer dealer) throws RepositoryException {
-        final String saveDealer = "insert into dealers (name, address, foundation_year, city, created, changed, car_id) " +
-                "values (?,?,?,?,?,?,?)";
-
         Connection connection;
         PreparedStatement statement;
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -58,7 +70,7 @@ public class DealerRepositoryImpl implements DealerRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(saveDealer);
+            statement = connection.prepareStatement(SAVE_DEALER);
 
             statement.setString(1, dealer.getName());
             statement.setString(2, dealer.getAddress());
@@ -69,7 +81,6 @@ public class DealerRepositoryImpl implements DealerRepository {
             statement.setLong(7, dealer.getCarId());
             statement.executeUpdate();
 
-            logger.info("Dealer with id " + dealer.getId() + " was saved");
             return dealer;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -80,8 +91,6 @@ public class DealerRepositoryImpl implements DealerRepository {
 
     @Override
     public List<Dealer> findAll() {
-        final String findAllDealers = "select * from dealers";
-
         List<Dealer> result = new ArrayList<>();
         Connection connection;
         Statement statement;
@@ -94,13 +103,12 @@ public class DealerRepositoryImpl implements DealerRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(findAllDealers);
+            resultSet = statement.executeQuery(FIND_ALL_DEALERS);
 
             while (resultSet.next()) {
                 result.add(parseResultSet(resultSet));
             }
 
-            logger.info("All dealers: " + result);
             return result;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -111,8 +119,6 @@ public class DealerRepositoryImpl implements DealerRepository {
 
     @Override
     public Dealer find(Long id) throws RepositoryException {
-        final String findDealerById = "select * from dealers where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         ResultSet resultSet;
@@ -123,12 +129,11 @@ public class DealerRepositoryImpl implements DealerRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(findDealerById);
+            statement = connection.prepareStatement(FIND_DEALER_BY_ID);
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                logger.info("Dealer with id " + id + " was found");
                 return parseResultSet(resultSet);
             } else {
                 throw new RepositoryException("Dealer with id " + id + " wasn't found");
@@ -143,16 +148,6 @@ public class DealerRepositoryImpl implements DealerRepository {
 
     @Override
     public Dealer update(Dealer dealer) {
-        final String updateDealerById = "update dealers " +
-                "set " +
-                "name = ?,  " +
-                "address = ?,  " +
-                "foundation_year = ?,  " +
-                "city = ?,  " +
-                "changed = ?,  " +
-                "car_id = ?  " +
-                "where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -163,7 +158,7 @@ public class DealerRepositoryImpl implements DealerRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(updateDealerById);
+            statement = connection.prepareStatement(UPDATE_DEALER_BY_ID);
 
             statement.setString(1, dealer.getName());
             statement.setString(2, dealer.getAddress());
@@ -174,7 +169,6 @@ public class DealerRepositoryImpl implements DealerRepository {
             statement.setLong(7, dealer.getId());
             statement.executeUpdate();
 
-            logger.info("Dealer with id " + dealer.getId() + " was updated");
             return dealer;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -185,8 +179,6 @@ public class DealerRepositoryImpl implements DealerRepository {
 
     @Override
     public Dealer delete(Long id) {
-        final String deleteDealerById = "delete from dealers where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         Dealer dealer = new Dealer();
@@ -197,7 +189,7 @@ public class DealerRepositoryImpl implements DealerRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(deleteDealerById);
+            statement = connection.prepareStatement(DELETE_DEALER_BY_ID);
             statement.setLong(1, id);
             statement.executeUpdate();
 
@@ -212,9 +204,9 @@ public class DealerRepositoryImpl implements DealerRepository {
     private void connect() {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
+            logger.info("JDBC driver was loaded from dealer repository class");
         } catch (ClassNotFoundException exception) {
-            String errorMessage = "JDBC driver can't be loaded." + exception;
+            String errorMessage = "JDBC driver wasn't loaded from dealer repository class." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

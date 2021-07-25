@@ -20,26 +20,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) throws ServiceException {
-//        List<User> existingUsers;
-//
-//        try {
-//            existingUsers = userRepository.findAll();
-//        } catch (RepositoryException exception) {
-//            String errorMessage = "Can't get all users";
-//            logger.error(errorMessage);
-//            throw new ServiceException(errorMessage);
-//        }
-//
-//        for (User existingUser : existingUsers) {
-//            boolean hasSameUser = existingUser.getLogin().equals(user.getLogin());
-//
-//            if (hasSameUser) {
-//                String errorMessage = "User with login " + user.getLogin() + " already exists";
-//                logger.error(errorMessage);
-//                throw new ServiceException(errorMessage);
-//            }
-//        }
-
         try {
             User savedUser = userRepository.save(user);
             logger.info("User with login " + user.getLogin() + " was saved");
@@ -57,12 +37,13 @@ public class UserServiceImpl implements UserService {
             existingUsers = userRepository.findAll();
 
             if (existingUsers.isEmpty()) {
-                String errorMessage = "A list is empty";
+                String errorMessage = "Users list is empty";
                 logger.error(errorMessage);
             } else {
                 logger.info("Users exist");
                 return existingUsers;
             }
+
         } catch (RepositoryException exception) {
             throw new ServiceException("User service exception while trying to find all users." + exception);
         }
@@ -97,7 +78,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user) throws ServiceException {
-
         try {
             logger.info("User with id " + user.getId() + " was updated");
             return userRepository.update(user);

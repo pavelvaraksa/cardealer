@@ -19,8 +19,8 @@ import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
 import static by.varaksa.cardealer.util.DatabasePropertiesReader.DATABASE_PASSWORD;
 
 public class EngineRepositoryImpl implements EngineRepository {
-    private static Logger logger = LogManager.getLogger();
-    public static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
+    private static final Logger logger = LogManager.getLogger();
+    private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
     private static final String ID = "id";
     private static final String ENGINE_TYPE = "engine_type";
@@ -44,11 +44,23 @@ public class EngineRepositoryImpl implements EngineRepository {
         return engine;
     }
 
+    private static final String SAVE_ENGINE = "insert into engines (engine_type, fuel_type, volume, cylinders_count, created, changed, car_id) " +
+            "values (?,?,?,?,?,?,?)";
+    private static final String FIND_ALL_ENGINES = "select * from engines";
+    private static final String FIND_ENGINE_BY_ID = "select * from engines where id = ?";
+    private static final String UPDATE_ENGINE_BY_ID = "update engines " +
+            "set " +
+            "engine_type = ?,  " +
+            "fuel_type = ?,  " +
+            "volume = ?,  " +
+            "cylinders_count = ?,  " +
+            "changed = ?,  " +
+            "car_id = ?  " +
+            "where id = ?";
+    private static final String DELETE_ENGINE_BY_ID = "delete from engines where id = ?";
+
     @Override
     public Engine save(Engine engine) throws RepositoryException {
-        final String saveEngine = "insert into engines (engine_type, fuel_type, volume, cylinders_count, created, changed, car_id) " +
-                "values (?,?,?,?,?,?,?)";
-
         Connection connection;
         PreparedStatement statement;
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -59,7 +71,7 @@ public class EngineRepositoryImpl implements EngineRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(saveEngine);
+            statement = connection.prepareStatement(SAVE_ENGINE);
 
             statement.setString(1, String.valueOf(engine.getEngineType()));
             statement.setString(2, String.valueOf(engine.getFuelType()));
@@ -70,7 +82,6 @@ public class EngineRepositoryImpl implements EngineRepository {
             statement.setLong(7, engine.getCarId());
             statement.executeUpdate();
 
-            logger.info("Engine with id " + engine.getId() + " was saved");
             return engine;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -81,8 +92,6 @@ public class EngineRepositoryImpl implements EngineRepository {
 
     @Override
     public List<Engine> findAll() {
-        final String findAllEngines = "select * from engines";
-
         List<Engine> result = new ArrayList<>();
         Connection connection;
         Statement statement;
@@ -95,13 +104,12 @@ public class EngineRepositoryImpl implements EngineRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(findAllEngines);
+            resultSet = statement.executeQuery(FIND_ALL_ENGINES);
 
             while (resultSet.next()) {
                 result.add(parseResultSet(resultSet));
             }
 
-            logger.info("All engines: " + result);
             return result;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -112,8 +120,6 @@ public class EngineRepositoryImpl implements EngineRepository {
 
     @Override
     public Engine find(Long id) throws RepositoryException {
-        final String findEngineById = "select * from engines where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         ResultSet resultSet;
@@ -124,12 +130,11 @@ public class EngineRepositoryImpl implements EngineRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(findEngineById);
+            statement = connection.prepareStatement(FIND_ENGINE_BY_ID);
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                logger.info("Engine with id " + id + " was found");
                 return parseResultSet(resultSet);
             } else {
                 throw new RepositoryException("Engine with id " + id + " wasn't found");
@@ -144,16 +149,6 @@ public class EngineRepositoryImpl implements EngineRepository {
 
     @Override
     public Engine update(Engine engine) {
-        final String updateEngineById = "update engines " +
-                "set " +
-                "engine_type = ?,  " +
-                "fuel_type = ?,  " +
-                "volume = ?,  " +
-                "cylinders_count = ?,  " +
-                "changed = ?,  " +
-                "car_id = ?  " +
-                "where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -164,7 +159,7 @@ public class EngineRepositoryImpl implements EngineRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(updateEngineById);
+            statement = connection.prepareStatement(UPDATE_ENGINE_BY_ID);
 
             statement.setString(1, String.valueOf(engine.getEngineType()));
             statement.setString(2, String.valueOf(engine.getFuelType()));
@@ -175,7 +170,6 @@ public class EngineRepositoryImpl implements EngineRepository {
             statement.setLong(7, engine.getId());
             statement.executeUpdate();
 
-            logger.info("Engine with id " + engine.getId() + " was updated");
             return engine;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -186,8 +180,6 @@ public class EngineRepositoryImpl implements EngineRepository {
 
     @Override
     public Engine delete(Long id) {
-        final String deleteEngineById = "delete from engines where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         Engine engine = new Engine();
@@ -198,7 +190,7 @@ public class EngineRepositoryImpl implements EngineRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(deleteEngineById);
+            statement = connection.prepareStatement(DELETE_ENGINE_BY_ID);
             statement.setLong(1, id);
             statement.executeUpdate();
 
@@ -213,9 +205,9 @@ public class EngineRepositoryImpl implements EngineRepository {
     private void connect() {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
+            logger.info("JDBC driver was loaded from engine repository class");
         } catch (ClassNotFoundException exception) {
-            String errorMessage = "JDBC driver can't be loaded." + exception;
+            String errorMessage = "JDBC driver wasn't loaded from engine repository class." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

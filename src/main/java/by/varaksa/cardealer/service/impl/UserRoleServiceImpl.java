@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class UserRoleServiceImpl implements UserRoleService {
-    private static Logger logger = LogManager.getLogger();
-    private UserRoleRepository userRoleRepository;
+    private static final Logger logger = LogManager.getLogger();
+    private final UserRoleRepository userRoleRepository;
 
     public UserRoleServiceImpl(UserRoleRepository userRoleRepository) {
         this.userRoleRepository = userRoleRepository;
@@ -20,32 +20,12 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public UserRole save(UserRole userRole) throws ServiceException {
-        List<UserRole> existingUserRoles;
-
-        try {
-            existingUserRoles = userRoleRepository.findAll();
-        } catch (RepositoryException exception) {
-            String errorMessage = "Can't get all user roles";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-
-        for (UserRole existingUserRole : existingUserRoles) {
-            boolean hasSameUserRole = existingUserRole.getId().equals(userRole.getId());
-
-            if (hasSameUserRole) {
-                String errorMessage = "User role with id " + userRole.getId() + " already exists";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        }
-
         try {
             UserRole savedUserRole = userRoleRepository.save(userRole);
             logger.info("User role " + userRole + " was saved");
             return savedUserRole;
         } catch (RepositoryException exception) {
-            throw new ServiceException("User role service exception while trying to save an user role." + exception);
+            throw new ServiceException("User role service exception while trying to save user role." + exception);
         }
     }
 
@@ -55,17 +35,19 @@ public class UserRoleServiceImpl implements UserRoleService {
 
         try {
             existingUserRoles = userRoleRepository.findAll();
+
             if (existingUserRoles.isEmpty()) {
-                String errorMessage = "A list is empty";
+                String errorMessage = "User roles list is empty";
                 logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
             } else {
                 logger.info("User roles exist");
                 return existingUserRoles;
             }
+
         } catch (RepositoryException exception) {
             throw new ServiceException("User role service exception while trying to find all user roles." + exception);
         }
+        return existingUserRoles;
     }
 
     @Override
@@ -80,14 +62,14 @@ public class UserRoleServiceImpl implements UserRoleService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException exception) {
-            throw new ServiceException("User role service exception while trying to find an user role." + exception);
+            throw new ServiceException("User role service exception while trying to find user role." + exception);
         }
 
         try {
             logger.info("User role with id " + id + " exists");
             return userRoleRepository.find(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get an user role";
+            String errorMessage = "Can't get user role";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -95,12 +77,11 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public UserRole update(UserRole userRole) throws ServiceException {
-
         try {
             logger.info("User role with id " + userRole.getId() + " was updated");
             return userRoleRepository.update(userRole);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get an user role";
+            String errorMessage = "Can't get user role";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -118,14 +99,14 @@ public class UserRoleServiceImpl implements UserRoleService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException exception) {
-            throw new ServiceException("User role service exception while trying to delete an user role." + exception);
+            throw new ServiceException("User role service exception while trying to delete user role." + exception);
         }
 
         try {
             logger.info("User role with id " + id + " was deleted");
             return userRoleRepository.delete(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get an user role";
+            String errorMessage = "Can't get user role";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }

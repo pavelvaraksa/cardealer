@@ -22,7 +22,7 @@
 
 <div align="center">
     <h2><u>Authentication form</u></h2>
-    <form action="<%=request.getContextPath()%>/login" method="post">
+    <form action="login" method="post">
         <table style="with: 100%">
             <div class="col-md-2">
                 <label for="validationLogin" class="form-label"><u>Login</u></label>

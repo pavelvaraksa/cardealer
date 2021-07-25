@@ -22,7 +22,7 @@
 </nav>
 <div align="center">
     <h2><u>Users list</u></h2>
-    <form action="<%=request.getContextPath()%>/find-all" method="get">
+    <form action="user/find-all" method="get">
         <tbody>
         <table class="table table-bordered">
             <thead>
@@ -54,7 +54,7 @@
                     <td>${user.created}</td>
                     <td>${user.changed}</td>
                     <td>
-                        <form action="update-page" method="post">
+                        <form action="update-user-page" method="post">
                             <input type="hidden" class="form-control" name="id" value="${user.id}">
                             <input type="hidden" class="form-control" name="firstName" value="${user.firstName}">
                             <input type="hidden" class="form-control" name="lastName" value="${user.lastName}">
@@ -66,7 +66,7 @@
                         </form>
                     </td>
                     <td>
-                        <form action="delete-page" method="post">
+                        <form action="delete-user-page" method="post">
                             <input type="hidden" class="form-control" name="id" value="${user.id}">
                             <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete">
                         </form>

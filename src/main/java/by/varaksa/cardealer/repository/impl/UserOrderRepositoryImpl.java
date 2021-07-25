@@ -17,8 +17,8 @@ import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
 import static by.varaksa.cardealer.util.DatabasePropertiesReader.DATABASE_PASSWORD;
 
 public class UserOrderRepositoryImpl implements UserOrderRepository {
-    private static Logger logger = LogManager.getLogger();
-    public static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
+    private static final Logger logger = LogManager.getLogger();
+    private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
     private static final String ID = "id";
     private static final String COUNT = "count";
@@ -38,11 +38,21 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
         return userOrder;
     }
 
+    private static final String SAVE_USER_ORDER = "insert into user_orders (order_name, count, created, changed, user_id) " +
+            "values (?,?,?,?,?)";
+    private static final String FIND_ALL_USER_ORDERS = "select * from user_orders";
+    private static final String FIND_USER_ORDER_BY_ID = "select * from user_orders where id = ?";
+    private static final String UPDATE_USER_ORDER_BY_ID = "update user_orders " +
+            "set " +
+            "order_name = ?,  " +
+            "count = ?,  " +
+            "changed = ?,  " +
+            "user_id = ?  " +
+            "where id = ?";
+    private static final String DELETE_USER_ORDER_BY_ID = "delete from user_orders where id = ?";
+
     @Override
     public UserOrder save(UserOrder userOrder) throws RepositoryException {
-        final String saveUserOrder = "insert into user_orders (order_name, count, created, changed, user_id) " +
-                "values (?,?,?,?,?)";
-
         Connection connection;
         PreparedStatement statement;
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -53,7 +63,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(saveUserOrder);
+            statement = connection.prepareStatement(SAVE_USER_ORDER);
 
             statement.setString(1, userOrder.getOrderName());
             statement.setInt(2, userOrder.getCount());
@@ -62,7 +72,6 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
             statement.setLong(5, userOrder.getUserId());
             statement.executeUpdate();
 
-            logger.info("User order with id " + userOrder.getId() + " was saved");
             return userOrder;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -73,8 +82,6 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
 
     @Override
     public List<UserOrder> findAll() {
-        final String findAllUserOrders = "select * from user_orders";
-
         List<UserOrder> result = new ArrayList<>();
         Connection connection;
         Statement statement;
@@ -87,13 +94,12 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(findAllUserOrders);
+            resultSet = statement.executeQuery(FIND_ALL_USER_ORDERS);
 
             while (resultSet.next()) {
                 result.add(parseResultSet(resultSet));
             }
 
-            logger.info("All user orders: " + result);
             return result;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -104,8 +110,6 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
 
     @Override
     public UserOrder find(Long id) throws RepositoryException {
-        final String findUserOrderById = "select * from user_orders where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         ResultSet resultSet;
@@ -116,12 +120,11 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(findUserOrderById);
+            statement = connection.prepareStatement(FIND_USER_ORDER_BY_ID);
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                logger.info("User order with id " + id + " was found");
                 return parseResultSet(resultSet);
             } else {
                 throw new RepositoryException("User order with id " + id + " wasn't found");
@@ -136,14 +139,6 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
 
     @Override
     public UserOrder update(UserOrder userOrder) {
-        final String updateUserOrderById = "update user_orders " +
-                "set " +
-                "order_name = ?,  " +
-                "count = ?,  " +
-                "changed = ?,  " +
-                "user_id = ?  " +
-                "where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -154,7 +149,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(updateUserOrderById);
+            statement = connection.prepareStatement(UPDATE_USER_ORDER_BY_ID);
 
             statement.setString(1, userOrder.getOrderName());
             statement.setInt(2, userOrder.getCount());
@@ -163,7 +158,6 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
             statement.setLong(5, userOrder.getId());
             statement.executeUpdate();
 
-            logger.info("User order with id " + userOrder.getId() + " was updated");
             return userOrder;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
@@ -174,8 +168,6 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
 
     @Override
     public UserOrder delete(Long id) {
-        final String deleteUserOrderById = "delete from user_orders where id = ?";
-
         Connection connection;
         PreparedStatement statement;
         UserOrder userOrder = new UserOrder();
@@ -186,7 +178,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
             connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
                     reader.getProperty(DATABASE_LOGIN),
                     reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(deleteUserOrderById);
+            statement = connection.prepareStatement(DELETE_USER_ORDER_BY_ID);
             statement.setLong(1, id);
             statement.executeUpdate();
 
@@ -201,9 +193,9 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     private void connect() {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver be loaded");
+            logger.info("JDBC driver was loaded from user order repository class");
         } catch (ClassNotFoundException exception) {
-            String errorMessage = "JDBC driver can't be loaded." + exception;
+            String errorMessage = "JDBC driver wasn't loaded from user order repository class." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

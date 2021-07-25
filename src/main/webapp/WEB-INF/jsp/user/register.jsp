@@ -20,7 +20,7 @@
 </nav>
 <div align="center">
     <h2><u>Register form</u></h2>
-    <form action="<%=request.getContextPath()%>/save" method="post">
+    <form action="user/save" method="post">
         <table style="with: 100%">
             <form class="row g-3">
                 <div class="col-md-2">

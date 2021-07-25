@@ -9,8 +9,6 @@ public class Body {
 
     private BodyType bodyType;
 
-    private String vin;
-
     private LocalDateTime created;
 
     private LocalDateTime changed;
@@ -20,12 +18,9 @@ public class Body {
     public Body() {
     }
 
-    public Body(Color color, BodyType bodyType, String vin, LocalDateTime created, LocalDateTime changed, Long carId) {
+    public Body(Color color, BodyType bodyType, Long carId) {
         this.color = color;
         this.bodyType = bodyType;
-        this.vin = vin;
-        this.created = created;
-        this.changed = changed;
         this.carId = carId;
     }
 
@@ -51,14 +46,6 @@ public class Body {
 
     public void setBodyType(BodyType bodyType) {
         this.bodyType = bodyType;
-    }
-
-    public String getVin() {
-        return vin;
-    }
-
-    public void setVin(String vin) {
-        this.vin = vin;
     }
 
     public LocalDateTime getCreated() {
@@ -90,7 +77,6 @@ public class Body {
         return (int) (11 * id
                 + color.hashCode()
                 + bodyType.hashCode()
-                + vin.hashCode()
                 + created.hashCode()
                 + changed.hashCode()
                 + carId.hashCode());
@@ -111,7 +97,6 @@ public class Body {
         return id == body.id
                 && (color == body.color || color != null && color.equals(body.getColor()))
                 && (bodyType == body.bodyType || bodyType != null && bodyType.equals(body.getBodyType()))
-                && (vin == body.vin || vin != null && vin.equals(body.getVin()))
                 && (created == body.created || created != null && created.equals(body.getCreated()))
                 && (changed == body.changed || changed != null && changed.equals(body.getChanged()))
                 && (carId == body.carId || carId != null && carId.equals(body.getCarId()));
@@ -124,7 +109,6 @@ public class Body {
         stringBuilder.append("id ").append(id).append(", ");
         stringBuilder.append("color ").append(color).append(", ");
         stringBuilder.append("body type ").append(bodyType).append(", ");
-        stringBuilder.append("vin ").append(vin).append(", ");
         stringBuilder.append("created ").append(created).append(", ");
         stringBuilder.append("changed ").append(changed).append(", ");
         stringBuilder.append("car id ").append(carId);

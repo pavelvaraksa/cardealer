@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 public class UserOrderServiceImpl implements UserOrderService {
-    private static Logger logger = LogManager.getLogger();
-    private UserOrderRepository userOrderRepository;
+    private static final Logger logger = LogManager.getLogger();
+    private final UserOrderRepository userOrderRepository;
 
     public UserOrderServiceImpl(UserOrderRepository userOrderRepository) {
         this.userOrderRepository = userOrderRepository;
@@ -20,32 +20,12 @@ public class UserOrderServiceImpl implements UserOrderService {
 
     @Override
     public UserOrder save(UserOrder userOrder) throws ServiceException {
-        List<UserOrder> existingUserOrders;
-
-        try {
-            existingUserOrders = userOrderRepository.findAll();
-        } catch (RepositoryException exception) {
-            String errorMessage = "Can't get all user orders";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-
-        for (UserOrder existingUserOrder : existingUserOrders) {
-            boolean hasSameUserOrder = existingUserOrder.getId().equals(userOrder.getId());
-
-            if (hasSameUserOrder) {
-                String errorMessage = "User order with id " + userOrder.getId() + " already exists";
-                logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
-            }
-        }
-
         try {
             UserOrder savedUserOrder = userOrderRepository.save(userOrder);
             logger.info("User order " + userOrder + " was saved");
             return savedUserOrder;
         } catch (RepositoryException exception) {
-            throw new ServiceException("User order service exception while trying to save an user order." + exception);
+            throw new ServiceException("User order service exception while trying to save user order." + exception);
         }
     }
 
@@ -55,17 +35,19 @@ public class UserOrderServiceImpl implements UserOrderService {
 
         try {
             existingUserOrders = userOrderRepository.findAll();
+
             if (existingUserOrders.isEmpty()) {
-                String errorMessage = "A list is empty";
+                String errorMessage = "User orders list is empty";
                 logger.error(errorMessage);
-                throw new ServiceException(errorMessage);
             } else {
                 logger.info("User orders exist");
                 return existingUserOrders;
             }
+
         } catch (RepositoryException exception) {
             throw new ServiceException("User order service exception while trying to find all user orders." + exception);
         }
+        return existingUserOrders;
     }
 
     @Override
@@ -80,14 +62,14 @@ public class UserOrderServiceImpl implements UserOrderService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException exception) {
-            throw new ServiceException("User order service exception while trying to find an user order." + exception);
+            throw new ServiceException("User order service exception while trying to find user order." + exception);
         }
 
         try {
             logger.info("User order with id " + id + " exists");
             return userOrderRepository.find(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get an user order";
+            String errorMessage = "Can't get user order";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -95,12 +77,11 @@ public class UserOrderServiceImpl implements UserOrderService {
 
     @Override
     public UserOrder update(UserOrder userOrder) throws ServiceException {
-
         try {
             logger.info("User order with id " + userOrder.getId() + " was updated");
             return userOrderRepository.update(userOrder);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get an user order";
+            String errorMessage = "Can't get user order";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -118,14 +99,14 @@ public class UserOrderServiceImpl implements UserOrderService {
                 throw new ServiceException(errorMessage);
             }
         } catch (RepositoryException exception) {
-            throw new ServiceException("User order service exception while trying to delete an user order." + exception);
+            throw new ServiceException("User order service exception while trying to delete user order." + exception);
         }
 
         try {
             logger.info("User order with id " + id + " was deleted");
             return userOrderRepository.delete(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get an user order";
+            String errorMessage = "Can't get user order";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }

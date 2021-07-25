@@ -7,7 +7,6 @@ public enum Country {
     USA,
     JAPAN,
     SOUTH_KOREA,
-    UK,
     CZECH,
     SWEDEN
 }
