@@ -20,6 +20,13 @@ public class Transmission {
     public Transmission() {
     }
 
+    public Transmission(TransmissionType transmissionType, Integer gearsCount, Double weight, Long carId) {
+        this.transmissionType = transmissionType;
+        this.gearsCount = gearsCount;
+        this.weight = weight;
+        this.carId = carId;
+    }
+
     public Long getId() {
         return id;
     }

@@ -22,6 +22,18 @@ public class Engine {
     public Engine() {
     }
 
+    public Engine(EngineType engineType,
+                  FuelType fuelType,
+                  Double volume,
+                  Integer cylindersCount,
+                  Long carId) {
+        this.engineType = engineType;
+        this.fuelType = fuelType;
+        this.volume = volume;
+        this.cylindersCount = cylindersCount;
+        this.carId = carId;
+    }
+
     public Long getId() {
         return id;
     }

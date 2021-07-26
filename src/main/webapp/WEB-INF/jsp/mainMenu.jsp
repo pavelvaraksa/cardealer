@@ -32,6 +32,12 @@
                     <a class="nav-link" href="http://localhost:8080/body/find-all">Bodies list</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/engine/find-all">Engines list</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/transmission/find-all">Transmissions list</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="http://localhost:8080/dealer/find-all">Dealer list</a>
                 </li>
             </ul>

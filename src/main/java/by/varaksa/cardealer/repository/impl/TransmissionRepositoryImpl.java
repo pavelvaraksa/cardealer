@@ -24,7 +24,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
     private static final String ID = "id";
     private static final String TRANSMISSION_TYPE = "transmission_type";
     private static final String GEARS_COUNT = "gears_count";
-    private static final String WEIGHT = "volume";
+    private static final String WEIGHT = "weight";
     private static final String CREATED = "created";
     private static final String CHANGED = "changed";
     private static final String CAR_ID = "car_id";

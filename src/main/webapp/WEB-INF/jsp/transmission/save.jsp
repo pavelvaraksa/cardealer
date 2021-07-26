@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="by.varaksa.cardealer.entity.Color" %>
-<%@ page import="by.varaksa.cardealer.entity.BodyType" %>
+<%@ page import="by.varaksa.cardealer.entity.TransmissionType" %>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -26,32 +25,21 @@
         <table style="with: 100%">
             <form class="row g-3">
                 <div class="col-md-2">
-                    <label class="form-label"><u>Color</u>
-                        <select name="color">
-                            <option value="BLACK">${Color.BLACK}</option>
-                            <option value="WHITE">${Color.WHITE}</option>
-                            <option value="RED">${Color.RED}</option>
-                            <option value="GREEN">${Color.GREEN}</option>
-                            <option value="BLUE">${Color.BLUE}</option>
-                            <option value="YELLOW">${Color.YELLOW}</option>
-                            <option value="BROWN">${Color.BROWN}</option>
-                            <option value="SILVER">${Color.SILVER}</option>
-                            <option value="ORANGE">${Color.ORANGE}</option>
-                            <option value="GREY">${Color.GREY}</option>
-                            <option value="CHAMPAGNE">${Color.CHAMPAGNE}</option>
+                    <label class="form-label"><u>Transmission type</u>
+                        <select name="transmission_type">
+                            <option value="AUTOMATIC">${TransmissionType.AUTOMATIC}</option>
+                            <option value="MECHANIC">${TransmissionType.MECHANIC}</option>
+                            <option value="ROBOTIC">${TransmissionType.ROBOTIC}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label"><u>Body type</u>
-                        <select name="body_type">
-                            <option value="SEDAN">${BodyType.SEDAN}</option>
-                            <option value="COUPE">${BodyType.COUPE}</option>
-                            <option value="TOURING">${BodyType.TOURING}</option>
-                            <option value="HATCHBACK">${BodyType.HATCHBACK}</option>
-                            <option value="SUV">${BodyType.SUV}</option>
-                        </select>
-                    </label>
+                    <label for="validationGearsCount" class="form-label"><u>Gears count</u></label>
+                    <input type="text" class="form-control" id="validationGearsCount" name="gears_count" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationWeight" class="form-label"><u>Weight</u></label>
+                    <input type="text" class="form-control" id="validationWeight" name="weight" required>
                 </div>
                 <div class="col-md-2">
                     <label for="validationCarId" class="form-label"><u>Car id </u></label>
@@ -64,7 +52,7 @@
         </div>
     </form>
     <label>
-        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/body/find-all" role="button">Return to
+        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/transmission/find-all" role="button">Return to
             previous page</a>
     </label>
 </div>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="by.varaksa.cardealer.entity.Role" %>
+<%@ page import="by.varaksa.cardealer.entity.EngineType" %>
+<%@ page import="by.varaksa.cardealer.entity.FuelType" %>
 
 <html>
 <head>
@@ -21,62 +22,46 @@
     </div>
 </nav>
 <div align="center">
-    <h2><u>Update form</u></h2>
+    <h2><u>Engine update form</u></h2>
     <form action="update" method="post">
-        <table style="with: 100%">
-            <form class="row g-3">
+        <form class="row g-3">
+            <div class="col-md-2">
+                <input type="hidden" name="id" value="${param.id}">
+            </div>
+            <table style="with: 100%">
                 <div class="col-md-2">
-                    <input type="hidden" name="id" value="${param.id}">
-                </div>
-                <div class="col-md-2">
-                    <label for="validationFirstname" class="form-label"><u>Firstname</u>
-                        <input type="text" class="form-control" id="validationFirstname" name="firstname"
-                               value="${param.firstName}" placeholder=${param.firstName} required>
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label for="validationLastname" class="form-label"><u>Lastname</u>
-                        <input type="text" class="form-control" id="validationLastname" name="lastname"
-                               value="${param.lastname}" placeholder=${param.lastName} required>
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label for="validationBirthdate" class="form-label"><u>Birth date</u>
-                        <input type="date" class="form-control" id="validationBirthdate" name="birth_date"
-                               value="${param.birth_date}" placeholder=${param.birthDate}>
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label for="validationEmail" class="form-label"><u>Email</u>
-                        <input type="text" class="form-control" id="validationEmail" name="email"
-                               value="${param.email}" placeholder=${param.email} required>
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label"><u>Role</u>
-                        <select name="role">
-                            <option value="USER">${Role.USER}</option>
-                            <option value="MANAGER">${Role.MANAGER}</option>
-                            <option value="ADMIN">${Role.ADMIN}</option>
+                    <label class="form-label"><u>Engine type</u>
+                        <select name="engine_type">
+                            <option value="FUEL">${EngineType.FUEL}</option>
+                            <option value="ELEKTRIC">${EngineType.ELEKTRIC}</option>
                         </select>
                     </label>
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label"><u>Is blocked</u>
-                        <select name="is_blocked">
-                            <option value=false>${false}</option>
-                            <option value=true>${true}</option>
+                    <label class="form-label"><u>Fuel type</u>
+                        <select name="fuel_type">
+                            <option value="PETROL">${FuelType.PETROL}</option>
+                            <option value="DIESEL">${FuelType.DIESEL}</option>
                         </select>
                     </label>
                 </div>
-            </form>
+                <div class="col-md-2">
+                    <label for="validationVolume" class="form-label"><u>Volume</u></label>
+                    <input type="text" class="form-control" id="validationVolume" name="volume" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationCylindersCount" class="form-label"><u>Cylinders count</u></label>
+                    <input type="text" class="form-control" id="validationCylindersCount" name="cylinders_count"
+                           required>
+                </div>
+        </form>
         </table>
         <div class="col-12">
             <input class="btn btn-outline-success btn-sm" type="submit" value="Update">
         </div>
     </form>
     <label>
-        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/find-all" role="button">Return to
+        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/engine/find-all" role="button">Return to
             previous
             page</a>
     </label>

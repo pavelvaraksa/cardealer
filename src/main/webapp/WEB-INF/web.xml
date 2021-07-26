@@ -44,11 +44,29 @@
         <url-pattern>/dealer</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Engine controller</servlet-name>
+        <servlet-class>by.varaksa.cardealer.controller.EngineController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Engine controller</servlet-name>
+        <url-pattern>/engine</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Transmission controller</servlet-name>
+        <servlet-class>by.varaksa.cardealer.controller.TransmissionController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Transmission controller</servlet-name>
+        <url-pattern>/transmission</url-pattern>
+    </servlet-mapping>
 
 
 
-
-    <!--Users servlets and mappings -->
+    <!--User servlets and mappings -->
     <servlet>
         <servlet-name>Register user</servlet-name>
         <jsp-file>/WEB-INF/jsp/user/register.jsp</jsp-file>
@@ -110,7 +128,7 @@
     </servlet-mapping>
 
 
-    <!--Bodies servlets and mappings -->
+    <!--Body servlets and mappings -->
     <servlet>
         <servlet-name>Save body</servlet-name>
         <jsp-file>/WEB-INF/jsp/body/save.jsp</jsp-file>
@@ -151,7 +169,7 @@
     </servlet-mapping>
 
 
-    <!--Cars servlets and mappings -->
+    <!--Car servlets and mappings -->
     <servlet>
         <servlet-name>Save car</servlet-name>
         <jsp-file>/WEB-INF/jsp/car/save.jsp</jsp-file>
@@ -192,7 +210,7 @@
     </servlet-mapping>
 
 
-    <!--Dealers servlets and mappings -->
+    <!--Dealer servlets and mappings -->
     <servlet>
         <servlet-name>Save dealer</servlet-name>
         <jsp-file>/WEB-INF/jsp/dealer/save.jsp</jsp-file>
@@ -233,8 +251,86 @@
     </servlet-mapping>
 
 
+    <!--Engine servlets and mappings -->
+    <servlet>
+        <servlet-name>Save engine</servlet-name>
+        <jsp-file>/WEB-INF/jsp/engine/save.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Save engine</servlet-name>
+        <url-pattern>/engine/save-engine-page</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Engines list</servlet-name>
+        <jsp-file>/WEB-INF/jsp/engine/findAll.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Engines list</servlet-name>
+        <url-pattern>/find-all-engines-page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Update engine</servlet-name>
+        <jsp-file>/WEB-INF/jsp/engine/update.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Update engine</servlet-name>
+        <url-pattern>/engine/update-engine-page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Delete engine</servlet-name>
+        <jsp-file>/WEB-INF/jsp/engine/delete.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Delete engine</servlet-name>
+        <url-pattern>/engine/delete-engine-page</url-pattern>
+    </servlet-mapping>
 
 
+    <!--Transmission servlets and mappings -->
+    <servlet>
+        <servlet-name>Save transmission</servlet-name>
+        <jsp-file>/WEB-INF/jsp/transmission/save.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Save transmission</servlet-name>
+        <url-pattern>/transmission/save-transmission-page</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Transmissions list</servlet-name>
+        <jsp-file>/WEB-INF/jsp/transmission/findAll.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Transmissions list</servlet-name>
+        <url-pattern>/find-all-transmissions-page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Update transmission</servlet-name>
+        <jsp-file>/WEB-INF/jsp/transmission/update.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Update transmission</servlet-name>
+        <url-pattern>/transmission/update-transmission-page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Delete transmission</servlet-name>
+        <jsp-file>/WEB-INF/jsp/transmission/delete.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Delete transmission</servlet-name>
+        <url-pattern>/transmission/delete-transmission-page</url-pattern>
+    </servlet-mapping>
 
 
 

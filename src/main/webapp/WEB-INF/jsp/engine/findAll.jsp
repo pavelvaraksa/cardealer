@@ -21,53 +21,52 @@
     </div>
 </nav>
 <div align="center">
-    <h2><u>Users list</u></h2>
-    <form action="<%=request.getContextPath()%>/find-all" method="get">
+    <h2><u>Engines list</u></h2>
+    <td>
+        <form action="save-engine-page" method="post">
+            <input class="btn btn-outline-success btn-sm" type="submit" value="Add new">
+        </form>
+    </td>
+    <form action="engine/find-all" method="get">
         <tbody>
         <table class="table table-bordered">
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Birth date</th>
-                <th>Login</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Is blocked</th>
+                <th>Engine type</th>
+                <th>Fuel type</th>
+                <th>Volume</th>
+                <th>Cylinders count</th>
                 <th>Created</th>
                 <th>Changed</th>
+                <th>Car id</th>
             </tr>
             </thead>
 
-            <c:forEach var="user" items="${userList}">
+            <c:forEach var="engine" items="${engineList}">
 
                 <tr>
-                    <td>${user.id}</td>
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td>
-                    <td>${user.birthDate}</td>
-                    <td>${user.login}</td>
-                    <td>${user.email}</td>
-                    <td>${user.role}</td>
-                    <td>${user.blocked}</td>
-                    <td>${user.created}</td>
-                    <td>${user.changed}</td>
+                    <td>${engine.id}</td>
+                    <td>${engine.engineType}</td>
+                    <td>${engine.fuelType}</td>
+                    <td>${engine.volume}</td>
+                    <td>${engine.cylindersCount}</td>
+                    <td>${engine.created}</td>
+                    <td>${engine.changed}</td>
+                    <td>${engine.carId}</td>
                     <td>
-                        <form action="update-page" method="post">
-                            <input type="hidden" class="form-control" name="id" value="${user.id}">
-                            <input type="hidden" class="form-control" name="firstName" value="${user.firstName}">
-                            <input type="hidden" class="form-control" name="lastName" value="${user.lastName}">
-                            <input type="hidden" class="form-control" name="birthDate" value="${user.birthDate}">
-                            <input type="hidden" class="form-control" name="email" value="${user.email}">
-                            <input type="hidden" class="form-control" name="role" value="${user.role}">
-                            <input type="hidden" class="form-control" name="blocked" value="${user.blocked}">
+                        <form action="update-engine-page" method="post">
+                            <input type="hidden" class="form-control" name="id" value="${engine.id}">
+                            <input type="hidden" class="form-control" name="engineType" value="${engine.engineType}">
+                            <input type="hidden" class="form-control" name="fuelType" value="${engine.fuelType}">
+                            <input type="hidden" class="form-control" name="volume" value="${engine.volume}">
+                            <input type="hidden" class="form-control" name="cylindersCount" value="${engine.cylindersCount}">
                             <input class="btn btn-outline-warning btn-sm" type="submit" value="Update">
                         </form>
                     </td>
                     <td>
-                        <form action="delete-page" method="post">
-                            <input type="hidden" class="form-control" name="id" value="${user.id}">
+                        <form action="delete-engine-page" method="post">
+                            <input type="hidden" class="form-control" name="id" value="${engine.id}">
                             <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete">
                         </form>
                     </td>
