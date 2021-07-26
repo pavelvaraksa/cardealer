@@ -13,7 +13,7 @@ public class Car {
 
     private Integer guaranteePeriod;
 
-    private Double price;
+    private Integer price;
 
     private LocalDateTime created;
 
@@ -28,7 +28,7 @@ public class Car {
                Model model,
                Country issueCountry,
                Integer guaranteePeriod,
-               Double price) {
+               Integer price) {
         this.brand = brand;
         this.model = model;
         this.issueCountry = issueCountry;
@@ -76,11 +76,11 @@ public class Car {
         this.guaranteePeriod = guaranteePeriod;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

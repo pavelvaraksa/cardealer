@@ -20,11 +20,11 @@
     </div>
 </nav>
 <div align="center">
-    <h3><u>Would you like to delete user with id ${param.id}?</u></h3>
+    <h3><u>Would you like to delete dealer with id ${param.id}?</u></h3>
 
     <form action="delete" method="post">
         <input type="hidden" name="id" value="${param.id}">
-        <a class="btn btn-outline-success btn-sm" href="http://localhost:8080/find-all" role="button">No</a>
+        <a class="btn btn-outline-success btn-sm" href="http://localhost:8080/dealer/find-all" role="button">No</a>
         <input class="btn btn-outline-danger btn-sm" type="submit" value="Yes">
     </form>
 </div>

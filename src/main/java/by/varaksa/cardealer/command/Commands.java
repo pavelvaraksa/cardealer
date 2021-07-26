@@ -24,6 +24,13 @@ public enum Commands {
     DELETE_CAR("/car/delete"),
     DEFAULT_CAR_VALUE("/car/find-all"),
 
+    SAVE_DEALER("/dealer/save"),
+    FIND_ALL_DEALERS("/dealer/find-all"),
+    FIND_DEALER_BY_ID("/dealer/find-by-id"),
+    UPDATE_DEALER("/dealer/update"),
+    DELETE_DEALER("/dealer/delete"),
+    DEFAULT_DEALER_VALUE("/dealer/find-all"),
+
     SAVE_ENGINE("/engine/save"),
     FIND_ALL_ENGINES("/engine/find-all"),
     FIND_ENGINE_BY_ID("/engine/find-by-id"),

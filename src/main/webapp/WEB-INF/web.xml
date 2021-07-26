@@ -34,6 +34,19 @@
         <url-pattern>/car</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Dealer controller</servlet-name>
+        <servlet-class>by.varaksa.cardealer.controller.DealerController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Dealer controller</servlet-name>
+        <url-pattern>/dealer</url-pattern>
+    </servlet-mapping>
+
+
+
+
 
     <!--Users servlets and mappings -->
     <servlet>
@@ -176,6 +189,47 @@
     <servlet-mapping>
         <servlet-name>Delete car</servlet-name>
         <url-pattern>/car/delete-car-page</url-pattern>
+    </servlet-mapping>
+
+
+    <!--Dealers servlets and mappings -->
+    <servlet>
+        <servlet-name>Save dealer</servlet-name>
+        <jsp-file>/WEB-INF/jsp/dealer/save.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Save dealer</servlet-name>
+        <url-pattern>/dealer/save-dealer-page</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Dealers list</servlet-name>
+        <jsp-file>/WEB-INF/jsp/dealer/findAll.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Dealers list</servlet-name>
+        <url-pattern>/find-all-dealers-page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Update dealer</servlet-name>
+        <jsp-file>/WEB-INF/jsp/dealer/update.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Update dealer</servlet-name>
+        <url-pattern>/dealer/update-dealer-page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Delete dealer</servlet-name>
+        <jsp-file>/WEB-INF/jsp/dealer/delete.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Delete dealer</servlet-name>
+        <url-pattern>/dealer/delete-dealer-page</url-pattern>
     </servlet-mapping>
 
 

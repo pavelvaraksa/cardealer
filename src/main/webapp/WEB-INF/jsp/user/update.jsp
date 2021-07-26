@@ -21,7 +21,7 @@
     </div>
 </nav>
 <div align="center">
-    <h2><u>Update form</u></h2>
+    <h2><u>User update form</u></h2>
     <form action="update" method="post">
         <table style="with: 100%">
             <form class="row g-3">

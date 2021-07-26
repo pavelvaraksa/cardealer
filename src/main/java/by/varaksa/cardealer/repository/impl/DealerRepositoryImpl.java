@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
-import static by.varaksa.cardealer.util.DatabasePropertiesReader.DATABASE_PASSWORD;
 
 public class DealerRepositoryImpl implements DealerRepository {
     private static final Logger logger = LogManager.getLogger();
@@ -24,7 +23,7 @@ public class DealerRepositoryImpl implements DealerRepository {
     private static final String ID = "id";
     private static final String NAME = "name";
     private static final String ADDRESS = "address";
-    private static final String FOUNDATION_YEAR = "foundation_year";
+    private static final String FOUNDATION_DATE = "foundation_date";
     private static final String CITY = "city";
     private static final String CREATED = "created";
     private static final String CHANGED = "changed";
@@ -35,7 +34,7 @@ public class DealerRepositoryImpl implements DealerRepository {
         dealer.setId(resultSet.getLong(ID));
         dealer.setName(resultSet.getString(NAME));
         dealer.setAddress(resultSet.getString(ADDRESS));
-        dealer.setFoundationYear(resultSet.getInt(FOUNDATION_YEAR));
+        dealer.setFoundationDate(resultSet.getDate(FOUNDATION_DATE).toLocalDate());
         dealer.setCity(City.valueOf(resultSet.getString(CITY)));
         dealer.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
         dealer.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
@@ -43,7 +42,7 @@ public class DealerRepositoryImpl implements DealerRepository {
         return dealer;
     }
 
-    private static final String SAVE_DEALER = "insert into dealers (name, address, foundation_year, city, created, changed, car_id) " +
+    private static final String SAVE_DEALER = "insert into dealers (name, address, foundation_date, city, created, changed, car_id) " +
             "values (?,?,?,?,?,?,?)";
     private static final String FIND_ALL_DEALERS = "select * from dealers";
     private static final String FIND_DEALER_BY_ID = "select * from dealers where id = ?";
@@ -51,7 +50,7 @@ public class DealerRepositoryImpl implements DealerRepository {
             "set " +
             "name = ?,  " +
             "address = ?,  " +
-            "foundation_year = ?,  " +
+            "foundation_date = ?,  " +
             "city = ?,  " +
             "changed = ?,  " +
             "car_id = ?  " +
@@ -74,7 +73,7 @@ public class DealerRepositoryImpl implements DealerRepository {
 
             statement.setString(1, dealer.getName());
             statement.setString(2, dealer.getAddress());
-            statement.setInt(3, dealer.getFoundationYear());
+            statement.setDate(3, Date.valueOf(dealer.getFoundationDate()));
             statement.setString(4, String.valueOf(dealer.getCity()));
             statement.setTimestamp(5, creationTimestamp);
             statement.setTimestamp(6, creationTimestamp);
@@ -162,7 +161,7 @@ public class DealerRepositoryImpl implements DealerRepository {
 
             statement.setString(1, dealer.getName());
             statement.setString(2, dealer.getAddress());
-            statement.setInt(3, dealer.getFoundationYear());
+            statement.setDate(3, Date.valueOf(dealer.getFoundationDate()));
             statement.setString(4, String.valueOf(dealer.getCity()));
             statement.setTimestamp(5, updateTimestamp);
             statement.setLong(6, dealer.getCarId());

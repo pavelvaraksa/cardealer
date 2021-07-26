@@ -96,21 +96,15 @@
                 <div class="col-md-2">
                     <label for="validationGuaranteePeriod" class="form-label"><u>Guarantee period</u>
                         <input type="text" class="form-control" id="validationGuaranteePeriod" name="guarantee_period"
-                               value="${param.guaranteePeriod}" placeholder=${param.guaranteePeriod} required>
+                               value="${param.guaranteePeriod}" placeholder="${param.guaranteePeriod}" required>
                     </label>
                 </div>
                 <div class="col-md-2">
                     <label for="validationPrice" class="form-label"><u>Price</u>
                         <input type="text" class="form-control" id="validationPrice" name="price"
-                               value="${param.price}" placeholder=${param.price} required>
+                               value="${param.price}" placeholder="${param.price}" required>
                     </label>
                 </div>
-<%--                <div class="col-md-2">--%>
-<%--                    <label for="validationUserOrderId" class="form-label"><u>User order id</u>--%>
-<%--                        <input type="text" class="form-control" id="validationUserOrderId" name="user_order_id"--%>
-<%--                               value="${param.userOrderId}" placeholder=${param.userOrderId} required>--%>
-<%--                    </label>--%>
-<%--                </div>--%>
             </form>
         </table>
         <div class="col-12">

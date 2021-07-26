@@ -1,5 +1,6 @@
 package by.varaksa.cardealer.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Dealer {
@@ -9,7 +10,7 @@ public class Dealer {
 
     private String address;
 
-    private Integer foundationYear;
+    private LocalDate foundationDate;
 
     private City city;
 
@@ -20,6 +21,18 @@ public class Dealer {
     private Long carId;
 
     public Dealer() {
+    }
+
+    public Dealer(String name,
+                  String address,
+                  LocalDate foundationDate,
+                  City city,
+                  Long carId) {
+        this.name = name;
+        this.address = address;
+        this.foundationDate = foundationDate;
+        this.city = city;
+        this.carId = carId;
     }
 
     public Long getId() {
@@ -46,12 +59,12 @@ public class Dealer {
         this.address = address;
     }
 
-    public Integer getFoundationYear() {
-        return foundationYear;
+    public LocalDate getFoundationDate() {
+        return foundationDate;
     }
 
-    public void setFoundationYear(Integer foundationYear) {
-        this.foundationYear = foundationYear;
+    public void setFoundationDate(LocalDate foundationDate) {
+        this.foundationDate = foundationDate;
     }
 
     public City getCity() {
@@ -91,7 +104,7 @@ public class Dealer {
         return (int) (11 * id
                 + name.hashCode()
                 + address.hashCode()
-                + foundationYear.hashCode()
+                + foundationDate.hashCode()
                 + city.hashCode()
                 + created.hashCode()
                 + changed.hashCode()
@@ -113,7 +126,7 @@ public class Dealer {
         return id == dealer.id
                 && (name == dealer.name || name != null && name.equals(dealer.getName()))
                 && (address == dealer.address || address != null && address.equals(dealer.getAddress()))
-                && (foundationYear == dealer.foundationYear || foundationYear != null && foundationYear.equals(dealer.getFoundationYear()))
+                && (foundationDate == dealer.foundationDate || foundationDate != null && foundationDate.equals(dealer.getFoundationDate()))
                 && (city == dealer.city || city != null && city.equals(dealer.getCity()))
                 && (created == dealer.created || created != null && created.equals(dealer.getCreated()))
                 && (changed == dealer.changed || changed != null && changed.equals(dealer.getChanged()))
@@ -127,7 +140,7 @@ public class Dealer {
         stringBuilder.append("id ").append(id).append(", ");
         stringBuilder.append("name ").append(name).append(", ");
         stringBuilder.append("address ").append(address).append(", ");
-        stringBuilder.append("foundation year ").append(foundationYear).append(", ");
+        stringBuilder.append("foundation date ").append(foundationDate).append(", ");
         stringBuilder.append("city ").append(city).append(", ");
         stringBuilder.append("created ").append(created).append(", ");
         stringBuilder.append("changed ").append(changed).append(", ");

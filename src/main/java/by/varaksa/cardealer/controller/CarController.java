@@ -1,8 +1,10 @@
 package by.varaksa.cardealer.controller;
 
 import by.varaksa.cardealer.command.Commands;
-import by.varaksa.cardealer.entity.*;
-import by.varaksa.cardealer.exception.ControllerException;
+import by.varaksa.cardealer.entity.Brand;
+import by.varaksa.cardealer.entity.Car;
+import by.varaksa.cardealer.entity.Country;
+import by.varaksa.cardealer.entity.Model;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.repository.CarRepository;
@@ -78,32 +80,20 @@ public class CarController extends HttpServlet {
                 default:
                     break;
             }
-        } catch (ControllerException | ServiceException | IOException | RepositoryException | ServletException exception) {
+        } catch (ServiceException | IOException | RepositoryException | ServletException exception) {
             String errorMessage = "Car controller exception." + exception;
             logger.error(errorMessage);
         }
     }
 
-    private void saveCar(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServiceException, RepositoryException, ServletException {
+    private void saveCar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException {
         Brand brand = Brand.valueOf(request.getParameter("brand"));
         Model model = Model.valueOf(request.getParameter("model"));
         Country country = Country.valueOf(request.getParameter("issue_country"));
         Integer guaranteePeriod = Integer.valueOf((request.getParameter("guarantee_period")));
-        Double price = Double.valueOf((request.getParameter("price")));
+        Integer price = Integer.valueOf((request.getParameter("price")));
         Car car = new Car(brand, model, country, guaranteePeriod, price);
 
-        List<Car> existingCars = carService.findAll();
-
-        for (Car existingCar : existingCars) {
-            boolean hasSameCar = existingCar.getId().equals(car.getId());
-
-            if (hasSameCar) {
-                String errorMessage = "Car with id " + car.getId() + " already exists";
-                logger.error(errorMessage);
-                response.sendRedirect("/save-car-page");
-                throw new ControllerException(errorMessage);
-            }
-        }
         carService.save(car);
         response.sendRedirect("/car/find-all");
     }
@@ -132,6 +122,8 @@ public class CarController extends HttpServlet {
         car.setModel(Model.valueOf(request.getParameter("model")));
         car.setIssueCountry(Country.valueOf((request.getParameter("issue_country"))));
         car.setGuaranteePeriod(Integer.valueOf(request.getParameter("guarantee_period")));
+        car.setPrice(Integer.valueOf((request.getParameter("price"))));
+        car.setUserOrderId(Long.valueOf((request.getParameter("user_order_id"))));
 
         carService.update(car);
         response.sendRedirect("/car/find-all");

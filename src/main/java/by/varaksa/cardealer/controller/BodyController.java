@@ -92,18 +92,6 @@ public class BodyController extends HttpServlet {
         Long carId = Long.valueOf(request.getParameter("car_id"));
         Body body = new Body(color, bodyType, carId);
 
-        List<Body> existingBodies = bodyService.findAll();
-
-        for (Body existingBody : existingBodies) {
-            boolean hasSameBody = existingBody.getId().equals(body.getId());
-
-            if (hasSameBody) {
-                String errorMessage = "Body with id " + body.getId() + " already exists";
-                logger.error(errorMessage);
-                response.sendRedirect("/save-body-page");
-                throw new ControllerException(errorMessage);
-            }
-        }
         bodyService.save(body);
         response.sendRedirect("/body/find-all");
     }
@@ -130,7 +118,6 @@ public class BodyController extends HttpServlet {
 
         body.setColor(Color.valueOf(request.getParameter("color")));
         body.setBodyType(BodyType.valueOf(request.getParameter("body_type")));
-        body.setCarId(Long.valueOf(request.getParameter("car_id")));
 
         bodyService.update(body);
         response.sendRedirect("/body/find-all");

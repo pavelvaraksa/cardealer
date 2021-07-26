@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="by.varaksa.cardealer.entity.Color" %>
 <%@ page import="by.varaksa.cardealer.entity.BodyType" %>
-
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -22,13 +21,10 @@
     </div>
 </nav>
 <div align="center">
-    <h2><u>Body update form</u></h2>
-    <form action="update" method="post">
+    <h2><u>Body save form</u></h2>
+    <form action="save" method="post">
         <table style="with: 100%">
             <form class="row g-3">
-                <div class="col-md-2">
-                    <input type="hidden" name="id" value="${param.id}">
-                </div>
                 <div class="col-md-2">
                     <label class="form-label"><u>Color</u>
                         <select name="color">
@@ -57,16 +53,19 @@
                         </select>
                     </label>
                 </div>
+                <div class="col-md-2">
+                    <label for="validationCarId" class="form-label"><u>Car id </u></label>
+                    <input type="text" class="form-control" id="validationCarId" name="car_id" required>
+                </div>
             </form>
         </table>
         <div class="col-12">
-            <input class="btn btn-outline-success btn-sm" type="submit" value="Update">
+            <input class="btn btn-outline-success btn-sm" type="submit" value="Save">
         </div>
     </form>
     <label>
         <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/body/find-all" role="button">Return to
-            previous
-            page</a>
+            previous page</a>
     </label>
 </div>
 </body>

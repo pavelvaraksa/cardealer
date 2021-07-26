@@ -23,7 +23,7 @@
     </div>
 </nav>
 <div align="center">
-    <h2><u>Update form</u></h2>
+    <h2><u>Car update form</u></h2>
     <form action="update" method="post">
         <table style="with: 100%">
             <form class="row g-3">
@@ -107,6 +107,12 @@
                     <label for="validationPrice" class="form-label"><u>Price</u>
                         <input type="text" class="form-control" id="validationPrice" name="price"
                                value="${param.price}" placeholder=${param.price} required>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationUserOrderId" class="form-label"><u>User order id</u>
+                        <input type="text" class="form-control" id="validationUserOrderId" name="user_order_id"
+                               value="${param.userOrderId}" placeholder="${param.userOrderId}" required>
                     </label>
                 </div>
             </form>

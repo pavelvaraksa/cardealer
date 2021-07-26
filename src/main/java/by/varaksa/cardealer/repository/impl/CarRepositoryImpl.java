@@ -38,7 +38,7 @@ public class CarRepositoryImpl implements CarRepository {
         car.setModel(Model.valueOf(resultSet.getString(MODEL)));
         car.setIssueCountry(Country.valueOf(resultSet.getString(ISSUE_COUNTRY)));
         car.setGuaranteePeriod(resultSet.getInt(GUARANTEE_PERIOD));
-        car.setPrice(resultSet.getDouble(PRICE));
+        car.setPrice(resultSet.getInt(PRICE));
         car.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
         car.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
         car.setUserOrderId(resultSet.getLong(USER_ORDER_ID));
@@ -80,7 +80,7 @@ public class CarRepositoryImpl implements CarRepository {
             statement.setString(2, String.valueOf(car.getModel()));
             statement.setString(3, String.valueOf(car.getIssueCountry()));
             statement.setInt(4, car.getGuaranteePeriod());
-            statement.setDouble(5, car.getPrice());
+            statement.setInt(5, car.getPrice());
             statement.setTimestamp(6, creationTimestamp);
             statement.setTimestamp(7, creationTimestamp);
             //statement.setLong(9, car.getUserOrderId());
@@ -169,7 +169,7 @@ public class CarRepositoryImpl implements CarRepository {
             statement.setString(2, String.valueOf(car.getModel()));
             statement.setString(3, String.valueOf(car.getIssueCountry()));
             statement.setInt(4, car.getGuaranteePeriod());
-            statement.setDouble(5, car.getPrice());
+            statement.setInt(5, car.getPrice());
             statement.setTimestamp(6, updateTimestamp);
             statement.setLong(7, car.getUserOrderId());
             statement.setLong(8, car.getId());

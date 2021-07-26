@@ -7,10 +7,4 @@ public enum City {
     GOMEL,
     VITEBSK,
     GRODNO,
-    PINSK,
-    BARANOVICHI,
-    POLOTSK,
-    SOLIGORSK,
-    BORISOV,
-    ORSHA
 }
