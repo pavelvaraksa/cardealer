@@ -31,13 +31,13 @@
                 <div class="col-md-2">
                     <label for="validationFirstname" class="form-label"><u>Firstname</u>
                         <input type="text" class="form-control" id="validationFirstname" name="firstname"
-                               value="${param.firstName}" placeholder=${param.firstName} required>
+                               value="${param.firstName}" placeholder="${param.firstName}" required>
                     </label>
                 </div>
                 <div class="col-md-2">
                     <label for="validationLastname" class="form-label"><u>Lastname</u>
                         <input type="text" class="form-control" id="validationLastname" name="lastname"
-                               value="${param.lastName}" placeholder=${param.lastName} required>
+                               value="${param.lastName}" placeholder="${param.lastName}" required>
                     </label>
                 </div>
                 <div class="col-md-2">
@@ -49,14 +49,13 @@
                 <div class="col-md-2">
                     <label for="validationEmail" class="form-label"><u>Email</u>
                         <input type="email" class="form-control" id="validationEmail" name="email"
-                               value="${param.email}" placeholder=${param.email} required>
+                               value="${param.email}" placeholder="${param.email}" required>
                     </label>
                 </div>
                 <div class="col-md-2">
                     <label class="form-label"><u>Role</u>
                         <select name="role">
                             <option value="USER">${Role.USER}</option>
-                            <option value="MANAGER">${Role.MANAGER}</option>
                             <option value="ADMIN">${Role.ADMIN}</option>
                         </select>
                     </label>

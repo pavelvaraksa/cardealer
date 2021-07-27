@@ -10,19 +10,19 @@ public enum Commands {
     DELETE_USER("/user/delete"),
     DEFAULT_USER_VALUE("/user/find-all"),
 
-    SAVE_BODY("/body/save"),
-    FIND_ALL_BODIES("/body/find-all"),
-    FIND_BODY_BY_ID("/body/find-by-id"),
-    UPDATE_BODY("/body/update"),
-    DELETE_BODY("/body/delete"),
-    DEFAULT_BODY_VALUE("/body/find-all"),
-
     SAVE_CAR("/car/save"),
     FIND_ALL_CARS("/car/find-all"),
     FIND_CAR_BY_ID("/car/find-by-id"),
     UPDATE_CAR("/car/update"),
     DELETE_CAR("/car/delete"),
     DEFAULT_CAR_VALUE("/car/find-all"),
+
+    SAVE_BODY("/body/save"),
+    FIND_ALL_BODIES("/body/find-all"),
+    FIND_BODY_BY_ID("/body/find-by-id"),
+    UPDATE_BODY("/body/update"),
+    DELETE_BODY("/body/delete"),
+    DEFAULT_BODY_VALUE("/body/find-all"),
 
     SAVE_DEALER("/dealer/save"),
     FIND_ALL_DEALERS("/dealer/find-all"),

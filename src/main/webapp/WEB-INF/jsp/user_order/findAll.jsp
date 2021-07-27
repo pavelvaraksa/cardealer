@@ -21,53 +21,46 @@
     </div>
 </nav>
 <div align="center">
-    <h2><u>Users list</u></h2>
-    <form action="<%=request.getContextPath()%>/find-all" method="get">
+    <h2><u>User orders list</u></h2>
+    <td>
+        <form action="save-user-order-page" method="post">
+            <input class="btn btn-outline-success btn-sm" type="submit" value="Add new">
+        </form>
+    </td>
+    <form action="user-order/find-all" method="get">
         <tbody>
         <table class="table table-bordered">
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Birth date</th>
-                <th>Login</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Is blocked</th>
+                <th>Order name</th>
+                <th>Count</th>
                 <th>Created</th>
                 <th>Changed</th>
+                <th>User id</th>
             </tr>
             </thead>
 
-            <c:forEach var="user" items="${userList}">
+            <c:forEach var="user_order" items="${userOrderList}">
 
                 <tr>
-                    <td>${user.id}</td>
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td>
-                    <td>${user.birthDate}</td>
-                    <td>${user.login}</td>
-                    <td>${user.email}</td>
-                    <td>${user.role}</td>
-                    <td>${user.blocked}</td>
-                    <td>${user.created}</td>
-                    <td>${user.changed}</td>
+                    <td>${user_order.id}</td>
+                    <td>${user_order.orderName}</td>
+                    <td>${user_order.count}</td>
+                    <td>${user_order.created}</td>
+                    <td>${user_order.changed}</td>
+                    <td>${user_order.userId}</td>
                     <td>
-                        <form action="update-page" method="post">
-                            <input type="hidden" class="form-control" name="id" value="${user.id}">
-                            <input type="hidden" class="form-control" name="firstName" value="${user.firstName}">
-                            <input type="hidden" class="form-control" name="lastName" value="${user.lastName}">
-                            <input type="hidden" class="form-control" name="birthDate" value="${user.birthDate}">
-                            <input type="hidden" class="form-control" name="email" value="${user.email}">
-                            <input type="hidden" class="form-control" name="role" value="${user.role}">
-                            <input type="hidden" class="form-control" name="blocked" value="${user.blocked}">
+                        <form action="update-user-order-page" method="post">
+                            <input type="hidden" class="form-control" name="id" value="${user_order.id}">
+                            <input type="hidden" class="form-control" name="orderName" value="${user_order.orderName}">
+                            <input type="hidden" class="form-control" name="count" value="${user_order.count}">
                             <input class="btn btn-outline-warning btn-sm" type="submit" value="Update">
                         </form>
                     </td>
                     <td>
-                        <form action="delete-page" method="post">
-                            <input type="hidden" class="form-control" name="id" value="${user.id}">
+                        <form action="delete-user-order-page" method="post">
+                            <input type="hidden" class="form-control" name="id" value="${user_order.id}">
                             <input class="btn btn-outline-danger btn-sm" type="submit" value="Delete">
                         </form>
                     </td>

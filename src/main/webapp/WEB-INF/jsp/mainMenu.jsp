@@ -26,6 +26,9 @@
                     <a class="nav-link" href="http://localhost:8080/user/find-all">Users list</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/user-order/find-all">User orders list</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="http://localhost:8080/car/find-all">Cars list</a>
                 </li>
                 <li class="nav-item">

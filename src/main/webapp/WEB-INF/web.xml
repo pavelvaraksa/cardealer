@@ -64,6 +64,16 @@
         <url-pattern>/transmission</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>User order controller</servlet-name>
+        <servlet-class>by.varaksa.cardealer.controller.UserOrderController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>User order controller</servlet-name>
+        <url-pattern>/user-order</url-pattern>
+    </servlet-mapping>
+
 
 
     <!--User servlets and mappings -->
@@ -330,6 +340,47 @@
     <servlet-mapping>
         <servlet-name>Delete transmission</servlet-name>
         <url-pattern>/transmission/delete-transmission-page</url-pattern>
+    </servlet-mapping>
+
+
+    <!--User order servlets and mappings -->
+    <servlet>
+        <servlet-name>Save user order</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user_order/save.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Save user order</servlet-name>
+        <url-pattern>/user-order/save-user-order-page</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>User orders list</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user_order/findAll.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>User orders list</servlet-name>
+        <url-pattern>/find-all-user-orders-page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Update user order</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user_order/update.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Update user order</servlet-name>
+        <url-pattern>/user-order/update-user-order-page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Delete user order</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user_order/delete.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Delete user order</servlet-name>
+        <url-pattern>/user-order/delete-user-order-page</url-pattern>
     </servlet-mapping>
 
 

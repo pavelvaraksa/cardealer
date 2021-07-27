@@ -18,6 +18,12 @@ public class UserOrder {
     public UserOrder() {
     }
 
+    public UserOrder(String orderName, Integer count, Long userId) {
+        this.orderName = orderName;
+        this.count = count;
+        this.userId = userId;
+    }
+
     public Long getId() {
         return id;
     }

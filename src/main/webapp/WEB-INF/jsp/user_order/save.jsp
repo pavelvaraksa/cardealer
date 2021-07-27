@@ -21,41 +21,21 @@
     </div>
 </nav>
 <div align="center">
-    <h2><u>Body save form</u></h2>
+    <h2><u>User order save form</u></h2>
     <form action="save" method="post">
         <table style="with: 100%">
             <form class="row g-3">
                 <div class="col-md-2">
-                    <label class="form-label"><u>Color</u>
-                        <select name="color">
-                            <option value="BLACK">${Color.BLACK}</option>
-                            <option value="WHITE">${Color.WHITE}</option>
-                            <option value="RED">${Color.RED}</option>
-                            <option value="GREEN">${Color.GREEN}</option>
-                            <option value="BLUE">${Color.BLUE}</option>
-                            <option value="YELLOW">${Color.YELLOW}</option>
-                            <option value="BROWN">${Color.BROWN}</option>
-                            <option value="SILVER">${Color.SILVER}</option>
-                            <option value="ORANGE">${Color.ORANGE}</option>
-                            <option value="GREY">${Color.GREY}</option>
-                            <option value="CHAMPAGNE">${Color.CHAMPAGNE}</option>
-                        </select>
-                    </label>
+                    <label for="validationOrderName" class="form-label"><u>Order name</u></label>
+                    <input type="text" class="form-control" id="validationOrderName" name="order_name" required>
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label"><u>Body type</u>
-                        <select name="body_type">
-                            <option value="SEDAN">${BodyType.SEDAN}</option>
-                            <option value="COUPE">${BodyType.COUPE}</option>
-                            <option value="TOURING">${BodyType.TOURING}</option>
-                            <option value="HATCHBACK">${BodyType.HATCHBACK}</option>
-                            <option value="SUV">${BodyType.SUV}</option>
-                        </select>
-                    </label>
+                    <label for="validationCount" class="form-label"><u>Count</u></label>
+                    <input type="text" class="form-control" id="validationCount" name="count" required>
                 </div>
                 <div class="col-md-2">
-                    <label for="validationCarId" class="form-label"><u>Car id </u></label>
-                    <input type="text" class="form-control" id="validationCarId" name="car_id" required>
+                    <label for="validationUserId" class="form-label"><u>User id</u></label>
+                    <input type="text" class="form-control" id="validationUserId" name="user_id" required>
                 </div>
             </form>
         </table>
@@ -64,7 +44,8 @@
         </div>
     </form>
     <label>
-        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/body/find-all" role="button">Return to
+        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/user-order/find-all" role="button">Return
+            to
             previous page</a>
     </label>
 </div>

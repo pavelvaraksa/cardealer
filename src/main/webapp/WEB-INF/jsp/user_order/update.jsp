@@ -21,7 +21,7 @@
     </div>
 </nav>
 <div align="center">
-    <h2><u>Update form</u></h2>
+    <h2><u>Update user order form</u></h2>
     <form action="update" method="post">
         <table style="with: 100%">
             <form class="row g-3">
@@ -29,45 +29,14 @@
                     <input type="hidden" name="id" value="${param.id}">
                 </div>
                 <div class="col-md-2">
-                    <label for="validationFirstname" class="form-label"><u>Firstname</u>
-                        <input type="text" class="form-control" id="validationFirstname" name="firstname"
-                               value="${param.firstName}" placeholder=${param.firstName} required>
-                    </label>
+                    <label for="validationOrderName" class="form-label"><u>Order name</u></label>
+                    <input type="text" class="form-control" id="validationOrderName" name="order_name"
+                           value="${param.orderName}" placeholder="${param.orderName}" required>
                 </div>
                 <div class="col-md-2">
-                    <label for="validationLastname" class="form-label"><u>Lastname</u>
-                        <input type="text" class="form-control" id="validationLastname" name="lastname"
-                               value="${param.lastname}" placeholder=${param.lastName} required>
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label for="validationBirthdate" class="form-label"><u>Birth date</u>
-                        <input type="date" class="form-control" id="validationBirthdate" name="birth_date"
-                               value="${param.birth_date}" placeholder=${param.birthDate}>
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label for="validationEmail" class="form-label"><u>Email</u>
-                        <input type="text" class="form-control" id="validationEmail" name="email"
-                               value="${param.email}" placeholder=${param.email} required>
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label"><u>Role</u>
-                        <select name="role">
-                            <option value="USER">${Role.USER}</option>
-                            <option value="MANAGER">${Role.MANAGER}</option>
-                            <option value="ADMIN">${Role.ADMIN}</option>
-                        </select>
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label"><u>Is blocked</u>
-                        <select name="is_blocked">
-                            <option value=false>${false}</option>
-                            <option value=true>${true}</option>
-                        </select>
-                    </label>
+                    <label for="validationCount" class="form-label"><u>Count</u></label>
+                    <input type="text" class="form-control" id="validationCount" name="count"
+                           value="${param.count}" placeholder="${param.count}" required>
                 </div>
             </form>
         </table>
@@ -76,7 +45,8 @@
         </div>
     </form>
     <label>
-        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/find-all" role="button">Return to
+        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/user-order/find-all" role="button">Return
+            to
             previous
             page</a>
     </label>
