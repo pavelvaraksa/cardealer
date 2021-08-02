@@ -15,13 +15,13 @@
             crossorigin="anonymous">
     </script>
 </head>
-
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
     </div>
 </nav>
+<body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>Car update form</u></h2>
     <form action="update" method="post">
@@ -100,13 +100,13 @@
                 <div class="col-md-2">
                     <label for="validationGuaranteePeriod" class="form-label"><u>Guarantee period</u>
                         <input type="text" class="form-control" id="validationGuaranteePeriod" name="guarantee_period"
-                               value="${param.guaranteePeriod}" placeholder=${param.guaranteePeriod} required>
+                               value="${param.guaranteePeriod}" placeholder="${param.guaranteePeriod}" required>
                     </label>
                 </div>
                 <div class="col-md-2">
                     <label for="validationPrice" class="form-label"><u>Price</u>
                         <input type="text" class="form-control" id="validationPrice" name="price"
-                               value="${param.price}" placeholder=${param.price} required>
+                               value="${param.price}" placeholder="${param.price}" required>
                     </label>
                 </div>
                 <div class="col-md-2">

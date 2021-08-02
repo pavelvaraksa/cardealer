@@ -18,6 +18,7 @@ public class DatabasePropertiesReader {
             instance = new DatabasePropertiesReader();
             instance.resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME);
         }
+
         return instance;
     }
 

@@ -12,13 +12,13 @@
             crossorigin="anonymous">
     </script>
 </head>
-
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
     </div>
 </nav>
+<body style="background-color:antiquewhite"></body>
 <div align="center">
     <h3><u>Would you like to delete dealer with id ${param.id}?</u></h3>
 

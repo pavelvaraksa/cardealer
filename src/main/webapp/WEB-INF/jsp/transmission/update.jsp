@@ -13,13 +13,13 @@
             crossorigin="anonymous">
     </script>
 </head>
-
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
     </div>
 </nav>
+<body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>Transmission update form</u></h2>
     <form action="update" method="post">
@@ -39,11 +39,13 @@
                 </div>
                 <div class="col-md-2">
                     <label for="validationGearsCount" class="form-label"><u>Gears count</u></label>
-                    <input type="text" class="form-control" id="validationGearsCount" name="gears_count" required>
+                    <input type="text" class="form-control" id="validationGearsCount" name="gears_count"
+                           value="${param.gearsCount}" placeholder="${param.gearsCount}" required>
                 </div>
                 <div class="col-md-2">
                     <label for="validationWeight" class="form-label"><u>Weight</u></label>
-                    <input type="text" class="form-control" id="validationWeight" name="weight" required>
+                    <input type="text" class="form-control" id="validationWeight" name="weight"
+                           value="${param.weight}" placeholder="${param.weight}" required>
                 </div>
             </form>
         </table>

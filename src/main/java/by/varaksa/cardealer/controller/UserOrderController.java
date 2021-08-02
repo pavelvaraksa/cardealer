@@ -86,9 +86,8 @@ public class UserOrderController extends HttpServlet {
 
     private void saveUserOrder(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException {
         String orderName = (request.getParameter("order_name"));
-        Integer count = Integer.valueOf(request.getParameter("count"));
         Long userId = Long.valueOf((request.getParameter("user_id")));
-        UserOrder userOrder = new UserOrder(orderName, count, userId);
+        UserOrder userOrder = new UserOrder(orderName, userId);
 
         userOrderService.save(userOrder);
         response.sendRedirect("/user-order/find-all");
@@ -115,7 +114,6 @@ public class UserOrderController extends HttpServlet {
         UserOrder userOrder = userOrderService.find(id);
 
         userOrder.setOrderName(request.getParameter("order_name"));
-        userOrder.setCount(Integer.valueOf(request.getParameter("count")));
 
         userOrderService.update(userOrder);
         response.sendRedirect("/user-order/find-all");

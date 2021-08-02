@@ -19,7 +19,7 @@
         <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
     </div>
 </nav>
-
+<body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>Authentication form</u></h2>
     <form action="login" method="post">

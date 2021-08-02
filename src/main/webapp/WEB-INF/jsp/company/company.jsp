@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<link>
+    <link>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -20,8 +20,11 @@
         <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
     </div>
 </nav>
+<body style="background-color:antiquewhite"></body>
 <div align="center">
-    <h2><u>Company history</u></h2>
+    <div>
+        <h2><u>Company history</u></h2>
+    </div>
     <label>
         <input class="btn btn-outline-primary btn-sm" onclick="history.back();" value="Return to previous page"/>
     </label>

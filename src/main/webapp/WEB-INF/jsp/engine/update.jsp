@@ -14,13 +14,13 @@
             crossorigin="anonymous">
     </script>
 </head>
-
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
     </div>
 </nav>
+<body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>Engine update form</u></h2>
     <form action="update" method="post">
@@ -47,12 +47,13 @@
                 </div>
                 <div class="col-md-2">
                     <label for="validationVolume" class="form-label"><u>Volume</u></label>
-                    <input type="text" class="form-control" id="validationVolume" name="volume" required>
+                    <input type="text" class="form-control" id="validationVolume" name="volume"
+                           value="${param.volume}" placeholder="${param.volume}" required>
                 </div>
                 <div class="col-md-2">
                     <label for="validationCylindersCount" class="form-label"><u>Cylinders count</u></label>
                     <input type="text" class="form-control" id="validationCylindersCount" name="cylinders_count"
-                           required>
+                           value="${param.cylindersCount}" placeholder="${param.cylindersCount}" required>
                 </div>
         </form>
         </table>

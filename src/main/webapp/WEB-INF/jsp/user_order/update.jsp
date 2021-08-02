@@ -13,13 +13,13 @@
             crossorigin="anonymous">
     </script>
 </head>
-
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
     </div>
 </nav>
+<body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>Update user order form</u></h2>
     <form action="update" method="post">
@@ -32,11 +32,6 @@
                     <label for="validationOrderName" class="form-label"><u>Order name</u></label>
                     <input type="text" class="form-control" id="validationOrderName" name="order_name"
                            value="${param.orderName}" placeholder="${param.orderName}" required>
-                </div>
-                <div class="col-md-2">
-                    <label for="validationCount" class="form-label"><u>Count</u></label>
-                    <input type="text" class="form-control" id="validationCount" name="count"
-                           value="${param.count}" placeholder="${param.count}" required>
                 </div>
             </form>
         </table>

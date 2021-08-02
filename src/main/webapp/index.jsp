@@ -1,3 +1,10 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<%--<fmt:setLocale value="${locale}" scope="session"/>--%>
+<%--<fmt:setBundle basename="text_ru_RU"/>--%>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -11,9 +18,15 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous">
     </script>
+
+<%--    <c:if test="${not empty sessionScope.locale}">--%>
+<%--        <fmt:setLocale value="${sessionScope.locale}"/>--%>
+<%--    </c:if>--%>
+<%--    <fmt:setBundle basename="text_ru_RU"/>--%>
 </head>
 
 <body>
+
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
@@ -32,12 +45,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="http://localhost:8080/request-information">Contacts</a>
                 </li>
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                        role="button" data-bs-toggle="dropdown" aria-expanded="false">Language
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
                         <li><a class="dropdown-item" href="#">English</a></li>
                         <li><a class="dropdown-item" href="#">Russian</a></li>
                     </ul>
@@ -46,5 +59,8 @@
         </div>
     </div>
 </nav>
+<div>
+    <img src="${pageContext.request.contextPath}/image/showRoom.jpg" width="100%" height="auto">
+</div>
 </body>
 </html>

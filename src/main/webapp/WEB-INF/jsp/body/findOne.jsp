@@ -11,7 +11,6 @@
             crossorigin="anonymous">
     </script>
 </head>
-
 <body>
 <div align="center">
     <h2>User by id</h2>

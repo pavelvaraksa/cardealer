@@ -7,8 +7,6 @@ public class UserOrder {
 
     private String orderName;
 
-    private Integer count;
-
     private LocalDateTime created;
 
     private LocalDateTime changed;
@@ -18,9 +16,8 @@ public class UserOrder {
     public UserOrder() {
     }
 
-    public UserOrder(String orderName, Integer count, Long userId) {
+    public UserOrder(String orderName, Long userId) {
         this.orderName = orderName;
-        this.count = count;
         this.userId = userId;
     }
 
@@ -38,14 +35,6 @@ public class UserOrder {
 
     public void setOrderName(String orderName) {
         this.orderName = orderName;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
     }
 
     public LocalDateTime getCreated() {
@@ -77,7 +66,6 @@ public class UserOrder {
     public int hashCode() {
         return (int) (11 * id
                 + orderName.hashCode()
-                + count.hashCode()
                 + created.hashCode()
                 + changed.hashCode()
                 + userId.hashCode());
@@ -97,7 +85,6 @@ public class UserOrder {
 
         return id == userOrder.id
                 && (orderName == userOrder.orderName || orderName != null && orderName.equals(userOrder.getOrderName()))
-                && (count == userOrder.count || count != null && count.equals(userOrder.getCount()))
                 && (created == userOrder.created || created != null && created.equals(userOrder.getCreated()))
                 && (changed == userOrder.changed || changed != null && changed.equals(userOrder.getChanged()))
                 && (userId == userOrder.userId || userId != null && userId.equals(userOrder.getUserId()));
@@ -109,7 +96,6 @@ public class UserOrder {
         stringBuilder.append("User order: ");
         stringBuilder.append("id ").append(id).append(", ");
         stringBuilder.append("order name").append(orderName).append(", ");
-        stringBuilder.append("count ").append(count).append(", ");
         stringBuilder.append("created ").append(created).append(", ");
         stringBuilder.append("changed ").append(changed).append(", ");
         stringBuilder.append("user id ").append(userId).append(", ");

@@ -1,0 +1,303 @@
+2021-07-28 00:39:14 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:14 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'q' and password = 'q'
+2021-07-28 00:39:14 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-28 00:39:15 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:15 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-28 00:39:15 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-07-28 00:39:27 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:27 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 137 exists
+2021-07-28 00:39:27 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:27 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 137 was updated
+2021-07-28 00:39:27 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:27 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:28 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:28 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-28 00:39:28 [http-nio-8080-exec-1] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-07-28 00:39:36 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:36 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 137 exists
+2021-07-28 00:39:36 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:36 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 137 was updated
+2021-07-28 00:39:36 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:36 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:36 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:36 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-28 00:39:36 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-07-28 00:39:44 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:39:44 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-28 00:39:44 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-07-28 00:39:47 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 00:39:47 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-07-28 00:39:47 [http-nio-8080-exec-9] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-07-28 00:39:50 [http-nio-8080-exec-2] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 00:39:50 [http-nio-8080-exec-2] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-07-28 00:39:50 [http-nio-8080-exec-2] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-07-28 00:39:53 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:39:53 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Bodies exist
+2021-07-28 00:39:53 [http-nio-8080-exec-4] INFO  by.varaksa.cardealer.controller.BodyController- Bodies were watched
+2021-07-28 00:39:56 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:39:56 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Bodies exist
+2021-07-28 00:39:56 [http-nio-8080-exec-6] INFO  by.varaksa.cardealer.controller.BodyController- Bodies were watched
+2021-07-28 00:40:02 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.EngineRepositoryImpl- JDBC driver was loaded from engine repository class
+2021-07-28 00:40:02 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.EngineServiceImpl- Engines exist
+2021-07-28 00:40:02 [http-nio-8080-exec-8] INFO  by.varaksa.cardealer.controller.EngineController- Engines were watched
+2021-07-28 00:48:33 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:48:33 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'q' and password = 'q'
+2021-07-28 00:48:33 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-28 00:48:36 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.DealerRepositoryImpl- JDBC driver was loaded from dealer repository class
+2021-07-28 00:48:36 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.DealerServiceImpl- Dealers exist
+2021-07-28 00:48:36 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.DealerController- Dealers were watched
+2021-07-28 00:48:58 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.DealerRepositoryImpl- JDBC driver was loaded from dealer repository class
+2021-07-28 00:48:58 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.DealerServiceImpl- Dealer with id 5 exists
+2021-07-28 00:48:58 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.DealerRepositoryImpl- JDBC driver was loaded from dealer repository class
+2021-07-28 00:48:59 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.DealerServiceImpl- Dealer with id 5 was updated
+2021-07-28 00:48:59 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.DealerRepositoryImpl- JDBC driver was loaded from dealer repository class
+2021-07-28 00:48:59 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.DealerRepositoryImpl- JDBC driver was loaded from dealer repository class
+2021-07-28 00:48:59 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.DealerServiceImpl- Dealers exist
+2021-07-28 00:48:59 [http-nio-8080-exec-1] INFO  by.varaksa.cardealer.controller.DealerController- Dealers were watched
+2021-07-28 00:49:05 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.TransmissionRepositoryImpl- JDBC driver was loaded from transmission repository class
+2021-07-28 00:49:05 [http-nio-8080-exec-3] INFO  varaksa.cardealer.service.impl.TransmissionServiceImpl- Transmissions exist
+2021-07-28 00:49:05 [http-nio-8080-exec-3] INFO  by.varaksa.cardealer.controller.TransmissionController- Transmissions were watched
+2021-07-28 00:49:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.TransmissionRepositoryImpl- JDBC driver was loaded from transmission repository class
+2021-07-28 00:49:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.TransmissionServiceImpl- Transmission with id 2 exists
+2021-07-28 00:49:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.TransmissionRepositoryImpl- JDBC driver was loaded from transmission repository class
+2021-07-28 00:49:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.TransmissionServiceImpl- Transmission with id 2 was updated
+2021-07-28 00:49:09 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.TransmissionRepositoryImpl- JDBC driver was loaded from transmission repository class
+2021-07-28 00:49:09 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.TransmissionRepositoryImpl- JDBC driver was loaded from transmission repository class
+2021-07-28 00:49:09 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.TransmissionServiceImpl- Transmissions exist
+2021-07-28 00:49:09 [http-nio-8080-exec-6] INFO  by.varaksa.cardealer.controller.TransmissionController- Transmissions were watched
+2021-07-28 00:49:17 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.EngineRepositoryImpl- JDBC driver was loaded from engine repository class
+2021-07-28 00:49:17 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.EngineServiceImpl- Engines exist
+2021-07-28 00:49:17 [http-nio-8080-exec-8] INFO  by.varaksa.cardealer.controller.EngineController- Engines were watched
+2021-07-28 00:49:23 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.EngineRepositoryImpl- JDBC driver was loaded from engine repository class
+2021-07-28 00:49:23 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.EngineServiceImpl- Engine with id 2 exists
+2021-07-28 00:49:23 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.EngineRepositoryImpl- JDBC driver was loaded from engine repository class
+2021-07-28 00:49:23 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.EngineServiceImpl- Engine with id 2 was updated
+2021-07-28 00:49:23 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.EngineRepositoryImpl- JDBC driver was loaded from engine repository class
+2021-07-28 00:49:23 [http-nio-8080-exec-2] INFO  varaksa.cardealer.repository.impl.EngineRepositoryImpl- JDBC driver was loaded from engine repository class
+2021-07-28 00:49:23 [http-nio-8080-exec-2] INFO  varaksa.cardealer.service.impl.EngineServiceImpl- Engines exist
+2021-07-28 00:49:23 [http-nio-8080-exec-2] INFO  by.varaksa.cardealer.controller.EngineController- Engines were watched
+2021-07-28 00:49:30 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:30 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Bodies exist
+2021-07-28 00:49:30 [http-nio-8080-exec-4] INFO  by.varaksa.cardealer.controller.BodyController- Bodies were watched
+2021-07-28 00:49:38 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:38 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Body with id 8 exists
+2021-07-28 00:49:38 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:39 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Body with id 8 was updated
+2021-07-28 00:49:39 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:39 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:39 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:39 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Bodies exist
+2021-07-28 00:49:39 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.BodyController- Bodies were watched
+2021-07-28 00:49:47 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:47 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Body with id 9 exists
+2021-07-28 00:49:47 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:47 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Body with id 9 was updated
+2021-07-28 00:49:47 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:47 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:47 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-07-28 00:49:48 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Bodies exist
+2021-07-28 00:49:48 [http-nio-8080-exec-1] INFO  by.varaksa.cardealer.controller.BodyController- Bodies were watched
+2021-07-28 00:49:59 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:49:59 [http-nio-8080-exec-3] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Cars exist
+2021-07-28 00:49:59 [http-nio-8080-exec-3] INFO  by.varaksa.cardealer.controller.CarController- Cars were watched
+2021-07-28 00:50:12 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:12 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Car with id 6 exists
+2021-07-28 00:50:12 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:12 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Car with id 6 was updated
+2021-07-28 00:50:12 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:12 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:12 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:12 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Cars exist
+2021-07-28 00:50:12 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.CarController- Cars were watched
+2021-07-28 00:50:19 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 00:50:19 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-07-28 00:50:19 [http-nio-8080-exec-9] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-07-28 00:50:39 [http-nio-8080-exec-2] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:39 [http-nio-8080-exec-2] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Cars exist
+2021-07-28 00:50:39 [http-nio-8080-exec-2] INFO  by.varaksa.cardealer.controller.CarController- Cars were watched
+2021-07-28 00:50:49 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:49 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Car with id 7 exists
+2021-07-28 00:50:49 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:49 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Car with id 7 was updated
+2021-07-28 00:50:49 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:49 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:49 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:50:49 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Cars exist
+2021-07-28 00:50:49 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.CarController- Cars were watched
+2021-07-28 00:50:57 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:50:57 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-28 00:50:57 [http-nio-8080-exec-8] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-07-28 00:51:02 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 00:51:02 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-07-28 00:51:02 [http-nio-8080-exec-10] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-07-28 00:51:41 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 00:51:41 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-07-28 00:51:41 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-07-28 00:51:44 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-28 00:51:44 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Cars exist
+2021-07-28 00:51:44 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.CarController- Cars were watched
+2021-07-28 00:59:45 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-28 00:59:45 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'q' and password = 'q'
+2021-07-28 00:59:45 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-28 00:59:47 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 00:59:47 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-07-28 00:59:47 [http-nio-8080-exec-9] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-07-28 00:59:55 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 00:59:55 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User order User order: id null, order nameorder 4, created null, changed null, user id 137,  was saved
+2021-07-28 00:59:55 [http-nio-8080-exec-2] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 00:59:55 [http-nio-8080-exec-2] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-07-28 00:59:55 [http-nio-8080-exec-2] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-07-28 01:00:01 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 01:00:02 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User order with id 6 exists
+2021-07-28 01:00:02 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 01:00:02 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User order with id 6 was updated
+2021-07-28 01:00:02 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 01:00:02 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 01:00:02 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-07-28 01:00:02 [http-nio-8080-exec-6] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-07-28 01:00:23 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 01:00:23 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User order with id 5 exists
+2021-07-28 01:00:23 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 01:00:23 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User order with id 5 was updated
+2021-07-28 01:00:23 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 01:00:24 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-28 01:00:24 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-07-28 01:00:24 [http-nio-8080-exec-10] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-07-29 22:41:48 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:41:48 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:41:48 [http-nio-8080-exec-2] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:41:48 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:41:48 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:41:48 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:41:48 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:41:48 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:41:48 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:41:48 [http-nio-8080-exec-2] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'tyjtyj' and password = 'tyjty'
+2021-07-29 22:41:48 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'tyjtyj' and password = 'tyjty'
+2021-07-29 22:41:48 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'tyjtyj' and password = 'tyjty'
+2021-07-29 22:41:48 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'tyjtyj' and password = 'tyjty'
+2021-07-29 22:41:48 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'tyjtyj' and password = 'tyjty'
+2021-07-29 22:41:48 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'tyjtyj' and password = 'tyjty'
+2021-07-29 22:41:48 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'tyjtyj' and password = 'tyjty'
+2021-07-29 22:41:48 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'tyjtyj' and password = 'tyjty'
+2021-07-29 22:41:48 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'tyjtyj' and password = 'tyjty'
+2021-07-29 22:41:48 [http-nio-8080-exec-9] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't correct
+2021-07-29 22:41:48 [http-nio-8080-exec-1] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't correct
+2021-07-29 22:41:48 [http-nio-8080-exec-10] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't correct
+2021-07-29 22:41:48 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't correct
+2021-07-29 22:41:48 [http-nio-8080-exec-2] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't correct
+2021-07-29 22:41:48 [http-nio-8080-exec-8] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't correct
+2021-07-29 22:41:48 [http-nio-8080-exec-5] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't correct
+2021-07-29 22:41:48 [http-nio-8080-exec-3] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't correct
+2021-07-29 22:41:48 [http-nio-8080-exec-6] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't correct
+2021-07-29 22:42:00 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:42:00 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'q' and password = 'q'
+2021-07-29 22:42:00 [http-nio-8080-exec-9] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-29 22:42:03 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-29 22:42:03 [http-nio-8080-exec-3] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Cars exist
+2021-07-29 22:42:03 [http-nio-8080-exec-3] INFO  by.varaksa.cardealer.controller.CarController- Cars were watched
+2021-07-29 22:42:14 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-07-29 22:42:14 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-07-29 22:42:14 [http-nio-8080-exec-4] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-07-29 22:42:16 [http-nio-8080-exec-2] INFO  by.varaksa.cardealer.controller.UserController- Logout was completed
+2021-07-29 22:42:20 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:42:20 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'w' and password = 'w'
+2021-07-29 22:42:20 [http-nio-8080-exec-10] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-29 22:42:22 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:42:22 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-29 22:42:22 [http-nio-8080-exec-8] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-07-29 22:42:25 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.DealerRepositoryImpl- JDBC driver was loaded from dealer repository class
+2021-07-29 22:42:25 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.DealerServiceImpl- Dealers exist
+2021-07-29 22:42:25 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.DealerController- Dealers were watched
+2021-07-29 22:48:22 [http-nio-8080-exec-2] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:48:22 [http-nio-8080-exec-2] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'q' and password = 'q'
+2021-07-29 22:48:22 [http-nio-8080-exec-2] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-29 22:48:24 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:48:24 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-29 22:48:24 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-07-29 22:48:44 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:48:44 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 137 exists
+2021-07-29 22:48:44 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:48:44 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 137 was updated
+2021-07-29 22:48:44 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:48:45 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:48:45 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:48:45 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-29 22:48:45 [http-nio-8080-exec-9] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-07-29 22:48:51 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-29 22:48:51 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-29 22:48:51 [http-nio-8080-exec-4] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-07-29 22:48:53 [http-nio-8080-exec-2] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-29 22:48:53 [http-nio-8080-exec-2] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Cars exist
+2021-07-29 22:48:53 [http-nio-8080-exec-2] INFO  by.varaksa.cardealer.controller.CarController- Cars were watched
+2021-07-29 22:49:00 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.CarRepositoryImpl- JDBC driver was loaded from car repository class
+2021-07-29 22:49:00 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.CarServiceImpl- Cars exist
+2021-07-29 22:49:00 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.CarController- Cars were watched
+2021-07-29 22:49:03 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.DealerRepositoryImpl- JDBC driver was loaded from dealer repository class
+2021-07-29 22:49:03 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.DealerServiceImpl- Dealers exist
+2021-07-29 22:49:03 [http-nio-8080-exec-1] INFO  by.varaksa.cardealer.controller.DealerController- Dealers were watched
+2021-07-29 22:49:09 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.DealerRepositoryImpl- JDBC driver was loaded from dealer repository class
+2021-07-29 22:49:09 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.DealerServiceImpl- Dealers exist
+2021-07-29 22:49:09 [http-nio-8080-exec-6] INFO  by.varaksa.cardealer.controller.DealerController- Dealers were watched
+2021-07-29 22:49:17 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.TransmissionRepositoryImpl- JDBC driver was loaded from transmission repository class
+2021-07-29 22:49:17 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.TransmissionServiceImpl- Transmissions exist
+2021-07-29 22:49:17 [http-nio-8080-exec-10] INFO  by.varaksa.cardealer.controller.TransmissionController- Transmissions were watched
+2021-07-29 22:49:26 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserController- Logout was completed
+2021-07-31 00:12:13 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-31 00:12:14 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = '??' and password = '??'
+2021-07-31 00:12:14 [http-nio-8080-exec-7] ERROR by.varaksa.cardealer.controller.UserController- Login or password weren't correct
+2021-07-31 00:12:19 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-31 00:12:19 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'q' and password = 'q'
+2021-07-31 00:12:19 [http-nio-8080-exec-9] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-07-31 00:12:22 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.EngineRepositoryImpl- JDBC driver was loaded from engine repository class
+2021-07-31 00:12:22 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.EngineServiceImpl- Engines exist
+2021-07-31 00:12:22 [http-nio-8080-exec-1] INFO  by.varaksa.cardealer.controller.EngineController- Engines were watched
+2021-07-31 00:12:39 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.EngineRepositoryImpl- JDBC driver was loaded from engine repository class
+2021-07-31 00:12:39 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.EngineServiceImpl- Engines exist
+2021-07-31 00:12:39 [http-nio-8080-exec-4] INFO  by.varaksa.cardealer.controller.EngineController- Engines were watched
+2021-07-31 00:12:43 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-07-31 00:12:43 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-07-31 00:12:43 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-07-31 00:12:55 [http-nio-8080-exec-9] INFO  by.varaksa.cardealer.controller.UserController- Logout was completed
+2021-08-03 01:52:00 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-08-03 01:52:01 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- select login, password from users where login = 'w' and password = 'w'
+2021-08-03 01:52:02 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserController- Login and password were correct
+2021-08-03 01:52:05 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-08-03 01:52:05 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-08-03 01:52:05 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-08-03 01:52:12 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-08-03 01:52:12 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 137 exists
+2021-08-03 01:52:12 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-08-03 01:52:13 [http-nio-8080-exec-9] INFO  varaksa.cardealer.service.impl.UserServiceImpl- User with id 137 was updated
+2021-08-03 01:52:13 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-08-03 01:52:13 [http-nio-8080-exec-9] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-08-03 01:52:13 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserRepositoryImpl- JDBC driver was loaded from user repository class
+2021-08-03 01:52:13 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.UserServiceImpl- Users exist
+2021-08-03 01:52:13 [http-nio-8080-exec-10] INFO  by.varaksa.cardealer.controller.UserController- Users were watched
+2021-08-03 01:52:20 [http-nio-8080-exec-4] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-08-03 01:52:20 [http-nio-8080-exec-4] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Bodies exist
+2021-08-03 01:52:20 [http-nio-8080-exec-4] INFO  by.varaksa.cardealer.controller.BodyController- Bodies were watched
+2021-08-03 01:52:24 [http-nio-8080-exec-6] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-08-03 01:52:24 [http-nio-8080-exec-6] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Bodies exist
+2021-08-03 01:52:24 [http-nio-8080-exec-6] INFO  by.varaksa.cardealer.controller.BodyController- Bodies were watched
+2021-08-03 01:52:28 [http-nio-8080-exec-8] INFO  varaksa.cardealer.repository.impl.TransmissionRepositoryImpl- JDBC driver was loaded from transmission repository class
+2021-08-03 01:52:28 [http-nio-8080-exec-8] INFO  varaksa.cardealer.service.impl.TransmissionServiceImpl- Transmissions exist
+2021-08-03 01:52:28 [http-nio-8080-exec-8] INFO  by.varaksa.cardealer.controller.TransmissionController- Transmissions were watched
+2021-08-03 01:52:49 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.BodyRepositoryImpl- JDBC driver was loaded from body repository class
+2021-08-03 01:52:49 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.BodyServiceImpl- Bodies exist
+2021-08-03 01:52:49 [http-nio-8080-exec-1] INFO  by.varaksa.cardealer.controller.BodyController- Bodies were watched
+2021-08-03 01:52:50 [http-nio-8080-exec-3] INFO  varaksa.cardealer.repository.impl.DealerRepositoryImpl- JDBC driver was loaded from dealer repository class
+2021-08-03 01:52:51 [http-nio-8080-exec-3] INFO  varaksa.cardealer.service.impl.DealerServiceImpl- Dealers exist
+2021-08-03 01:52:51 [http-nio-8080-exec-3] INFO  by.varaksa.cardealer.controller.DealerController- Dealers were watched
+2021-08-03 01:52:56 [http-nio-8080-exec-5] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-08-03 01:52:56 [http-nio-8080-exec-5] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-08-03 01:52:56 [http-nio-8080-exec-5] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-08-03 01:53:07 [http-nio-8080-exec-7] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-08-03 01:53:07 [http-nio-8080-exec-7] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-08-03 01:53:07 [http-nio-8080-exec-7] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched
+2021-08-03 01:53:09 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-08-03 01:53:09 [http-nio-8080-exec-10] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User order with id 6 was deleted
+2021-08-03 01:53:09 [http-nio-8080-exec-10] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-08-03 01:53:09 [http-nio-8080-exec-1] INFO  varaksa.cardealer.repository.impl.UserOrderRepositoryImpl- JDBC driver was loaded from user order repository class
+2021-08-03 01:53:09 [http-nio-8080-exec-1] INFO  varaksa.cardealer.service.impl.UserOrderServiceImpl- User orders exist
+2021-08-03 01:53:09 [http-nio-8080-exec-1] INFO  by.varaksa.cardealer.controller.UserOrderController- User orders were watched

@@ -13,13 +13,13 @@
             crossorigin="anonymous">
     </script>
 </head>
-
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
     </div>
 </nav>
+<body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>Dealer update form</u></h2>
     <form action="update" method="post">
@@ -30,15 +30,18 @@
                 </div>
                 <div class="col-md-2">
                     <label for="validationName" class="form-label"><u>Name</u></label>
-                    <input type="text" class="form-control" id="validationName" name="name" required>
+                    <input type="text" class="form-control" id="validationName" name="name"
+                           value="${param.name}" placeholder="${param.name}" required>
                 </div>
                 <div class="col-md-2">
                     <label for="validationAddress" class="form-label"><u>Address</u></label>
-                    <input type="text" class="form-control" id="validationAddress" name="address" required>
+                    <input type="text" class="form-control" id="validationAddress" name="address"
+                           value="${param.address}" placeholder="${param.address}" required>
                 </div>
                 <div class="col-md-2">
                     <label for="validationFoundationDate" class="form-label"><u>Foundation date</u></label>
-                    <input type="date" class="form-control" id="validationFoundationDate" name="foundation_date" required>
+                    <input type="date" class="form-control" id="validationFoundationDate" name="foundation_date"
+                           value="${param.foundationDate}" placeholder="${param.foundationDate}" required>
                 </div>
                 <div class="col-md-2">
                     <label class="form-label"><u>City</u>

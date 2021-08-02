@@ -13,13 +13,13 @@
             crossorigin="anonymous">
     </script>
 </head>
-
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
     </div>
 </nav>
+<body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>User orders list</u></h2>
     <td>
@@ -34,7 +34,6 @@
             <tr>
                 <th>Id</th>
                 <th>Order name</th>
-                <th>Count</th>
                 <th>Created</th>
                 <th>Changed</th>
                 <th>User id</th>
@@ -46,7 +45,6 @@
                 <tr>
                     <td>${user_order.id}</td>
                     <td>${user_order.orderName}</td>
-                    <td>${user_order.count}</td>
                     <td>${user_order.created}</td>
                     <td>${user_order.changed}</td>
                     <td>${user_order.userId}</td>
@@ -54,7 +52,6 @@
                         <form action="update-user-order-page" method="post">
                             <input type="hidden" class="form-control" name="id" value="${user_order.id}">
                             <input type="hidden" class="form-control" name="orderName" value="${user_order.orderName}">
-                            <input type="hidden" class="form-control" name="count" value="${user_order.count}">
                             <input class="btn btn-outline-warning btn-sm" type="submit" value="Update">
                         </form>
                     </td>
