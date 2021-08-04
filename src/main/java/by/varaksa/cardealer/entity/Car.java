@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 public class Car {
     private Long id;
 
-    private Brand brand;
-
     private Model model;
 
     private Country issueCountry;
@@ -24,12 +22,10 @@ public class Car {
     public Car() {
     }
 
-    public Car(Brand brand,
-               Model model,
+    public Car(Model model,
                Country issueCountry,
                Integer guaranteePeriod,
                Integer price) {
-        this.brand = brand;
         this.model = model;
         this.issueCountry = issueCountry;
         this.guaranteePeriod = guaranteePeriod;
@@ -42,14 +38,6 @@ public class Car {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
     }
 
     public Model getModel() {
@@ -111,7 +99,6 @@ public class Car {
     @Override
     public int hashCode() {
         return (int) (11 * id
-                + brand.hashCode()
                 + model.hashCode()
                 + issueCountry.hashCode()
                 + guaranteePeriod.hashCode()
@@ -134,7 +121,6 @@ public class Car {
         Car car = (Car) object;
 
         return id == car.id
-                && (brand == car.brand || brand != null && brand.equals(car.getBrand()))
                 && (model == car.model || model != null && model.equals(car.getModel()))
                 && (issueCountry == car.issueCountry || issueCountry != null && issueCountry.equals(car.getIssueCountry()))
                 && (guaranteePeriod == car.guaranteePeriod || guaranteePeriod != null && guaranteePeriod.equals(car.getGuaranteePeriod()))
@@ -149,7 +135,6 @@ public class Car {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Car: ");
         stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("brand ").append(brand).append(", ");
         stringBuilder.append("model ").append(model).append(", ");
         stringBuilder.append("issue country ").append(issueCountry).append(", ");
         stringBuilder.append("guarantee period ").append(guaranteePeriod).append(", ");

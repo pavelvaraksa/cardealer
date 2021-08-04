@@ -1,7 +1,5 @@
 package by.varaksa.cardealer.connection;
 
-import org.postgresql.jdbc2.optional.ConnectionPool;
-
 import java.sql.*;
 import java.util.Map;
 import java.util.Properties;

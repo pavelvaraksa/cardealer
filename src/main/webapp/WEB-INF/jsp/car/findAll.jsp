@@ -33,7 +33,6 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Brand</th>
                 <th>Model</th>
                 <th>Issue country</th>
                 <th>Guarantee period</th>
@@ -48,7 +47,6 @@
 
                 <tr>
                     <td>${car.id}</td>
-                    <td>${car.brand}</td>
                     <td>${car.model}</td>
                     <td>${car.issueCountry}</td>
                     <td>${car.guaranteePeriod}</td>
@@ -59,7 +57,6 @@
                     <td>
                         <form action="update-car-page" method="post">
                             <input type="hidden" class="form-control" name="id" value="${car.id}">
-                            <input type="hidden" class="form-control" name="brand" value="${car.brand}">
                             <input type="hidden" class="form-control" name="model" value="${car.model}">
                             <input type="hidden" class="form-control" name="guaranteePeriod" value="${car.guaranteePeriod}">
                             <input type="hidden" class="form-control" name="price" value="${car.price}">

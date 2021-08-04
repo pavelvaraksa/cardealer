@@ -51,17 +51,9 @@ public class UserController extends HttpServlet {
 
         try {
             switch (commandName) {
-                case FIND_ALL_USERS:
-                    findAllUsers(request, response);
-                    break;
-                case FIND_USER_BY_ID:
-                    findUser(request, response);
-                    break;
-                case LOGOUT:
-                    logOut(request, response);
-                    break;
-                default:
-                    break;
+                case FIND_ALL_USERS -> findAllUsers(request, response);
+                case FIND_USER_BY_ID -> findUser(request, response);
+                case LOGOUT -> logOut(request, response);
             }
         } catch (ServiceException exception) {
             String errorMessage = "User controller exception." + exception;
@@ -74,20 +66,10 @@ public class UserController extends HttpServlet {
 
         try {
             switch (commandName) {
-                case SAVE_USER:
-                    saveUser(request, response);
-                    break;
-                case LOGIN:
-                    confirmAuthenticate(request, response);
-                    break;
-                case UPDATE_USER:
-                    updateUser(request, response);
-                    break;
-                case DELETE_USER:
-                    deleteUser(request, response);
-                    break;
-                default:
-                    break;
+                case SAVE_USER -> saveUser(request, response);
+                case LOGIN -> confirmAuthenticate(request, response);
+                case UPDATE_USER -> updateUser(request, response);
+                case DELETE_USER -> deleteUser(request, response);
             }
         } catch (ControllerException | ServiceException | IOException | RepositoryException | ServletException exception) {
             String errorMessage = "User controller exception." + exception;

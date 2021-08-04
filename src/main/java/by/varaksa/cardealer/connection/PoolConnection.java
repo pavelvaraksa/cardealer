@@ -1,6 +1,5 @@
 package by.varaksa.cardealer.connection;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,21 +29,17 @@ public class PoolConnection {
                 Connection connection = FactoryConnection.createConnection();
                 ProxyConnection proxyConnection = new ProxyConnection(connection);
                 freeConnection.put(proxyConnection);
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Connection creation error: {}", e.getMessage());
-            } catch (InterruptedException e) {
+            } catch (InterruptedException exception) {
                 Thread.currentThread().interrupt();
             }
         }
 
         if (freeConnection.isEmpty()) {
-            logger.log(Level.FATAL, "Can not create ConnectionPool: empty");
-            throw new RuntimeException("Can not create ConnectionPool:");
-        } else if (freeConnection.size() == DEFAULT_POOL_SIZE) {
-            logger.log(Level.INFO, "ConnectionPool successfully created");
-        } else if (freeConnection.size() < DEFAULT_POOL_SIZE) {
-            logger.log(Level.WARN, "ConnectionPool successfully created, default size: {}, current size: {}",
-                    DEFAULT_POOL_SIZE, freeConnection.size());
+            String errorMessage = ("Connection pool wasn't created");
+            logger.fatal(errorMessage);
+            throw new RuntimeException(errorMessage);
+        } else {
+            logger.info("Connection pool was created");
         }
     }
 
@@ -54,8 +49,8 @@ public class PoolConnection {
             if (isConnectionPoolCreated.compareAndSet(false, true)) {
                 instance = new PoolConnection();
             }
-
         }
+
         return instance;
     }
 
@@ -64,73 +59,70 @@ public class PoolConnection {
         try {
             connection = freeConnection.take();
             busyConnection.put(connection);
-
-        } catch (InterruptedException e) {
-            logger.log(Level.ERROR, "Current thread was interrupted {} {}", e.getMessage(), e.getStackTrace());
+        } catch (InterruptedException exception) {
+            logger.error("Current thread was interrupted." + exception);
             Thread.currentThread().interrupt();
         }
         return connection;
     }
 
-    boolean releaseConnection(Connection connection) {
-        boolean result = true;
+    void releaseConnection(Connection connection) {
+
         if (!(connection instanceof ProxyConnection)) {
-            logger.log(Level.ERROR, "Current connection is not instance of ConnectionProxy : {}", connection);
-            result = false;
+            logger.error("Current connection wasn't instance of proxy connection");
         } else {
 
             if (busyConnection.contains(connection) || freeConnection.contains(connection)) {
                 busyConnection.remove(connection);
                 try {
                     freeConnection.put((ProxyConnection) connection);
-                } catch (InterruptedException e) {
-                    logger.log(Level.ERROR, "Current thread was interrupted {} {}", e.getMessage(), e.getStackTrace());
+                } catch (InterruptedException exception) {
+                    logger.error("Current thread was interrupted." + exception);
                     Thread.currentThread().interrupt();
                 }
             } else {
-                logger.log(Level.ERROR, "Current connection does not belong to connection pool  : {}", connection);
-                result = false;
+                logger.error("Current connection wasn't refer to connection pool");
             }
         }
-        return result;
     }
 
     public void destroyConnectionPool() {
         while (!freeConnection.isEmpty()) {
+
             try {
                 freeConnection.take().reallyClose();
-            } catch (SQLException e) {
-                logger.log(Level.WARN, "Connection is not closed: {}", e.getMessage());
-            } catch (InterruptedException e) {
-                logger.log(Level.WARN, "Current thread was interrupted: {}", e.getMessage());
+            } catch (SQLException exception) {
+                logger.error("Connection wasn't closed");
+            } catch (InterruptedException exception) {
+                logger.error("Connection was interrupted." + exception);
                 Thread.currentThread().interrupt();
             }
         }
+
         while (!busyConnection.isEmpty()) {
             try {
                 ProxyConnection connection = busyConnection.take();
-                //TODO connection.rollback();
                 connection.reallyClose();
             } catch (SQLException e) {
-                logger.log(Level.WARN, "Connection is not closed: {}", e.getMessage());
-            } catch (InterruptedException e) {
-                logger.log(Level.WARN, "Current thread was interrupted: {}", e.getMessage());
+                logger.error("Connection wasn't closed");
+            } catch (InterruptedException exception) {
+                logger.error("Connection was interrupted." + exception);
                 Thread.currentThread().interrupt();
             }
         }
         deregisterDrivers();
-        logger.log(Level.INFO, "Connection pool successfully destroyed");
+        logger.info("Connection pool was destroyed interrupted");
     }
 
     private void deregisterDrivers() {
         Enumeration<Driver> drivers = DriverManager.getDrivers();
+
         while (drivers.hasMoreElements()) {
             Driver driver = drivers.nextElement();
             try {
                 DriverManager.deregisterDriver(driver);
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Error occured while deregistering driver {}: {} {}", driver, e.getMessage(),
-                        e.getStackTrace());
+            } catch (SQLException exception) {
+                logger.error("Driver registration error." + exception);
             }
         }
     }

@@ -52,7 +52,7 @@ public enum Commands {
     DELETE_USER_ORDER("/user-order/delete"),
     DEFAULT_USER_ORDER_VALUE("/user-order/find-all"),
 
-    DEFAULT("localhost:8080");
+    DEFAULT("localhost:8080/main-menu");
 
     private final String commandName;
 

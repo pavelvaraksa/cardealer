@@ -1,10 +1,10 @@
 package by.varaksa.cardealer.repository.impl;
 
+import by.varaksa.cardealer.connection.PoolConnection;
 import by.varaksa.cardealer.entity.Role;
 import by.varaksa.cardealer.entity.User;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.repository.UserRepository;
-import by.varaksa.cardealer.util.DatabasePropertiesReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,11 +14,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
-
 public class UserRepositoryImpl implements UserRepository {
     private static final Logger logger = LogManager.getLogger();
-    private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
     private static final String ID = "id";
     private static final String FIRSTNAME = "firstname";
@@ -31,8 +28,6 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String IS_BLOCKED = "is_blocked";
     private static final String CREATED = "created";
     private static final String CHANGED = "changed";
-//    private static boolean check;
-//    private static String checkString;
 
     private static final String SAVE_USER = "insert into users (firstname, lastname, birth_date, login, password, " +
             "email, role, is_blocked, created, changed) " +
@@ -72,20 +67,11 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User save(User user) {
-        Connection connection;
-        PreparedStatement statement;
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
         Role defaultSavedUserRole = Role.USER;
-//        checkString = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-//        check = BCrypt.checkpw(user.getPassword(), checkString);
 
-        connect();
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(SAVE_USER);
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SAVE_USER)) {
 
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
@@ -110,18 +96,10 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public List<User> findAll() {
         List<User> result = new ArrayList<>();
-        Connection connection;
-        Statement statement;
-        ResultSet resultSet;
 
-        connect();
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(FIND_ALL_USERS);
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(FIND_ALL_USERS);
 
             while (resultSet.next()) {
                 result.add(parseResultSet(resultSet));
@@ -137,19 +115,11 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User find(Long id) {
-        Connection connection;
-        PreparedStatement statement;
-        ResultSet resultSet;
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_ID)) {
 
-        connect();
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(FIND_USER_BY_ID);
             statement.setLong(1, id);
-            resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
                 return parseResultSet(resultSet);
@@ -166,17 +136,10 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User update(User user) {
-        Connection connection;
-        PreparedStatement statement;
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        connect();
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(UPDATE_USER_BY_ID);
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_USER_BY_ID)) {
 
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
@@ -200,17 +163,11 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User delete(Long id) {
-        Connection connection;
-        PreparedStatement statement;
         User user = new User();
 
-        connect();
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_USER_BY_ID)) {
 
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(DELETE_USER_BY_ID);
             statement.setLong(1, id);
             statement.executeUpdate();
 
@@ -225,16 +182,10 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public boolean isAuthenticate(User user) {
         boolean isStatus;
-        Connection connection;
-        PreparedStatement preparedStatement;
 
-        connect();
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(CONFIRM_AUTHENTICATE)) {
 
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            preparedStatement = connection.prepareStatement(CONFIRM_AUTHENTICATE);
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             logger.info(preparedStatement);
@@ -250,29 +201,10 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void logOut(User user) {
-        Connection connection;
-
-        connect();
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-
+        try (Connection connection = PoolConnection.getInstance().getConnection()) {
             logger.info(connection);
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
-    }
-
-    private void connect() {
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver was loaded from user repository class");
-        } catch (ClassNotFoundException exception) {
-            String errorMessage = "JDBC driver wasn't loaded from user repository class." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }

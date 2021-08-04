@@ -52,7 +52,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                         <li><a class="dropdown-item" href="#">English</a></li>
-                        <li><a class="dropdown-item" href="#">Russian</a></li>
+                        <li><a class="dropdown-item" href="#">Русский</a></li>
                     </ul>
                 </li>
             </ul>

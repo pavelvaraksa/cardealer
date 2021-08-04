@@ -1,10 +1,10 @@
 package by.varaksa.cardealer.repository.impl;
 
+import by.varaksa.cardealer.connection.PoolConnection;
 import by.varaksa.cardealer.entity.Transmission;
 import by.varaksa.cardealer.entity.TransmissionType;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.repository.TransmissionRepository;
-import by.varaksa.cardealer.util.DatabasePropertiesReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,12 +14,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
-import static by.varaksa.cardealer.util.DatabasePropertiesReader.DATABASE_PASSWORD;
-
 public class TransmissionRepositoryImpl implements TransmissionRepository {
     private static final Logger logger = LogManager.getLogger();
-    private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
     private static final String ID = "id";
     private static final String TRANSMISSION_TYPE = "transmission_type";
@@ -57,17 +53,10 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
     @Override
     public Transmission save(Transmission transmission) throws RepositoryException {
-        Connection connection;
-        PreparedStatement statement;
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        connect();
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(SAVE_TRANSMISSION);
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SAVE_TRANSMISSION)) {
 
             statement.setString(1, String.valueOf(transmission.getTransmissionType()));
             statement.setInt(2, transmission.getGearsCount());
@@ -88,18 +77,10 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
     @Override
     public List<Transmission> findAll() {
         List<Transmission> result = new ArrayList<>();
-        Connection connection;
-        Statement statement;
-        ResultSet resultSet;
 
-        connect();
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(FIND_ALL_TRANSMISSIONS);
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(FIND_ALL_TRANSMISSIONS);
 
             while (resultSet.next()) {
                 result.add(parseResultSet(resultSet));
@@ -115,19 +96,11 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
     @Override
     public Transmission find(Long id) throws RepositoryException {
-        Connection connection;
-        PreparedStatement statement;
-        ResultSet resultSet;
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_TRANSMISSION_BY_ID)) {
 
-        connect();
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(FIND_TRANSMISSION_BY_ID);
             statement.setLong(1, id);
-            resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
                 return parseResultSet(resultSet);
@@ -144,17 +117,10 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
     @Override
     public Transmission update(Transmission transmission) {
-        Connection connection;
-        PreparedStatement statement;
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        connect();
-
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(UPDATE_TRANSMISSION_BY_ID);
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_TRANSMISSION_BY_ID)) {
 
             statement.setString(1, String.valueOf(transmission.getTransmissionType()));
             statement.setInt(2, transmission.getGearsCount());
@@ -174,17 +140,11 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
     @Override
     public Transmission delete(Long id) {
-        Connection connection;
-        PreparedStatement statement;
         Transmission transmission = new Transmission();
 
-        connect();
+        try (Connection connection = PoolConnection.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_TRANSMISSION_BY_ID)) {
 
-        try {
-            connection = DriverManager.getConnection(reader.getProperty(DATABASE_URL),
-                    reader.getProperty(DATABASE_LOGIN),
-                    reader.getProperty(DATABASE_PASSWORD));
-            statement = connection.prepareStatement(DELETE_TRANSMISSION_BY_ID);
             statement.setLong(1, id);
             statement.executeUpdate();
 
@@ -192,17 +152,6 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
-    }
-
-    private void connect() {
-        try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            logger.info("JDBC driver was loaded from transmission repository class");
-        } catch (ClassNotFoundException exception) {
-            String errorMessage = "JDBC driver wasn't loaded from transmission repository class." + exception;
-            logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         }
     }

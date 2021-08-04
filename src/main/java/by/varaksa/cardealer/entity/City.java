@@ -6,5 +6,5 @@ public enum City {
     MOGILEV,
     GOMEL,
     VITEBSK,
-    GRODNO,
+    GRODNO
 }
