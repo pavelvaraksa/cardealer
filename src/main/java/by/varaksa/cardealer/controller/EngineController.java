@@ -1,13 +1,15 @@
 package by.varaksa.cardealer.controller;
 
-import by.varaksa.cardealer.command.Commands;
-import by.varaksa.cardealer.entity.*;
+import by.varaksa.cardealer.controller.command.Commands;
+import by.varaksa.cardealer.model.entity.Engine;
+import by.varaksa.cardealer.model.entity.EngineType;
+import by.varaksa.cardealer.model.entity.FuelType;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
-import by.varaksa.cardealer.repository.EngineRepository;
-import by.varaksa.cardealer.repository.impl.EngineRepositoryImpl;
-import by.varaksa.cardealer.service.EngineService;
-import by.varaksa.cardealer.service.impl.EngineServiceImpl;
+import by.varaksa.cardealer.model.repository.EngineRepository;
+import by.varaksa.cardealer.model.repository.impl.EngineRepositoryImpl;
+import by.varaksa.cardealer.model.service.EngineService;
+import by.varaksa.cardealer.model.service.impl.EngineServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,13 +1,14 @@
 package by.varaksa.cardealer.controller;
 
-import by.varaksa.cardealer.command.Commands;
-import by.varaksa.cardealer.entity.*;
+import by.varaksa.cardealer.controller.command.Commands;
+import by.varaksa.cardealer.model.entity.Transmission;
+import by.varaksa.cardealer.model.entity.TransmissionType;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
-import by.varaksa.cardealer.repository.TransmissionRepository;
-import by.varaksa.cardealer.repository.impl.TransmissionRepositoryImpl;
-import by.varaksa.cardealer.service.TransmissionService;
-import by.varaksa.cardealer.service.impl.TransmissionServiceImpl;
+import by.varaksa.cardealer.model.repository.TransmissionRepository;
+import by.varaksa.cardealer.model.repository.impl.TransmissionRepositoryImpl;
+import by.varaksa.cardealer.model.service.TransmissionService;
+import by.varaksa.cardealer.model.service.impl.TransmissionServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -137,6 +137,16 @@
         <url-pattern>/user/delete-user-page</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Verify user</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/verify.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Verify user</servlet-name>
+        <url-pattern>/user/verify-page</url-pattern>
+    </servlet-mapping>
+
 
     <!--Body servlets and mappings -->
     <servlet>

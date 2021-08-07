@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="by.varaksa.cardealer.entity.EngineType" %>
-<%@ page import="by.varaksa.cardealer.entity.FuelType" %>
+<%@ page import="by.varaksa.cardealer.model.entity.EngineType" %>
+<%@ page import="by.varaksa.cardealer.model.entity.FuelType" %>
 
 <html>
 <head>

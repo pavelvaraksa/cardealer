@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="by.varaksa.cardealer.entity.Role" %>
+<%@ page import="by.varaksa.cardealer.model.entity.Role" %>
 
 <html>
 <head>

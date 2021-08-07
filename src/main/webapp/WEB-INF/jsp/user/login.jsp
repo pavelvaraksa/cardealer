@@ -1,4 +1,4 @@
-<%@ page import="by.varaksa.cardealer.entity.User" %>
+<%@ page import="by.varaksa.cardealer.model.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

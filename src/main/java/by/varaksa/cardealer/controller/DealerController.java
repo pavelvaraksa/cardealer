@@ -1,13 +1,14 @@
 package by.varaksa.cardealer.controller;
 
-import by.varaksa.cardealer.command.Commands;
-import by.varaksa.cardealer.entity.*;
+import by.varaksa.cardealer.controller.command.Commands;
+import by.varaksa.cardealer.model.entity.City;
+import by.varaksa.cardealer.model.entity.Dealer;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
-import by.varaksa.cardealer.repository.DealerRepository;
-import by.varaksa.cardealer.repository.impl.DealerRepositoryImpl;
-import by.varaksa.cardealer.service.DealerService;
-import by.varaksa.cardealer.service.impl.DealerServiceImpl;
+import by.varaksa.cardealer.model.repository.DealerRepository;
+import by.varaksa.cardealer.model.repository.impl.DealerRepositoryImpl;
+import by.varaksa.cardealer.model.service.DealerService;
+import by.varaksa.cardealer.model.service.impl.DealerServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
