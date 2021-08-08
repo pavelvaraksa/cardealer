@@ -79,7 +79,7 @@ public class UserController extends HttpServlet {
         }
     }
 
-    public void confirmAuthenticate(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException {
+    public void confirmAuthenticate(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServletException, ServiceException {
         HttpSession session = request.getSession();
         String userLogin = request.getParameter("login");
         String userPassword = request.getParameter("password");
@@ -92,7 +92,8 @@ public class UserController extends HttpServlet {
             if (userService.isAuthenticate(user)) {
                 session.setAttribute("user", user);
                 logger.info("Login and password were correct");
-                response.sendRedirect("/main-menu");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/main-menu");
+                dispatcher.forward(request, response);
                 return;
             }
 
@@ -114,7 +115,8 @@ public class UserController extends HttpServlet {
         response.sendRedirect("/login-auth");
     }
 
-    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServiceException, RepositoryException, ServletException {
+    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws
+            IOException, ControllerException, ServiceException, RepositoryException, ServletException {
         HttpSession session = request.getSession();
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
@@ -159,7 +161,8 @@ public class UserController extends HttpServlet {
         }
     }
 
-    private void verifyUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, ServletException {
+    private void verifyUser(HttpServletRequest request, HttpServletResponse response) throws
+            IOException, ServiceException, ServletException {
         HttpSession session = request.getSession();
         String code = request.getParameter("authCode");
         User user = (User) session.getAttribute("authCode");
@@ -175,7 +178,8 @@ public class UserController extends HttpServlet {
         }
     }
 
-    private void findAllUsers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException {
+    private void findAllUsers(HttpServletRequest request, HttpServletResponse response) throws
+            IOException, ServletException, ServiceException {
         HttpSession session = request.getSession();
         List<User> userList = userService.findAll();
         logger.info("Users were watched");
@@ -184,15 +188,19 @@ public class UserController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void findUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
+    private void findUser(HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException, ServiceException {
+        HttpSession session = request.getSession();
         Long id = Long.parseLong(request.getParameter("id"));
         User existingUser = userService.find(id);
+        session.setAttribute("oneUser", existingUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("find-by-id");
-        request.setAttribute("oneUser", existingUser);
         dispatcher.forward(request, response);
     }
 
-    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws
+            ServiceException, IOException {
+        //HttpSession session = request.getSession();
         Long id = Long.parseLong(request.getParameter("id"));
         User user = userService.find(id);
 
@@ -217,7 +225,9 @@ public class UserController extends HttpServlet {
         response.sendRedirect("/user/find-all");
     }
 
-    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws
+            IOException, ServiceException {
+        //HttpSession session = request.getSession();
         Long id = Long.parseLong(request.getParameter("id"));
         userService.delete(id);
         response.sendRedirect("/user/find-all");

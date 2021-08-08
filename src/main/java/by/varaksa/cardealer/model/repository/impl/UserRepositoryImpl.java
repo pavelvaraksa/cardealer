@@ -1,10 +1,11 @@
 package by.varaksa.cardealer.model.repository.impl;
 
+import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.connection.PoolConnection;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
-import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.repository.UserRepository;
+import by.varaksa.cardealer.model.util.HashingUserPassword;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,6 +34,7 @@ public class UserRepositoryImpl implements UserRepository {
             "email, role, is_blocked, created, changed) " +
             "values (?,?,?,?,?,?,?,?,?,?)";
     private static final String FIND_ALL_USERS = "select * from users";
+    private static final String FIND_PASSWORD_BY_LOGIN = "select password from users where login = ?";
     private static final String FIND_USER_BY_ID = "select * from users where id = ?";
     private static final String UPDATE_USER_BY_ID = "update users " +
             "set " +
@@ -77,7 +79,7 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setString(2, user.getLastName());
             statement.setDate(3, Date.valueOf(user.getBirthDate()));
             statement.setString(4, user.getLogin());
-            statement.setString(5, user.getPassword());
+            statement.setString(5, HashingUserPassword.encodePassword(user.getPassword()));
             statement.setString(6, user.getEmail());
             statement.setString(7, String.valueOf(defaultSavedUserRole));
             statement.setBoolean(8, user.isBlocked());
@@ -181,16 +183,33 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean isAuthenticate(User user) {
-        boolean isStatus;
+        boolean isStatus = false;
+        String encryptedPassword;
+        String decryptedPassword;
+        String enteredPassword = user.getPassword();
 
         try (Connection connection = PoolConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(CONFIRM_AUTHENTICATE)) {
+             PreparedStatement preparedStatement1 = connection.prepareStatement(FIND_PASSWORD_BY_LOGIN)) {
+            preparedStatement1.setString(1, user.getLogin());
+            ResultSet resultSet = preparedStatement1.executeQuery();
 
-            preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getPassword());
-            logger.info(preparedStatement);
-            ResultSet rs = preparedStatement.executeQuery();
-            isStatus = rs.next();
+            while (resultSet.next()) {
+                User newUser = new User();
+                newUser.setPassword(resultSet.getString("password"));
+                encryptedPassword = newUser.getPassword();
+                decryptedPassword = HashingUserPassword.decodePassword(encryptedPassword);
+
+                if (decryptedPassword.equals(enteredPassword)) {
+                    try (PreparedStatement preparedStatement2 = connection.prepareStatement(CONFIRM_AUTHENTICATE)) {
+
+                        preparedStatement2.setString(1, user.getLogin());
+                        preparedStatement2.setString(2, encryptedPassword);
+                        logger.info(preparedStatement2);
+                        ResultSet rs = preparedStatement2.executeQuery();
+                        isStatus = rs.next();
+                    }
+                }
+            }
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.fatal(errorMessage);
