@@ -11,6 +11,7 @@ import by.varaksa.cardealer.model.repository.UserRepository;
 import by.varaksa.cardealer.model.repository.impl.UserRepositoryImpl;
 import by.varaksa.cardealer.model.service.UserService;
 import by.varaksa.cardealer.model.service.impl.UserServiceImpl;
+import by.varaksa.cardealer.model.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,6 +32,7 @@ import java.util.List;
 public class UserController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger();
+    private static final boolean isCheckStringFromUI = false;
     private Commands commandName;
     public UserRepository userRepository = new UserRepositoryImpl();
     public UserService userService = new UserServiceImpl(userRepository);
@@ -81,11 +83,17 @@ public class UserController extends HttpServlet {
 
     public void confirmAuthenticate(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServletException, ServiceException {
         HttpSession session = request.getSession();
-        String userLogin = request.getParameter("login");
-        String userPassword = request.getParameter("password");
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
         User user = new User();
-        user.setLogin(userLogin);
-        user.setPassword(userPassword);
+        user.setLogin(login);
+        user.setPassword(password);
+
+        if (UserValidator.userValidate(UserValidator.LOGIN_REGEXP, login) == isCheckStringFromUI ||
+                UserValidator.userValidate(UserValidator.PASSWORD_REGEXP, password) == isCheckStringFromUI) {
+            response.sendRedirect("/login-auth");
+            return;
+        }
 
         try {
 
@@ -134,10 +142,20 @@ public class UserController extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-        Email userEmail = new Email();
-        String code = userEmail.getRandom();
+        if (UserValidator.userValidate(UserValidator.FIRST_NAME_REGEXP, firstname) == isCheckStringFromUI ||
+                UserValidator.userValidate(UserValidator.LAST_NAME_REGEXP, lastname) == isCheckStringFromUI ||
+                UserValidator.userValidate(UserValidator.LOGIN_REGEXP, login) == isCheckStringFromUI ||
+                UserValidator.userValidate(UserValidator.PASSWORD_REGEXP, password) == isCheckStringFromUI ||
+                UserValidator.userValidate(UserValidator.EMAIL_REGEXP, email) == isCheckStringFromUI) {
+            response.sendRedirect("/register-page");
+            return;
+        }
 
-        User user = new User(firstname, lastname, birthDate, login, password, email, code);
+        Email userEmail = new Email();
+        String userCode = userEmail.getRandom();
+
+        User user = new User(firstname, lastname, birthDate, login, password, email, userCode);
+        session.setAttribute("user", user);
 
         List<User> existingUsers = userService.findAll();
 
@@ -152,9 +170,9 @@ public class UserController extends HttpServlet {
             }
         }
 
-        boolean test = userEmail.sendEmail(user);
+        boolean confirmCode = userEmail.sendEmail(user);
 
-        if (test) {
+        if (confirmCode) {
             session.setAttribute("authCode", user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/user/verify-page");
             dispatcher.forward(request, response);
@@ -168,8 +186,9 @@ public class UserController extends HttpServlet {
         User user = (User) session.getAttribute("authCode");
 
         if (code.equals(user.getCodeToRegister())) {
-            logger.error("Confirmation code was right for user with login " + user.getLogin());
+            logger.info("Confirmation code was right for user with login " + user.getLogin());
             userService.save(user);
+            session.setAttribute("user", user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/main-menu");
             dispatcher.forward(request, response);
         } else {
@@ -200,7 +219,7 @@ public class UserController extends HttpServlet {
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws
             ServiceException, IOException {
-        //HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         Long id = Long.parseLong(request.getParameter("id"));
         User user = userService.find(id);
 
@@ -221,13 +240,20 @@ public class UserController extends HttpServlet {
         user.setRole(Role.valueOf((request.getParameter("role"))));
         user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
 
+        if (UserValidator.userValidate(UserValidator.FIRST_NAME_REGEXP, user.getFirstName()) == isCheckStringFromUI ||
+                UserValidator.userValidate(UserValidator.LAST_NAME_REGEXP, user.getLastName()) == isCheckStringFromUI ||
+                UserValidator.userValidate(UserValidator.EMAIL_REGEXP, user.getEmail()) == isCheckStringFromUI) {
+            response.sendRedirect("/user/find-all");
+            return;
+        }
+
+        session.setAttribute("user", user);
         userService.update(user);
         response.sendRedirect("/user/find-all");
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws
             IOException, ServiceException {
-        //HttpSession session = request.getSession();
         Long id = Long.parseLong(request.getParameter("id"));
         userService.delete(id);
         response.sendRedirect("/user/find-all");

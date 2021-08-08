@@ -5,7 +5,7 @@ import by.varaksa.cardealer.model.connection.PoolConnection;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
 import by.varaksa.cardealer.model.repository.UserRepository;
-import by.varaksa.cardealer.model.util.HashingUserPassword;
+import by.varaksa.cardealer.model.util.EncryptionUserPassword;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -79,7 +79,7 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setString(2, user.getLastName());
             statement.setDate(3, Date.valueOf(user.getBirthDate()));
             statement.setString(4, user.getLogin());
-            statement.setString(5, HashingUserPassword.encodePassword(user.getPassword()));
+            statement.setString(5, EncryptionUserPassword.encodePassword(user.getPassword()));
             statement.setString(6, user.getEmail());
             statement.setString(7, String.valueOf(defaultSavedUserRole));
             statement.setBoolean(8, user.isBlocked());
@@ -197,7 +197,7 @@ public class UserRepositoryImpl implements UserRepository {
                 User newUser = new User();
                 newUser.setPassword(resultSet.getString("password"));
                 encryptedPassword = newUser.getPassword();
-                decryptedPassword = HashingUserPassword.decodePassword(encryptedPassword);
+                decryptedPassword = EncryptionUserPassword.decodePassword(encryptedPassword);
 
                 if (decryptedPassword.equals(enteredPassword)) {
                     try (PreparedStatement preparedStatement2 = connection.prepareStatement(CONFIRM_AUTHENTICATE)) {

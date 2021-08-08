@@ -52,12 +52,7 @@ public class User {
     public User(String firstName, String lastName,
                 LocalDate birthDate, String login, String password,
                 String email, String codeToRegister) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.login = login;
-        this.password = password;
-        this.email = email;
+        this(firstName, lastName, birthDate, login, password, email);
         this.codeToRegister = codeToRegister;
     }
 
