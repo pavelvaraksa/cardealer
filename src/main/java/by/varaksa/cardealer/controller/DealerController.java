@@ -9,6 +9,8 @@ import by.varaksa.cardealer.model.repository.DealerRepository;
 import by.varaksa.cardealer.model.repository.impl.DealerRepositoryImpl;
 import by.varaksa.cardealer.model.service.DealerService;
 import by.varaksa.cardealer.model.service.impl.DealerServiceImpl;
+import by.varaksa.cardealer.model.validator.CarValidator;
+import by.varaksa.cardealer.model.validator.DealerValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +26,8 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/dealer/save", "/dealer/find-all", "/dealer/find-by-id", "/dealer/update", "/dealer/delete"})
 public class DealerController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger();
+    private static final boolean isCheckStringFromUI = true;
     private Commands commandName;
     public DealerRepository dealerRepository = new DealerRepositoryImpl();
     public DealerService dealerService = new DealerServiceImpl(dealerRepository);
@@ -90,11 +92,21 @@ public class DealerController extends HttpServlet {
         String address = (request.getParameter("address"));
         LocalDate foundationDate = LocalDate.parse((request.getParameter("foundation_date")));
         City city = City.valueOf(((request.getParameter("city"))));
-        Long carId = Long.valueOf((request.getParameter("car_id")));
-        Dealer dealer = new Dealer(name, address, foundationDate, city, carId);
 
-        dealerService.save(dealer);
-        response.sendRedirect("/dealer/find-all");
+        if (DealerValidator.isDealerValidate(DealerValidator.DEALER_NAME_REGEXP, request.getParameter("name")) == isCheckStringFromUI &&
+                DealerValidator.isDealerValidate(DealerValidator.DEALER_ADDRESS_REGEXP, request.getParameter("address")) == isCheckStringFromUI &&
+                CarValidator.isCarValidate(CarValidator.CAR_ID_REGEXP, request.getParameter("car_id")) == isCheckStringFromUI) {
+
+            Long carId = Long.valueOf(request.getParameter("car_id"));
+            Dealer dealer = new Dealer(name, address, foundationDate, city, carId);
+
+            dealerService.save(dealer);
+            response.sendRedirect("/dealer/find-all");
+            return;
+        }
+
+        logger.error("Dealer wasn't saved");
+        response.sendRedirect("/body/find-all");
     }
 
     private void findAllDealers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException {
@@ -122,8 +134,16 @@ public class DealerController extends HttpServlet {
         dealer.setFoundationDate(LocalDate.parse(request.getParameter("foundation_date")));
         dealer.setCity(City.valueOf(request.getParameter("city")));
 
-        dealerService.update(dealer);
-        response.sendRedirect("/dealer/find-all");
+        if (DealerValidator.isDealerValidate(DealerValidator.DEALER_NAME_REGEXP, request.getParameter("name")) == isCheckStringFromUI &&
+                DealerValidator.isDealerValidate(DealerValidator.DEALER_ADDRESS_REGEXP, request.getParameter("address")) == isCheckStringFromUI) {
+
+            dealerService.update(dealer);
+            response.sendRedirect("/dealer/find-all");
+            return;
+        }
+
+        logger.error("Dealer wasn't saved");
+        response.sendRedirect("/body/find-all");
     }
 
     private void deleteDealer(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {

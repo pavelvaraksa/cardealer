@@ -1,15 +1,17 @@
 package by.varaksa.cardealer.controller;
 
 import by.varaksa.cardealer.controller.command.Commands;
+import by.varaksa.cardealer.exception.RepositoryException;
+import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.entity.Car;
 import by.varaksa.cardealer.model.entity.Country;
 import by.varaksa.cardealer.model.entity.Model;
-import by.varaksa.cardealer.exception.RepositoryException;
-import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.repository.CarRepository;
 import by.varaksa.cardealer.model.repository.impl.CarRepositoryImpl;
 import by.varaksa.cardealer.model.service.CarService;
 import by.varaksa.cardealer.model.service.impl.CarServiceImpl;
+import by.varaksa.cardealer.model.validator.CarValidator;
+import by.varaksa.cardealer.model.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +26,8 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/car/save", "/car/find-all", "/car/find-by-id", "/car/update", "/car/delete"})
 public class CarController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger();
+    private static final boolean isCheckStringFromUI = true;
     private Commands commandName;
     public CarRepository carRepository = new CarRepositoryImpl();
     public CarService carService = new CarServiceImpl(carRepository);
@@ -88,11 +90,21 @@ public class CarController extends HttpServlet {
     private void saveCar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException {
         Model model = Model.valueOf(request.getParameter("model"));
         Country country = Country.valueOf(request.getParameter("issue_country"));
-        Integer guaranteePeriod = Integer.valueOf((request.getParameter("guarantee_period")));
-        Integer price = Integer.valueOf((request.getParameter("price")));
-        Car car = new Car(model, country, guaranteePeriod, price);
 
-        carService.save(car);
+        if (CarValidator.isCarValidate(CarValidator.GUARANTEE_PERIOD_REGEXP, request.getParameter("guarantee_period")) == isCheckStringFromUI &&
+                CarValidator.isCarValidate(CarValidator.PRICE_REGEXP, request.getParameter("price")) == isCheckStringFromUI) {
+
+            Integer guaranteePeriod = Integer.valueOf((request.getParameter("guarantee_period")));
+            Integer price = Integer.valueOf((request.getParameter("price")));
+
+            Car car = new Car(model, country, guaranteePeriod, price);
+
+            carService.save(car);
+            response.sendRedirect("/car/find-all");
+            return;
+        }
+
+        logger.error("Car wasn't saved");
         response.sendRedirect("/car/find-all");
     }
 
@@ -118,11 +130,21 @@ public class CarController extends HttpServlet {
 
         car.setModel(Model.valueOf(request.getParameter("model")));
         car.setIssueCountry(Country.valueOf((request.getParameter("issue_country"))));
-        car.setGuaranteePeriod(Integer.valueOf(request.getParameter("guarantee_period")));
-        car.setPrice(Integer.valueOf((request.getParameter("price"))));
-        car.setUserOrderId(Long.valueOf((request.getParameter("user_order_id"))));
 
-        carService.update(car);
+        if (CarValidator.isCarValidate(CarValidator.GUARANTEE_PERIOD_REGEXP, request.getParameter("guarantee_period")) == isCheckStringFromUI &&
+                CarValidator.isCarValidate(CarValidator.PRICE_REGEXP, request.getParameter("price")) == isCheckStringFromUI &&
+                UserValidator.isUserValidate(UserValidator.USER_ORDER_ID, request.getParameter("user_order_id")) == isCheckStringFromUI) {
+
+            car.setGuaranteePeriod(Integer.valueOf(request.getParameter("guarantee_period")));
+            car.setPrice(Integer.valueOf((request.getParameter("price"))));
+            car.setUserOrderId(Long.valueOf((request.getParameter("user_order_id"))));
+
+            carService.update(car);
+            response.sendRedirect("/car/find-all");
+            return;
+        }
+
+        logger.error("Car wasn't updated");
         response.sendRedirect("/car/find-all");
     }
 

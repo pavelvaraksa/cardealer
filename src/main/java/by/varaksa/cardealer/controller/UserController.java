@@ -30,9 +30,8 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/user/save", "/login", "/user/find-all",
         "/user/find-by-id", "/user/update", "/user/delete", "/logout", "/user/verify",})
 public class UserController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger();
-    private static final boolean isCheckStringFromUI = false;
+    private static final boolean isCheckStringFromUI = true;
     private Commands commandName;
     public UserRepository userRepository = new UserRepositoryImpl();
     public UserService userService = new UserServiceImpl(userRepository);
@@ -89,8 +88,8 @@ public class UserController extends HttpServlet {
         user.setLogin(login);
         user.setPassword(password);
 
-        if (UserValidator.userValidate(UserValidator.LOGIN_REGEXP, login) == isCheckStringFromUI ||
-                UserValidator.userValidate(UserValidator.PASSWORD_REGEXP, password) == isCheckStringFromUI) {
+        if (UserValidator.isUserValidate(UserValidator.LOGIN_REGEXP, login) != isCheckStringFromUI &&
+                UserValidator.isUserValidate(UserValidator.PASSWORD_REGEXP, password) != isCheckStringFromUI) {
             response.sendRedirect("/login-auth");
             return;
         }
@@ -142,11 +141,12 @@ public class UserController extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-        if (UserValidator.userValidate(UserValidator.FIRST_NAME_REGEXP, firstname) == isCheckStringFromUI ||
-                UserValidator.userValidate(UserValidator.LAST_NAME_REGEXP, lastname) == isCheckStringFromUI ||
-                UserValidator.userValidate(UserValidator.LOGIN_REGEXP, login) == isCheckStringFromUI ||
-                UserValidator.userValidate(UserValidator.PASSWORD_REGEXP, password) == isCheckStringFromUI ||
-                UserValidator.userValidate(UserValidator.EMAIL_REGEXP, email) == isCheckStringFromUI) {
+        if (UserValidator.isUserValidate(UserValidator.FIRST_NAME_REGEXP, firstname) != isCheckStringFromUI ||
+                UserValidator.isUserValidate(UserValidator.LAST_NAME_REGEXP, lastname) !=  isCheckStringFromUI ||
+                UserValidator.isUserValidate(UserValidator.LOGIN_REGEXP, login) !=  isCheckStringFromUI ||
+                UserValidator.isUserValidate(UserValidator.PASSWORD_REGEXP, password) !=  isCheckStringFromUI ||
+                UserValidator.isUserValidate(UserValidator.EMAIL_REGEXP, email) !=  isCheckStringFromUI) {
+            logger.error("User wasn't saved");
             response.sendRedirect("/register-page");
             return;
         }
@@ -240,9 +240,10 @@ public class UserController extends HttpServlet {
         user.setRole(Role.valueOf((request.getParameter("role"))));
         user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
 
-        if (UserValidator.userValidate(UserValidator.FIRST_NAME_REGEXP, user.getFirstName()) == isCheckStringFromUI ||
-                UserValidator.userValidate(UserValidator.LAST_NAME_REGEXP, user.getLastName()) == isCheckStringFromUI ||
-                UserValidator.userValidate(UserValidator.EMAIL_REGEXP, user.getEmail()) == isCheckStringFromUI) {
+        if (UserValidator.isUserValidate(UserValidator.FIRST_NAME_REGEXP, user.getFirstName()) == isCheckStringFromUI ||
+                UserValidator.isUserValidate(UserValidator.LAST_NAME_REGEXP, user.getLastName()) == isCheckStringFromUI ||
+                UserValidator.isUserValidate(UserValidator.EMAIL_REGEXP, user.getEmail()) == isCheckStringFromUI) {
+            logger.error("User wasn't updated");
             response.sendRedirect("/user/find-all");
             return;
         }

@@ -1,16 +1,17 @@
 package by.varaksa.cardealer.controller;
 
 import by.varaksa.cardealer.controller.command.Commands;
-import by.varaksa.cardealer.model.entity.Body;
-import by.varaksa.cardealer.model.entity.BodyType;
-import by.varaksa.cardealer.model.entity.Color;
 import by.varaksa.cardealer.exception.ControllerException;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
+import by.varaksa.cardealer.model.entity.Body;
+import by.varaksa.cardealer.model.entity.BodyType;
+import by.varaksa.cardealer.model.entity.Color;
 import by.varaksa.cardealer.model.repository.BodyRepository;
 import by.varaksa.cardealer.model.repository.impl.BodyRepositoryImpl;
 import by.varaksa.cardealer.model.service.BodyService;
 import by.varaksa.cardealer.model.service.impl.BodyServiceImpl;
+import by.varaksa.cardealer.model.validator.CarValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,8 +26,8 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/body/save", "/body/find-all", "/body/find-by-id", "/body/update", "/body/delete"})
 public class BodyController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger();
+    private static final boolean isCheckStringFromUI = true;
     private Commands commandName;
     public BodyRepository bodyRepository = new BodyRepositoryImpl();
     public BodyService bodyService = new BodyServiceImpl(bodyRepository);
@@ -89,10 +90,18 @@ public class BodyController extends HttpServlet {
     private void saveBody(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServiceException, RepositoryException, ServletException {
         Color color = Color.valueOf(request.getParameter("color"));
         BodyType bodyType = BodyType.valueOf(request.getParameter("body_type"));
-        Long carId = Long.valueOf(request.getParameter("car_id"));
-        Body body = new Body(color, bodyType, carId);
 
-        bodyService.save(body);
+        if (CarValidator.isCarValidate(CarValidator.CAR_ID_REGEXP, request.getParameter("car_id")) == isCheckStringFromUI) {
+            Long carId = Long.valueOf(request.getParameter("car_id"));
+
+            Body body = new Body(color, bodyType, carId);
+
+            bodyService.save(body);
+            response.sendRedirect("/body/find-all");
+            return;
+        }
+
+        logger.error("Body wasn't saved");
         response.sendRedirect("/body/find-all");
     }
 
@@ -112,7 +121,7 @@ public class BodyController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void updateBody(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
+    private void updateBody(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
         Long id = Long.parseLong(request.getParameter("id"));
         Body body = bodyService.find(id);
 
@@ -123,7 +132,7 @@ public class BodyController extends HttpServlet {
         response.sendRedirect("/body/find-all");
     }
 
-    private void deleteBody(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
+    private void deleteBody(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, ServletException {
         Long id = Long.parseLong(request.getParameter("id"));
         bodyService.delete(id);
         response.sendRedirect("/body/find-all");

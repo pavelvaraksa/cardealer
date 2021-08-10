@@ -19,8 +19,10 @@ public class UserValidator {
     public static final String PASSWORD_REGEXP = "[a-zA-Z0-9[а-яА-Я]\\._\\-]{5,55}";
     /* Regex for the email, 5 to 55 characters including numbers, point, underscore, hyphen and symbol @ */
     public static final String EMAIL_REGEXP = "[a-zA-Z0-9[а-яА-Я]\\._\\-+@]{5,55}";
+    /* Regex for the user order id, 1 to 3 characters */
+    public static final String USER_ORDER_ID = "[0-9]{1,3}";
 
-    public static boolean userValidate(String regexp, String stringFromUI) {
+    public static boolean isUserValidate(String regexp, String stringFromUI) {
         Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(stringFromUI);
 
