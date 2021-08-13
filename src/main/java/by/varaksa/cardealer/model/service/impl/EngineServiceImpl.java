@@ -22,7 +22,7 @@ public class EngineServiceImpl implements EngineService {
     public Engine save(Engine engine) throws ServiceException {
         try {
             Engine savedEngine = engineRepository.save(engine);
-            logger.info("Engine " + engine + " was saved");
+            logger.info("Engine with id " + engine.getId() + " was saved");
             return savedEngine;
         } catch (RepositoryException exception) {
             throw new ServiceException("Engine service exception while trying to save engine." + exception);

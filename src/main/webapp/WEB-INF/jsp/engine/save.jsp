@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="by.varaksa.cardealer.model.entity.EngineType" %>
 <%@ page import="by.varaksa.cardealer.model.entity.FuelType" %>
 
 <html>
@@ -26,14 +25,6 @@
     <form action="save" method="post">
         <table style="with: 100%">
             <form class="row g-3">
-                <div class="col-md-2">
-                    <label class="form-label"><u>Engine type</u>
-                        <select name="engine_type">
-                            <option value="FUEL">${EngineType.FUEL}</option>
-                            <option value="ELEKTRIC">${EngineType.ELEKTRIC}</option>
-                        </select>
-                    </label>
-                </div>
                 <div class="col-md-2">
                     <label class="form-label"><u>Fuel type</u>
                         <select name="fuel_type">

@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 public class Engine {
     private Long id;
 
-    private EngineType engineType;
-
     private FuelType fuelType;
 
     private Double volume;
@@ -22,12 +20,10 @@ public class Engine {
     public Engine() {
     }
 
-    public Engine(EngineType engineType,
-                  FuelType fuelType,
+    public Engine(FuelType fuelType,
                   Double volume,
                   Integer cylindersCount,
                   Long carId) {
-        this.engineType = engineType;
         this.fuelType = fuelType;
         this.volume = volume;
         this.cylindersCount = cylindersCount;
@@ -40,14 +36,6 @@ public class Engine {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public EngineType getEngineType() {
-        return engineType;
-    }
-
-    public void setEngineType(EngineType engineType) {
-        this.engineType = engineType;
     }
 
     public FuelType getFuelType() {
@@ -101,7 +89,6 @@ public class Engine {
     @Override
     public int hashCode() {
         return (int) (11 * id
-                + engineType.hashCode()
                 + fuelType.hashCode()
                 + volume.hashCode()
                 + cylindersCount.hashCode()
@@ -123,7 +110,6 @@ public class Engine {
         Engine engine = (Engine) object;
 
         return id == engine.id
-                && (engineType == engine.engineType || engineType != null && engineType.equals(engine.getEngineType()))
                 && (fuelType == engine.fuelType || fuelType != null && fuelType.equals(engine.getFuelType()))
                 && (volume == engine.volume || volume != null && volume.equals(engine.getVolume()))
                 && (cylindersCount == engine.cylindersCount || cylindersCount != null && cylindersCount.equals(engine.getCylindersCount()))
@@ -137,7 +123,6 @@ public class Engine {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Engine: ");
         stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("engine type ").append(engineType).append(", ");
         stringBuilder.append("fuel type ").append(fuelType).append(", ");
         stringBuilder.append("volume ").append(volume).append(", ");
         stringBuilder.append("cylinders count ").append(cylindersCount).append(", ");

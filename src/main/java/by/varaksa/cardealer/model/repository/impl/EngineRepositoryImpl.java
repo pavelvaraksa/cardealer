@@ -2,7 +2,6 @@ package by.varaksa.cardealer.model.repository.impl;
 
 import by.varaksa.cardealer.model.connection.PoolConnection;
 import by.varaksa.cardealer.model.entity.Engine;
-import by.varaksa.cardealer.model.entity.EngineType;
 import by.varaksa.cardealer.model.entity.FuelType;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.repository.EngineRepository;
@@ -19,7 +18,6 @@ public class EngineRepositoryImpl implements EngineRepository {
     private static final Logger logger = LogManager.getLogger();
 
     private static final String ID = "id";
-    private static final String ENGINE_TYPE = "engine_type";
     private static final String FUEL_TYPE = "fuel_type";
     private static final String VOLUME = "volume";
     private static final String CYLINDERS_COUNT = "cylinders_count";
@@ -30,7 +28,6 @@ public class EngineRepositoryImpl implements EngineRepository {
     private Engine parseResultSet(ResultSet resultSet) throws SQLException {
         Engine engine = new Engine();
         engine.setId(resultSet.getLong(ID));
-        engine.setEngineType(EngineType.valueOf(resultSet.getString(ENGINE_TYPE)));
         engine.setFuelType(FuelType.valueOf(resultSet.getString(FUEL_TYPE)));
         engine.setVolume(resultSet.getDouble(VOLUME));
         engine.setCylindersCount(resultSet.getInt(CYLINDERS_COUNT));
@@ -40,13 +37,12 @@ public class EngineRepositoryImpl implements EngineRepository {
         return engine;
     }
 
-    private static final String SAVE_ENGINE = "insert into engines (engine_type, fuel_type, volume, cylinders_count, created, changed, car_id) " +
-            "values (?,?,?,?,?,?,?)";
+    private static final String SAVE_ENGINE = "insert into engines (fuel_type, volume, cylinders_count, created, changed, car_id) " +
+            "values (?,?,?,?,?,?)";
     private static final String FIND_ALL_ENGINES = "select * from engines";
     private static final String FIND_ENGINE_BY_ID = "select * from engines where id = ?";
     private static final String UPDATE_ENGINE_BY_ID = "update engines " +
             "set " +
-            "engine_type = ?,  " +
             "fuel_type = ?,  " +
             "volume = ?,  " +
             "cylinders_count = ?,  " +
@@ -62,13 +58,12 @@ public class EngineRepositoryImpl implements EngineRepository {
         try (Connection connection = PoolConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_ENGINE)) {
 
-            statement.setString(1, String.valueOf(engine.getEngineType()));
-            statement.setString(2, String.valueOf(engine.getFuelType()));
-            statement.setDouble(3, engine.getVolume());
-            statement.setInt(4, engine.getCylindersCount());
+            statement.setString(1, String.valueOf(engine.getFuelType()));
+            statement.setDouble(2, engine.getVolume());
+            statement.setInt(3, engine.getCylindersCount());
+            statement.setTimestamp(4, creationTimestamp);
             statement.setTimestamp(5, creationTimestamp);
-            statement.setTimestamp(6, creationTimestamp);
-            statement.setLong(7, engine.getCarId());
+            statement.setLong(6, engine.getCarId());
             statement.executeUpdate();
 
             return engine;
@@ -127,13 +122,12 @@ public class EngineRepositoryImpl implements EngineRepository {
         try (Connection connection = PoolConnection.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_ENGINE_BY_ID)) {
 
-            statement.setString(1, String.valueOf(engine.getEngineType()));
-            statement.setString(2, String.valueOf(engine.getFuelType()));
-            statement.setDouble(3, engine.getVolume());
-            statement.setInt(4, engine.getCylindersCount());
-            statement.setTimestamp(5, updateTimestamp);
-            statement.setLong(6, engine.getCarId());
-            statement.setLong(7, engine.getId());
+            statement.setString(1, String.valueOf(engine.getFuelType()));
+            statement.setDouble(2, engine.getVolume());
+            statement.setInt(3, engine.getCylindersCount());
+            statement.setTimestamp(4, updateTimestamp);
+            statement.setLong(5, engine.getCarId());
+            statement.setLong(6, engine.getId());
             statement.executeUpdate();
 
             return engine;

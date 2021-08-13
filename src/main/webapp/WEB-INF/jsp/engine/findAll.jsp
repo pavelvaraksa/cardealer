@@ -33,7 +33,6 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Engine type</th>
                 <th>Fuel type</th>
                 <th>Volume</th>
                 <th>Cylinders count</th>
@@ -47,7 +46,6 @@
 
                 <tr>
                     <td>${engine.id}</td>
-                    <td>${engine.engineType}</td>
                     <td>${engine.fuelType}</td>
                     <td>${engine.volume}</td>
                     <td>${engine.cylindersCount}</td>
@@ -57,7 +55,6 @@
                     <td>
                         <form action="update-engine-page" method="post">
                             <input type="hidden" class="form-control" name="id" value="${engine.id}">
-                            <input type="hidden" class="form-control" name="engineType" value="${engine.engineType}">
                             <input type="hidden" class="form-control" name="fuelType" value="${engine.fuelType}">
                             <input type="hidden" class="form-control" name="volume" value="${engine.volume}">
                             <input type="hidden" class="form-control" name="cylindersCount" value="${engine.cylindersCount}">

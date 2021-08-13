@@ -1,15 +1,15 @@
 package by.varaksa.cardealer.controller;
 
 import by.varaksa.cardealer.controller.command.Commands;
-import by.varaksa.cardealer.model.entity.Engine;
-import by.varaksa.cardealer.model.entity.EngineType;
-import by.varaksa.cardealer.model.entity.FuelType;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
+import by.varaksa.cardealer.model.entity.Engine;
+import by.varaksa.cardealer.model.entity.FuelType;
 import by.varaksa.cardealer.model.repository.EngineRepository;
 import by.varaksa.cardealer.model.repository.impl.EngineRepositoryImpl;
 import by.varaksa.cardealer.model.service.EngineService;
 import by.varaksa.cardealer.model.service.impl.EngineServiceImpl;
+import by.varaksa.cardealer.model.validator.CarValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +24,8 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/engine/save", "/engine/find-all", "/engine/find-by-id", "/engine/update", "/engine/delete"})
 public class EngineController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger();
+    private static final boolean isCheckStringFromUI = true;
     private Commands commandName;
     public EngineRepository engineRepository = new EngineRepositoryImpl();
     public EngineService engineService = new EngineServiceImpl(engineRepository);
@@ -86,18 +86,28 @@ public class EngineController extends HttpServlet {
     }
 
     private void saveEngine(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException {
-        EngineType engineType = EngineType.valueOf(request.getParameter("engine_type"));
         FuelType fuelType = FuelType.valueOf(request.getParameter("fuel_type"));
-        Double volume = Double.valueOf((request.getParameter("volume")));
-        Integer cylindersCount = Integer.valueOf((request.getParameter("cylinders_count")));
-        Long carId = Long.valueOf((request.getParameter("car_id")));
-        Engine engine = new Engine(engineType, fuelType, volume, cylindersCount, carId);
 
-        engineService.save(engine);
+        if (CarValidator.isCarValidate(CarValidator.VOLUME_REGEXP, request.getParameter("volume")) == isCheckStringFromUI &&
+                CarValidator.isCarValidate(CarValidator.CYLINDERS_COUNT_REGEXP, request.getParameter("cylinders_count")) == isCheckStringFromUI &&
+                CarValidator.isCarValidate(CarValidator.CAR_ID_REGEXP, request.getParameter("car_id")) == isCheckStringFromUI) {
+
+            Double volume = Double.valueOf((request.getParameter("volume")));
+            Integer cylindersCount = Integer.valueOf((request.getParameter("cylinders_count")));
+            Long carId = Long.valueOf((request.getParameter("car_id")));
+            Engine engine = new Engine(fuelType, volume, cylindersCount, carId);
+
+            engineService.save(engine);
+            response.sendRedirect("/engine/find-all");
+            return;
+        }
+
+        logger.error("Engine wasn't saved");
         response.sendRedirect("/engine/find-all");
     }
 
-    private void findAllEngines(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException {
+    private void findAllEngines(HttpServletRequest request, HttpServletResponse response) throws
+            IOException, ServletException, ServiceException {
         List<Engine> engineList = engineService.findAll();
         logger.info("Engines were watched");
         request.setAttribute("engineList", engineList);
@@ -105,7 +115,8 @@ public class EngineController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void findEngine(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
+    private void findEngine(HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException, ServiceException {
         Long id = Long.parseLong(request.getParameter("id"));
         Engine existingEngine = engineService.find(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("find-by-id");
@@ -113,20 +124,30 @@ public class EngineController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void updateEngine(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
+    private void updateEngine(HttpServletRequest request, HttpServletResponse response) throws
+            ServiceException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         Engine engine = engineService.find(id);
 
-        engine.setEngineType(EngineType.valueOf(request.getParameter("engine_type")));
         engine.setFuelType(FuelType.valueOf(request.getParameter("fuel_type")));
-        engine.setVolume(Double.valueOf(request.getParameter("volume")));
-        engine.setCylindersCount(Integer.valueOf(request.getParameter("cylinders_count")));
 
-        engineService.update(engine);
+        if (CarValidator.isCarValidate(CarValidator.VOLUME_REGEXP, request.getParameter("volume")) == isCheckStringFromUI &&
+                CarValidator.isCarValidate(CarValidator.CYLINDERS_COUNT_REGEXP, request.getParameter("cylinders_count")) == isCheckStringFromUI) {
+
+            engine.setVolume(Double.valueOf(request.getParameter("volume")));
+            engine.setCylindersCount(Integer.valueOf(request.getParameter("cylinders_count")));
+
+            engineService.update(engine);
+            response.sendRedirect("/engine/find-all");
+            return;
+        }
+
+        logger.error("Engine wasn't updated");
         response.sendRedirect("/engine/find-all");
     }
 
-    private void deleteEngine(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
+    private void deleteEngine(HttpServletRequest request, HttpServletResponse response) throws
+            IOException, ServiceException {
         Long id = Long.parseLong(request.getParameter("id"));
         engineService.delete(id);
         response.sendRedirect("/engine/find-all");
