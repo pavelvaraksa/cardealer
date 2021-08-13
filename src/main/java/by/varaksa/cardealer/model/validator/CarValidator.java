@@ -15,10 +15,14 @@ public class CarValidator {
     public static final String PRICE_REGEXP = "[0-9]{1,6}";
     /* Regex for the car id, 1 to 3 characters */
     public static final String CAR_ID_REGEXP = "[0-9]{1,3}";
-    /* Regex for the volume, 1 to 3 characters */
+    /* Regex for the volume, 1 to 3 characters including point */
     public static final String VOLUME_REGEXP = "[0-9\\.]{1,3}";
     /* Regex for the cylinders count, 1 to 2 characters */
     public static final String CYLINDERS_COUNT_REGEXP = "[0-9]{1,2}";
+    /* Regex for the gears count, 1 character */
+    public static final String GEARS_COUNT_REGEXP = "[0-9]{1}";
+    /* Regex for the weight, 1 to 3 characters including point */
+    public static final String WEIGHT_REGEXP = "[0-9]{1,3}";
 
     public static boolean isCarValidate(String regexp, String stringFromUI) {
         Pattern pattern = Pattern.compile(regexp);

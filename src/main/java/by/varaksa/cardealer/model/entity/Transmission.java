@@ -9,7 +9,7 @@ public class Transmission {
 
     private Integer gearsCount;
 
-    private Double weight;
+    private Integer weight;
 
     private LocalDateTime created;
 
@@ -20,7 +20,7 @@ public class Transmission {
     public Transmission() {
     }
 
-    public Transmission(TransmissionType transmissionType, Integer gearsCount, Double weight, Long carId) {
+    public Transmission(TransmissionType transmissionType, Integer gearsCount, Integer weight, Long carId) {
         this.transmissionType = transmissionType;
         this.gearsCount = gearsCount;
         this.weight = weight;
@@ -51,11 +51,11 @@ public class Transmission {
         this.gearsCount = gearsCount;
     }
 
-    public Double getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(Double weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 

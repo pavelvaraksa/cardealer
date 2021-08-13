@@ -9,6 +9,7 @@ import by.varaksa.cardealer.model.repository.TransmissionRepository;
 import by.varaksa.cardealer.model.repository.impl.TransmissionRepositoryImpl;
 import by.varaksa.cardealer.model.service.TransmissionService;
 import by.varaksa.cardealer.model.service.impl.TransmissionServiceImpl;
+import by.varaksa.cardealer.model.validator.CarValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +25,8 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/transmission/save", "/transmission/find-all", "/transmission/find-by-id",
         "/transmission/update", "/transmission/delete"})
 public class TransmissionController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger();
+    private static final boolean isCheckStringFromUI = true;
     private Commands commandName;
     public TransmissionRepository transmissionRepository = new TransmissionRepositoryImpl();
     public TransmissionService transmissionService = new TransmissionServiceImpl(transmissionRepository);
@@ -87,12 +88,22 @@ public class TransmissionController extends HttpServlet {
 
     private void saveTransmission(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException {
         TransmissionType transmissionType = TransmissionType.valueOf(request.getParameter("transmission_type"));
-        Integer gearsCount = Integer.valueOf(request.getParameter("gears_count"));
-        Double weight = Double.valueOf(request.getParameter("weight"));
-        Long carId = Long.valueOf((request.getParameter("car_id")));
-        Transmission transmission = new Transmission(transmissionType, gearsCount, weight, carId);
 
-        transmissionService.save(transmission);
+        if (CarValidator.isCarValidate(CarValidator.GEARS_COUNT_REGEXP, request.getParameter("gears_count")) == isCheckStringFromUI &&
+                CarValidator.isCarValidate(CarValidator.WEIGHT_REGEXP, request.getParameter("weight")) == isCheckStringFromUI &&
+                CarValidator.isCarValidate(CarValidator.CAR_ID_REGEXP, request.getParameter("car_id")) == isCheckStringFromUI) {
+
+            Integer gearsCount = Integer.valueOf(request.getParameter("gears_count"));
+            Integer weight = Integer.valueOf(request.getParameter("weight"));
+            Long carId = Long.valueOf((request.getParameter("car_id")));
+            Transmission transmission = new Transmission(transmissionType, gearsCount, weight, carId);
+
+            transmissionService.save(transmission);
+            response.sendRedirect("/transmission/find-all");
+            return;
+        }
+
+        logger.error("Transmission wasn't saved");
         response.sendRedirect("/transmission/find-all");
     }
 
@@ -117,9 +128,18 @@ public class TransmissionController extends HttpServlet {
         Transmission transmission = transmissionService.find(id);
 
         transmission.setTransmissionType(TransmissionType.valueOf(request.getParameter("transmission_type")));
-        transmission.setGearsCount(Integer.valueOf(request.getParameter("gears_count")));
-        transmission.setWeight(Double.valueOf((request.getParameter("weight"))));
-        transmissionService.update(transmission);
+
+        if (CarValidator.isCarValidate(CarValidator.GEARS_COUNT_REGEXP, request.getParameter("gears_count")) == isCheckStringFromUI &&
+                CarValidator.isCarValidate(CarValidator.WEIGHT_REGEXP, request.getParameter("weight")) == isCheckStringFromUI) {
+
+            transmission.setGearsCount(Integer.valueOf(request.getParameter("gears_count")));
+            transmission.setWeight(Integer.valueOf((request.getParameter("weight"))));
+            transmissionService.update(transmission);
+            response.sendRedirect("/transmission/find-all");
+            return;
+        }
+
+        logger.error("Transmission wasn't updated");
         response.sendRedirect("/transmission/find-all");
     }
 

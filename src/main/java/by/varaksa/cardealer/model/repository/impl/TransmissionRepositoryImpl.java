@@ -30,7 +30,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
         transmission.setId(resultSet.getLong(ID));
         transmission.setTransmissionType(TransmissionType.valueOf(resultSet.getString(TRANSMISSION_TYPE)));
         transmission.setGearsCount(resultSet.getInt(GEARS_COUNT));
-        transmission.setWeight(resultSet.getDouble(WEIGHT));
+        transmission.setWeight(resultSet.getInt(WEIGHT));
         transmission.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
         transmission.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
         transmission.setCarId(resultSet.getLong(CAR_ID));
@@ -60,7 +60,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
             statement.setString(1, String.valueOf(transmission.getTransmissionType()));
             statement.setInt(2, transmission.getGearsCount());
-            statement.setDouble(3, transmission.getWeight());
+            statement.setInt(3, transmission.getWeight());
             statement.setTimestamp(4, creationTimestamp);
             statement.setTimestamp(5, creationTimestamp);
             statement.setLong(6, transmission.getCarId());
@@ -124,7 +124,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
             statement.setString(1, String.valueOf(transmission.getTransmissionType()));
             statement.setInt(2, transmission.getGearsCount());
-            statement.setDouble(3, transmission.getWeight());
+            statement.setInt(3, transmission.getWeight());
             statement.setTimestamp(4, updateTimestamp);
             statement.setLong(5, transmission.getCarId());
             statement.setLong(6, transmission.getId());
