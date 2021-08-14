@@ -22,7 +22,7 @@ public class CarServiceImpl implements CarService {
     public Car save(Car car) throws ServiceException {
         try {
             Car savedCar = carRepository.save(car);
-            logger.info("Car with id " + car.getId() + " was saved");
+            logger.info("Car with model " + car.getModel() + " was saved");
             return savedCar;
         } catch (RepositoryException exception) {
             throw new ServiceException("Car service exception while trying to save car." + exception);

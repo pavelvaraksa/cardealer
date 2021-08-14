@@ -22,7 +22,7 @@ public class TransmissionServiceImpl implements TransmissionService {
     public Transmission save(Transmission transmission) throws ServiceException {
         try {
             Transmission savedTransmission = transmissionRepository.save(transmission);
-            logger.info("Transmission " + transmission + " was saved");
+            logger.info("Transmission with type " + transmission.getTransmissionType() + " and gears count = " + transmission.getGearsCount() + " was saved");
             return savedTransmission;
         } catch (RepositoryException exception) {
             throw new ServiceException("Transmission service exception while trying to save transmission." + exception);

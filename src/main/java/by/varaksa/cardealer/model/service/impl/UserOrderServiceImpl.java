@@ -22,7 +22,7 @@ public class UserOrderServiceImpl implements UserOrderService {
     public UserOrder save(UserOrder userOrder) throws ServiceException {
         try {
             UserOrder savedUserOrder = userOrderRepository.save(userOrder);
-            logger.info("User order " + userOrder + " was saved");
+            logger.info("User order with name " + userOrder.getOrderName() + " was saved");
             return savedUserOrder;
         } catch (RepositoryException exception) {
             throw new ServiceException("User order service exception while trying to save user order." + exception);

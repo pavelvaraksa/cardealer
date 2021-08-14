@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(User user) throws ServiceException {
         try {
-            logger.info("User with id " + user.getId() + " was updated");
+            logger.info("User with login " + user.getLogin() + " was updated");
             return userRepository.update(user);
         } catch (RepositoryException exception) {
             String errorMessage = "Can't get user";

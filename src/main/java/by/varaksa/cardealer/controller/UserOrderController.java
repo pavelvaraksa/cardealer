@@ -1,13 +1,14 @@
 package by.varaksa.cardealer.controller;
 
 import by.varaksa.cardealer.controller.command.Commands;
-import by.varaksa.cardealer.model.entity.UserOrder;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
+import by.varaksa.cardealer.model.entity.UserOrder;
 import by.varaksa.cardealer.model.repository.UserOrderRepository;
 import by.varaksa.cardealer.model.repository.impl.UserOrderRepositoryImpl;
 import by.varaksa.cardealer.model.service.UserOrderService;
 import by.varaksa.cardealer.model.service.impl.UserOrderServiceImpl;
+import by.varaksa.cardealer.model.validator.UserOrderValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,8 +24,8 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/user-order/save", "/user-order/find-all", "/user-order/find-by-id",
         "/user-order/update", "/user-order/delete"})
 public class UserOrderController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger();
+    private static final boolean isCheckStringFromUI = true;
     private Commands commandName;
     public UserOrderRepository userOrderRepository = new UserOrderRepositoryImpl();
     public UserOrderService userOrderService = new UserOrderServiceImpl(userOrderRepository);
@@ -86,10 +87,18 @@ public class UserOrderController extends HttpServlet {
 
     private void saveUserOrder(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException {
         String orderName = (request.getParameter("order_name"));
-        Long userId = Long.valueOf((request.getParameter("user_id")));
-        UserOrder userOrder = new UserOrder(orderName, userId);
 
-        userOrderService.save(userOrder);
+        if (UserOrderValidator.isUserOrderValidate(UserOrderValidator.ORDER_NAME_REGEXP, request.getParameter("order_name")) == isCheckStringFromUI &&
+                UserOrderValidator.isUserOrderValidate(UserOrderValidator.USER_ID_REGEXP, request.getParameter("user_id")) == isCheckStringFromUI) {
+            Long userId = Long.valueOf((request.getParameter("user_id")));
+            UserOrder userOrder = new UserOrder(orderName, userId);
+
+            userOrderService.save(userOrder);
+            response.sendRedirect("/user-order/find-all");
+            return;
+        }
+
+        logger.error("User order wasn't saved");
         response.sendRedirect("/user-order/find-all");
     }
 
@@ -115,7 +124,14 @@ public class UserOrderController extends HttpServlet {
 
         userOrder.setOrderName(request.getParameter("order_name"));
 
-        userOrderService.update(userOrder);
+        if (UserOrderValidator.isUserOrderValidate(UserOrderValidator.ORDER_NAME_REGEXP, request.getParameter("order_name")) == isCheckStringFromUI) {
+
+            userOrderService.update(userOrder);
+            response.sendRedirect("/user-order/find-all");
+            return;
+        }
+
+        logger.error("User order wasn't updated");
         response.sendRedirect("/user-order/find-all");
     }
 

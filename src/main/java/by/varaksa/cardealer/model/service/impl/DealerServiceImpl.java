@@ -22,7 +22,7 @@ public class DealerServiceImpl implements DealerService {
     public Dealer save(Dealer dealer) throws ServiceException {
         try {
             Dealer savedDealer = dealerRepository.save(dealer);
-            logger.info("Dealer " + dealer + " was saved");
+            logger.info("Dealer with name " + dealer.getName() + " was saved");
             return savedDealer;
         } catch (RepositoryException exception) {
             throw new ServiceException("Dealer service exception while trying to save dealer." + exception);

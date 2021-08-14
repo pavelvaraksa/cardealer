@@ -142,7 +142,7 @@ public class DealerController extends HttpServlet {
             return;
         }
 
-        logger.error("Dealer wasn't saved");
+        logger.error("Dealer wasn't updated");
         response.sendRedirect("/body/find-all");
     }
 

@@ -22,7 +22,7 @@ public class BodyServiceImpl implements BodyService {
     public Body save(Body body) throws ServiceException {
         try {
             Body savedBody = bodyRepository.save(body);
-            logger.info("Body with id " + body.getId() + " was saved");
+            logger.info("Body with type " + body.getBodyType() + " and color " + body.getColor() + " was saved");
             return savedBody;
         } catch (RepositoryException exception) {
             throw new ServiceException("Body service exception while trying to save body." + exception);
