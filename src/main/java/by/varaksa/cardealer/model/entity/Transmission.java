@@ -117,15 +117,13 @@ public class Transmission {
 
     @Override
     public String toString() {
-        final StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Transmission: ");
-        stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("transmission type ").append(transmissionType).append(", ");
-        stringBuilder.append("gears count ").append(gearsCount).append(", ");
-        stringBuilder.append("weight ").append(weight).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
-        stringBuilder.append("car id ").append(carId);
-        return stringBuilder.toString();
+        return "Transmission: " +
+                "id = " + id +
+                ", transmission type is " + transmissionType +
+                ", gears count = " + gearsCount +
+                ", weight = " + weight +
+                ", created on " + created +
+                ", changed on " + changed +
+                ", car id = " + carId;
     }
 }

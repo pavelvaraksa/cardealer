@@ -135,16 +135,14 @@ public class Dealer {
 
     @Override
     public String toString() {
-        final StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Dealer: ");
-        stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("name ").append(name).append(", ");
-        stringBuilder.append("address ").append(address).append(", ");
-        stringBuilder.append("foundation date ").append(foundationDate).append(", ");
-        stringBuilder.append("city ").append(city).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
-        stringBuilder.append("car id ").append(carId);
-        return stringBuilder.toString();
+        return "Dealer: " +
+                "id = " + id +
+                ", name is " + name +
+                ", address is " + address +
+                ", foundation date = " + foundationDate +
+                ", city is " + city +
+                ", created on " + created +
+                ", changed on " + changed +
+                ", car id = " + carId;
     }
 }

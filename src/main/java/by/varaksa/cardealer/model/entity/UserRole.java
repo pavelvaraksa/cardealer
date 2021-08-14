@@ -58,11 +58,9 @@ public class UserRole {
 
     @Override
     public String toString() {
-        final StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("User role: ");
-        stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("role name ").append(roleName).append(", ");
-        stringBuilder.append("user id ").append(userId);
-        return stringBuilder.toString();
+        return "User role: " +
+                "id = " + id +
+                ", role name is " + roleName +
+                ", user id = " + userId;
     }
 }

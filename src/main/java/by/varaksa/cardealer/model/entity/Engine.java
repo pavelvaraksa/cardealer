@@ -120,15 +120,13 @@ public class Engine {
 
     @Override
     public String toString() {
-        final StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Engine: ");
-        stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("fuel type ").append(fuelType).append(", ");
-        stringBuilder.append("volume ").append(volume).append(", ");
-        stringBuilder.append("cylinders count ").append(cylindersCount).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
-        stringBuilder.append("car id ").append(carId);
-        return stringBuilder.toString();
+        return "Engine: " +
+                "id = " + id +
+                ", fuel type is " + fuelType +
+                ", volume = " + volume +
+                ", cylinders count = " + cylindersCount +
+                ", created on " + created +
+                ", changed on " + changed +
+                ", car id = " + carId;
     }
 }

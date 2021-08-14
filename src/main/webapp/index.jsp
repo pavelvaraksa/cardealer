@@ -2,9 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<%--<fmt:setLocale value="${locale}" scope="session"/>--%>
-<%--<fmt:setBundle basename="text_ru_RU"/>--%>
-
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -19,12 +16,7 @@
             crossorigin="anonymous">
     </script>
 
-<%--    <c:if test="${not empty sessionScope.locale}">--%>
-<%--        <fmt:setLocale value="${sessionScope.locale}"/>--%>
-<%--    </c:if>--%>
-<%--    <fmt:setBundle basename="text_ru_RU"/>--%>
 </head>
-
 <body>
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">

@@ -104,15 +104,13 @@ public class Body {
 
     @Override
     public String toString() {
-        final StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Body: ");
-        stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("color ").append(color).append(", ");
-        stringBuilder.append("body type ").append(bodyType).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
-        stringBuilder.append("car id ").append(carId);
-        return stringBuilder.toString();
+        return "Body: " +
+                "id = " + id +
+                ", color is " + color +
+                ", body type is " + bodyType +
+                ", created on " + created +
+                ", changed on " + changed +
+                ", car id = " + carId;
     }
 }
 

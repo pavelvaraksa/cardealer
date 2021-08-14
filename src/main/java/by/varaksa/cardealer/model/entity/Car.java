@@ -132,16 +132,14 @@ public class Car {
 
     @Override
     public String toString() {
-        final StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Car: ");
-        stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("model ").append(model).append(", ");
-        stringBuilder.append("issue country ").append(issueCountry).append(", ");
-        stringBuilder.append("guarantee period ").append(guaranteePeriod).append(", ");
-        stringBuilder.append("price ").append(price).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
-        stringBuilder.append("user order id ").append(userOrderId);
-        return stringBuilder.toString();
+        return "Car: " +
+                "id = " + id +
+                ", model is " + model +
+                ", issue country is " + issueCountry +
+                ", guarantee period = " + guaranteePeriod +
+                ", price = " + price +
+                ", created on " + created +
+                ", changed on " + changed +
+                ", user order id = " + userOrderId;
     }
 }

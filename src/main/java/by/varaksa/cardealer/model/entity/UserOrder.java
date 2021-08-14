@@ -92,13 +92,11 @@ public class UserOrder {
 
     @Override
     public String toString() {
-        final StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("User order: ");
-        stringBuilder.append("id ").append(id).append(", ");
-        stringBuilder.append("order name").append(orderName).append(", ");
-        stringBuilder.append("created ").append(created).append(", ");
-        stringBuilder.append("changed ").append(changed).append(", ");
-        stringBuilder.append("user id ").append(userId).append(", ");
-        return stringBuilder.toString();
+        return "User order: " +
+                "id = " + id +
+                ", order name is " + orderName +
+                ", created on " + created +
+                ", changed on " + changed +
+                ", user id = " + userId;
     }
 }
