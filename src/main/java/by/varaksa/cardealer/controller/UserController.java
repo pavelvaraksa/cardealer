@@ -130,8 +130,8 @@ public class UserController extends HttpServlet {
         LocalDate birthDate;
 
         if (request.getParameter("birth_date").isEmpty()) {
-            String defaultDate = "01/01/2000";
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            String defaultDate = "01-01-2000";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
             birthDate = LocalDate.parse(defaultDate, formatter);
         } else {
             birthDate = LocalDate.parse(request.getParameter("birth_date"));
