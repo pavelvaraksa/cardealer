@@ -6,8 +6,12 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Log_in" var="buttonValue1"/>
-<fmt:message key="Password" var="buttonValue2"/>
+<fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
+<fmt:message key="Authentication_form" var="authentication_form"/>
+<fmt:message key="Login" var="login"/>
+<fmt:message key="Password" var="password"/>
+<fmt:message key="Log_in" var="log_in"/>
+<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
 
 <html>
 <head>
@@ -25,40 +29,37 @@ pageContext.request.locale}" scope="session"/>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080">CAR DEALER APPLICATION</a>
+        <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
+        <form>
+            <label for="language"></label>
+            <select id="language" name="language" onchange="submit()">
+                <option value="ru" ${language == 'ru' ? 'selected' : ''}>русский</option>
+                <option value="en" ${language == 'en' ? 'selected' : ''}>english</option>
+                <option value="de" ${language == 'de' ? 'selected' : ''}>deutsche</option>
+            </select>
+        </form>
     </div>
 </nav>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
-    <h2><u>Authentication form</u></h2>
+    <h2><u>${authentication_form}</u></h2>
     <form action="login" method="post">
-        <table style="with: 100%">
             <div class="col-md-2">
-<%--                <label for="validationLogin" class="form-label"><u>Login</u></label>--%>
-                <input type="text" id="login1" class="form-control" name="login" required>
-                <label for="login1">${buttonValue1}</label>
+                <label for="login">${login}</label>
+                <input type="text" id="login" class="form-control" name="login" required>
             </div>
             <div class="col-md-2">
-<%--                <label for="validationPassword" class="form-label"><u>Password</u></label>--%>
+                <label for="password">${password}</label>
                 <input type="password" class="form-control" id="password" name="password" required>
-                <label for="password">${buttonValue2}</label>
             </div>
             <div class="col-12">
-                <input class="btn btn-outline-success btn-sm" type="submit" value="${buttonValue1}">
+                <input class="btn btn-outline-success btn-sm" type="submit" value=${log_in}>
             </div>
             <label>
-                <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080" role="button">Return to
-                    previous
-                    page</a>
+                <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080"
+                   role="button">${return_to_previous_page}</a>
             </label>
-        </table>
     </form>
 </div>
-<form>
-    <label for="language"></label><select id="language" name="language" onchange="submit()">
-    <option value="en" ${language == 'en' ? 'selected' : ''}>Eng</option>
-    <option value="ru" ${language == 'ru' ? 'selected' : ''}>Рус</option>
-</select>
-</form>
 </body>
 </html>
