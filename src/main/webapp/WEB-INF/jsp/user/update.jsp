@@ -1,22 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page import="by.varaksa.cardealer.model.entity.Role" %>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language :
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
+<%@ page import="by.varaksa.cardealer.model.entity.Role" %>
 
 <fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
 <fmt:message key="Audi_dealer_update_user_page" var="update_page"/>
 <fmt:message key="Update_form" var="update_form"/>
+<fmt:message key="Update" var="update"/>
 <fmt:message key="Firstname" var="firstname"/>
 <fmt:message key="Lastname" var="lastname"/>
 <fmt:message key="Birth_date" var="birth_date"/>
 <fmt:message key="Email" var="email"/>
 <fmt:message key="Role" var="role"/>
 <fmt:message key="Is_blocked" var="is_blocked"/>
-<fmt:message key="Update" var="update"/>
+
 <fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
 
 <html>
