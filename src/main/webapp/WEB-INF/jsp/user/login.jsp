@@ -8,22 +8,19 @@ pageContext.request.locale}" scope="session"/>
 
 <fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
 <fmt:message key="Authentication_form" var="authentication_form"/>
+<fmt:message key="Audi_dealer_auth_page" var="authentication_page"/>
 <fmt:message key="Login" var="login"/>
 <fmt:message key="Password" var="password"/>
-<fmt:message key="Log_in" var="log_in"/>
+<fmt:message key="Enter" var="enter"/>
 <fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
 
 <html>
 <head>
+    <title>${authentication_page}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous">
-    </script>
 </head>
 
 <body>
@@ -53,13 +50,13 @@ pageContext.request.locale}" scope="session"/>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="col-12">
-                <input class="btn btn-outline-success btn-sm" type="submit" value=${log_in}>
+                <input class="btn btn-outline-success btn-sm" type="submit" value=${enter}>
             </div>
-            <label>
-                <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080"
-                   role="button">${return_to_previous_page}</a>
-            </label>
     </form>
+    <label>
+        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080"
+           role="button">${return_to_previous_page}</a>
+    </label>
 </div>
 </body>
 </html>

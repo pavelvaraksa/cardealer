@@ -8,6 +8,7 @@ pageContext.request.locale}" scope="session"/>
 
 <fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
 <fmt:message key="Register_form" var="register_form"/>
+<fmt:message key="Audi_dealer_register_page" var="register_page"/>
 <fmt:message key="Firstname" var="firstname"/>
 <fmt:message key="Lastname" var="lastname"/>
 <fmt:message key="Birth_date" var="birth_date"/>
@@ -20,16 +21,13 @@ pageContext.request.locale}" scope="session"/>
 
 <html>
 <head>
+    <title>${register_page}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous">
-    </script>
 </head>
+
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">

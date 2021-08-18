@@ -8,6 +8,7 @@ pageContext.request.locale}" scope="session"/>
 
 <fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
 <fmt:message key="Company_history" var="company_history"/>
+<fmt:message key="Audi_dealer_history_page" var="history_page"/>
 <fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
 <fmt:message key="The_Audi_brand_has_been_officially_represented_on_the_Belarusian_market_since_1994." var="item_1"/>
 <fmt:message key="As_of_today,_there_are_6_official_Audi_dealers_in_Belarus._Audi_car_owners_can_choose_one_of_the_centers_with_the_most_convenient_location_for_them." var="item_2"/>
@@ -21,16 +22,11 @@ pageContext.request.locale}" scope="session"/>
 
 <html>
 <head>
-    <link>
+    <title>${history_page}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous">
-    </script>
 </head>
 
 <body>

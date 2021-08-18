@@ -99,8 +99,7 @@ public class UserController extends HttpServlet {
             if (userService.isAuthenticate(user)) {
                 session.setAttribute("user", user);
                 logger.info("Login and password were correct");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/main-menu");
-                dispatcher.forward(request, response);
+                response.sendRedirect("/main-menu");
                 return;
             }
 
@@ -142,10 +141,10 @@ public class UserController extends HttpServlet {
         String email = request.getParameter("email");
 
         if (UserValidator.isUserValidate(UserValidator.FIRST_NAME_REGEXP, firstname) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(UserValidator.LAST_NAME_REGEXP, lastname) !=  isCheckStringFromUI ||
-                UserValidator.isUserValidate(UserValidator.LOGIN_REGEXP, login) !=  isCheckStringFromUI ||
-                UserValidator.isUserValidate(UserValidator.PASSWORD_REGEXP, password) !=  isCheckStringFromUI ||
-                UserValidator.isUserValidate(UserValidator.EMAIL_REGEXP, email) !=  isCheckStringFromUI) {
+                UserValidator.isUserValidate(UserValidator.LAST_NAME_REGEXP, lastname) != isCheckStringFromUI ||
+                UserValidator.isUserValidate(UserValidator.LOGIN_REGEXP, login) != isCheckStringFromUI ||
+                UserValidator.isUserValidate(UserValidator.PASSWORD_REGEXP, password) != isCheckStringFromUI ||
+                UserValidator.isUserValidate(UserValidator.EMAIL_REGEXP, email) != isCheckStringFromUI) {
             logger.error("User wasn't saved");
             response.sendRedirect("/register-page");
             return;
@@ -174,8 +173,7 @@ public class UserController extends HttpServlet {
 
         if (confirmCode) {
             session.setAttribute("authCode", user);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/user/verify-page");
-            dispatcher.forward(request, response);
+            response.sendRedirect("/user/verify-page");
         }
     }
 
@@ -189,8 +187,7 @@ public class UserController extends HttpServlet {
             logger.info("Confirmation code was right for user with login " + user.getLogin());
             userService.save(user);
             session.setAttribute("user", user);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/main-menu");
-            dispatcher.forward(request, response);
+            response.sendRedirect("/main-menu");
         } else {
             logger.error("Confirmation code was wrong for user with login " + user.getLogin());
             response.sendRedirect("/user/verify-page");
@@ -240,16 +237,17 @@ public class UserController extends HttpServlet {
         user.setRole(Role.valueOf((request.getParameter("role"))));
         user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
 
-        if (UserValidator.isUserValidate(UserValidator.FIRST_NAME_REGEXP, user.getFirstName()) == isCheckStringFromUI ||
-                UserValidator.isUserValidate(UserValidator.LAST_NAME_REGEXP, user.getLastName()) == isCheckStringFromUI ||
+        if (UserValidator.isUserValidate(UserValidator.FIRST_NAME_REGEXP, user.getFirstName()) == isCheckStringFromUI &&
+                UserValidator.isUserValidate(UserValidator.LAST_NAME_REGEXP, user.getLastName()) == isCheckStringFromUI &&
                 UserValidator.isUserValidate(UserValidator.EMAIL_REGEXP, user.getEmail()) == isCheckStringFromUI) {
-            logger.error("User wasn't updated");
+
+            session.setAttribute("user", user);
+            userService.update(user);
             response.sendRedirect("/user/find-all");
             return;
         }
 
-        session.setAttribute("user", user);
-        userService.update(user);
+        logger.error("User wasn't updated");
         response.sendRedirect("/user/find-all");
     }
 
