@@ -15,7 +15,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="Bodies_list" var="bodies_list"/>
 <fmt:message key="Transmissions_list" var="transmissions_list"/>
 <fmt:message key="Engines_list" var="engines_list"/>
-<fmt:message key="Dealer_list" var="dealer_list"/>
+<fmt:message key="Dealers_list" var="dealers_list"/>
 
 <html>
 <head>
@@ -56,7 +56,7 @@ pageContext.request.locale}" scope="session"/>
                     <a class="nav-link" href="http://localhost:8080/transmission/find-all">${transmissions_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/dealer/find-all">${dealer_list}</a>
+                    <a class="nav-link" href="http://localhost:8080/dealer/find-all">${dealers_list}</a>
                 </li>
             </ul>
         </div>
