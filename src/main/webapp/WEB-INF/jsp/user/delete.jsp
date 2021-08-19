@@ -26,14 +26,6 @@ pageContext.request.locale}" scope="session"/>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
-        <form>
-            <label for="language"></label>
-            <select id="language" name="language" onchange="submit()">
-                <option value="ru" ${language == 'ru' ? 'selected' : ''}>русский</option>
-                <option value="en" ${language == 'en' ? 'selected' : ''}>english</option>
-                <option value="de" ${language == 'de' ? 'selected' : ''}>deutsche</option>
-            </select>
-        </form>
     </div>
 </nav>
 <body style="background-color:antiquewhite"></body>
