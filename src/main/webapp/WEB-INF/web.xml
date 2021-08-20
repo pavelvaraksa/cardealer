@@ -420,13 +420,33 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Error page</servlet-name>
-        <jsp-file>/WEB-INF/jsp/error.jsp</jsp-file>
+        <servlet-name>Error 400 page</servlet-name>
+        <jsp-file>/WEB-INF/jsp/error/400.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Error page</servlet-name>
-        <url-pattern>/error</url-pattern>
+        <servlet-name>Error 400 page</servlet-name>
+        <url-pattern>/error-400</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Error 404 page</servlet-name>
+        <jsp-file>/WEB-INF/jsp/error/404.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Error 404 page</servlet-name>
+        <url-pattern>/error-404</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Error 500 page</servlet-name>
+        <jsp-file>/WEB-INF/jsp/error/500.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Error 500 page</servlet-name>
+        <url-pattern>/error-500</url-pattern>
     </servlet-mapping>
 
     <session-config>

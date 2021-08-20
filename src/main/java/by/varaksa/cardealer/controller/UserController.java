@@ -28,7 +28,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/user/save", "/login", "/user/find-all",
-        "/user/find-by-id", "/user/update", "/user/delete", "/logout", "/user/verify",})
+        "/user/find-by-id", "/user/update", "/user/delete", "/logout", "/user/verify"})
 public class UserController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;
@@ -82,6 +82,7 @@ public class UserController extends HttpServlet {
 
     public void confirmAuthenticate(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServletException, ServiceException {
         HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         User user = new User();
@@ -124,6 +125,7 @@ public class UserController extends HttpServlet {
     private void saveUser(HttpServletRequest request, HttpServletResponse response) throws
             IOException, ControllerException, ServiceException, RepositoryException, ServletException {
         HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         LocalDate birthDate;
@@ -159,10 +161,11 @@ public class UserController extends HttpServlet {
         List<User> existingUsers = userService.findAll();
 
         for (User existingUser : existingUsers) {
-            boolean hasSameUser = existingUser.getLogin().equals(user.getLogin());
+            boolean hasSameUser = existingUser.getLogin().equals(user.getLogin()) ||
+                    existingUser.getEmail().equals(user.getEmail());
 
             if (hasSameUser) {
-                String errorMessage = "User with login " + user.getLogin() + " already exists";
+                String errorMessage = "User with login " + user.getLogin() + " or email " + user.getEmail() + " already exists";
                 logger.error(errorMessage);
                 response.sendRedirect("/register-page");
                 throw new ControllerException(errorMessage);
@@ -178,7 +181,7 @@ public class UserController extends HttpServlet {
     }
 
     private void verifyUser(HttpServletRequest request, HttpServletResponse response) throws
-            IOException, ServiceException, ServletException {
+            IOException, ServiceException {
         HttpSession session = request.getSession();
         String code = request.getParameter("authCode");
         User user = (User) session.getAttribute("authCode");
