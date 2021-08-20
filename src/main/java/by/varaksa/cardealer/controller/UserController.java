@@ -82,7 +82,6 @@ public class UserController extends HttpServlet {
 
     public void confirmAuthenticate(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServletException, ServiceException {
         HttpSession session = request.getSession();
-        request.setCharacterEncoding("UTF-8");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         User user = new User();
@@ -125,7 +124,6 @@ public class UserController extends HttpServlet {
     private void saveUser(HttpServletRequest request, HttpServletResponse response) throws
             IOException, ControllerException, ServiceException, RepositoryException, ServletException {
         HttpSession session = request.getSession();
-        request.setCharacterEncoding("UTF-8");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         LocalDate birthDate;
