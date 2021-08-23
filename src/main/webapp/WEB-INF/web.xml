@@ -425,7 +425,6 @@
 
 
 
-
     <servlet>
         <servlet-name>Company story</servlet-name>
         <jsp-file>/WEB-INF/jsp/company/company.jsp</jsp-file>

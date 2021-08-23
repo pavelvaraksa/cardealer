@@ -157,7 +157,7 @@ public class UserController extends HttpServlet {
             logger.info("Confirmation code was right for user with login " + user.getLogin());
             userService.save(user);
             session.setAttribute("user", user);
-            response.sendRedirect("/admin-menu");
+            response.sendRedirect("/user-menu");
         } else {
             logger.error("Confirmation code was wrong for user with login " + user.getLogin());
             response.sendRedirect("/user/verify-page");
@@ -184,8 +184,7 @@ public class UserController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws
-            ServiceException, IOException {
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
         HttpSession session = request.getSession();
         Long id = Long.parseLong(request.getParameter("id"));
         User user = userService.find(id);

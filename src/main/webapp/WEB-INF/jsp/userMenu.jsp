@@ -40,5 +40,8 @@ pageContext.request.locale}" scope="session"/>
         </form>
     </div>
 </nav>
+<div>
+    <img src="${pageContext.request.contextPath}/image/center.jpg" width="100%" height="auto">
+</div>
 </body>
 </html>
