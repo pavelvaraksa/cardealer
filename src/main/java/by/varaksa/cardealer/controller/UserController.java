@@ -71,52 +71,12 @@ public class UserController extends HttpServlet {
             switch (commandName) {
                 case SAVE_USER -> saveUser(request, response);
                 case VERIFY_USER -> verifyUser(request, response);
-                case LOGIN -> confirmAuthenticate(request, response);
                 case UPDATE_USER -> updateUser(request, response);
                 case DELETE_USER -> deleteUser(request, response);
             }
         } catch (ControllerException | ServiceException | IOException | RepositoryException | ServletException exception) {
             String errorMessage = "User controller exception." + exception;
             logger.error(errorMessage);
-        }
-    }
-
-    public void confirmAuthenticate(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServletException, ServiceException, RepositoryException {
-        HttpSession session = request.getSession();
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        User user = new User();
-        user.setLogin(login);
-        user.setPassword(password);
-
-        if (UserValidator.isUserValidate(UserValidator.LOGIN_REGEXP, login) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(UserValidator.PASSWORD_REGEXP, password) != isCheckStringFromUI) {
-            logger.error("Wasn't correct input format for login or password");
-            response.sendRedirect("/login-auth");
-            return;
-        }
-
-        if (session != null && session.getAttribute("login") != null) {
-
-            Role role = (Role) session.getAttribute("role");
-
-            moveToMenu(response, role);
-
-        } else if (userService.isUserExist(login)) {
-
-            if (userService.isAuthenticate(user)) {
-
-                Role role = userService.findRoleByLogin(login);
-
-                request.getSession().setAttribute("login", login);
-                request.getSession().setAttribute("role", role);
-
-                moveToMenu(response, role);
-            } else {
-                response.sendRedirect("/login-auth");
-            }
-        } else {
-            moveToMenu(response, Role.GUEST);
         }
     }
 
@@ -266,17 +226,6 @@ public class UserController extends HttpServlet {
         Long id = Long.parseLong(request.getParameter("id"));
         userService.delete(id);
         response.sendRedirect("/user/find-all");
-    }
-
-    private void moveToMenu(HttpServletResponse response, Role role) throws IOException {
-
-        if (role.equals(Role.ADMIN)) {
-            response.sendRedirect("/admin-menu");
-        } else if (role.equals(Role.USER)) {
-            response.sendRedirect("/user-menu");
-        } else {
-            response.sendRedirect("/login-auth");
-        }
     }
 }
 
