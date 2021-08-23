@@ -76,6 +76,8 @@
 
 
 
+
+
     <!--User servlets and mappings -->
     <servlet>
         <servlet-name>Register user</servlet-name>
@@ -98,13 +100,23 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Authenticate admin</servlet-name>
+        <jsp-file>/WEB-INF/jsp/adminMenu.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Authenticate admin</servlet-name>
+        <url-pattern>/admin-menu</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Authenticate user</servlet-name>
-        <jsp-file>/WEB-INF/jsp//mainMenu.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/userMenu.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Authenticate user</servlet-name>
-        <url-pattern>/main-menu</url-pattern>
+        <url-pattern>/user-menu</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -397,19 +409,10 @@
 
 
 
-    <filter>
-        <filter-name>CharsetFilter</filter-name>
-        <filter-class>by.varaksa.cardealer.controller.filter.CharsetFilter</filter-class>
-    </filter>
-
     <filter-mapping>
         <filter-name>CharsetFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
-
-
 
 
 

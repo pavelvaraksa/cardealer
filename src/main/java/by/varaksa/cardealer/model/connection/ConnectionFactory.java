@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 import static by.varaksa.cardealer.model.util.DatabasePropertiesReader.*;
 
-class FactoryConnection {
+class ConnectionFactory {
     private static final Logger logger = LogManager.getLogger();
     private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
 
@@ -31,10 +31,10 @@ class FactoryConnection {
         }
     }
 
-    static ProxyConnection createConnection() {
-        ProxyConnection connection = null;
+    static ConnectionProxy createConnection() {
+        ConnectionProxy connection = null;
         try {
-            connection = new ProxyConnection(DriverManager.getConnection(url, login, password));
+            connection = new ConnectionProxy(DriverManager.getConnection(url, login, password));
             logger.info("Connection was created");
         } catch (SQLException exception) {
             logger.error("Connection wasn't created." + exception);

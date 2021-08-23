@@ -6,8 +6,8 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
-<fmt:message key="Main_menu" var="main_menu"/>
+<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
+<fmt:message key="Admin_menu" var="admin_menu"/>
 <fmt:message key="Log_out" var="log_out"/>
 <fmt:message key="Users_list" var="users_list"/>
 <fmt:message key="User_orders_list" var="user_orders_list"/>
@@ -19,7 +19,7 @@ pageContext.request.locale}" scope="session"/>
 
 <html>
 <head>
-    <title>${main_menu}</title>
+    <title>${admin_menu}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -46,6 +46,9 @@ pageContext.request.locale}" scope="session"/>
                     <a class="nav-link" href="http://localhost:8080/car/find-all">${cars_list}</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/dealer/find-all">${dealers_list}</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="http://localhost:8080/body/find-all">${bodies_list}</a>
                 </li>
                 <li class="nav-item">
@@ -53,9 +56,6 @@ pageContext.request.locale}" scope="session"/>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="http://localhost:8080/transmission/find-all">${transmissions_list}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/dealer/find-all">${dealers_list}</a>
                 </li>
             </ul>
         </div>

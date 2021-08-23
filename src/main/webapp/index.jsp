@@ -1,12 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language :
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
+<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
 <fmt:message key="Log_in" var="login"/>
 <fmt:message key="Register" var="register"/>
 <fmt:message key="About_us" var="about_us"/>
@@ -30,16 +31,16 @@ pageContext.request.locale}" scope="session"/>
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/login-auth">${login}</a>
+                    <a class="nav-link" id="login" href="login-auth">${login}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="register" href="http://localhost:8080/register-page">${register}</a>
+                    <a class="nav-link" id="register" href="register-page">${register}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="about" href="http://localhost:8080/company">${about_us}</a>
+                    <a class="nav-link" id="about" href="company">${about_us}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="contacts" href="http://localhost:8080/request-information">${contacts}</a>
+                    <a class="nav-link" id="contacts" href="request-information">${contacts}</a>
                 </li>
             </ul>
         </div>

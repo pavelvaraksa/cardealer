@@ -12,23 +12,23 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class PoolConnection {
+public class ConnectionPool {
     private static final Logger logger = LogManager.getLogger();
-    private static PoolConnection instance;
+    private static ConnectionPool instance;
     private static final int DEFAULT_POOL_SIZE = 5;
     private static final AtomicBoolean isConnectionPoolCreated = new AtomicBoolean(false);
-    private final BlockingQueue<ProxyConnection> freeConnection;
-    private final BlockingQueue<ProxyConnection> busyConnection;
+    private final BlockingQueue<ConnectionProxy> freeConnection;
+    private final BlockingQueue<ConnectionProxy> busyConnection;
 
-    private PoolConnection() {
+    private ConnectionPool() {
         busyConnection = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
         freeConnection = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
 
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {
-                Connection connection = FactoryConnection.createConnection();
-                ProxyConnection proxyConnection = new ProxyConnection(connection);
-                freeConnection.put(proxyConnection);
+                Connection connection = ConnectionFactory.createConnection();
+                ConnectionProxy connectionProxy = new ConnectionProxy(connection);
+                freeConnection.put(connectionProxy);
             } catch (InterruptedException exception) {
                 Thread.currentThread().interrupt();
             }
@@ -43,19 +43,19 @@ public class PoolConnection {
         }
     }
 
-    public static PoolConnection getInstance() {
+    public static ConnectionPool getInstance() {
         while (instance == null) {
 
             if (isConnectionPoolCreated.compareAndSet(false, true)) {
-                instance = new PoolConnection();
+                instance = new ConnectionPool();
             }
         }
 
         return instance;
     }
 
-    public ProxyConnection getConnection() {
-        ProxyConnection connection = null;
+    public ConnectionProxy getConnection() {
+        ConnectionProxy connection = null;
         try {
             connection = freeConnection.take();
             busyConnection.put(connection);
@@ -68,14 +68,14 @@ public class PoolConnection {
 
     void releaseConnection(Connection connection) {
 
-        if (!(connection instanceof ProxyConnection)) {
+        if (!(connection instanceof ConnectionProxy)) {
             logger.error("Current connection wasn't instance of proxy connection");
         } else {
 
             if (busyConnection.contains(connection) || freeConnection.contains(connection)) {
                 busyConnection.remove(connection);
                 try {
-                    freeConnection.put((ProxyConnection) connection);
+                    freeConnection.put((ConnectionProxy) connection);
                 } catch (InterruptedException exception) {
                     logger.error("Current thread was interrupted." + exception);
                     Thread.currentThread().interrupt();
@@ -101,7 +101,7 @@ public class PoolConnection {
 
         while (!busyConnection.isEmpty()) {
             try {
-                ProxyConnection connection = busyConnection.take();
+                ConnectionProxy connection = busyConnection.take();
                 connection.reallyClose();
             } catch (SQLException e) {
                 logger.error("Connection wasn't closed");

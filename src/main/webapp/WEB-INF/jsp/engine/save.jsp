@@ -7,7 +7,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setBundle basename="text"/>
 <%@ page import="by.varaksa.cardealer.model.entity.FuelType" %>
 
-<fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
+<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
 <fmt:message key="Audi_dealer_save_engine_page" var="save_page"/>
 <fmt:message key="Save_form" var="save_form"/>
 <fmt:message key="Save" var="save"/>

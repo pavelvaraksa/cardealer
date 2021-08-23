@@ -6,13 +6,16 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
+<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
 <fmt:message key="Authentication_form" var="authentication_form"/>
 <fmt:message key="Audi_dealer_auth_page" var="authentication_page"/>
 <fmt:message key="Login" var="login"/>
 <fmt:message key="Password" var="password"/>
 <fmt:message key="Enter" var="enter"/>
 <fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+
+<fmt:message key="Login_help_text" var="login_help_text"/>
+<fmt:message key="Password_help_text" var="password_help_text"/>
 
 <html>
 <head>
@@ -41,17 +44,19 @@ pageContext.request.locale}" scope="session"/>
 <div align="center">
     <h2><u>${authentication_form}</u></h2>
     <form action="login" method="post">
-            <div class="col-md-2">
-                <label for="login">${login}</label>
-                <input type="text" id="login" class="form-control" name="login" required>
-            </div>
-            <div class="col-md-2">
-                <label for="password">${password}</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <div class="col-12">
-                <input class="btn btn-outline-success btn-sm" type="submit" value=${enter}>
-            </div>
+        <div class="col-md-3">
+            <label for="login">${login}</label>
+            <input type="text" id="login" class="form-control" name="login" required>
+            <small id="loginHelpText" class="text-muted">${login_help_text}</small>
+        </div>
+        <div class="col-md-3">
+            <label for="password">${password}</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+            <small id="passwordHelpText" class="text-muted">${password_help_text}</small>
+        </div>
+        <div class="col-12">
+            <input class="btn btn-outline-success btn-sm" type="submit" value=${enter}>
+        </div>
     </form>
     <label>
         <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080"

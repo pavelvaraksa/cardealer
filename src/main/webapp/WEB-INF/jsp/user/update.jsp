@@ -7,7 +7,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setBundle basename="text"/>
 <%@ page import="by.varaksa.cardealer.model.entity.Role" %>
 
-<fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
+<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
 <fmt:message key="Audi_dealer_update_user_page" var="update_page"/>
 <fmt:message key="Update_form" var="update_form"/>
 <fmt:message key="Update" var="update"/>
@@ -47,10 +47,10 @@ pageContext.request.locale}" scope="session"/>
 <div align="center">
     <h2><u>${update_form}</u></h2>
     <form action="update" method="post">
+        <div class="col-md-2">
+            <input type="hidden" name="id" value="${param.id}">
+        </div>
         <form class="row g-3">
-            <div class="col-md-2">
-                <input type="hidden" name="id" value="${param.id}">
-            </div>
             <div class="col-md-2">
                 <label for="validationFirstname" class="form-label"><u>${firstname}</u>
                     <input type="text" class="form-control" id="validationFirstname" name="firstname"
@@ -94,12 +94,12 @@ pageContext.request.locale}" scope="session"/>
             <div class="col-12">
                 <input class="btn btn-outline-success btn-sm" type="submit" value=${update}>
             </div>
+            <label>
+                <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/user/find-all"
+                   role="button">${return_to_previous_page}</a>
+            </label>
         </form>
     </form>
-    <label>
-        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/user/find-all"
-           role="button">${return_to_previous_page}</a>
-    </label>
 </div>
 </body>
 </html>

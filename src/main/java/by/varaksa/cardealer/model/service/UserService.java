@@ -1,6 +1,7 @@
 package by.varaksa.cardealer.model.service;
 
 import by.varaksa.cardealer.exception.ServiceException;
+import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
 
 import java.util.List;
@@ -17,6 +18,10 @@ public interface UserService {
     User delete(Long id) throws ServiceException;
 
     boolean isAuthenticate(User user) throws ServiceException;
+
+    boolean isUserExist(String login) throws ServiceException;
+
+    Role findRoleByLogin(String login) throws ServiceException;
 
     void logOut(User user) throws ServiceException;
 }

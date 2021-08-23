@@ -1,6 +1,6 @@
 package by.varaksa.cardealer.model.repository.impl;
 
-import by.varaksa.cardealer.model.connection.PoolConnection;
+import by.varaksa.cardealer.model.connection.ConnectionPool;
 import by.varaksa.cardealer.model.entity.Engine;
 import by.varaksa.cardealer.model.entity.FuelType;
 import by.varaksa.cardealer.exception.RepositoryException;
@@ -55,7 +55,7 @@ public class EngineRepositoryImpl implements EngineRepository {
     public Engine save(Engine engine) throws RepositoryException {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_ENGINE)) {
 
             statement.setString(1, String.valueOf(engine.getFuelType()));
@@ -78,7 +78,7 @@ public class EngineRepositoryImpl implements EngineRepository {
     public List<Engine> findAll() {
         List<Engine> result = new ArrayList<>();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_ENGINES);
 
@@ -96,7 +96,7 @@ public class EngineRepositoryImpl implements EngineRepository {
 
     @Override
     public Engine find(Long id) throws RepositoryException {
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ENGINE_BY_ID)) {
 
             statement.setLong(1, id);
@@ -119,7 +119,7 @@ public class EngineRepositoryImpl implements EngineRepository {
     public Engine update(Engine engine) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_ENGINE_BY_ID)) {
 
             statement.setString(1, String.valueOf(engine.getFuelType()));
@@ -142,7 +142,7 @@ public class EngineRepositoryImpl implements EngineRepository {
     public Engine delete(Long id) {
         Engine engine = new Engine();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_ENGINE_BY_ID)) {
 
             statement.setLong(1, id);

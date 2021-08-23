@@ -6,7 +6,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
+<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
 <fmt:message key="Audi_dealer_verify_page" var="verify_page"/>
 <fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
 <fmt:message key="Confirm" var="confirm"/>

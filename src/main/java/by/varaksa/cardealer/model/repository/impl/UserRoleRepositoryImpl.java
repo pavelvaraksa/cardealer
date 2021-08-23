@@ -1,6 +1,6 @@
 package by.varaksa.cardealer.model.repository.impl;
 
-import by.varaksa.cardealer.model.connection.PoolConnection;
+import by.varaksa.cardealer.model.connection.ConnectionPool;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.UserRole;
 import by.varaksa.cardealer.exception.RepositoryException;
@@ -40,7 +40,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public UserRole save(UserRole userRole) throws RepositoryException {
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_USER_ROLE)) {
 
             statement.setString(1, String.valueOf(userRole.getRoleName()));
@@ -59,7 +59,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
     public List<UserRole> findAll() {
         List<UserRole> result = new ArrayList<>();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_USER_ROLES);
 
@@ -77,7 +77,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public UserRole find(Long id) throws RepositoryException {
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_USER_ROLE_BY_ID)) {
 
             statement.setLong(1, id);
@@ -98,7 +98,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
 
     @Override
     public UserRole update(UserRole userRole) {
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_USER_ROLE_BY_ID)) {
 
             statement.setString(1, String.valueOf(userRole.getRoleName()));
@@ -118,7 +118,7 @@ public class UserRoleRepositoryImpl implements UserRoleRepository {
     public UserRole delete(Long id) {
         UserRole userRole = new UserRole();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_ROLE_BY_ID)) {
 
             statement.setLong(1, id);

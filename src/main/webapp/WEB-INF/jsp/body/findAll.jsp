@@ -6,7 +6,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
+<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
 <fmt:message key="Audi_dealer_bodies_list" var="bodies_list_page"/>
 <fmt:message key="Bodies_list" var="bodies_list"/>
 <fmt:message key="Add" var="add"/>
@@ -94,7 +94,7 @@ pageContext.request.locale}" scope="session"/>
         </table>
         </tbody>
         <label>
-            <a class="btn btn-outline-primary" href="http://localhost:8080/main-menu"
+            <a class="btn btn-outline-primary" href="http://localhost:8080/admin-menu"
                role="button">${return_to_previous_page}</a>
         </label>
     </form>

@@ -1,8 +1,9 @@
 package by.varaksa.cardealer.model.service.impl;
 
-import by.varaksa.cardealer.model.entity.User;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
+import by.varaksa.cardealer.model.entity.Role;
+import by.varaksa.cardealer.model.entity.User;
 import by.varaksa.cardealer.model.repository.UserRepository;
 import by.varaksa.cardealer.model.service.UserService;
 import org.apache.logging.log4j.LogManager;
@@ -120,6 +121,36 @@ public class UserServiceImpl implements UserService {
             return userRepository.isAuthenticate(user);
         } catch (RepositoryException exception) {
             throw new ServiceException("User service exception while trying to authenticate user." + exception);
+        }
+    }
+
+    @Override
+    public boolean isUserExist(String login) throws ServiceException {
+        try {
+
+            if (!userRepository.isUserExist(login)) {
+                logger.error("Login " + login + " wasn't correct");
+                return Boolean.parseBoolean(login);
+            }
+
+            logger.info("Login " + login + " was correct");
+            return userRepository.isUserExist(login);
+        } catch (RepositoryException exception) {
+            String errorMessage = "Login wasn't found";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Role findRoleByLogin(String login) throws ServiceException {
+        try {
+            logger.info("Role is " + userRepository.findRoleByLogin(login));
+            return userRepository.findRoleByLogin(login);
+        } catch (RepositoryException exception) {
+            String errorMessage = "Role is " + Role.GUEST;
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
         }
     }
 

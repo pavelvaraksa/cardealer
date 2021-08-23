@@ -6,7 +6,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
+<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
 <fmt:message key="Register_form" var="register_form"/>
 <fmt:message key="Audi_dealer_register_page" var="register_page"/>
 <fmt:message key="Firstname" var="firstname"/>
@@ -18,6 +18,12 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="Required_field" var="required_field"/>
 <fmt:message key="Register" var="register"/>
 <fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+
+<fmt:message key="Firstname_help_text" var="firstname_help_text"/>
+<fmt:message key="Lastname_help_text" var="lastname_help_text"/>
+<fmt:message key="Login_help_text" var="login_help_text"/>
+<fmt:message key="Password_help_text" var="password_help_text"/>
+<fmt:message key="Email_help_text" var="email_help_text"/>
 
 <html>
 <head>
@@ -47,29 +53,34 @@ pageContext.request.locale}" scope="session"/>
     <h2><u>${register_form}</u></h2>
     <form action="user/save" method="post">
         <form class="row g-3">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationFirstname" class="form-label"><u>${firstname}*</u></label>
                 <input type="text" class="form-control" id="validationFirstname" name="firstname" required>
+                <small id="firstNameHelpText" class="text-muted">${firstname_help_text}</small>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationLastname" class="form-label"><u>${lastname}*</u></label>
                 <input type="text" class="form-control" id="validationLastname" name="lastname" required>
+                <small id="lastNameHelpText" class="text-muted">${lastname_help_text}</small>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationBirthDate" class="form-label"><u>${birth_date}</u></label>
                 <input type="date" class="form-control" id="validationBirthDate" name="birth_date">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationLogin" class="form-label"><u>${login}*</u></label>
                 <input type="text" class="form-control" id="validationLogin" name="login" required>
+                <small id="loginHelpText" class="text-muted">${login_help_text}</small>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationPassword" class="form-label"><u>${password}*</u></label>
                 <input type="password" class="form-control" id="validationPassword" name="password" required>
+                <small id="passwordHelpText" class="text-muted">${password_help_text}</small>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationEmail" class="form-label"><u>${email}*</u></label>
                 <input type="email" class="form-control" id="validationEmail" name="email" required>
+                <small id="emailHelpText" class="text-muted">${email_help_text}</small>
             </div>
             <p class="text-dark">* - ${required_field}</p>
             <div class="col-12">

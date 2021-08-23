@@ -1,7 +1,6 @@
 package by.varaksa.cardealer.model.repository.impl;
 
-import by.varaksa.cardealer.exception.RepositoryException;
-import by.varaksa.cardealer.model.connection.PoolConnection;
+import by.varaksa.cardealer.model.connection.ConnectionPool;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
 import by.varaksa.cardealer.model.repository.UserRepository;
@@ -72,7 +71,7 @@ public class UserRepositoryImpl implements UserRepository {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
         Role defaultSavedUserRole = Role.USER;
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_USER)) {
 
             statement.setString(1, user.getFirstName());
@@ -99,7 +98,7 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> findAll() {
         List<User> result = new ArrayList<>();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_USERS);
 
@@ -117,7 +116,9 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User find(Long id) {
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        User user = new User();
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_ID)) {
 
             statement.setLong(1, id);
@@ -125,11 +126,10 @@ public class UserRepositoryImpl implements UserRepository {
 
             if (resultSet.next()) {
                 return parseResultSet(resultSet);
-            } else {
-                throw new RepositoryException("User with id " + id + " wasn't found");
             }
 
-        } catch (SQLException | RepositoryException exception) {
+            return user;
+        } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
             throw new RuntimeException(errorMessage);
@@ -140,7 +140,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User update(User user) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_USER_BY_ID)) {
 
             statement.setString(1, user.getFirstName());
@@ -167,7 +167,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User delete(Long id) {
         User user = new User();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_BY_ID)) {
 
             statement.setLong(1, id);
@@ -188,10 +188,10 @@ public class UserRepositoryImpl implements UserRepository {
         String decryptedPassword;
         String enteredPassword = user.getPassword();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement1 = connection.prepareStatement(FIND_PASSWORD_BY_LOGIN)) {
-            preparedStatement1.setString(1, user.getLogin());
-            ResultSet resultSet = preparedStatement1.executeQuery();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement prepareStatementByLogin = connection.prepareStatement(FIND_PASSWORD_BY_LOGIN)) {
+            prepareStatementByLogin.setString(1, user.getLogin());
+            ResultSet resultSet = prepareStatementByLogin.executeQuery();
 
             while (resultSet.next()) {
                 User newUser = new User();
@@ -200,27 +200,58 @@ public class UserRepositoryImpl implements UserRepository {
                 decryptedPassword = EncryptionUserPassword.decodePassword(encryptedPassword);
 
                 if (decryptedPassword.equals(enteredPassword)) {
-                    try (PreparedStatement preparedStatement2 = connection.prepareStatement(CONFIRM_AUTHENTICATE)) {
+                    try (PreparedStatement prepareStatementByConfirm = connection.prepareStatement(CONFIRM_AUTHENTICATE)) {
 
-                        preparedStatement2.setString(1, user.getLogin());
-                        preparedStatement2.setString(2, encryptedPassword);
-                        logger.info(preparedStatement2);
-                        ResultSet rs = preparedStatement2.executeQuery();
+                        prepareStatementByConfirm.setString(1, user.getLogin());
+                        prepareStatementByConfirm.setString(2, encryptedPassword);
+                        logger.info("Login and password were correct");
+                        ResultSet rs = prepareStatementByConfirm.executeQuery();
                         isStatus = rs.next();
                     }
+                } else {
+                    logger.error("Login or password wasn't correct");
                 }
             }
+
+            return isStatus;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
+        }
+    }
+
+    @Override
+    public Role findRoleByLogin(String login) {
+        Role role = Role.GUEST;
+        List<User> allUsers = new ArrayList<>(findAll());
+
+        for (User user : allUsers) {
+            if (user.getLogin().equals(login)) {
+                role = user.getRole();
+            }
+        }
+
+        return role;
+    }
+
+    @Override
+    public boolean isUserExist(String login) {
+        boolean isStatus = false;
+        List<User> allUsers = new ArrayList<>(findAll());
+
+        for (User user : allUsers) {
+            if (user.getLogin().equals(login)) {
+                isStatus = true;
+                break;
+            }
         }
         return isStatus;
     }
 
     @Override
     public void logOut(User user) {
-        try (Connection connection = PoolConnection.getInstance().getConnection()) {
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             logger.info(connection);
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;

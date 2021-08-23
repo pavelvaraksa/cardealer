@@ -29,6 +29,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/user/save", "/login", "/user/find-all",
         "/user/find-by-id", "/user/update", "/user/delete", "/logout", "/user/verify"})
+
 public class UserController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;
@@ -80,7 +81,7 @@ public class UserController extends HttpServlet {
         }
     }
 
-    public void confirmAuthenticate(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServletException, ServiceException {
+    public void confirmAuthenticate(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServletException, ServiceException, RepositoryException {
         HttpSession session = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
@@ -88,34 +89,43 @@ public class UserController extends HttpServlet {
         user.setLogin(login);
         user.setPassword(password);
 
-        if (UserValidator.isUserValidate(UserValidator.LOGIN_REGEXP, login) != isCheckStringFromUI &&
+        if (UserValidator.isUserValidate(UserValidator.LOGIN_REGEXP, login) != isCheckStringFromUI ||
                 UserValidator.isUserValidate(UserValidator.PASSWORD_REGEXP, password) != isCheckStringFromUI) {
+            logger.error("Wasn't correct input format for login or password");
             response.sendRedirect("/login-auth");
             return;
         }
 
-        try {
+        if (session != null && session.getAttribute("login") != null) {
+
+            Role role = (Role) session.getAttribute("role");
+
+            moveToMenu(response, role);
+
+        } else if (userService.isUserExist(login)) {
 
             if (userService.isAuthenticate(user)) {
-                session.setAttribute("user", user);
-                logger.info("Login and password were correct");
-                response.sendRedirect("/main-menu");
-                return;
-            }
 
-            logger.error("Login or password weren't correct");
-            response.sendRedirect("/login-auth");
-        } catch (ServiceException exception) {
-            throw new ControllerException(exception);
+                Role role = userService.findRoleByLogin(login);
+
+                request.getSession().setAttribute("login", login);
+                request.getSession().setAttribute("role", role);
+
+                moveToMenu(response, role);
+            } else {
+                response.sendRedirect("/login-auth");
+            }
+        } else {
+            moveToMenu(response, Role.GUEST);
         }
     }
 
     public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
-        if (session != null) {
-            session.invalidate();
-        }
+        session.removeAttribute("login");
+        session.removeAttribute("password");
+        session.removeAttribute("role");
 
         logger.info("Logout was completed");
         response.sendRedirect("/login-auth");
@@ -159,11 +169,10 @@ public class UserController extends HttpServlet {
         List<User> existingUsers = userService.findAll();
 
         for (User existingUser : existingUsers) {
-            boolean hasSameUser = existingUser.getLogin().equals(user.getLogin()) ||
-                    existingUser.getEmail().equals(user.getEmail());
+            boolean hasSameUser = existingUser.getLogin().equals(user.getLogin());
 
             if (hasSameUser) {
-                String errorMessage = "User with login " + user.getLogin() + " or email " + user.getEmail() + " already exists";
+                String errorMessage = "User with login " + user.getLogin() + " already exists";
                 logger.error(errorMessage);
                 response.sendRedirect("/register-page");
                 throw new ControllerException(errorMessage);
@@ -188,7 +197,7 @@ public class UserController extends HttpServlet {
             logger.info("Confirmation code was right for user with login " + user.getLogin());
             userService.save(user);
             session.setAttribute("user", user);
-            response.sendRedirect("/main-menu");
+            response.sendRedirect("/admin-menu");
         } else {
             logger.error("Confirmation code was wrong for user with login " + user.getLogin());
             response.sendRedirect("/user/verify-page");
@@ -257,6 +266,17 @@ public class UserController extends HttpServlet {
         Long id = Long.parseLong(request.getParameter("id"));
         userService.delete(id);
         response.sendRedirect("/user/find-all");
+    }
+
+    private void moveToMenu(HttpServletResponse response, Role role) throws IOException {
+
+        if (role.equals(Role.ADMIN)) {
+            response.sendRedirect("/admin-menu");
+        } else if (role.equals(Role.USER)) {
+            response.sendRedirect("/user-menu");
+        } else {
+            response.sendRedirect("/login-auth");
+        }
     }
 }
 

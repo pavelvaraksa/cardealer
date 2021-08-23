@@ -3,7 +3,7 @@ package by.varaksa.cardealer.model.repository.impl;
 import by.varaksa.cardealer.model.entity.Body;
 import by.varaksa.cardealer.model.entity.BodyType;
 import by.varaksa.cardealer.model.entity.Color;
-import by.varaksa.cardealer.model.connection.PoolConnection;
+import by.varaksa.cardealer.model.connection.ConnectionPool;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.repository.BodyRepository;
 import org.apache.logging.log4j.LogManager;
@@ -53,7 +53,7 @@ public class BodyRepositoryImpl implements BodyRepository {
     public Body save(Body body) {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_BODY)) {
 
             statement.setString(1, String.valueOf(body.getColor()));
@@ -75,7 +75,7 @@ public class BodyRepositoryImpl implements BodyRepository {
     public List<Body> findAll() {
         List<Body> result = new ArrayList<>();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_BODIES);
 
@@ -93,7 +93,7 @@ public class BodyRepositoryImpl implements BodyRepository {
 
     @Override
     public Body find(Long id) {
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_BODY_BY_ID)) {
 
             statement.setLong(1, id);
@@ -116,7 +116,7 @@ public class BodyRepositoryImpl implements BodyRepository {
     public Body update(Body body) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_BODY_BY_ID)) {
 
             statement.setString(1, String.valueOf(body.getColor()));
@@ -138,7 +138,7 @@ public class BodyRepositoryImpl implements BodyRepository {
     public Body delete(Long id) {
         Body body = new Body();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_BODY_BY_ID)) {
 
             statement.setLong(1, id);

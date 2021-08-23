@@ -1,6 +1,6 @@
 package by.varaksa.cardealer.model.repository.impl;
 
-import by.varaksa.cardealer.model.connection.PoolConnection;
+import by.varaksa.cardealer.model.connection.ConnectionPool;
 import by.varaksa.cardealer.model.entity.UserOrder;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.repository.UserOrderRepository;
@@ -48,7 +48,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public UserOrder save(UserOrder userOrder) throws RepositoryException {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_USER_ORDER)) {
 
             statement.setString(1, userOrder.getOrderName());
@@ -69,7 +69,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public List<UserOrder> findAll() {
         List<UserOrder> result = new ArrayList<>();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_USER_ORDERS);
 
@@ -87,7 +87,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
 
     @Override
     public UserOrder find(Long id) throws RepositoryException {
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_USER_ORDER_BY_ID)) {
 
             statement.setLong(1, id);
@@ -110,7 +110,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public UserOrder update(UserOrder userOrder) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_USER_ORDER_BY_ID)) {
 
             statement.setString(1, userOrder.getOrderName());
@@ -131,7 +131,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public UserOrder delete(Long id) {
         UserOrder userOrder = new UserOrder();
 
-        try (Connection connection = PoolConnection.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_ORDER_BY_ID)) {
 
             statement.setLong(1, id);

@@ -5,15 +5,15 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-class ProxyConnection implements Connection {
+class ConnectionProxy implements Connection {
     private final Connection connection;
 
-    ProxyConnection(Connection connection) {
+    ConnectionProxy(Connection connection) {
         this.connection = connection;
     }
 
     public void close() throws SQLException {
-        PoolConnection.getInstance().releaseConnection(this);
+        ConnectionPool.getInstance().releaseConnection(this);
     }
 
     public void reallyClose() throws SQLException {

@@ -6,7 +6,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="AUDI_CAR_DEALER" var="audi_car_dealer"/>
+<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
 <fmt:message key="Delete_car_text" var="delete_car_text"/>
 <fmt:message key="Yes" var="yes"/>
 <fmt:message key="No" var="no"/>

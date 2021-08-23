@@ -125,7 +125,7 @@ public class DealerController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void updateDealer(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
+    private void updateDealer(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
         Long id = Long.parseLong(request.getParameter("id"));
         Dealer dealer = dealerService.find(id);
 
