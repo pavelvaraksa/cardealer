@@ -1,4 +1,4 @@
-package by.varaksa.cardealer.model.email;
+package by.varaksa.cardealer.model.util;
 
 import by.varaksa.cardealer.model.entity.User;
 import org.apache.logging.log4j.LogManager;
@@ -10,18 +10,18 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 import java.util.Random;
 
-public class Email {
+public class NotificationUserEmail {
     private static final Logger logger = LogManager.getLogger();
-    private static final String HOST = "mail.smtp.host";
-    private static final String HOST_VALUE = "smtp.gmail.com";
-    private static final String PORT = "mail.smtp.port";
-    private static final String PORT_VALUE = "587";
-    private static final String AUTH = "mail.smtp.auth";
-    private static final String AUTH_VALUE = "true";
-    private static final String ENABLE = "mail.smtp.starttls.enable";
-    private static final String ENABLE_VALUE = "true";
-    private static final String FROM_EMAIL = "javaTestProject2000@gmail.com";
-    private static final String PASSWORD = "GT2000GT";
+    private static final String HOST = EmailPropertiesReader.getEmail("host");
+    private static final String HOST_VALUE = EmailPropertiesReader.getEmail("host_value");
+    private static final String PORT = EmailPropertiesReader.getEmail("port");
+    private static final String PORT_VALUE = EmailPropertiesReader.getEmail("port_value");
+    private static final String AUTH = EmailPropertiesReader.getEmail("auth");
+    private static final String AUTH_VALUE = EmailPropertiesReader.getEmail("auth_value");
+    private static final String TLS = EmailPropertiesReader.getEmail("tls");
+    private static final String TLS_VALUE = EmailPropertiesReader.getEmail("tls_value");
+    private static final String FROM_EMAIL = EmailPropertiesReader.getEmail("from_email");
+    private static final String PASSWORD = EmailPropertiesReader.getEmail("password");
 
     public String getRandom() {
         Random random = new Random();
@@ -39,7 +39,7 @@ public class Email {
             properties.setProperty(HOST, HOST_VALUE);
             properties.setProperty(PORT, PORT_VALUE);
             properties.setProperty(AUTH, AUTH_VALUE);
-            properties.setProperty(ENABLE, ENABLE_VALUE);
+            properties.setProperty(TLS, TLS_VALUE);
 
             Session session = Session.getInstance(properties, new Authenticator() {
 
