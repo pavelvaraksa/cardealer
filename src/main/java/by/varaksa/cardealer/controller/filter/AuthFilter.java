@@ -7,6 +7,7 @@ import by.varaksa.cardealer.model.repository.UserRepository;
 import by.varaksa.cardealer.model.repository.impl.UserRepositoryImpl;
 import by.varaksa.cardealer.model.service.UserService;
 import by.varaksa.cardealer.model.service.impl.UserServiceImpl;
+import by.varaksa.cardealer.model.util.RegexpPropertiesReader;
 import by.varaksa.cardealer.model.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,8 +23,11 @@ import java.io.IOException;
 public class AuthFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;
+    private static final String regexpLogin = RegexpPropertiesReader.getRegexp("login.regexp");
+    private static final String regexpPassword = RegexpPropertiesReader.getRegexp("password.regexp");
     public UserRepository userRepository = new UserRepositoryImpl();
     public UserService userService = new UserServiceImpl(userRepository);
+
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -41,8 +45,8 @@ public class AuthFilter implements Filter {
         user.setLogin(login);
         user.setPassword(password);
 
-        if (UserValidator.isUserValidate(UserValidator.LOGIN_REGEXP, login) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(UserValidator.PASSWORD_REGEXP, password) != isCheckStringFromUI) {
+        if (UserValidator.isUserValidate(regexpLogin, login) != isCheckStringFromUI ||
+                UserValidator.isUserValidate(regexpPassword, password) != isCheckStringFromUI) {
             logger.error("Wasn't correct input format for login or password");
             response.sendRedirect("/login-auth");
             return;

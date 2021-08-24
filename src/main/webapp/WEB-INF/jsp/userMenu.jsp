@@ -7,11 +7,12 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setBundle basename="text"/>
 
 <fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
+<fmt:message key="Main_menu" var="main_menu"/>
 <fmt:message key="Log_out" var="log_out"/>
 
 <html>
 <head>
-    <title>User menu</title>
+    <title>${main_menu}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"

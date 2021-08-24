@@ -9,19 +9,19 @@ import java.util.ResourceBundle;
 public class RegexpPropertiesReader {
     private static final Logger logger = LogManager.getLogger();
     private static final ResourceBundle resourceBundle;
-    private static final String REGEXP_PROPERTIES_NAME = "regExp";
+    private static final String PROPERTIES_NAME = "regexp";
 
     static {
         try {
-            resourceBundle = ResourceBundle.getBundle(REGEXP_PROPERTIES_NAME);
+            resourceBundle = ResourceBundle.getBundle(PROPERTIES_NAME);
         } catch (MissingResourceException exception) {
-            String errorMessage = "Resource bundle wasn't found for this base name " + exception;
+            String errorMessage = "Resource bundle wasn't found." + exception;
             logger.error(errorMessage);
             throw new ExceptionInInitializerError(errorMessage);
         }
     }
 
-    public String getProperty(String key) {
-        return (String) resourceBundle.getObject(key);
+    public static String getRegexp(String key) {
+        return resourceBundle.getString(key);
     }
 }
