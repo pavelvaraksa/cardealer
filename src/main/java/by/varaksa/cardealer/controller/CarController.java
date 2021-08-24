@@ -10,8 +10,8 @@ import by.varaksa.cardealer.model.repository.CarRepository;
 import by.varaksa.cardealer.model.repository.impl.CarRepositoryImpl;
 import by.varaksa.cardealer.model.service.CarService;
 import by.varaksa.cardealer.model.service.impl.CarServiceImpl;
-import by.varaksa.cardealer.model.validator.CarValidator;
-import by.varaksa.cardealer.model.validator.UserValidator;
+import by.varaksa.cardealer.validator.CarValidator;
+import by.varaksa.cardealer.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -9,7 +9,7 @@ import by.varaksa.cardealer.model.repository.TransmissionRepository;
 import by.varaksa.cardealer.model.repository.impl.TransmissionRepositoryImpl;
 import by.varaksa.cardealer.model.service.TransmissionService;
 import by.varaksa.cardealer.model.service.impl.TransmissionServiceImpl;
-import by.varaksa.cardealer.model.validator.CarValidator;
+import by.varaksa.cardealer.validator.CarValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

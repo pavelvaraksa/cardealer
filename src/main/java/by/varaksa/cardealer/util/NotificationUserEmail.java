@@ -1,4 +1,4 @@
-package by.varaksa.cardealer.model.util;
+package by.varaksa.cardealer.util;
 
 import by.varaksa.cardealer.model.entity.User;
 import org.apache.logging.log4j.LogManager;

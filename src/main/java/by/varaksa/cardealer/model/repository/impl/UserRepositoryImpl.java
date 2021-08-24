@@ -4,7 +4,7 @@ import by.varaksa.cardealer.model.connection.ConnectionPool;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
 import by.varaksa.cardealer.model.repository.UserRepository;
-import by.varaksa.cardealer.model.util.EncryptionUserPassword;
+import by.varaksa.cardealer.util.EncryptionUserPassword;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

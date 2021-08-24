@@ -7,8 +7,8 @@ import by.varaksa.cardealer.model.repository.UserRepository;
 import by.varaksa.cardealer.model.repository.impl.UserRepositoryImpl;
 import by.varaksa.cardealer.model.service.UserService;
 import by.varaksa.cardealer.model.service.impl.UserServiceImpl;
-import by.varaksa.cardealer.model.util.RegexpPropertiesReader;
-import by.varaksa.cardealer.model.validator.UserValidator;
+import by.varaksa.cardealer.util.RegexpPropertiesReader;
+import by.varaksa.cardealer.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,8 +23,8 @@ import java.io.IOException;
 public class AuthFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;
-    private static final String regexpLogin = RegexpPropertiesReader.getRegexp("login.regexp");
-    private static final String regexpPassword = RegexpPropertiesReader.getRegexp("password.regexp");
+    private static final String REGEXP_LOGIN = RegexpPropertiesReader.getRegexp("login.regexp");
+    private static final String REGEXP_PASSWORD = RegexpPropertiesReader.getRegexp("password.regexp");
     public UserRepository userRepository = new UserRepositoryImpl();
     public UserService userService = new UserServiceImpl(userRepository);
 
@@ -37,6 +37,7 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        request.setAttribute("user", "Administrator");
 
         HttpSession session = request.getSession();
         String login = request.getParameter("login");
@@ -45,8 +46,8 @@ public class AuthFilter implements Filter {
         user.setLogin(login);
         user.setPassword(password);
 
-        if (UserValidator.isUserValidate(regexpLogin, login) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(regexpPassword, password) != isCheckStringFromUI) {
+        if (UserValidator.isUserValidate(REGEXP_LOGIN, login) != isCheckStringFromUI ||
+                UserValidator.isUserValidate(REGEXP_PASSWORD, password) != isCheckStringFromUI) {
             logger.error("Wasn't correct input format for login or password");
             response.sendRedirect("/login-auth");
             return;

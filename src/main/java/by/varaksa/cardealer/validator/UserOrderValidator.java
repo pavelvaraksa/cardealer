@@ -1,4 +1,4 @@
-package by.varaksa.cardealer.model.validator;
+package by.varaksa.cardealer.validator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,15 +6,15 @@ import org.apache.logging.log4j.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DealerValidator {
+public class UserOrderValidator {
     private static final Logger logger = LogManager.getLogger();
 
-    /* Regex for the name, 1 to 20 characters including hyphen */
-    public static final String DEALER_NAME_REGEXP = "dealer_name.regexp";
-    /* Regex for the address, 1 to 55 characters including numbers, point, underscore and hyphen */
-    public static final String DEALER_ADDRESS_REGEXP = "dealer_address.regexp";
+    /* Regex for the order name, 1 to 30 characters including numbers, underscore and hyphen */
+    public static final String ORDER_NAME_REGEXP = "order_name.regexp";
+    /* Regex for the user id, 1 to 3 characters */
+    public static final String USER_ID_REGEXP = "user_id.regexp";
 
-    public static boolean isDealerValidate(String regexp, String stringFromUI) {
+    public static boolean isUserOrderValidate(String regexp, String stringFromUI) {
         Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(stringFromUI);
 

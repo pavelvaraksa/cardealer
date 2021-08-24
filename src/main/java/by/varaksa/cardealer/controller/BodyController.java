@@ -11,7 +11,7 @@ import by.varaksa.cardealer.model.repository.BodyRepository;
 import by.varaksa.cardealer.model.repository.impl.BodyRepositoryImpl;
 import by.varaksa.cardealer.model.service.BodyService;
 import by.varaksa.cardealer.model.service.impl.BodyServiceImpl;
-import by.varaksa.cardealer.model.validator.CarValidator;
+import by.varaksa.cardealer.validator.CarValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

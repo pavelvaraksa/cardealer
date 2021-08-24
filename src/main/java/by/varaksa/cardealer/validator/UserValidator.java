@@ -1,4 +1,4 @@
-package by.varaksa.cardealer.model.validator;
+package by.varaksa.cardealer.validator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

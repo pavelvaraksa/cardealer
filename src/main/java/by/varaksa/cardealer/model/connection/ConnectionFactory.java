@@ -1,13 +1,13 @@
 package by.varaksa.cardealer.model.connection;
 
-import by.varaksa.cardealer.model.util.DatabasePropertiesReader;
+import by.varaksa.cardealer.util.DatabasePropertiesReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static by.varaksa.cardealer.model.util.DatabasePropertiesReader.*;
+import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
 
 class ConnectionFactory {
     private static final Logger logger = LogManager.getLogger();

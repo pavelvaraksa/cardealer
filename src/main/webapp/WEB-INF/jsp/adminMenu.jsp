@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="tag" uri="customtags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language :
@@ -25,7 +26,6 @@ pageContext.request.locale}" scope="session"/>
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
 </head>
-
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
@@ -70,8 +70,11 @@ pageContext.request.locale}" scope="session"/>
     </div>
 </nav>
 <div>
+    <div style="position: absolute;color: white; padding-left: 30px; font-size: large"><tag:welcome/></div>
     <img src="${pageContext.request.contextPath}/image/center.jpg" width="100%" height="auto">
 </div>
 </body>
 </html>
+
+
 

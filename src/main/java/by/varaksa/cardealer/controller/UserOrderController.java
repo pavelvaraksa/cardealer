@@ -8,7 +8,7 @@ import by.varaksa.cardealer.model.repository.UserOrderRepository;
 import by.varaksa.cardealer.model.repository.impl.UserOrderRepositoryImpl;
 import by.varaksa.cardealer.model.service.UserOrderService;
 import by.varaksa.cardealer.model.service.impl.UserOrderServiceImpl;
-import by.varaksa.cardealer.model.validator.UserOrderValidator;
+import by.varaksa.cardealer.validator.UserOrderValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

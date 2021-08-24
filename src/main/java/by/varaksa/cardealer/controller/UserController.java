@@ -4,15 +4,15 @@ import by.varaksa.cardealer.controller.command.Commands;
 import by.varaksa.cardealer.exception.ControllerException;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
-import by.varaksa.cardealer.model.util.NotificationUserEmail;
+import by.varaksa.cardealer.util.NotificationUserEmail;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
 import by.varaksa.cardealer.model.repository.UserRepository;
 import by.varaksa.cardealer.model.repository.impl.UserRepositoryImpl;
 import by.varaksa.cardealer.model.service.UserService;
 import by.varaksa.cardealer.model.service.impl.UserServiceImpl;
-import by.varaksa.cardealer.model.util.RegexpPropertiesReader;
-import by.varaksa.cardealer.model.validator.UserValidator;
+import by.varaksa.cardealer.util.RegexpPropertiesReader;
+import by.varaksa.cardealer.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,6 +34,11 @@ import java.util.List;
 public class UserController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;
+    private static final String REGEXP_FIRSTNAME = RegexpPropertiesReader.getRegexp("firstname.regexp");
+    private static final String REGEXP_LASTNAME = RegexpPropertiesReader.getRegexp("lastname.regexp");
+    private static final String REGEXP_LOGIN = RegexpPropertiesReader.getRegexp("login.regexp");
+    private static final String REGEXP_PASSWORD = RegexpPropertiesReader.getRegexp("password.regexp");
+    private static final String REGEXP_EMAIL = RegexpPropertiesReader.getRegexp("email.regexp");
     private Commands commandName;
     public UserRepository userRepository = new UserRepositoryImpl();
     public UserService userService = new UserServiceImpl(userRepository);
@@ -94,13 +99,6 @@ public class UserController extends HttpServlet {
 
     private void saveUser(HttpServletRequest request, HttpServletResponse response) throws
             IOException, ControllerException, ServiceException, RepositoryException, ServletException {
-        final String regexpFirstname = RegexpPropertiesReader.getRegexp("firstname.regexp");
-        final String regexpLastname = RegexpPropertiesReader.getRegexp("lastname.regexp");
-        final String regexpLogin = RegexpPropertiesReader.getRegexp("login.regexp");
-        final String regexpPassword= RegexpPropertiesReader.getRegexp("password.regexp");
-        final String regexpEmail = RegexpPropertiesReader.getRegexp("email.regexp");
-
-
         HttpSession session = request.getSession();
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
@@ -118,11 +116,11 @@ public class UserController extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-        if (UserValidator.isUserValidate(regexpFirstname, firstname) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(regexpLastname, lastname) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(regexpLogin, login) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(regexpPassword, password) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(regexpEmail, email) != isCheckStringFromUI) {
+        if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, firstname) != isCheckStringFromUI ||
+                UserValidator.isUserValidate(REGEXP_LASTNAME, lastname) != isCheckStringFromUI ||
+                UserValidator.isUserValidate(REGEXP_LOGIN, login) != isCheckStringFromUI ||
+                UserValidator.isUserValidate(REGEXP_PASSWORD, password) != isCheckStringFromUI ||
+                UserValidator.isUserValidate(REGEXP_EMAIL, email) != isCheckStringFromUI) {
             logger.error("User wasn't saved");
             response.sendRedirect("/register-page");
             return;
@@ -214,9 +212,9 @@ public class UserController extends HttpServlet {
         user.setRole(Role.valueOf((request.getParameter("role"))));
         user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
 
-        if (UserValidator.isUserValidate(UserValidator.FIRST_NAME_REGEXP, user.getFirstName()) == isCheckStringFromUI &&
-                UserValidator.isUserValidate(UserValidator.LAST_NAME_REGEXP, user.getLastName()) == isCheckStringFromUI &&
-                UserValidator.isUserValidate(UserValidator.EMAIL_REGEXP, user.getEmail()) == isCheckStringFromUI) {
+        if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUI &&
+                UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getLastName()) == isCheckStringFromUI &&
+                UserValidator.isUserValidate(REGEXP_EMAIL, user.getEmail()) == isCheckStringFromUI) {
 
             session.setAttribute("user", user);
             userService.update(user);

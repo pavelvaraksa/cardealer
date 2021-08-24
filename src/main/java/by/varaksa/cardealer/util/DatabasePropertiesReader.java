@@ -1,4 +1,4 @@
-package by.varaksa.cardealer.model.util;
+package by.varaksa.cardealer.util;
 
 import java.util.ResourceBundle;
 
