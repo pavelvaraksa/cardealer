@@ -31,11 +31,10 @@ public class User {
     public User() {
     }
 
-    public User(String firstname, String lastName, LocalDate birthDate, String email, Role role, boolean isBlocked) {
+    public User(String firstname, String lastName, LocalDate birthDate, Role role, boolean isBlocked) {
         this.firstName = firstname;
         this.lastName = lastName;
         this.birthDate = birthDate;
-        this.email = email;
         this.role = role;
         this.isBlocked = isBlocked;
     }

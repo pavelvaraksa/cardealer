@@ -52,7 +52,7 @@ pageContext.request.locale}" scope="session"/>
         </div>
     </form>
     <label>
-        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/register-page"
+        <a class="btn btn-outline-primary btn-sm" href=http://localhost:8080/register
            role="button">${return_to_previous_page}</a>
     </label>
 </div>

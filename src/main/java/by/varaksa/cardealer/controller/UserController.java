@@ -4,13 +4,13 @@ import by.varaksa.cardealer.controller.command.Commands;
 import by.varaksa.cardealer.exception.ControllerException;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
-import by.varaksa.cardealer.util.NotificationUserEmail;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
 import by.varaksa.cardealer.model.repository.UserRepository;
 import by.varaksa.cardealer.model.repository.impl.UserRepositoryImpl;
 import by.varaksa.cardealer.model.service.UserService;
 import by.varaksa.cardealer.model.service.impl.UserServiceImpl;
+import by.varaksa.cardealer.util.NotificationUserEmail;
 import by.varaksa.cardealer.util.RegexpPropertiesReader;
 import by.varaksa.cardealer.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
@@ -28,8 +28,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/user/save", "/login", "/user/find-all",
-        "/user/find-by-id", "/user/update", "/user/delete", "/logout", "/user/verify"})
+@WebServlet(urlPatterns = {"/user/save", "/user/find-all", "/user/find-by-id",
+        "/user/update", "/user/delete", "/register/verify", "/logout"})
 
 public class UserController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
@@ -88,12 +88,11 @@ public class UserController extends HttpServlet {
 
     public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
+        Object login = session.getAttribute("login");
 
-        session.removeAttribute("login");
-        session.removeAttribute("password");
-        session.removeAttribute("role");
+        session.invalidate();
 
-        logger.info("Logout was completed");
+        logger.info("Logout was completed for user with login " + login);
         response.sendRedirect("/login-auth");
     }
 
@@ -121,8 +120,8 @@ public class UserController extends HttpServlet {
                 UserValidator.isUserValidate(REGEXP_LOGIN, login) != isCheckStringFromUI ||
                 UserValidator.isUserValidate(REGEXP_PASSWORD, password) != isCheckStringFromUI ||
                 UserValidator.isUserValidate(REGEXP_EMAIL, email) != isCheckStringFromUI) {
-            logger.error("User wasn't saved");
-            response.sendRedirect("/register-page");
+            logger.error("Wasn't correct input format for register user");
+            response.sendRedirect("/register");
             return;
         }
 
@@ -140,7 +139,7 @@ public class UserController extends HttpServlet {
             if (hasSameUser) {
                 String errorMessage = "User with login " + user.getLogin() + " already exists";
                 logger.error(errorMessage);
-                response.sendRedirect("/register-page");
+                response.sendRedirect("/register");
                 throw new ControllerException(errorMessage);
             }
         }
@@ -149,7 +148,7 @@ public class UserController extends HttpServlet {
 
         if (confirmCode) {
             session.setAttribute("authCode", user);
-            response.sendRedirect("/user/verify-page");
+            response.sendRedirect("/register/verify-page");
         }
     }
 
@@ -158,25 +157,28 @@ public class UserController extends HttpServlet {
         HttpSession session = request.getSession();
         String code = request.getParameter("authCode");
         User user = (User) session.getAttribute("authCode");
+        String login = user.getLogin();
 
         if (code.equals(user.getCodeToRegister())) {
             logger.info("Confirmation code was right for user with login " + user.getLogin());
             userService.save(user);
-            session.setAttribute("user", user);
             response.sendRedirect("/user-menu");
-        } else {
-            logger.error("Confirmation code was wrong for user with login " + user.getLogin());
-            response.sendRedirect("/user/verify-page");
+            session.setAttribute("login", login);
+            return;
         }
+
+        logger.error("Confirmation code was wrong for user with login " + user.getLogin());
+        response.sendRedirect("/register/verify-page");
     }
 
     private void findAllUsers(HttpServletRequest request, HttpServletResponse response) throws
             IOException, ServletException, ServiceException {
         HttpSession session = request.getSession();
+
         List<User> userList = userService.findAll();
         logger.info("Users were watched");
         session.setAttribute("userList", userList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users-page");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user/findAll.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -186,11 +188,11 @@ public class UserController extends HttpServlet {
         Long id = Long.parseLong(request.getParameter("id"));
         User existingUser = userService.find(id);
         session.setAttribute("oneUser", existingUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("find-by-id");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-by-id");
         dispatcher.forward(request, response);
     }
 
-    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
         HttpSession session = request.getSession();
         Long id = Long.parseLong(request.getParameter("id"));
         User user = userService.find(id);
@@ -208,13 +210,11 @@ public class UserController extends HttpServlet {
         }
 
         user.setBirthDate(birthDate);
-        user.setEmail(request.getParameter("email"));
         user.setRole(Role.valueOf((request.getParameter("role"))));
         user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
 
         if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUI &&
-                UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getLastName()) == isCheckStringFromUI &&
-                UserValidator.isUserValidate(REGEXP_EMAIL, user.getEmail()) == isCheckStringFromUI) {
+                UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getLastName()) == isCheckStringFromUI) {
 
             session.setAttribute("user", user);
             userService.update(user);
@@ -223,7 +223,7 @@ public class UserController extends HttpServlet {
         }
 
         logger.error("User wasn't updated");
-        response.sendRedirect("/user/find-all");
+        response.sendRedirect("/error-400");
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws

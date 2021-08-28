@@ -24,6 +24,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/transmission/save", "/transmission/find-all", "/transmission/find-by-id",
         "/transmission/update", "/transmission/delete"})
+
 public class TransmissionController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;

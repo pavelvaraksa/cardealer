@@ -75,10 +75,7 @@
     </servlet-mapping>
 
 
-
-
-
-    <!--User servlets and mappings -->
+<!--    User servlets and mappings-->
     <servlet>
         <servlet-name>Register user</servlet-name>
         <jsp-file>/WEB-INF/jsp/user/register.jsp</jsp-file>
@@ -86,7 +83,7 @@
 
     <servlet-mapping>
         <servlet-name>Register user</servlet-name>
-        <url-pattern>/register-page</url-pattern>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -126,7 +123,7 @@
 
     <servlet-mapping>
         <servlet-name>Users list</servlet-name>
-        <url-pattern>/find-all-users-page</url-pattern>
+        <url-pattern>/find-all</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -136,7 +133,7 @@
 
     <servlet-mapping>
         <servlet-name>Update user</servlet-name>
-        <url-pattern>/user/update-user-page</url-pattern>
+        <url-pattern>/user/update-user</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -146,7 +143,7 @@
 
     <servlet-mapping>
         <servlet-name>Delete user</servlet-name>
-        <url-pattern>/user/delete-user-page</url-pattern>
+        <url-pattern>/user/delete-user</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -156,7 +153,7 @@
 
     <servlet-mapping>
         <servlet-name>Verify user</servlet-name>
-        <url-pattern>/user/verify-page</url-pattern>
+        <url-pattern>/register/verify-page</url-pattern>
     </servlet-mapping>
 
 
@@ -409,9 +406,15 @@
 
 
 
+
+<!--    <filter-mapping>-->
+<!--        <filter-name>VerifyUserFilter</filter-name>-->
+<!--        <url-pattern>/register/verify-page/*</url-pattern>-->
+<!--    </filter-mapping>-->
+
     <filter-mapping>
-        <filter-name>CharsetFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <filter-name>LimitUserFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
     </filter-mapping>
 
     <filter-mapping>
@@ -420,15 +423,14 @@
     </filter-mapping>
 
     <filter-mapping>
-        <filter-name>XSS</filter-name>
+        <filter-name>CharsetFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
-
-
-
-
+    <filter-mapping>
+        <filter-name>XSS</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <servlet>
         <servlet-name>Company story</servlet-name>
@@ -453,4 +455,39 @@
     <error-page>
         <location>/WEB-INF/jsp/error/404.jsp</location>
     </error-page>
+
+    <servlet>
+        <servlet-name>Error 400</servlet-name>
+        <jsp-file>/WEB-INF/jsp/error/400.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Error 400</servlet-name>
+        <url-pattern>/error-400</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Error 403</servlet-name>
+        <jsp-file>/WEB-INF/jsp/error/403.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Error 403</servlet-name>
+        <url-pattern>/error-403</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Error 500</servlet-name>
+        <jsp-file>/WEB-INF/jsp/error/500.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Error 500</servlet-name>
+        <url-pattern>/error-500</url-pattern>
+    </servlet-mapping>
+
 </web-app>
+
+
+
+

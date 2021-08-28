@@ -30,14 +30,13 @@ public class AuthFilter implements Filter {
 
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        request.setAttribute("user", "Administrator");
 
         HttpSession session = request.getSession();
         String login = request.getParameter("login");
@@ -45,13 +44,6 @@ public class AuthFilter implements Filter {
         User user = new User();
         user.setLogin(login);
         user.setPassword(password);
-
-        if (UserValidator.isUserValidate(REGEXP_LOGIN, login) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(REGEXP_PASSWORD, password) != isCheckStringFromUI) {
-            logger.error("Wasn't correct input format for login or password");
-            response.sendRedirect("/login-auth");
-            return;
-        }
 
         if (session != null && session.getAttribute("login") != null) {
 
@@ -61,6 +53,13 @@ public class AuthFilter implements Filter {
 
         } else {
             try {
+                if (UserValidator.isUserValidate(REGEXP_LOGIN, login) != isCheckStringFromUI ||
+                        UserValidator.isUserValidate(REGEXP_PASSWORD, password) != isCheckStringFromUI) {
+                    logger.error("Wasn't correct input format for login or password");
+                    response.sendRedirect("/error-400");
+                    return;
+                }
+
                 if (userService.isUserExist(login)) {
 
                     if (userService.isAuthenticate(user)) {

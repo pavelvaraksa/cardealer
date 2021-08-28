@@ -17,8 +17,11 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="Email" var="email"/>
 <fmt:message key="Role" var="role"/>
 <fmt:message key="Is_blocked" var="is_blocked"/>
-
 <fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+
+<fmt:message key="Firstname_help_text" var="firstname_help_text"/>
+<fmt:message key="Lastname_help_text" var="lastname_help_text"/>
+<fmt:message key="Email_help_text" var="email_help_text"/>
 
 <html>
 <head>
@@ -51,31 +54,27 @@ pageContext.request.locale}" scope="session"/>
             <input type="hidden" name="id" value="${param.id}">
         </div>
         <form class="row g-3">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationFirstname" class="form-label"><u>${firstname}</u>
                     <input type="text" class="form-control" id="validationFirstname" name="firstname"
                            value="${param.firstName}" placeholder="${param.firstName}" required>
+                    <small id="firstNameHelpText" class="text-muted">${firstname_help_text}</small>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationLastname" class="form-label"><u>${lastname}</u>
                     <input type="text" class="form-control" id="validationLastname" name="lastname"
                            value="${param.lastName}" placeholder="${param.lastName}" required>
+                    <small id="lastNameHelpText" class="text-muted">${lastname_help_text}</small>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationBirthdate" class="form-label"><u>${birth_date}</u>
                     <input type="date" class="form-control" id="validationBirthdate" name="birth_date"
                            value="${param.birthDate}" placeholder=${param.birthDate}>
                 </label>
             </div>
-            <div class="col-md-2">
-                <label for="validationEmail" class="form-label"><u>${email}</u>
-                    <input type="email" class="form-control" id="validationEmail" name="email"
-                           value="${param.email}" placeholder="${param.email}" required>
-                </label>
-            </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label class="form-label"><u>${role}</u>
                     <select name="role">
                         <option value="USER">${Role.USER}</option>
@@ -83,7 +82,7 @@ pageContext.request.locale}" scope="session"/>
                     </select>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label class="form-label"><u>${is_blocked}</u>
                     <select name="is_blocked">
                         <option value=false>${false}</option>

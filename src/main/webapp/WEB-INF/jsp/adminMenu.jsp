@@ -34,28 +34,28 @@ pageContext.request.locale}" scope="session"/>
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/logout">${log_out}</a>
+                    <a class="nav-link" href=logout>${log_out}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/user/find-all">${users_list}</a>
+                    <a class="nav-link" href=user/find-all>${users_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/user-order/find-all">${user_orders_list}</a>
+                    <a class="nav-link" href=user-order/find-all>${user_orders_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/car/find-all">${cars_list}</a>
+                    <a class="nav-link" href=car/find-all>${cars_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/dealer/find-all">${dealers_list}</a>
+                    <a class="nav-link" href=dealer/find-all>${dealers_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/body/find-all">${bodies_list}</a>
+                    <a class="nav-link" href=body/find-all>${bodies_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/engine/find-all">${engines_list}</a>
+                    <a class="nav-link" href=engine/find-all>${engines_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/transmission/find-all">${transmissions_list}</a>
+                    <a class="nav-link" href=transmission/find-all>${transmissions_list}</a>
                 </li>
             </ul>
         </div>

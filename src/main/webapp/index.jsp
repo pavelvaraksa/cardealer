@@ -27,14 +27,13 @@ pageContext.request.locale}" scope="session"/>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
-
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                 <li class="nav-item">
                     <a class="nav-link" id="login" href="login-auth">${login}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="register" href="register-page">${register}</a>
+                    <a class="nav-link" id="register" href="register">${register}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="about" href="company">${about_us}</a>

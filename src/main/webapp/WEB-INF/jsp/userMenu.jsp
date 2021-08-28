@@ -27,7 +27,7 @@ pageContext.request.locale}" scope="session"/>
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/logout">${log_out}</a>
+                    <a class="nav-link" href="logout">${log_out}</a>
                 </li>
             </ul>
         </div>

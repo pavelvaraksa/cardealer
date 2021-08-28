@@ -35,7 +35,7 @@ public class ConnectionPool {
         }
 
         if (freeConnection.isEmpty()) {
-            String errorMessage = ("Connection pool wasn't created");
+            String errorMessage = "Connection pool wasn't created";
             logger.fatal(errorMessage);
             throw new RuntimeException(errorMessage);
         } else {

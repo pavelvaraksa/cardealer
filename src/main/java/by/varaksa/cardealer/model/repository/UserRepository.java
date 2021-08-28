@@ -12,6 +12,4 @@ public interface UserRepository extends CrudRepository<Long, User> {
     Role findRoleByLogin(String login) throws RepositoryException;
 
     void logOut(User user) throws RepositoryException;
-
-
 }
