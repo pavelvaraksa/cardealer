@@ -31,7 +31,7 @@ pageContext.request.locale}" scope="session"/>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
+        <a class="navbar-brand" href=<%=request.getContextPath()%>"/">${audi_car_dealer}</a>
         <form>
             <label for="language"></label>
             <select id="language" name="language" onchange="submit()">
@@ -65,7 +65,8 @@ pageContext.request.locale}" scope="session"/>
     <p class="text-center">${contact_number}:+375 17 666 66 66</p>
 
     <label>
-        <a class="btn btn-outline-primary" href="http://localhost:8080" role="button">${return_to_previous_page}</a>
+        <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/"
+           role="button">${return_to_previous_page}</a>
     </label>
 </div>
 </body>

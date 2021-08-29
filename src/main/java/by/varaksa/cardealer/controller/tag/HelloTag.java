@@ -1,7 +1,5 @@
 package by.varaksa.cardealer.controller.tag;
 
-import by.varaksa.cardealer.model.entity.User;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
@@ -9,7 +7,7 @@ import java.io.IOException;
 public class HelloTag extends TagSupport {
     private String firstname;
 
-    public void setFirstname(User user) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 

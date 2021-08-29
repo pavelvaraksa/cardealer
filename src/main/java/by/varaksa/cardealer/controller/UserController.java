@@ -33,7 +33,7 @@ import java.util.List;
 
 public class UserController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
-    private static final boolean isCheckStringFromUI = true;
+    private static final boolean isCheckStringFromUi = true;
     private static final String REGEXP_FIRSTNAME = RegexpPropertiesReader.getRegexp("firstname.regexp");
     private static final String REGEXP_LASTNAME = RegexpPropertiesReader.getRegexp("lastname.regexp");
     private static final String REGEXP_LOGIN = RegexpPropertiesReader.getRegexp("login.regexp");
@@ -115,11 +115,11 @@ public class UserController extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
 
-        if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, firstname) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(REGEXP_LASTNAME, lastname) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(REGEXP_LOGIN, login) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(REGEXP_PASSWORD, password) != isCheckStringFromUI ||
-                UserValidator.isUserValidate(REGEXP_EMAIL, email) != isCheckStringFromUI) {
+        if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, firstname) != isCheckStringFromUi ||
+                UserValidator.isUserValidate(REGEXP_LASTNAME, lastname) != isCheckStringFromUi ||
+                UserValidator.isUserValidate(REGEXP_LOGIN, login) != isCheckStringFromUi ||
+                UserValidator.isUserValidate(REGEXP_PASSWORD, password) != isCheckStringFromUi ||
+                UserValidator.isUserValidate(REGEXP_EMAIL, email) != isCheckStringFromUi) {
             logger.error("Wasn't correct input format for register user");
             response.sendRedirect("/register");
             return;
@@ -213,8 +213,8 @@ public class UserController extends HttpServlet {
         user.setRole(Role.valueOf((request.getParameter("role"))));
         user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
 
-        if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUI &&
-                UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getLastName()) == isCheckStringFromUI) {
+        if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
+                UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getLastName()) == isCheckStringFromUi) {
 
             session.setAttribute("user", user);
             userService.update(user);

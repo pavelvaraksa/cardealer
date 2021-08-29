@@ -29,7 +29,7 @@ pageContext.request.locale}" scope="session"/>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
+        <a class="navbar-brand" href=<%=request.getContextPath()%>"/">${audi_car_dealer}</a>
         <form>
             <label for="language"></label>
             <select id="language" name="language" onchange="submit()">
@@ -43,7 +43,7 @@ pageContext.request.locale}" scope="session"/>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>${authentication_form}</u></h2>
-    <form action="login" method="post">
+    <form action=<%=request.getContextPath()%>"/login" method="post">
         <div class="col-md-3">
             <label for="login">${login}</label>
             <input type="text" id="login" class="form-control" name="login" required>
@@ -59,7 +59,7 @@ pageContext.request.locale}" scope="session"/>
         </div>
     </form>
     <label>
-        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080"
+        <a class="btn btn-outline-primary btn-sm" href=<%=request.getContextPath()%>"/"
            role="button">${return_to_previous_page}</a>
     </label>
 </div>

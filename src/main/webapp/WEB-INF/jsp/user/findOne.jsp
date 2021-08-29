@@ -15,7 +15,7 @@
 <body>
 <div align="center">
     <h2>User by id</h2>
-    <form action="<%=request.getContextPath()%>/find-by-id" method="get">
+    <form action=<%=request.getContextPath()%>/user/find-by-id method="get">
         <table class="table table-bordered">
             <thead>
             <tr>

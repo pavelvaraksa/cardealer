@@ -29,33 +29,33 @@ pageContext.request.locale}" scope="session"/>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
+        <a class="navbar-brand" href=<%=request.getContextPath()%>"/">${audi_car_dealer}</a>
         <body style="background-color:antiquewhite"></body>
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                 <li class="nav-item">
-                    <a class="nav-link" href=logout>${log_out}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/logout">${log_out}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=user/find-all>${users_list}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/user/find-all">${users_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=user-order/find-all>${user_orders_list}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/user-order/find-all">${user_orders_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=car/find-all>${cars_list}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/car/find-all">${cars_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=dealer/find-all>${dealers_list}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/dealer/find-all">${dealers_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=body/find-all>${bodies_list}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/body/find-all">${bodies_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=engine/find-all>${engines_list}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/engine/find-all">${engines_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=transmission/find-all>${transmissions_list}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/transmission/find-all">${transmissions_list}</a>
                 </li>
             </ul>
         </div>

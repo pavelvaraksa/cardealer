@@ -22,16 +22,16 @@ public class UserValidator {
     /* Regex for the user order id, 1 to 3 characters */
     public static final String USER_ORDER_ID = "user_order_id.regexp";
 
-    public static boolean isUserValidate(String regexp, String stringFromUI) {
+    public static boolean isUserValidate(String regexp, String stringFromUi) {
         Pattern pattern = Pattern.compile(regexp);
-        Matcher matcher = pattern.matcher(stringFromUI);
+        Matcher matcher = pattern.matcher(stringFromUi);
 
         if (matcher.matches()) {
             logger.info("Entered string was correct");
             return true;
-        } else {
-            logger.error("Entered string wasn't correct");
-            return false;
         }
+
+        logger.error("Entered string wasn't correct");
+        return false;
     }
 }

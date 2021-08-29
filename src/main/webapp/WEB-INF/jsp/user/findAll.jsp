@@ -35,7 +35,7 @@ pageContext.request.locale}" scope="session"/>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
+        <a class="navbar-brand" href=<%=request.getContextPath()%>"/">${audi_car_dealer}</a>
         <form>
             <label for="language"></label>
             <select id="language" name="language" onchange="submit()">
@@ -49,7 +49,7 @@ pageContext.request.locale}" scope="session"/>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>${users_list}</u></h2>
-    <form action=user/find-all method="get">
+    <form action=<%=request.getContextPath()%>"/user/find-all" method="get">
         <tbody>
         <table class="table table-bordered">
             <thead>
@@ -67,8 +67,8 @@ pageContext.request.locale}" scope="session"/>
             </tr>
             </thead>
 
+            <%--@elvariable id="userList" type="java.util.List"--%>
             <c:forEach var="user" items="${userList}">
-
                 <tr>
                     <td>${user.id}</td>
                     <td>${user.firstName}</td>
@@ -80,8 +80,9 @@ pageContext.request.locale}" scope="session"/>
                     <td>${user.blocked}</td>
                     <td>${user.created}</td>
                     <td>${user.changed}</td>
+
                     <td>
-                        <form action=update-user method="post">
+                        <form action=<%=request.getContextPath()%>"update-user" method="post">
                             <input type="hidden" class="form-control" name="id" value="${user.id}">
                             <input type="hidden" class="form-control" name="firstName" value="${user.firstName}">
                             <input type="hidden" class="form-control" name="lastName" value="${user.lastName}">
@@ -91,8 +92,9 @@ pageContext.request.locale}" scope="session"/>
                             <input class="btn btn-outline-warning btn-sm" type="submit" value=${update}>
                         </form>
                     </td>
+
                     <td>
-                        <form action="delete-user" method="post">
+                        <form action=<%=request.getContextPath()%>"delete-user" method="post">
                             <input type="hidden" class="form-control" name="id" value="${user.id}">
                             <input class="btn btn-outline-danger btn-sm" type="submit" value=${delete}>
                         </form>
@@ -102,7 +104,7 @@ pageContext.request.locale}" scope="session"/>
         </table>
         </tbody>
         <label>
-            <a class="btn btn-outline-primary" href="http://localhost:8080/admin-menu"
+            <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/admin-menu"
                role="button">${return_to_previous_page}</a>
         </label>
     </form>

@@ -21,9 +21,9 @@ public class DealerValidator {
         if (matcher.matches()) {
             logger.info("Entered string was correct");
             return true;
-        } else {
-            logger.error("Entered string wasn't correct");
-            return false;
         }
+
+        logger.error("Entered string wasn't correct");
+        return false;
     }
 }
