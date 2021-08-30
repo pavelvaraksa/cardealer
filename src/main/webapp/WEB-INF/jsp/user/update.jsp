@@ -5,7 +5,6 @@
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
-<%@ page import="by.varaksa.cardealer.model.entity.Role" %>
 
 <fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
 <fmt:message key="Audi_dealer_update_user_page" var="update_page"/>
@@ -17,6 +16,10 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="Email" var="email"/>
 <fmt:message key="Role" var="role"/>
 <fmt:message key="Is_blocked" var="is_blocked"/>
+<fmt:message key="role.user" var="user"/>
+<fmt:message key="role.admin" var="admin"/>
+<fmt:message key="Yes" var="yes"/>
+<fmt:message key="No" var="no"/>
 <fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
 
 <fmt:message key="Firstname_help_text" var="firstname_help_text"/>
@@ -77,16 +80,16 @@ pageContext.request.locale}" scope="session"/>
             <div class="col-md-3">
                 <label class="form-label"><u>${role}</u>
                     <select name="role">
-                        <option value="USER">${Role.USER}</option>
-                        <option value="ADMIN">${Role.ADMIN}</option>
+                        <option value="USER">${user}</option>
+                        <option value="ADMIN">${admin}</option>
                     </select>
                 </label>
             </div>
             <div class="col-md-3">
                 <label class="form-label"><u>${is_blocked}</u>
                     <select name="is_blocked">
-                        <option value=false>${false}</option>
-                        <option value=true>${true}</option>
+                        <option value=false>${no}</option>
+                        <option value=true>${yes}</option>
                     </select>
                 </label>
             </div>

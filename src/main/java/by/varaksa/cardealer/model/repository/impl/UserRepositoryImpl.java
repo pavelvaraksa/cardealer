@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +52,14 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String CONFIRM_AUTHENTICATE = "select login, password from users where login = ? and password = ?";
 
     private User parseResultSet(ResultSet resultSet) throws SQLException {
+        Date date = resultSet.getDate(BIRTH_DATE);
+        LocalDate birthDate = date != null ? date.toLocalDate() : null;
+
         User user = new User();
         user.setId(resultSet.getLong(ID));
         user.setFirstName(resultSet.getString(FIRSTNAME));
         user.setLastName(resultSet.getString(LASTNAME));
-        user.setBirthDate(resultSet.getDate(BIRTH_DATE).toLocalDate());
+        user.setBirthDate(birthDate);
         user.setLogin(resultSet.getString(LOGIN));
         user.setPassword(resultSet.getString(PASSWORD));
         user.setEmail(resultSet.getString(EMAIL));
@@ -70,13 +74,14 @@ public class UserRepositoryImpl implements UserRepository {
     public User save(User user) {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
         Role defaultSavedUserRole = Role.USER;
+        LocalDate birthDate = user.getBirthDate();
+        Date date = birthDate != null ? Date.valueOf(birthDate) : null;
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_USER)) {
-
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
-            statement.setDate(3, Date.valueOf(user.getBirthDate()));
+            statement.setDate(3, date);
             statement.setString(4, user.getLogin());
             statement.setString(5, EncryptionUserPassword.encodePassword(user.getPassword()));
             statement.setString(6, user.getEmail());
@@ -139,13 +144,15 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User update(User user) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
+        LocalDate birthDate = user.getBirthDate();
+        Date date = birthDate != null ? Date.valueOf(birthDate) : null;
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_USER_BY_ID)) {
 
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
-            statement.setDate(3, Date.valueOf(user.getBirthDate()));
+            statement.setDate(3, date);
             statement.setString(4, user.getLogin());
             statement.setString(5, user.getPassword());
             statement.setString(6, user.getEmail());

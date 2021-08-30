@@ -404,16 +404,18 @@
 
 
 
-
-
+<!--    <filter-mapping>-->
+<!--        <filter-name>LimitUserFilter</filter-name>-->
+<!--        <url-pattern>/user-menu</url-pattern>-->
+<!--    </filter-mapping>-->
 
 <!--    <filter-mapping>-->
-<!--        <filter-name>VerifyUserFilter</filter-name>-->
-<!--        <url-pattern>/register/verify-page/*</url-pattern>-->
+<!--        <filter-name>LimitAdminFilter</filter-name>-->
+<!--        <url-pattern>/admin-menu</url-pattern>-->
 <!--    </filter-mapping>-->
 
     <filter-mapping>
-        <filter-name>LimitUserFilter</filter-name>
+        <filter-name>LimitUserPageFilter</filter-name>
         <url-pattern>/user/*</url-pattern>
     </filter-mapping>
 
@@ -432,29 +434,20 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <servlet>
-        <servlet-name>Company story</servlet-name>
-        <jsp-file>/WEB-INF/jsp/company/company.jsp</jsp-file>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>Company story</servlet-name>
-        <url-pattern>/company</url-pattern>
-    </servlet-mapping>
 
-    <servlet>
-        <servlet-name>Company contacts</servlet-name>
-        <jsp-file>/WEB-INF/jsp/company/contacts.jsp</jsp-file>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>Company contacts</servlet-name>
-        <url-pattern>/request-information</url-pattern>
-    </servlet-mapping>
 
-    <error-page>
-        <location>/WEB-INF/jsp/error/404.jsp</location>
-    </error-page>
+
+
+
+
+
+
+
+<!--    <error-page>-->
+<!--        <location>/WEB-INF/jsp/error/404.jsp</location>-->
+<!--    </error-page>-->
 
     <servlet>
         <servlet-name>Error 400</servlet-name>
@@ -484,6 +477,26 @@
     <servlet-mapping>
         <servlet-name>Error 500</servlet-name>
         <url-pattern>/error-500</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Company story</servlet-name>
+        <jsp-file>/WEB-INF/jsp/company/company.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Company story</servlet-name>
+        <url-pattern>/company</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Company contacts</servlet-name>
+        <jsp-file>/WEB-INF/jsp/company/contacts.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Company contacts</servlet-name>
+        <url-pattern>/request-information</url-pattern>
     </servlet-mapping>
 
 </web-app>

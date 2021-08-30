@@ -25,8 +25,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {"/user/save", "/user/find-all", "/user/find-by-id",
         "/user/update", "/user/delete", "/register/verify", "/logout"})
@@ -104,9 +105,7 @@ public class UserController extends HttpServlet {
         LocalDate birthDate;
 
         if (request.getParameter("birth_date").isEmpty()) {
-            String defaultDate = "01-01-2000";
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-            birthDate = LocalDate.parse(defaultDate, formatter);
+            birthDate = null;
         } else {
             birthDate = LocalDate.parse(request.getParameter("birth_date"));
         }
@@ -176,6 +175,8 @@ public class UserController extends HttpServlet {
         HttpSession session = request.getSession();
 
         List<User> userList = userService.findAll();
+        userList = userList.stream().sorted(Comparator.comparing(User::getId)).collect(Collectors.toList());
+
         logger.info("Users were watched");
         session.setAttribute("userList", userList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user/findAll.jsp");
@@ -202,9 +203,7 @@ public class UserController extends HttpServlet {
         LocalDate birthDate;
 
         if (request.getParameter("birth_date").isEmpty()) {
-            String defaultDate = "01/01/2000";
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-            birthDate = LocalDate.parse(defaultDate, formatter);
+            birthDate = null;
         } else {
             birthDate = LocalDate.parse(request.getParameter("birth_date"));
         }

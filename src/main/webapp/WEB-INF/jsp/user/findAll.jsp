@@ -5,6 +5,8 @@
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
+<%@ page import="by.varaksa.cardealer.model.entity.Role" %>
+<%@ page import="by.varaksa.cardealer.model.entity.User" %>
 
 <fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
 <fmt:message key="Audi_dealer_users_list" var="users_list_page"/>
@@ -21,7 +23,11 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="Changed" var="changed"/>
 <fmt:message key="Update" var="update"/>
 <fmt:message key="Delete" var="delete"/>
+<fmt:message key="Delete" var="delete"/>
 <fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+
+<fmt:message key="role.admin" var="admin"/>
+<fmt:message key="role.user" var="user"/>
 
 <html>
 <head>

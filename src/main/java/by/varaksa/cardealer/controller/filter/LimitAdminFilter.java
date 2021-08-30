@@ -1,15 +1,17 @@
 package by.varaksa.cardealer.controller.filter;
 
+import by.varaksa.cardealer.model.entity.Role;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-//@WebFilter(filterName = "VerifyUserFilter")
-public class VerifyUserFilter implements Filter {
+//@WebFilter(filterName = "LimitAdminFilter")
+public class LimitAdminFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
@@ -20,6 +22,16 @@ public class VerifyUserFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        HttpSession session = request.getSession();
+
+        Object login = session.getAttribute("login");
+        Object role = session.getAttribute("role");
+
+        if (login == null && role != Role.ADMIN) {
+            logger.error("Limit admin filter tried to find a forbidden page");
+            response.sendRedirect("/error-403");
+            return;
+        }
 
         chain.doFilter(request, response);
     }
