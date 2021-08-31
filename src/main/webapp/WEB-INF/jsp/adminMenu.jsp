@@ -7,16 +7,16 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Main_menu" var="main_menu"/>
-<fmt:message key="Log_out" var="log_out"/>
-<fmt:message key="Users_list" var="users_list"/>
-<fmt:message key="User_orders_list" var="user_orders_list"/>
-<fmt:message key="Cars_list" var="cars_list"/>
-<fmt:message key="Bodies_list" var="bodies_list"/>
-<fmt:message key="Transmissions_list" var="transmissions_list"/>
-<fmt:message key="Engines_list" var="engines_list"/>
-<fmt:message key="Dealers_list" var="dealers_list"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="menu.title.main.menu" var="main_menu"/>
+<fmt:message key="menu.title.log.out" var="log_out"/>
+<fmt:message key="menu.title.users.list" var="users_list"/>
+<fmt:message key="menu.title.user.orders.list" var="user_orders_list"/>
+<fmt:message key="menu.title.cars.list" var="cars_list"/>
+<fmt:message key="menu.title.bodies.list" var="bodies_list"/>
+<fmt:message key="menu.title.transmissions.list" var="transmissions_list"/>
+<fmt:message key="menu.title.engines.list" var="engines_list"/>
+<fmt:message key="menu.title.dealers.list" var="dealers_list"/>
 
 <html>
 <head>

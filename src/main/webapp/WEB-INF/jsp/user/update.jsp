@@ -6,25 +6,25 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_update_user_page" var="update_page"/>
-<fmt:message key="Update_form" var="update_form"/>
-<fmt:message key="Update" var="update"/>
-<fmt:message key="Firstname" var="firstname"/>
-<fmt:message key="Lastname" var="lastname"/>
-<fmt:message key="Birth_date" var="birth_date"/>
-<fmt:message key="Email" var="email"/>
-<fmt:message key="Role" var="role"/>
-<fmt:message key="Is_blocked" var="is_blocked"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="page.audi.dealer.update.user.page" var="update_page"/>
+<fmt:message key="form.update.form" var="update_form"/>
+<fmt:message key="button.update" var="update"/>
+<fmt:message key="user.firstname" var="firstname"/>
+<fmt:message key="user.lastname" var="lastname"/>
+<fmt:message key="user.birth_date" var="birth_date"/>
+<fmt:message key="user.email" var="email"/>
+<fmt:message key="user.role" var="role"/>
+<fmt:message key="user.is.blocked" var="is_blocked"/>
 <fmt:message key="role.user" var="user"/>
 <fmt:message key="role.admin" var="admin"/>
-<fmt:message key="Yes" var="yes"/>
-<fmt:message key="No" var="no"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="button.yes" var="yes"/>
+<fmt:message key="button.no" var="no"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
-<fmt:message key="Firstname_help_text" var="firstname_help_text"/>
-<fmt:message key="Lastname_help_text" var="lastname_help_text"/>
-<fmt:message key="Email_help_text" var="email_help_text"/>
+<fmt:message key="text.firstname.help.text" var="firstname_help_text"/>
+<fmt:message key="text.lastname.help.text" var="lastname_help_text"/>
+<fmt:message key="text.email.help.text" var="email_help_text"/>
 
 <html>
 <head>
@@ -39,14 +39,6 @@ pageContext.request.locale}" scope="session"/>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href=<%=request.getContextPath()%>"/">${audi_car_dealer}</a>
-        <form>
-            <label for="language"></label>
-            <select id="language" name="language" onchange="submit()">
-                <option value="ru" ${language == 'ru' ? 'selected' : ''}>русский</option>
-                <option value="en" ${language == 'en' ? 'selected' : ''}>english</option>
-                <option value="de" ${language == 'de' ? 'selected' : ''}>deutsche</option>
-            </select>
-        </form>
     </div>
 </nav>
 <body style="background-color:antiquewhite"></body>

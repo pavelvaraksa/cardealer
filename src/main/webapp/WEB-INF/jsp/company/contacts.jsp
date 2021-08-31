@@ -6,18 +6,18 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Contact_us" var="contact_us"/>
-<fmt:message key="Audi_dealer_contact_page" var="contact_page"/>
-<fmt:message key="Audi_center_Minsk" var="minsk"/>
-<fmt:message key="Audi_center_Grodno" var="grodno"/>
-<fmt:message key="Audi_center_Vitebsk" var="vitebsk"/>
-<fmt:message key="Audi_center_Mogilev" var="mogilev"/>
-<fmt:message key="Audi_center_Gomel" var="gomel"/>
-<fmt:message key="Audi_center_Brest" var="brest"/>
-<fmt:message key="Email" var="email"/>
-<fmt:message key="Contact_number" var="contact_number"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="info.contact.us" var="contact_us"/>
+<fmt:message key="page.audi.dealer.contact.page" var="contact_page"/>
+<fmt:message key="audi.center.minsk" var="minsk"/>
+<fmt:message key="audi.center.grodno" var="grodno"/>
+<fmt:message key="audi.center.vitebsk" var="vitebsk"/>
+<fmt:message key="audi.center.mogilev" var="mogilev"/>
+<fmt:message key="audi.center.gomel" var="gomel"/>
+<fmt:message key="audi.center.brest" var="brest"/>
+<fmt:message key="user.email" var="email"/>
+<fmt:message key="info.contact.number" var="contact_number"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

@@ -445,9 +445,9 @@
 
 
 
-<!--    <error-page>-->
-<!--        <location>/WEB-INF/jsp/error/404.jsp</location>-->
-<!--    </error-page>-->
+    <error-page>
+        <location>/WEB-INF/jsp/error/404.jsp</location>
+    </error-page>
 
     <servlet>
         <servlet-name>Error 400</servlet-name>

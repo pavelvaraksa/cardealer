@@ -8,16 +8,16 @@ pageContext.request.locale}" scope="session"/>
 <%@ page import="by.varaksa.cardealer.model.entity.Model" %>
 <%@ page import="by.varaksa.cardealer.model.entity.Country" %>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_save_car_page" var="save_page"/>
-<fmt:message key="Save_form" var="save_form"/>
-<fmt:message key="Save" var="save"/>
-<fmt:message key="Id" var="id"/>
-<fmt:message key="Model" var="model"/>
-<fmt:message key="Issue_country" var="issue_country"/>
-<fmt:message key="Guarantee_period" var="guarantee_period"/>
-<fmt:message key="Price" var="price"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="page.audi.dealer.save.car.page" var="save_page"/>
+<fmt:message key="form.save.form" var="save_form"/>
+<fmt:message key="button.save" var="save"/>
+<fmt:message key="id" var="id"/>
+<fmt:message key="car.model" var="model"/>
+<fmt:message key="car.issue_country" var="issue_country"/>
+<fmt:message key="car.guarantee_period" var="guarantee_period"/>
+<fmt:message key="car.price" var="price"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

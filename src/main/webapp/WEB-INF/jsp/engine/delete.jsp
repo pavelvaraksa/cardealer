@@ -6,11 +6,11 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Delete_engine_text" var="delete_engine_text"/>
-<fmt:message key="Yes" var="yes"/>
-<fmt:message key="No" var="no"/>
-<fmt:message key="Audi_dealer_delete_engine_page" var="delete_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="text.delete.engine.text" var="delete_engine_text"/>
+<fmt:message key="button.yes" var="yes"/>
+<fmt:message key="button.no" var="no"/>
+<fmt:message key="page.audi.dealer.delete.engine.page" var="delete_page"/>
 
 <html>
 <head>

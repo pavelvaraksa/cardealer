@@ -7,15 +7,15 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setBundle basename="text"/>
 <%@ page import="by.varaksa.cardealer.model.entity.FuelType" %>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_save_engine_page" var="save_page"/>
-<fmt:message key="Save_form" var="save_form"/>
-<fmt:message key="Save" var="save"/>
-<fmt:message key="Fuel_type" var="fuel_type"/>
-<fmt:message key="Volume" var="volume"/>
-<fmt:message key="Cylinders_count" var="cylinders_count"/>
-<fmt:message key="Car_id" var="car_id"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="page.audi.dealer.save.engine.page" var="save_page"/>
+<fmt:message key="form.save.form" var="save_form"/>
+<fmt:message key="button.save" var="save"/>
+<fmt:message key="engine.fuel.type" var="fuel_type"/>
+<fmt:message key="engine.volume" var="volume"/>
+<fmt:message key="engine.cylinders.count" var="cylinders_count"/>
+<fmt:message key="car.car.id" var="car_id"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

@@ -8,13 +8,13 @@ pageContext.request.locale}" scope="session"/>
 <%@ page import="by.varaksa.cardealer.model.entity.Color" %>
 <%@ page import="by.varaksa.cardealer.model.entity.BodyType" %>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_update_body_page" var="update_page"/>
-<fmt:message key="Update_form" var="update_form"/>
-<fmt:message key="Update" var="update"/>
-<fmt:message key="Color" var="color"/>
-<fmt:message key="Body_type" var="body_type"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="page.audi.dealer.update.body.page" var="update_page"/>
+<fmt:message key="form.update.form" var="update_form"/>
+<fmt:message key="button.update" var="update"/>
+<fmt:message key="car.color" var="color"/>
+<fmt:message key="car.body.type" var="body_type"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>
@@ -28,14 +28,6 @@ pageContext.request.locale}" scope="session"/>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
-        <form>
-            <label for="language"></label>
-            <select id="language" name="language" onchange="submit()">
-                <option value="ru" ${language == 'ru' ? 'selected' : ''}>русский</option>
-                <option value="en" ${language == 'en' ? 'selected' : ''}>english</option>
-                <option value="de" ${language == 'de' ? 'selected' : ''}>deutsche</option>
-            </select>
-        </form>
     </div>
 </nav>
 <body style="background-color:antiquewhite"></body>

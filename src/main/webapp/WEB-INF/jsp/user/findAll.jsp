@@ -8,23 +8,22 @@ pageContext.request.locale}" scope="session"/>
 <%@ page import="by.varaksa.cardealer.model.entity.Role" %>
 <%@ page import="by.varaksa.cardealer.model.entity.User" %>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_users_list" var="users_list_page"/>
-<fmt:message key="Users_list" var="users_list"/>
-<fmt:message key="Id" var="id"/>
-<fmt:message key="Firstname" var="firstname"/>
-<fmt:message key="Lastname" var="lastname"/>
-<fmt:message key="Birth_date" var="birth_date"/>
-<fmt:message key="Login" var="login"/>
-<fmt:message key="Email" var="email"/>
-<fmt:message key="Role" var="role"/>
-<fmt:message key="Is_blocked" var="is_blocked"/>
-<fmt:message key="Created" var="created"/>
-<fmt:message key="Changed" var="changed"/>
-<fmt:message key="Update" var="update"/>
-<fmt:message key="Delete" var="delete"/>
-<fmt:message key="Delete" var="delete"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="list.users.list" var="users_list_page"/>
+<fmt:message key="menu.title.users.list" var="users_list"/>
+<fmt:message key="id" var="id"/>
+<fmt:message key="user.firstname" var="firstname"/>
+<fmt:message key="user.lastname" var="lastname"/>
+<fmt:message key="user.birth_date" var="birth_date"/>
+<fmt:message key="user.login" var="login"/>
+<fmt:message key="user.email" var="email"/>
+<fmt:message key="user.role" var="role"/>
+<fmt:message key="user.is.blocked" var="is_blocked"/>
+<fmt:message key="info.created" var="created"/>
+<fmt:message key="info.changed" var="changed"/>
+<fmt:message key="button.update" var="update"/>
+<fmt:message key="button.delete" var="delete"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <fmt:message key="role.admin" var="admin"/>
 <fmt:message key="role.user" var="user"/>

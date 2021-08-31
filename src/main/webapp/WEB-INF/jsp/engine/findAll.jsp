@@ -6,20 +6,20 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_engines_list" var="engines_list_page"/>
-<fmt:message key="Engines_list" var="engines_list"/>
-<fmt:message key="Add" var="add"/>
-<fmt:message key="Update" var="update"/>
-<fmt:message key="Delete" var="delete"/>
-<fmt:message key="Id" var="id"/>
-<fmt:message key="Fuel_type" var="fuel_type"/>
-<fmt:message key="Volume" var="volume"/>
-<fmt:message key="Cylinders_count" var="cylinders_count"/>
-<fmt:message key="Created" var="created"/>
-<fmt:message key="Changed" var="changed"/>
-<fmt:message key="Car_id" var="car_id"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="list.engines.list" var="engines_list_page"/>
+<fmt:message key="menu.title.engines.list" var="engines_list"/>
+<fmt:message key="button.add" var="add"/>
+<fmt:message key="button.update" var="update"/>
+<fmt:message key="button.delete" var="delete"/>
+<fmt:message key="id" var="id"/>
+<fmt:message key="engine.fuel.type" var="fuel_type"/>
+<fmt:message key="engine.volume" var="volume"/>
+<fmt:message key="engine.cylinders.count" var="cylinders_count"/>
+<fmt:message key="info.created" var="created"/>
+<fmt:message key="info.changed" var="changed"/>
+<fmt:message key="car.car.id" var="car_id"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

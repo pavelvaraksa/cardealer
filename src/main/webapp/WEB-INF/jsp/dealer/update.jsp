@@ -7,15 +7,15 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setBundle basename="text"/>
 <%@ page import="by.varaksa.cardealer.model.entity.City" %>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_update_dealer_page" var="update_page"/>
-<fmt:message key="Update_form" var="update_form"/>
-<fmt:message key="Update" var="update"/>
-<fmt:message key="Name" var="name"/>
-<fmt:message key="Address" var="address"/>
-<fmt:message key="Foundation_date" var="foundation_date"/>
-<fmt:message key="City" var="city"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="page.audi.dealer.update.dealer.page" var="update_page"/>
+<fmt:message key="form.update.form" var="update_form"/>
+<fmt:message key="button.update" var="update"/>
+<fmt:message key="dealer.name" var="name"/>
+<fmt:message key="dealer.address" var="address"/>
+<fmt:message key="dealer.foundation.date" var="foundation_date"/>
+<fmt:message key="dealer.city" var="city"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>
@@ -30,14 +30,6 @@ pageContext.request.locale}" scope="session"/>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
-        <form>
-            <label for="language"></label>
-            <select id="language" name="language" onchange="submit()">
-                <option value="ru" ${language == 'ru' ? 'selected' : ''}>русский</option>
-                <option value="en" ${language == 'en' ? 'selected' : ''}>english</option>
-                <option value="de" ${language == 'de' ? 'selected' : ''}>deutsche</option>
-            </select>
-        </form>
     </div>
 </nav>
 <body style="background-color:antiquewhite"></body>

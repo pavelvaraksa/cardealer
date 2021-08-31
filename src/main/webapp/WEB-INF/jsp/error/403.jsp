@@ -6,11 +6,11 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Error_403" var="error_403_page"/>
-<fmt:message key="Error_403_title" var="error_403_title"/>
-<fmt:message key="Error_403_text" var="error_403_text"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="error.403" var="error_403_page"/>
+<fmt:message key="error.403.title" var="error_403_title"/>
+<fmt:message key="error.403.text" var="error_403_text"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

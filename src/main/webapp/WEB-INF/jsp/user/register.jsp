@@ -6,24 +6,24 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Register_form" var="register_form"/>
-<fmt:message key="Audi_dealer_register_page" var="register_page"/>
-<fmt:message key="Firstname" var="firstname"/>
-<fmt:message key="Lastname" var="lastname"/>
-<fmt:message key="Birth_date" var="birth_date"/>
-<fmt:message key="Login" var="login"/>
-<fmt:message key="Password" var="password"/>
-<fmt:message key="Email" var="email"/>
-<fmt:message key="Required_field" var="required_field"/>
-<fmt:message key="Register" var="register"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="form.register.form" var="register_form"/>
+<fmt:message key="page.audi.dealer.register.page" var="register_page"/>
+<fmt:message key="user.firstname" var="firstname"/>
+<fmt:message key="user.lastname" var="lastname"/>
+<fmt:message key="user.birth_date" var="birth_date"/>
+<fmt:message key="user.login" var="login"/>
+<fmt:message key="user.password" var="password"/>
+<fmt:message key="user.email" var="email"/>
+<fmt:message key="info.required.field" var="required_field"/>
+<fmt:message key="button.register" var="register"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
-<fmt:message key="Firstname_help_text" var="firstname_help_text"/>
-<fmt:message key="Lastname_help_text" var="lastname_help_text"/>
-<fmt:message key="Login_help_text" var="login_help_text"/>
-<fmt:message key="Password_help_text" var="password_help_text"/>
-<fmt:message key="Email_help_text" var="email_help_text"/>
+<fmt:message key="text.firstname.help.text" var="firstname_help_text"/>
+<fmt:message key="text.lastname.help.text" var="lastname_help_text"/>
+<fmt:message key="text.login.help.text" var="login_help_text"/>
+<fmt:message key="text.password.help.text" var="password_help_text"/>
+<fmt:message key="text.email.help.text" var="email_help_text"/>
 
 <html>
 <head>

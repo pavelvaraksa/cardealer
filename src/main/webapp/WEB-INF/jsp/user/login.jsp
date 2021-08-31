@@ -6,16 +6,16 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Authentication_form" var="authentication_form"/>
-<fmt:message key="Audi_dealer_auth_page" var="authentication_page"/>
-<fmt:message key="Login" var="login"/>
-<fmt:message key="Password" var="password"/>
-<fmt:message key="Enter" var="enter"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="form.authentication.form" var="authentication_form"/>
+<fmt:message key="page.audi.dealer.auth.page" var="authentication_page"/>
+<fmt:message key="user.login" var="login"/>
+<fmt:message key="user.password" var="password"/>
+<fmt:message key="menu.title.log.in" var="enter"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
-<fmt:message key="Login_help_text" var="login_help_text"/>
-<fmt:message key="Password_help_text" var="password_help_text"/>
+<fmt:message key="text.login.help.text" var="login_help_text"/>
+<fmt:message key="text.password.help.text" var="password_help_text"/>
 
 <html>
 <head>

@@ -8,16 +8,16 @@ pageContext.request.locale}" scope="session"/>
 <%@ page import="by.varaksa.cardealer.model.entity.Model" %>
 <%@ page import="by.varaksa.cardealer.model.entity.Country" %>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_update_car_page" var="update_page"/>
-<fmt:message key="Update_form" var="update_form"/>
-<fmt:message key="Update" var="update"/>
-<fmt:message key="Model" var="model"/>
-<fmt:message key="Issue_country" var="issue_country"/>
-<fmt:message key="Guarantee_period" var="guarantee_period"/>
-<fmt:message key="Price" var="price"/>
-<fmt:message key="User_order_id" var="user_order_id"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="page.audi.dealer.update.car.page" var="update_page"/>
+<fmt:message key="form.update.form" var="update_form"/>
+<fmt:message key="button.update" var="update"/>
+<fmt:message key="car.model" var="model"/>
+<fmt:message key="car.issue_country" var="issue_country"/>
+<fmt:message key="car.guarantee_period" var="guarantee_period"/>
+<fmt:message key="car.price" var="price"/>
+<fmt:message key="order.user.order.id" var="user_order_id"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>
@@ -32,14 +32,6 @@ pageContext.request.locale}" scope="session"/>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
-        <form>
-            <label for="language"></label>
-            <select id="language" name="language" onchange="submit()">
-                <option value="ru" ${language == 'ru' ? 'selected' : ''}>русский</option>
-                <option value="en" ${language == 'en' ? 'selected' : ''}>english</option>
-                <option value="de" ${language == 'de' ? 'selected' : ''}>deutsche</option>
-            </select>
-        </form>
     </div>
 </nav>
 <body style="background-color:antiquewhite"></body>

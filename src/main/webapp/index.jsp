@@ -7,12 +7,12 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Log_in" var="login"/>
-<fmt:message key="Register" var="register"/>
-<fmt:message key="About_us" var="about_us"/>
-<fmt:message key="Contacts" var="contacts"/>
-<fmt:message key="Homepage" var="homepage"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="menu.title.log.in" var="login"/>
+<fmt:message key="button.register" var="register"/>
+<fmt:message key="info.about.us" var="about_us"/>
+<fmt:message key="info.contacts" var="contacts"/>
+<fmt:message key="homepage" var="homepage"/>
 
 <html>
 <head>

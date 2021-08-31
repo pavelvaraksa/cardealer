@@ -6,12 +6,12 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_verify_page" var="verify_page"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
-<fmt:message key="Confirm" var="confirm"/>
-<fmt:message key="Confirmation_page" var="confirmation_page"/>
-<fmt:message key="Indication_text" var="indication_text"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="page.audi.dealer.verify.page" var="verify_page"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
+<fmt:message key="button.confirm" var="confirm"/>
+<fmt:message key="page.confirmation.page" var="confirmation_page"/>
+<fmt:message key="text.indication.text" var="indication_text"/>
 
 <html>
 <head>

@@ -6,9 +6,9 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Main_menu" var="main_menu"/>
-<fmt:message key="Log_out" var="log_out"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="menu.title.main.menu" var="main_menu"/>
+<fmt:message key="menu.title.log.out" var="log_out"/>
 
 <html>
 <head>

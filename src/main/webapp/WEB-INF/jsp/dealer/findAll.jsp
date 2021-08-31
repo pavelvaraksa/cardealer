@@ -6,21 +6,21 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_dealers_list" var="dealers_list_page"/>
-<fmt:message key="Dealers_list" var="dealers_list"/>
-<fmt:message key="Add" var="add"/>
-<fmt:message key="Update" var="update"/>
-<fmt:message key="Delete" var="delete"/>
-<fmt:message key="Id" var="id"/>
-<fmt:message key="Name" var="name"/>
-<fmt:message key="Address" var="adress"/>
-<fmt:message key="Foundation_date" var="foundation_date"/>
-<fmt:message key="City" var="city"/>
-<fmt:message key="Created" var="created"/>
-<fmt:message key="Changed" var="changed"/>
-<fmt:message key="Car_id" var="car_id"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="list.dealers.list" var="dealers_list_page"/>
+<fmt:message key="menu.title.dealers.list" var="dealers_list"/>
+<fmt:message key="button.add" var="add"/>
+<fmt:message key="button.update" var="update"/>
+<fmt:message key="button.delete" var="delete"/>
+<fmt:message key="id" var="id"/>
+<fmt:message key="dealer.name" var="name"/>
+<fmt:message key="dealer.address" var="adress"/>
+<fmt:message key="dealer.foundation.date" var="foundation_date"/>
+<fmt:message key="dealer.city" var="city"/>
+<fmt:message key="info.created" var="created"/>
+<fmt:message key="info.changed" var="changed"/>
+<fmt:message key="car.car.id" var="car_id"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

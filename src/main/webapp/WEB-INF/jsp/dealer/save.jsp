@@ -7,16 +7,16 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setBundle basename="text"/>
 <%@ page import="by.varaksa.cardealer.model.entity.City" %>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_save_dealer_page" var="save_page"/>
-<fmt:message key="Save_form" var="save_form"/>
-<fmt:message key="Save" var="save"/>
-<fmt:message key="Name" var="name"/>
-<fmt:message key="Address" var="address"/>
-<fmt:message key="Foundation_date" var="foundation_date"/>
-<fmt:message key="City" var="city"/>
-<fmt:message key="Car_id" var="car_id"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="page.audi.dealer.save.dealer.page" var="save_page"/>
+<fmt:message key="form.save.form" var="save_form"/>
+<fmt:message key="button.save" var="save"/>
+<fmt:message key="dealer.name" var="name"/>
+<fmt:message key="dealer.address" var="address"/>
+<fmt:message key="dealer.foundation.date" var="foundation_date"/>
+<fmt:message key="dealer.city" var="city"/>
+<fmt:message key="car.car.id" var="car_id"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

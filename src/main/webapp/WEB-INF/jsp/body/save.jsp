@@ -8,14 +8,14 @@ pageContext.request.locale}" scope="session"/>
 <%@ page import="by.varaksa.cardealer.model.entity.Color" %>
 <%@ page import="by.varaksa.cardealer.model.entity.BodyType" %>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Audi_dealer_save_body_page" var="save_page"/>
-<fmt:message key="Save_form" var="save_form"/>
-<fmt:message key="Save" var="save"/>
-<fmt:message key="Color" var="color"/>
-<fmt:message key="Body_type" var="body_type"/>
-<fmt:message key="Car_id" var="car_id"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="page.audi.dealer.save.body.page" var="save_page"/>
+<fmt:message key="form.save.form" var="save_form"/>
+<fmt:message key="button.save" var="save"/>
+<fmt:message key="car.color" var="color"/>
+<fmt:message key="car.body.type" var="body_type"/>
+<fmt:message key="car.car.id" var="car_id"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

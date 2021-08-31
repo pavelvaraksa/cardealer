@@ -6,33 +6,33 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 
-<fmt:message key="Audi_car_dealer" var="audi_car_dealer"/>
-<fmt:message key="Company_history" var="company_history"/>
-<fmt:message key="Audi_dealer_history_page" var="history_page"/>
-<fmt:message key="Return_to_previous_page" var="return_to_previous_page"/>
-<fmt:message key="The_Audi_brand_has_been_officially_represented_on_the_Belarusian_market_since_1994." var="item_1"/>
+<fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
+<fmt:message key="info.company.history" var="company_history"/>
+<fmt:message key="info.audi.dealer.history.page" var="history_page"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
+<fmt:message key="the.audi.brand.has.been.officially.represented.on.the.belarusian.market.since.1994." var="item_1"/>
 <fmt:message
-        key="As_of_today,_there_are_6_official_Audi_dealers_in_Belarus._Audi_car_owners_can_choose_one_of_the_centers_with_the_most_convenient_location_for_them."
+        key="as.of.today.there.are.6.official.audi.dealers.in.belarus.audi.car.owners.can.choose.one.of.the.centers.with.the.most.convenient.location.for.them."
         var="item_2"/>
 <fmt:message
-        key="All_centers_are_built_according_to_the_new_corporate_concept_Audi_Terminal_and_combines_a_spacious_showroom,_which_presents_the_most_popular_models_of_the_company_from_Ingolstadt,_as_well_as_a_large_service_area."
+        key="all.centers.are.built.according.to.the.new.corporate.concept.audi.terminal.and.combines.a.spacious.showroom.which.presents.the.most.popular.models.of.the.company.from.ingolstadt.as.well.as.a.large.service.area."
         var="item_3"/>
 <fmt:message
-        key="Works_in_dealerships_are_carried_out_by_a_team_of_professionals_with_many_years_of_experience_with_the_Audi_brand_in_mapping_with_the_quality_standards_of_the_German_manufacturing_plant."
+        key="works.in.dealerships.are.carried.out.by.a.team.of.professionals.with.many.years.of.experience.with.the.audi.brand.in.mapping.with.the.quality.standards.of.the.german.manufacturing.plant."
         var="item_4"/>
 <fmt:message
-        key="Audi_was_founded_on_July_16,_1909_by_German_engineer_August_Horch._The_company's_technological_leadership_is_stored_in_the_slogan_Superiority_of_high_technologies."
+        key="audi.was.founded.on.july.16.1909.by.german.engineer.august.horch.the.company's.technological.leadership.is.stored.in.the.slogan.superiority.of.high.technologies."
         var="item_5"/>
 <fmt:message
-        key="At_the_moment,_the_company_is_one_of_the_three_leading_premium_class_manufacturers._In_a_challenging_2020,_marked_by_global_restrictions_tribute_to_the_coronavirus_pandemic,_Audi_delivered_a_total_of_1,692,773_models."
+        key="at.the.moment.the.company.is.one.of.the.three.leading.premium.class.manufacturers.in.a.challenging.2020.marked.by.global.restrictions.tribute.to.the.coronavirus.pandemic.audi.delivered.a.total.of.1.692.773.models."
         var="item_6"/>
 <fmt:message
-        key="Nevertheless,_the_last_quarter_was_the_most_successful_in_the_history_of_AUDI_AG_from_October_to_December,_the_company_delivered_505,583_vehicles_to_its_customers."
+        key="nevertheless.the.last.quarter.was.the.most.successful.in.the.history.of.audi.ag.from.october.to.december.the.company.delivered.505.583.vehicles.to.its.customers."
         var="item_7"/>
 <fmt:message
-        key="The_modern_range_of_Audi_cars_includes_multitude_of_passenger_models_from_the_compact_A1_hatchback_to_the_executive_sedan_A8,_the_SUV_class_models_Q2,_Q3,_Q5,_Q7_and_Q8,_as_well_as_sports_modifications_S."
+        key="the.modern.range.of.audi.cars.includes.multitude.of.passenger.models.from.the.compact.a1.hatchback.to.the.executive.sedan.a8.the.suv.class.models.q2.q3.q5.q7.and.q8.as.well.as.sports.modifications.s."
         var="item_8"/>
-<fmt:message key="The_AudiSport_division_is_engaged_in_the_development_and_production_of_sports_RS_models."
+<fmt:message key="the.audi.sport.division.is.engaged.in.the.development.and.production.of.sports.rs.models."
              var="item_9"/>
 
 <html>
