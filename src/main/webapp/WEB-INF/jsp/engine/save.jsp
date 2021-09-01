@@ -5,7 +5,6 @@
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
-<%@ page import="by.varaksa.cardealer.model.entity.FuelType" %>
 
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="page.audi.dealer.save.engine.page" var="save_page"/>
@@ -15,6 +14,8 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="engine.volume" var="volume"/>
 <fmt:message key="engine.cylinders.count" var="cylinders_count"/>
 <fmt:message key="car.car.id" var="car_id"/>
+<fmt:message key="fuel.type.diesel" var="diesel"/>
+<fmt:message key="fuel.type.petrol" var="petrol"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -45,24 +46,24 @@ pageContext.request.locale}" scope="session"/>
     <h2><u>${save_form}</u></h2>
     <form action="save" method="post">
         <form class="row g-3">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label class="form-label"><u>${fuel_type}</u>
                     <select name="fuel_type">
-                        <option value="PETROL">${FuelType.PETROL}</option>
-                        <option value="DIESEL">${FuelType.DIESEL}</option>
+                        <option value="PETROL">${petrol}</option>
+                        <option value="DIESEL">${diesel}</option>
                     </select>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationVolume" class="form-label"><u>${volume}</u></label>
                 <input type="text" class="form-control" id="validationVolume" name="volume" required>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationCylindersCount" class="form-label"><u>${cylinders_count}</u></label>
                 <input type="text" class="form-control" id="validationCylindersCount" name="cylinders_count"
                        required>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationCarId" class="form-label"><u>${car_id}</u></label>
                 <input type="text" class="form-control" id="validationCarId" name="car_id" required>
             </div>

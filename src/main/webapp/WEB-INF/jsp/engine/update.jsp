@@ -5,7 +5,6 @@
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
-<%@ page import="by.varaksa.cardealer.model.entity.FuelType" %>
 
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="page.audi.dealer.update.engine.page" var="update_page"/>
@@ -14,6 +13,8 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="engine.fuel.type" var="fuel_type"/>
 <fmt:message key="engine.volume" var="volume"/>
 <fmt:message key="engine.cylinders.count" var="cylinders_count"/>
+<fmt:message key="fuel.type.diesel" var="diesel"/>
+<fmt:message key="fuel.type.petrol" var="petrol"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -39,20 +40,20 @@ pageContext.request.locale}" scope="session"/>
             <div class="col-md-2">
                 <input type="hidden" name="id" value="${param.id}">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label class="form-label"><u>${fuel_type}</u>
                     <select name="fuel_type">
-                        <option value="PETROL">${FuelType.PETROL}</option>
-                        <option value="DIESEL">${FuelType.DIESEL}</option>
+                        <option value="PETROL">${petrol}</option>
+                        <option value="DIESEL">${diesel}</option>
                     </select>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationVolume" class="form-label"><u>${volume}</u></label>
                 <input type="text" class="form-control" id="validationVolume" name="volume"
                        value="${param.volume}" placeholder="${param.volume}" required>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationCylindersCount" class="form-label"><u>${cylinders_count}</u></label>
                 <input type="text" class="form-control" id="validationCylindersCount" name="cylinders_count"
                        value="${param.cylindersCount}" placeholder="${param.cylindersCount}" required>

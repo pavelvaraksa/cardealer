@@ -10,17 +10,17 @@ public class CarValidator {
     private static final Logger logger = LogManager.getLogger();
 
     /* Regex for the guarantee period, 1 to 2 characters */
-    public static final String GUARANTEE_PERIOD_REGEXP = "guarantee_period.regexp";
+    public static final String GUARANTEE_PERIOD_REGEXP = "guarantee.period.regexp";
     /* Regex for the price, 1 to 6 characters */
     public static final String PRICE_REGEXP = "price.regexp";
     /* Regex for the car id, 1 to 3 characters */
-    public static final String CAR_ID_REGEXP = "car_id.regexp";
+    public static final String CAR_ID_REGEXP = "car.id.regexp";
     /* Regex for the volume, 1 to 3 characters including point */
     public static final String VOLUME_REGEXP = "volume.regexp";
     /* Regex for the cylinders count, 1 to 2 characters */
-    public static final String CYLINDERS_COUNT_REGEXP = "cylinders_count.regexp";
+    public static final String CYLINDERS_COUNT_REGEXP = "cylinders.count.regexp";
     /* Regex for the gears count, 1 character */
-    public static final String GEARS_COUNT_REGEXP = "gears_count.regexp";
+    public static final String GEARS_COUNT_REGEXP = "gears.count.regexp";
     /* Regex for the weight, 1 to 3 characters including point */
     public static final String WEIGHT_REGEXP = "weight.regexp";
 

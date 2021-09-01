@@ -6,7 +6,6 @@ pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
 <%@ page import="by.varaksa.cardealer.model.entity.Model" %>
-<%@ page import="by.varaksa.cardealer.model.entity.Country" %>
 
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="page.audi.dealer.save.car.page" var="save_page"/>
@@ -17,6 +16,9 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="car.issue_country" var="issue_country"/>
 <fmt:message key="car.guarantee_period" var="guarantee_period"/>
 <fmt:message key="car.price" var="price"/>
+<fmt:message key="country.germany" var="germany"/>
+<fmt:message key="country.poland" var="poland"/>
+<fmt:message key="country.czech" var="czech"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -47,7 +49,7 @@ pageContext.request.locale}" scope="session"/>
     <h2><u>${save_form}</u></h2>
     <form action="save" method="post">
         <form class="row g-3">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label class="form-label"><u>${model}</u>
                     <select name="model">
                         <option value="A1">${Model.A1}</option>
@@ -62,22 +64,22 @@ pageContext.request.locale}" scope="session"/>
                     </select>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label class="form-label"><u>${issue_country}</u>
                     <select name="issue_country">
-                        <option value="GERMANY">${Country.GERMANY}</option>
-                        <option value="CZECH">${Country.CZECH}</option>
-                        <option value="POLAND">${Country.POLAND}</option>
+                        <option value="GERMANY">${germany}</option>
+                        <option value="CZECH">${czech}</option>
+                        <option value="POLAND">${poland}</option>
                     </select>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationGuaranteePeriod" class="form-label"><u>${guarantee_period}</u>
                     <input type="text" class="form-control" id="validationGuaranteePeriod" name="guarantee_period"
                            value="${param.guaranteePeriod}" placeholder="${param.guaranteePeriod}" required>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationPrice" class="form-label"><u>${price}</u>
                     <input type="text" class="form-control" id="validationPrice" name="price"
                            value="${param.price}" placeholder="${param.price}" required>

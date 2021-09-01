@@ -7,7 +7,7 @@ public class DatabasePropertiesReader {
     private ResourceBundle resourceBundle;
 
     public static final String BUNDLE_NAME = "database";
-    public static final String DATABASE_DRIVER_NAME = "driverName";
+    public static final String DATABASE_DRIVER_NAME = "driver.name";
     public static final String DATABASE_URL = "url";
     public static final String DATABASE_LOGIN = "login";
     public static final String DATABASE_PASSWORD = "password";

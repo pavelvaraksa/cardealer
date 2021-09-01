@@ -5,8 +5,6 @@
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
-<%@ page import="by.varaksa.cardealer.model.entity.Color" %>
-<%@ page import="by.varaksa.cardealer.model.entity.BodyType" %>
 
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="page.audi.dealer.save.body.page" var="save_page"/>
@@ -15,6 +13,22 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="car.color" var="color"/>
 <fmt:message key="car.body.type" var="body_type"/>
 <fmt:message key="car.car.id" var="car_id"/>
+<fmt:message key="body.type.coupe" var="coupe"/>
+<fmt:message key="body.type.sedan" var="sedan"/>
+<fmt:message key="body.type.touring" var="touring"/>
+<fmt:message key="body.type.hatchback" var="hatchback"/>
+<fmt:message key="body.type.suv" var="suv"/>
+<fmt:message key="color.black" var="black"/>
+<fmt:message key="color.white" var="white"/>
+<fmt:message key="color.red" var="red"/>
+<fmt:message key="color.blue" var="blue"/>
+<fmt:message key="color.brown" var="brown"/>
+<fmt:message key="color.green" var="green"/>
+<fmt:message key="color.grey" var="grey"/>
+<fmt:message key="color.yellow" var="yellow"/>
+<fmt:message key="color.orange" var="orange"/>
+<fmt:message key="color.silver" var="silver"/>
+<fmt:message key="color.champagne" var="champagne"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -45,35 +59,35 @@ pageContext.request.locale}" scope="session"/>
     <h2><u>${save_form}</u></h2>
     <form action="save" method="post">
         <form class="row g-3">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label class="form-label"><u>${color}</u>
                     <select name="color">
-                        <option value="BLACK">${Color.BLACK}</option>
-                        <option value="WHITE">${Color.WHITE}</option>
-                        <option value="RED">${Color.RED}</option>
-                        <option value="GREEN">${Color.GREEN}</option>
-                        <option value="BLUE">${Color.BLUE}</option>
-                        <option value="YELLOW">${Color.YELLOW}</option>
-                        <option value="BROWN">${Color.BROWN}</option>
-                        <option value="SILVER">${Color.SILVER}</option>
-                        <option value="ORANGE">${Color.ORANGE}</option>
-                        <option value="GREY">${Color.GREY}</option>
-                        <option value="CHAMPAGNE">${Color.CHAMPAGNE}</option>
+                        <option value="BLACK">${black}</option>
+                        <option value="WHITE">${white}</option>
+                        <option value="RED">${red}</option>
+                        <option value="GREEN">${green}</option>
+                        <option value="BLUE">${blue}</option>
+                        <option value="YELLOW">${yellow}</option>
+                        <option value="BROWN">${brown}</option>
+                        <option value="SILVER">${silver}</option>
+                        <option value="ORANGE">${orange}</option>
+                        <option value="GREY">${grey}</option>
+                        <option value="CHAMPAGNE">${champagne}</option>
                     </select>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label class="form-label"><u>${body_type}</u>
                     <select name="body_type">
-                        <option value="SEDAN">${BodyType.SEDAN}</option>
-                        <option value="COUPE">${BodyType.COUPE}</option>
-                        <option value="TOURING">${BodyType.TOURING}</option>
-                        <option value="HATCHBACK">${BodyType.HATCHBACK}</option>
-                        <option value="SUV">${BodyType.SUV}</option>
+                        <option value="SEDAN">${sedan}</option>
+                        <option value="COUPE">${coupe}</option>
+                        <option value="TOURING">${touring}</option>
+                        <option value="HATCHBACK">${hatchback}</option>
+                        <option value="SUV">${suv}</option>
                     </select>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationCarId" class="form-label"><u>${car_id}</u></label>
                 <input type="text" class="form-control" id="validationCarId" name="car_id" required>
             </div>

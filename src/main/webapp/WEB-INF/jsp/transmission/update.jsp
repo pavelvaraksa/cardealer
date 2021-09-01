@@ -5,7 +5,6 @@
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
-<%@ page import="by.varaksa.cardealer.model.entity.TransmissionType" %>
 
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="page.audi.dealer.update.transmission.page" var="update_page"/>
@@ -14,6 +13,9 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="transmission.transmission.type" var="transmission_type"/>
 <fmt:message key="transmission.gears.count" var="gears_count"/>
 <fmt:message key="transmission.weight" var="weight"/>
+<fmt:message key="transmission.type.automatic" var="automatic"/>
+<fmt:message key="transmission.type.mechanic" var="mechanic"/>
+<fmt:message key="transmission.type.robotic" var="robotic"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -39,21 +41,21 @@ pageContext.request.locale}" scope="session"/>
             <div class="col-md-2">
                 <input type="hidden" name="id" value="${param.id}">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label class="form-label"><u>${transmission_type}</u>
                     <select name="transmission_type">
-                        <option value="AUTOMATIC">${TransmissionType.AUTOMATIC}</option>
-                        <option value="MECHANIC">${TransmissionType.MECHANIC}</option>
-                        <option value="ROBOTIC">${TransmissionType.ROBOTIC}</option>
+                        <option value="AUTOMATIC">${automatic}</option>
+                        <option value="MECHANIC">${mechanic}</option>
+                        <option value="ROBOTIC">${robotic}</option>
                     </select>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationGearsCount" class="form-label"><u>${gears_count}</u></label>
                 <input type="text" class="form-control" id="validationGearsCount" name="gears_count"
                        value="${param.gearsCount}" placeholder="${param.gearsCount}" required>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationWeight" class="form-label"><u>${weight}</u></label>
                 <input type="text" class="form-control" id="validationWeight" name="weight"
                        value="${param.weight}" placeholder="${param.weight}" required>

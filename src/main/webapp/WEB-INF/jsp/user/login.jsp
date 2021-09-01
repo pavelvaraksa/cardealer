@@ -11,7 +11,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="page.audi.dealer.auth.page" var="authentication_page"/>
 <fmt:message key="user.login" var="login"/>
 <fmt:message key="user.password" var="password"/>
-<fmt:message key="menu.title.log.in" var="enter"/>
+<fmt:message key="button.enter" var="enter"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <fmt:message key="text.login.help.text" var="login_help_text"/>

@@ -13,14 +13,14 @@ import java.util.Random;
 public class NotificationUserEmail {
     private static final Logger logger = LogManager.getLogger();
     private static final String HOST = EmailPropertiesReader.getEmail("host");
-    private static final String HOST_VALUE = EmailPropertiesReader.getEmail("host_value");
+    private static final String HOST_VALUE = EmailPropertiesReader.getEmail("host.value");
     private static final String PORT = EmailPropertiesReader.getEmail("port");
-    private static final String PORT_VALUE = EmailPropertiesReader.getEmail("port_value");
+    private static final String PORT_VALUE = EmailPropertiesReader.getEmail("port.value");
     private static final String AUTH = EmailPropertiesReader.getEmail("auth");
-    private static final String AUTH_VALUE = EmailPropertiesReader.getEmail("auth_value");
+    private static final String AUTH_VALUE = EmailPropertiesReader.getEmail("auth.value");
     private static final String TLS = EmailPropertiesReader.getEmail("tls");
-    private static final String TLS_VALUE = EmailPropertiesReader.getEmail("tls_value");
-    private static final String FROM_EMAIL = EmailPropertiesReader.getEmail("from_email");
+    private static final String TLS_VALUE = EmailPropertiesReader.getEmail("tls.value");
+    private static final String FROM_EMAIL = EmailPropertiesReader.getEmail("from.email");
     private static final String PASSWORD = EmailPropertiesReader.getEmail("password");
 
     public String getRandom() {

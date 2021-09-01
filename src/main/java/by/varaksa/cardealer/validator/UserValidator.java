@@ -20,7 +20,7 @@ public class UserValidator {
     /* Regex for the email, 5 to 55 characters including numbers, point, underscore, hyphen and symbol @ */
     public static final String EMAIL_REGEXP = "email.regexp";
     /* Regex for the user order id, 1 to 3 characters */
-    public static final String USER_ORDER_ID = "user_order_id.regexp";
+    public static final String USER_ORDER_ID = "user.order.id.regexp";
 
     public static boolean isUserValidate(String regexp, String stringFromUi) {
         Pattern pattern = Pattern.compile(regexp);

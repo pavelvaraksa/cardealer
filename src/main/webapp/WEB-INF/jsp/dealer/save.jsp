@@ -5,7 +5,6 @@
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
-<%@ page import="by.varaksa.cardealer.model.entity.City" %>
 
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="page.audi.dealer.save.dealer.page" var="save_page"/>
@@ -16,6 +15,13 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="dealer.foundation.date" var="foundation_date"/>
 <fmt:message key="dealer.city" var="city"/>
 <fmt:message key="car.car.id" var="car_id"/>
+<fmt:message key="dealer.city" var="city"/>
+<fmt:message key="city.brest" var="brest"/>
+<fmt:message key="city.minsk" var="minsk"/>
+<fmt:message key="city.gomel" var="gomel"/>
+<fmt:message key="city.grodno" var="grodno"/>
+<fmt:message key="city.vitebsk" var="vitebsk"/>
+<fmt:message key="city.mogilev" var="mogilev"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -46,31 +52,31 @@ pageContext.request.locale}" scope="session"/>
     <h2><u>${save_form}</u></h2>
     <form action="save" method="post">
         <form class="row g-3">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationName" class="form-label"><u>${name}</u></label>
                 <input type="text" class="form-control" id="validationName" name="name" required>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationAddress" class="form-label"><u>${address}</u></label>
                 <input type="text" class="form-control" id="validationAddress" name="address" required>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationFoundationDate" class="form-label"><u>${foundation_date}</u></label>
                 <input type="date" class="form-control" id="validationFoundationDate" name="foundation_date" required>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label class="form-label"><u>${city}</u>
                     <select name="city">
-                        <option value="MINSK">${City.MINSK}</option>
-                        <option value="BREST">${City.BREST}</option>
-                        <option value="MOGILEV">${City.MOGILEV}</option>
-                        <option value="GOMEL">${City.GOMEL}</option>
-                        <option value="VITEBSK">${City.VITEBSK}</option>
-                        <option value="GRODNO">${City.GRODNO}</option>
+                        <option value="MINSK">${minsk}</option>
+                        <option value="BREST">${brest}</option>
+                        <option value="MOGILEV">${mogilev}</option>
+                        <option value="GOMEL">${gomel}</option>
+                        <option value="VITEBSK">${vitebsk}</option>
+                        <option value="GRODNO">${grodno}</option>
                     </select>
                 </label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationCarId" class="form-label"><u>${car_id}</u></label>
                 <input type="text" class="form-control" id="validationCarId" name="car_id" required>
             </div>
