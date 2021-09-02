@@ -24,15 +24,16 @@ pageContext.request.locale}" scope="session"/>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
+        <a class="navbar-brand" href=<%=request.getContextPath()%>"/">${audi_car_dealer}</a>
     </div>
 </nav>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h3><u>${delete_transmission_text} ${param.id}?</u></h3>
-    <form action="delete" method="post">
+    <form action=<%=request.getContextPath()%>"delete" method="post">
         <input type="hidden" name="id" value="${param.id}">
-        <a class="btn btn-outline-success btn-sm" href="http://localhost:8080/transmission/find-all" role="button">${no}</a>
+        <a class="btn btn-outline-success btn-sm" href=<%=request.getContextPath()%>"/transmission/find-all"
+           role="button">${no}</a>
         <input class="btn btn-outline-danger btn-sm" type="submit" value=${yes}>
     </form>
 </div>

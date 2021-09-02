@@ -26,7 +26,7 @@ pageContext.request.locale}" scope="session"/>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
+        <a class="navbar-brand" href=<%=request.getContextPath()%>"/">${audi_car_dealer}</a>
         <form>
             <label for="language"></label>
             <select id="language" name="language" onchange="submit()">
@@ -40,13 +40,13 @@ pageContext.request.locale}" scope="session"/>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>${save_form}</u></h2>
-    <form action="save" method="post">
+    <form action=<%=request.getContextPath()%>"/user-order/save" method="post">
         <form class="row g-3">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationOrderName" class="form-label"><u>${order_name}</u></label>
                 <input type="text" class="form-control" id="validationOrderName" name="order_name" required>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <label for="validationUserId" class="form-label"><u>${user_id}</u></label>
                 <input type="text" class="form-control" id="validationUserId" name="user_id" required>
             </div>
@@ -56,7 +56,7 @@ pageContext.request.locale}" scope="session"/>
         </form>
     </form>
     <label>
-        <a class="btn btn-outline-primary btn-sm" href="http://localhost:8080/user-order/find-all"
+        <a class="btn btn-outline-primary btn-sm" href=<%=request.getContextPath()%>"/user-order/find-all"
            role="button">${return_to_previous_page}</a>
     </label>
 </div>

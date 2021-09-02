@@ -112,7 +112,7 @@ public class CarController extends HttpServlet {
         List<Car> carList = carService.findAll();
         logger.info("Cars were watched");
         request.setAttribute("carList", carList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-cars-page");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-cars");
         dispatcher.forward(request, response);
     }
 

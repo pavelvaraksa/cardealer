@@ -179,7 +179,7 @@ public class UserController extends HttpServlet {
 
         logger.info("Users were watched");
         session.setAttribute("userList", userList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/user/findAll.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users");
         dispatcher.forward(request, response);
     }
 

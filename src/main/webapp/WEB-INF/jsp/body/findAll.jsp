@@ -32,7 +32,7 @@ pageContext.request.locale}" scope="session"/>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
+        <a class="navbar-brand" href=<%=request.getContextPath()%>"/">${audi_car_dealer}</a>
         <form>
             <label for="language"></label>
             <select id="language" name="language" onchange="submit()">
@@ -47,11 +47,11 @@ pageContext.request.locale}" scope="session"/>
 <div align="center">
     <h2><u>${bodies_list}</u></h2>
     <td>
-        <form action="save-body-page" method="post">
+        <form action=<%=request.getContextPath()%>"/body/save-body" method="post">
             <input class="btn btn-outline-success btn-sm" type="submit" value=${add}>
         </form>
     </td>
-    <form action="body/find-all" method="get">
+    <form action=<%=request.getContextPath()%>"/body/find-all" method="get">
         <tbody>
         <table class="table table-bordered">
 
@@ -66,6 +66,7 @@ pageContext.request.locale}" scope="session"/>
             </tr>
             </thead>
 
+            <%--@elvariable id="bodyList" type="java.util.List"--%>
             <c:forEach var="body" items="${bodyList}">
 
                 <tr>
@@ -76,7 +77,7 @@ pageContext.request.locale}" scope="session"/>
                     <td>${body.changed}</td>
                     <td>${body.carId}</td>
                     <td>
-                        <form action="update-body-page" method="post">
+                        <form action=<%=request.getContextPath()%>"update-body" method="post">
                             <input type="hidden" class="form-control" name="id" value="${body.id}">
                             <input type="hidden" class="form-control" name="color" value="${body.color}">
                             <input type="hidden" class="form-control" name="bodyType" value="${body.bodyType}">
@@ -84,7 +85,7 @@ pageContext.request.locale}" scope="session"/>
                         </form>
                     </td>
                     <td>
-                        <form action="delete-body-page" method="post">
+                        <form action=<%=request.getContextPath()%>"delete-body" method="post">
                             <input type="hidden" class="form-control" name="id" value="${body.id}">
                             <input class="btn btn-outline-danger btn-sm" type="submit" value=${delete}>
                         </form>
@@ -94,7 +95,7 @@ pageContext.request.locale}" scope="session"/>
         </table>
         </tbody>
         <label>
-            <a class="btn btn-outline-primary" href="http://localhost:8080/admin-menu"
+            <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/admin-menu"
                role="button">${return_to_previous_page}</a>
         </label>
     </form>

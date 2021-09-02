@@ -106,7 +106,7 @@ public class UserOrderController extends HttpServlet {
         List<UserOrder> userOrderList = userOrderService.findAll();
         logger.info("User orders were watched");
         request.setAttribute("userOrderList", userOrderList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-user-orders-page");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-user-orders");
         dispatcher.forward(request, response);
     }
 

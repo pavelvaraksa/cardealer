@@ -33,7 +33,7 @@ pageContext.request.locale}" scope="session"/>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
+        <a class="navbar-brand" href=<%=request.getContextPath()%>"/">${audi_car_dealer}</a>
         <form>
             <label for="language"></label>
             <select id="language" name="language" onchange="submit()">
@@ -48,11 +48,11 @@ pageContext.request.locale}" scope="session"/>
 <div align="center">
     <h2><u>${transmissions_list}</u></h2>
     <td>
-        <form action="save-transmission-page" method="post">
+        <form action=<%=request.getContextPath()%>"/transmission/save-transmission" method="post">
             <input class="btn btn-outline-success btn-sm" type="submit" value=${add}>
         </form>
     </td>
-    <form action="transmission/find-all" method="get">
+    <form action=<%=request.getContextPath()%>"/transmission/find-all" method="get">
         <tbody>
         <table class="table table-bordered">
             <thead>
@@ -67,6 +67,7 @@ pageContext.request.locale}" scope="session"/>
             </tr>
             </thead>
 
+            <%--@elvariable id="transmissionList" type="java.util.List"--%>
             <c:forEach var="transmission" items="${transmissionList}">
 
                 <tr>
@@ -78,7 +79,7 @@ pageContext.request.locale}" scope="session"/>
                     <td>${transmission.changed}</td>
                     <td>${transmission.carId}</td>
                     <td>
-                        <form action="update-transmission-page" method="post">
+                        <form action=<%=request.getContextPath()%>"update-transmission" method="post">
                             <input type="hidden" class="form-control" name="id" value="${transmission.id}">
                             <input type="hidden" class="form-control" name="transmissionType"
                                    value="${transmission.transmissionType}">
@@ -89,7 +90,7 @@ pageContext.request.locale}" scope="session"/>
                         </form>
                     </td>
                     <td>
-                        <form action="delete-transmission-page" method="post">
+                        <form action=<%=request.getContextPath()%>"delete-transmission" method="post">
                             <input type="hidden" class="form-control" name="id" value="${transmission.id}">
                             <input class="btn btn-outline-danger btn-sm" type="submit" value=${delete}>
                         </form>
@@ -99,7 +100,7 @@ pageContext.request.locale}" scope="session"/>
         </table>
         </tbody>
         <label>
-            <a class="btn btn-outline-primary" href="http://localhost:8080/admin-menu"
+            <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/admin-menu"
                role="button">${return_to_previous_page}</a>
         </label>
     </form>

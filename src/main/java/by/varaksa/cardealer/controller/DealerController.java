@@ -113,7 +113,7 @@ public class DealerController extends HttpServlet {
         List<Dealer> dealerList = dealerService.findAll();
         logger.info("Dealers were watched");
         request.setAttribute("dealerList", dealerList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-dealers-page");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-dealers");
         dispatcher.forward(request, response);
     }
 

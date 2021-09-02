@@ -11,6 +11,7 @@ import by.varaksa.cardealer.model.repository.BodyRepository;
 import by.varaksa.cardealer.model.repository.impl.BodyRepositoryImpl;
 import by.varaksa.cardealer.model.service.BodyService;
 import by.varaksa.cardealer.model.service.impl.BodyServiceImpl;
+import by.varaksa.cardealer.util.RegexpPropertiesReader;
 import by.varaksa.cardealer.validator.CarValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,6 +32,7 @@ public class BodyController extends HttpServlet {
     private Commands commandName;
     public BodyRepository bodyRepository = new BodyRepositoryImpl();
     public BodyService bodyService = new BodyServiceImpl(bodyRepository);
+    private static final String REGEXP_CAR_ID = RegexpPropertiesReader.getRegexp("car.id.regexp");
 
     public BodyController() {
         super();
@@ -91,7 +93,7 @@ public class BodyController extends HttpServlet {
         Color color = Color.valueOf(request.getParameter("color"));
         BodyType bodyType = BodyType.valueOf(request.getParameter("body_type"));
 
-        if (CarValidator.isCarValidate(CarValidator.CAR_ID_REGEXP, request.getParameter("car_id")) == isCheckStringFromUI) {
+        if (CarValidator.isCarValidate(REGEXP_CAR_ID, request.getParameter("car_id")) == isCheckStringFromUI) {
             Long carId = Long.valueOf(request.getParameter("car_id"));
 
             Body body = new Body(color, bodyType, carId);
@@ -109,7 +111,7 @@ public class BodyController extends HttpServlet {
         List<Body> bodyList = bodyService.findAll();
         logger.info("Bodies were watched");
         request.setAttribute("bodyList", bodyList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-bodies-page");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-bodies");
         dispatcher.forward(request, response);
     }
 

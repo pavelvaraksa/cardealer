@@ -123,7 +123,7 @@
 
     <servlet-mapping>
         <servlet-name>Users list</servlet-name>
-        <url-pattern>/find-all</url-pattern>
+        <url-pattern>/find-all-users</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -165,7 +165,7 @@
 
     <servlet-mapping>
         <servlet-name>Save body</servlet-name>
-        <url-pattern>/body/save-body-page</url-pattern>
+        <url-pattern>/body/save-body</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Bodies list</servlet-name>
@@ -174,7 +174,7 @@
 
     <servlet-mapping>
         <servlet-name>Bodies list</servlet-name>
-        <url-pattern>/find-all-bodies-page</url-pattern>
+        <url-pattern>/find-all-bodies</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -184,7 +184,7 @@
 
     <servlet-mapping>
         <servlet-name>Update body</servlet-name>
-        <url-pattern>/body/update-body-page</url-pattern>
+        <url-pattern>/body/update-body</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -194,7 +194,7 @@
 
     <servlet-mapping>
         <servlet-name>Delete body</servlet-name>
-        <url-pattern>/body/delete-body-page</url-pattern>
+        <url-pattern>/body/delete-body</url-pattern>
     </servlet-mapping>
 
 
@@ -206,7 +206,7 @@
 
     <servlet-mapping>
         <servlet-name>Save car</servlet-name>
-        <url-pattern>/car/save-car-page</url-pattern>
+        <url-pattern>/car/save-car</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Cars list</servlet-name>
@@ -215,7 +215,7 @@
 
     <servlet-mapping>
         <servlet-name>Cars list</servlet-name>
-        <url-pattern>/find-all-cars-page</url-pattern>
+        <url-pattern>/find-all-cars</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -225,7 +225,7 @@
 
     <servlet-mapping>
         <servlet-name>Update car</servlet-name>
-        <url-pattern>/car/update-car-page</url-pattern>
+        <url-pattern>/car/update-car</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -235,7 +235,7 @@
 
     <servlet-mapping>
         <servlet-name>Delete car</servlet-name>
-        <url-pattern>/car/delete-car-page</url-pattern>
+        <url-pattern>/car/delete-car</url-pattern>
     </servlet-mapping>
 
 
@@ -247,7 +247,7 @@
 
     <servlet-mapping>
         <servlet-name>Save dealer</servlet-name>
-        <url-pattern>/dealer/save-dealer-page</url-pattern>
+        <url-pattern>/dealer/save-dealer</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Dealers list</servlet-name>
@@ -256,7 +256,7 @@
 
     <servlet-mapping>
         <servlet-name>Dealers list</servlet-name>
-        <url-pattern>/find-all-dealers-page</url-pattern>
+        <url-pattern>/find-all-dealers</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -266,7 +266,7 @@
 
     <servlet-mapping>
         <servlet-name>Update dealer</servlet-name>
-        <url-pattern>/dealer/update-dealer-page</url-pattern>
+        <url-pattern>/dealer/update-dealer</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -276,7 +276,7 @@
 
     <servlet-mapping>
         <servlet-name>Delete dealer</servlet-name>
-        <url-pattern>/dealer/delete-dealer-page</url-pattern>
+        <url-pattern>/dealer/delete-dealer</url-pattern>
     </servlet-mapping>
 
 
@@ -288,7 +288,7 @@
 
     <servlet-mapping>
         <servlet-name>Save engine</servlet-name>
-        <url-pattern>/engine/save-engine-page</url-pattern>
+        <url-pattern>/engine/save-engine</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Engines list</servlet-name>
@@ -297,7 +297,7 @@
 
     <servlet-mapping>
         <servlet-name>Engines list</servlet-name>
-        <url-pattern>/find-all-engines-page</url-pattern>
+        <url-pattern>/find-all-engines</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -307,7 +307,7 @@
 
     <servlet-mapping>
         <servlet-name>Update engine</servlet-name>
-        <url-pattern>/engine/update-engine-page</url-pattern>
+        <url-pattern>/engine/update-engine</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -317,7 +317,7 @@
 
     <servlet-mapping>
         <servlet-name>Delete engine</servlet-name>
-        <url-pattern>/engine/delete-engine-page</url-pattern>
+        <url-pattern>/engine/delete-engine</url-pattern>
     </servlet-mapping>
 
 
@@ -329,7 +329,7 @@
 
     <servlet-mapping>
         <servlet-name>Save transmission</servlet-name>
-        <url-pattern>/transmission/save-transmission-page</url-pattern>
+        <url-pattern>/transmission/save-transmission</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Transmissions list</servlet-name>
@@ -338,7 +338,7 @@
 
     <servlet-mapping>
         <servlet-name>Transmissions list</servlet-name>
-        <url-pattern>/find-all-transmissions-page</url-pattern>
+        <url-pattern>/find-all-transmissions</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -348,7 +348,7 @@
 
     <servlet-mapping>
         <servlet-name>Update transmission</servlet-name>
-        <url-pattern>/transmission/update-transmission-page</url-pattern>
+        <url-pattern>/transmission/update-transmission</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -358,7 +358,7 @@
 
     <servlet-mapping>
         <servlet-name>Delete transmission</servlet-name>
-        <url-pattern>/transmission/delete-transmission-page</url-pattern>
+        <url-pattern>/transmission/delete-transmission</url-pattern>
     </servlet-mapping>
 
 
@@ -370,7 +370,7 @@
 
     <servlet-mapping>
         <servlet-name>Save user order</servlet-name>
-        <url-pattern>/user-order/save-user-order-page</url-pattern>
+        <url-pattern>/user-order/save-user-order</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>User orders list</servlet-name>
@@ -379,7 +379,7 @@
 
     <servlet-mapping>
         <servlet-name>User orders list</servlet-name>
-        <url-pattern>/find-all-user-orders-page</url-pattern>
+        <url-pattern>/find-all-user-orders</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -389,7 +389,7 @@
 
     <servlet-mapping>
         <servlet-name>Update user order</servlet-name>
-        <url-pattern>/user-order/update-user-order-page</url-pattern>
+        <url-pattern>/user-order/update-user-order</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -399,7 +399,7 @@
 
     <servlet-mapping>
         <servlet-name>Delete user order</servlet-name>
-        <url-pattern>/user-order/delete-user-order-page</url-pattern>
+        <url-pattern>/user-order/delete-user-order</url-pattern>
     </servlet-mapping>
 
 

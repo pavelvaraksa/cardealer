@@ -112,7 +112,7 @@ public class TransmissionController extends HttpServlet {
         List<Transmission> transmissionList = transmissionService.findAll();
         logger.info("Transmissions were watched");
         request.setAttribute("transmissionList", transmissionList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-transmissions-page");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-transmissions");
         dispatcher.forward(request, response);
     }
 

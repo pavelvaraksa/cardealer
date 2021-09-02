@@ -17,13 +17,12 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="user.email" var="email"/>
 <fmt:message key="info.required.field" var="required_field"/>
 <fmt:message key="button.register" var="register"/>
-<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
-
 <fmt:message key="text.firstname.help.text" var="firstname_help_text"/>
 <fmt:message key="text.lastname.help.text" var="lastname_help_text"/>
 <fmt:message key="text.login.help.text" var="login_help_text"/>
 <fmt:message key="text.password.help.text" var="password_help_text"/>
 <fmt:message key="text.email.help.text" var="email_help_text"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

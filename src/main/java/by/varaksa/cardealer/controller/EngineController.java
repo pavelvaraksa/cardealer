@@ -111,7 +111,7 @@ public class EngineController extends HttpServlet {
         List<Engine> engineList = engineService.findAll();
         logger.info("Engines were watched");
         request.setAttribute("engineList", engineList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-engines-page");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-engines");
         dispatcher.forward(request, response);
     }
 

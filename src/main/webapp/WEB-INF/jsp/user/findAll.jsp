@@ -23,10 +23,9 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="info.changed" var="changed"/>
 <fmt:message key="button.update" var="update"/>
 <fmt:message key="button.delete" var="delete"/>
-<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
-
 <fmt:message key="role.admin" var="admin"/>
 <fmt:message key="role.user" var="user"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

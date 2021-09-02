@@ -34,7 +34,7 @@ pageContext.request.locale}" scope="session"/>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">
-        <a class="navbar-brand" href="http://localhost:8080">${audi_car_dealer}</a>
+        <a class="navbar-brand" href=<%=request.getContextPath()%>"/">${audi_car_dealer}</a>
         <form>
             <label for="language"></label>
             <select id="language" name="language" onchange="submit()">
@@ -49,11 +49,11 @@ pageContext.request.locale}" scope="session"/>
 <div align="center">
     <h2><u>${dealers_list}</u></h2>
     <td>
-        <form action="save-dealer-page" method="post">
+        <form action=<%=request.getContextPath()%>"/dealer/save-dealer" method="post">
             <input class="btn btn-outline-success btn-sm" type="submit" value=${add}>
         </form>
     </td>
-    <form action="dealer/find-all" method="get">
+    <form action=<%=request.getContextPath()%>"/dealer/find-all" method="get">
         <tbody>
         <table class="table table-bordered">
             <thead>
@@ -69,6 +69,7 @@ pageContext.request.locale}" scope="session"/>
             </tr>
             </thead>
 
+            <%--@elvariable id="dealerList" type="java.util.List"--%>
             <c:forEach var="dealer" items="${dealerList}">
 
                 <tr>
@@ -81,18 +82,19 @@ pageContext.request.locale}" scope="session"/>
                     <td>${dealer.changed}</td>
                     <td>${dealer.carId}</td>
                     <td>
-                        <form action="update-dealer-page" method="post">
+                        <form action=<%=request.getContextPath()%>"update-dealer" method="post">
                             <input type="hidden" class="form-control" name="id" value="${dealer.id}">
                             <input type="hidden" class="form-control" name="name" value="${dealer.name}">
                             <input type="hidden" class="form-control" name="address" value="${dealer.address}">
-                            <input type="hidden" class="form-control" name="foundationDate" value="${dealer.foundationDate}">
+                            <input type="hidden" class="form-control" name="foundationDate"
+                                   value="${dealer.foundationDate}">
                             <input type="hidden" class="form-control" name="city" value="${dealer.city}">
                             <input type="hidden" class="form-control" name="carId" value="${dealer.carId}">
                             <input class="btn btn-outline-warning btn-sm" type="submit" value=${update}>
                         </form>
                     </td>
                     <td>
-                        <form action="delete-dealer-page" method="post">
+                        <form action=<%=request.getContextPath()%>"delete-dealer" method="post">
                             <input type="hidden" class="form-control" name="id" value="${dealer.id}">
                             <input class="btn btn-outline-danger btn-sm" type="submit" value=${delete}>
                         </form>
@@ -102,7 +104,7 @@ pageContext.request.locale}" scope="session"/>
         </table>
         </tbody>
         <label>
-            <a class="btn btn-outline-primary" href="http://localhost:8080/admin-menu"
+            <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/admin-menu"
                role="button">${return_to_previous_page}</a>
         </label>
     </form>
