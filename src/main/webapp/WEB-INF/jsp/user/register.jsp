@@ -17,6 +17,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="user.email" var="email"/>
 <fmt:message key="info.required.field" var="required_field"/>
 <fmt:message key="button.register" var="register"/>
+<fmt:message key="info.birthdate.field" var="birth_date_field"/>
 <fmt:message key="text.firstname.help.text" var="firstname_help_text"/>
 <fmt:message key="text.lastname.help.text" var="lastname_help_text"/>
 <fmt:message key="text.login.help.text" var="login_help_text"/>
@@ -50,44 +51,38 @@ pageContext.request.locale}" scope="session"/>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>${register_form}</u></h2>
+    <p class="text-dark">* - ${required_field}</p>
     <form action=<%=request.getContextPath()%>"/user/save" method="post">
         <form class="row g-3">
             <div class="col-md-3">
                 <label for="validationFirstname" class="form-label"><u>${firstname}*</u></label>
-                <input type="text" class="form-control" id="validationFirstname" name="firstname"
-                       placeholder="${param.firstName}" required>
+                <input type="text" class="form-control" id="validationFirstname" name="firstname" required>
                 <small id="firstNameHelpText" class="text-muted">${firstname_help_text}</small>
             </div>
             <div class="col-md-3">
                 <label for="validationLastname" class="form-label"><u>${lastname}*</u></label>
-                <input type="text" class="form-control" id="validationLastname" name="lastname"
-                       placeholder="${param.lastname}" required>
+                <input type="text" class="form-control" id="validationLastname" name="lastname" required>
                 <small id="lastNameHelpText" class="text-muted">${lastname_help_text}</small>
             </div>
             <div class="col-md-3">
                 <label for="validationBirthDate" class="form-label"><u>${birth_date}</u></label>
-                <input type="date" class="form-control" id="validationBirthDate" name="birth_date"
-                       placeholder="${param.birth_date}">
+                <input type="date" class="form-control" id="validationBirthDate" name="birth_date">
             </div>
             <div class="col-md-3">
                 <label for="validationLogin" class="form-label"><u>${login}*</u></label>
-                <input type="text" class="form-control" id="validationLogin" name="login"
-                       placeholder="${param.login}" required>
+                <input type="text" class="form-control" id="validationLogin" name="login" required>
                 <small id="loginHelpText" class="text-muted">${login_help_text}</small>
             </div>
             <div class="col-md-3">
                 <label for="validationPassword" class="form-label"><u>${password}*</u></label>
-                <input type="password" class="form-control" id="validationPassword" name="password"
-                       placeholder="${param.password}" required>
+                <input type="password" class="form-control" id="validationPassword" name="password" required>
                 <small id="passwordHelpText" class="text-muted">${password_help_text}</small>
             </div>
             <div class="col-md-3">
                 <label for="validationEmail" class="form-label"><u>${email}*</u></label>
-                <input type="email" class="form-control" id="validationEmail" name="email"
-                       placeholder="${param.email}" required>
+                <input type="email" class="form-control" id="validationEmail" name="email" required>
                 <small id="emailHelpText" class="text-muted">${email_help_text}</small>
             </div>
-            <p class="text-dark">* - ${required_field}</p>
             <div class="col-12">
                 <input class="btn btn-outline-success btn-sm" type="submit" value=${register}>
             </div>

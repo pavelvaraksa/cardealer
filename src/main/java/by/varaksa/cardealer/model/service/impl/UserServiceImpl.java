@@ -6,13 +6,20 @@ import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
 import by.varaksa.cardealer.model.repository.UserRepository;
 import by.varaksa.cardealer.model.service.UserService;
+import by.varaksa.cardealer.util.RegexpPropertiesReader;
+import by.varaksa.cardealer.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger();
+    private static final String REGEXP_FIRSTNAME = RegexpPropertiesReader.getRegexp("firstname.regexp");
+    private static final String REGEXP_LASTNAME = RegexpPropertiesReader.getRegexp("lastname.regexp");
+    private static final boolean isCheckStringFromUi = true;
     private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -36,6 +43,7 @@ public class UserServiceImpl implements UserService {
 
         try {
             existingUsers = userRepository.findAll();
+            existingUsers = existingUsers.stream().sorted(Comparator.comparing(User::getId)).collect(Collectors.toList());
 
             if (existingUsers.isEmpty()) {
                 String errorMessage = "Users list is empty";
@@ -79,9 +87,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user) throws ServiceException {
+
         try {
-            logger.info("User with login " + user.getLogin() + " was updated");
-            return userRepository.update(user);
+
+            if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
+                    UserValidator.isUserValidate(REGEXP_LASTNAME, user.getLastName()) == isCheckStringFromUi) {
+                logger.info("User " + user.getFirstName() + " " + user.getLastName() + " was updated");
+                return userRepository.update(user);
+            } else {
+                logger.error("User " + user.getFirstName() + " " + user.getLastName() + " wasn't updated");
+                return user;
+            }
         } catch (RepositoryException exception) {
             String errorMessage = "Can't get user";
             logger.error(errorMessage);

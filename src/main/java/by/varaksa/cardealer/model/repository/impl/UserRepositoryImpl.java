@@ -216,7 +216,7 @@ public class UserRepositoryImpl implements UserRepository {
                         isStatus = rs.next();
                     }
                 } else {
-                    logger.error("Login or password wasn't correct");
+                    logger.error("Password wasn't correct");
                 }
             }
 

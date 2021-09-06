@@ -115,10 +115,6 @@ public class User {
         return codeToRegister;
     }
 
-    public void setCodeToRegister(String codeToRegister) {
-        this.codeToRegister = codeToRegister;
-    }
-
     public Role getRole() {
         return role;
     }

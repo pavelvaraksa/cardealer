@@ -95,7 +95,7 @@ public class CarController extends HttpServlet {
                 CarValidator.isCarValidate(CarValidator.PRICE_REGEXP, request.getParameter("price")) == isCheckStringFromUI) {
 
             Integer guaranteePeriod = Integer.valueOf((request.getParameter("guarantee_period")));
-            Integer price = Integer.valueOf((request.getParameter("price")));
+            Integer price = Integer.valueOf(request.getParameter("price"));
 
             Car car = new Car(model, country, guaranteePeriod, price);
 

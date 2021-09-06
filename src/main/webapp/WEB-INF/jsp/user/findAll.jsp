@@ -106,6 +106,10 @@ pageContext.request.locale}" scope="session"/>
                 </tr>
             </c:forEach>
         </table>
+<%--        <c:choose>--%>
+<%--            <c:when test="${role == Role.ADMIN}">${admin}</c:when>--%>
+<%--            <c:when test="${role == Role.USER}">${user}</c:when>--%>
+<%--        </c:choose>--%>
         </tbody>
         <label>
             <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/admin-menu"

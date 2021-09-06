@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "LimitUserPageFilter")
-public class LimitUserPageFilter implements Filter {
+@WebFilter(filterName = "GuestFilter")
+public class GuestFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
@@ -28,7 +28,7 @@ public class LimitUserPageFilter implements Filter {
         Object requestLogin = request.getParameter("login");
 
         if (sessionLogin == null && requestLogin == null) {
-            logger.error("Limit user page filter tried to find a forbidden page");
+            logger.error("Guest filter blocked an attempt to enter a forbidden page");
             response.sendRedirect("/error-403");
             return;
         }

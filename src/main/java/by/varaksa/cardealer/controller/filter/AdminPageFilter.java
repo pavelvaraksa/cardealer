@@ -5,17 +5,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-//@WebFilter(filterName = "LimitAdminFilter")
-public class LimitAdminFilter implements Filter {
+@WebFilter(filterName = "AdminPageFilter")
+public class AdminPageFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
@@ -27,8 +28,8 @@ public class LimitAdminFilter implements Filter {
         Object login = session.getAttribute("login");
         Object role = session.getAttribute("role");
 
-        if (login == null && role != Role.ADMIN) {
-            logger.error("Limit admin filter tried to find a forbidden page");
+        if (login == null || role != Role.ADMIN) {
+            logger.error("Admin page filter blocked an attempt to enter a forbidden page");
             response.sendRedirect("/error-403");
             return;
         }

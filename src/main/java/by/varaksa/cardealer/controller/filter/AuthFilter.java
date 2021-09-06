@@ -56,7 +56,7 @@ public class AuthFilter implements Filter {
                 if (UserValidator.isUserValidate(REGEXP_LOGIN, login) != isCheckStringFromUI ||
                         UserValidator.isUserValidate(REGEXP_PASSWORD, password) != isCheckStringFromUI) {
                     logger.error("Wasn't correct input format for login or password");
-                    response.sendRedirect("/error-400");
+                    response.sendRedirect("/login-auth");
                     return;
                 }
 

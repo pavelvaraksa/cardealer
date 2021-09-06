@@ -25,9 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {"/user/save", "/user/find-all", "/user/find-by-id",
         "/user/update", "/user/delete", "/register/verify", "/logout"})
@@ -65,7 +63,7 @@ public class UserController extends HttpServlet {
                 case FIND_USER_BY_ID -> findUser(request, response);
                 case LOGOUT -> logOut(request, response);
             }
-        } catch (ServiceException exception) {
+        } catch (ServiceException | ControllerException exception) {
             String errorMessage = "User controller exception." + exception;
             logger.error(errorMessage);
         }
@@ -87,14 +85,14 @@ public class UserController extends HttpServlet {
         }
     }
 
-    public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession();
-        Object login = session.getAttribute("login");
+    private List<User> findAllUsers(HttpServletRequest request, HttpServletResponse response) throws ControllerException,
+            ServiceException, ServletException, IOException {
+        List<User> userList = userService.findAll();
+        request.setAttribute("userList", userList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users");
+        dispatcher.forward(request, response);
 
-        session.invalidate();
-
-        logger.info("Logout was completed for user with login " + login);
-        response.sendRedirect("/login-auth");
+        return userList;
     }
 
     private void saveUser(HttpServletRequest request, HttpServletResponse response) throws
@@ -130,7 +128,7 @@ public class UserController extends HttpServlet {
         User user = new User(firstname, lastname, birthDate, login, password, email, userCode);
         session.setAttribute("user", user);
 
-        List<User> existingUsers = userService.findAll();
+        List<User> existingUsers = findAllUsers(request, response);
 
         for (User existingUser : existingUsers) {
             boolean hasSameUser = existingUser.getLogin().equals(user.getLogin());
@@ -170,34 +168,18 @@ public class UserController extends HttpServlet {
         response.sendRedirect("/register/verify-page");
     }
 
-    private void findAllUsers(HttpServletRequest request, HttpServletResponse response) throws
-            IOException, ServletException, ServiceException {
-        HttpSession session = request.getSession();
-
-        List<User> userList = userService.findAll();
-        userList = userList.stream().sorted(Comparator.comparing(User::getId)).collect(Collectors.toList());
-
-        logger.info("Users were watched");
-        session.setAttribute("userList", userList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users");
-        dispatcher.forward(request, response);
-    }
-
     private void findUser(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException, ServiceException {
-        HttpSession session = request.getSession();
         Long id = Long.parseLong(request.getParameter("id"));
         User existingUser = userService.find(id);
-        session.setAttribute("oneUser", existingUser);
+        request.setAttribute("oneUser", existingUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/find-by-id");
         dispatcher.forward(request, response);
     }
 
-    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
-        HttpSession session = request.getSession();
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
         Long id = Long.parseLong(request.getParameter("id"));
         User user = userService.find(id);
-
         user.setFirstName(request.getParameter("firstname"));
         user.setLastName(request.getParameter("lastname"));
         LocalDate birthDate;
@@ -212,16 +194,11 @@ public class UserController extends HttpServlet {
         user.setRole(Role.valueOf((request.getParameter("role"))));
         user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
 
-        if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
-                UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getLastName()) == isCheckStringFromUi) {
+        request.setAttribute("user", user);
+        response.sendRedirect("/user/find-all");
 
-            session.setAttribute("user", user);
-            userService.update(user);
-            response.sendRedirect("/user/find-all");
-            return;
-        }
+        userService.update(user);
 
-        logger.error("User wasn't updated");
         response.sendRedirect("/error-400");
     }
 
@@ -230,6 +207,16 @@ public class UserController extends HttpServlet {
         Long id = Long.parseLong(request.getParameter("id"));
         userService.delete(id);
         response.sendRedirect("/user/find-all");
+    }
+
+    private void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        Object login = session.getAttribute("login");
+
+        session.invalidate();
+
+        logger.info("Logout was completed for user with login " + login);
+        response.sendRedirect("/login-auth");
     }
 }
 

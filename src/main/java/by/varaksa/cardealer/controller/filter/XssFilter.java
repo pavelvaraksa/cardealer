@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(filterName = "XSS")
+@WebFilter(filterName = "XssFilter")
 public class XssFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
