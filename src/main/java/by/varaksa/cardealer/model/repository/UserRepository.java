@@ -10,6 +10,4 @@ public interface UserRepository extends CrudRepository<Long, User> {
     boolean isUserExist(String login) throws RepositoryException;
 
     Role findRoleByLogin(String login) throws RepositoryException;
-
-    void logOut(User user) throws RepositoryException;
 }

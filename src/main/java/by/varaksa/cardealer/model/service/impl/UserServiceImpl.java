@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
         }
 
         try {
-            logger.info("User with id " + id + " was deleted");
+            logger.info("User " + userToFindById.getFirstName() + " " + userToFindById.getLastName() + " was deleted");
             return userRepository.delete(id);
         } catch (RepositoryException exception) {
             String errorMessage = "Can't get user";
@@ -167,15 +167,6 @@ public class UserServiceImpl implements UserService {
             String errorMessage = "Role is " + Role.GUEST;
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
-        }
-    }
-
-    @Override
-    public void logOut(User user) throws ServiceException {
-        try {
-            userRepository.logOut(user);
-        } catch (RepositoryException exception) {
-            throw new ServiceException("User service exception while trying to log out user." + exception);
         }
     }
 }

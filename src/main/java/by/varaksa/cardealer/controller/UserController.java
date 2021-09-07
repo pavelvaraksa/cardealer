@@ -2,7 +2,6 @@ package by.varaksa.cardealer.controller;
 
 import by.varaksa.cardealer.controller.command.Commands;
 import by.varaksa.cardealer.exception.ControllerException;
-import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
@@ -63,7 +62,7 @@ public class UserController extends HttpServlet {
                 case FIND_USER_BY_ID -> findUser(request, response);
                 case LOGOUT -> logOut(request, response);
             }
-        } catch (ServiceException | ControllerException exception) {
+        } catch (ControllerException exception) {
             String errorMessage = "User controller exception." + exception;
             logger.error(errorMessage);
         }
@@ -79,24 +78,29 @@ public class UserController extends HttpServlet {
                 case UPDATE_USER -> updateUser(request, response);
                 case DELETE_USER -> deleteUser(request, response);
             }
-        } catch (ControllerException | ServiceException | IOException | RepositoryException | ServletException exception) {
+        } catch (ControllerException | ServiceException | IOException | ServletException exception) {
             String errorMessage = "User controller exception." + exception;
             logger.error(errorMessage);
         }
     }
 
-    private List<User> findAllUsers(HttpServletRequest request, HttpServletResponse response) throws ControllerException,
-            ServiceException, ServletException, IOException {
-        List<User> userList = userService.findAll();
-        request.setAttribute("userList", userList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users");
-        dispatcher.forward(request, response);
+    private List<User> findAllUsers(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
 
-        return userList;
+        try {
+            List<User> userList = userService.findAll();
+            request.setAttribute("userList", userList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users");
+            dispatcher.forward(request, response);
+
+            return userList;
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find users";
+            logger.error((errorMessage));
+            throw new ControllerException(errorMessage);
+        }
     }
 
-    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws
-            IOException, ControllerException, ServiceException, RepositoryException, ServletException {
+    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
         HttpSession session = request.getSession();
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
@@ -168,48 +172,67 @@ public class UserController extends HttpServlet {
         response.sendRedirect("/register/verify-page");
     }
 
-    private void findUser(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException, ServiceException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        User existingUser = userService.find(id);
-        request.setAttribute("oneUser", existingUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-by-id");
-        dispatcher.forward(request, response);
-    }
+    private void findUser(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
 
-    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        User user = userService.find(id);
-        user.setFirstName(request.getParameter("firstname"));
-        user.setLastName(request.getParameter("lastname"));
-        LocalDate birthDate;
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            User existingUser = userService.find(id);
+            request.setAttribute("oneUser", existingUser);
 
-        if (request.getParameter("birth_date").isEmpty()) {
-            birthDate = null;
-        } else {
-            birthDate = LocalDate.parse(request.getParameter("birth_date"));
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/find-by-id");
+            dispatcher.forward(request, response);
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find user";
+            logger.error((errorMessage));
+            throw new ControllerException(errorMessage);
         }
-
-        user.setBirthDate(birthDate);
-        user.setRole(Role.valueOf((request.getParameter("role"))));
-        user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
-
-        request.setAttribute("user", user);
-        response.sendRedirect("/user/find-all");
-
-        userService.update(user);
-
-        response.sendRedirect("/error-400");
     }
 
-    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws
-            IOException, ServiceException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        userService.delete(id);
-        response.sendRedirect("/user/find-all");
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ControllerException, IOException {
+
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            User user = userService.find(id);
+
+            user.setFirstName(request.getParameter("firstname"));
+            user.setLastName(request.getParameter("lastname"));
+            LocalDate birthDate;
+
+            if (request.getParameter("birth_date").isEmpty()) {
+                birthDate = null;
+            } else {
+                birthDate = LocalDate.parse(request.getParameter("birth_date"));
+            }
+
+            user.setBirthDate(birthDate);
+            user.setRole(Role.valueOf((request.getParameter("role"))));
+            user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
+
+            userService.update(user);
+
+            request.setAttribute("user", user);
+            response.sendRedirect("/user/find-all");
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find user";
+            logger.error((errorMessage));
+            throw new ControllerException(errorMessage);
+        }
     }
 
-    private void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException {
+
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            userService.delete(id);
+            response.sendRedirect("/user/find-all");
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find user";
+            logger.error((errorMessage));
+            throw new ControllerException(errorMessage);
+        }
+    }
+
+    public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         Object login = session.getAttribute("login");
 

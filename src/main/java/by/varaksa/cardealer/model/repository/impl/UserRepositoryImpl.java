@@ -255,16 +255,5 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return isStatus;
     }
-
-    @Override
-    public void logOut(User user) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
-            logger.info(connection);
-        } catch (SQLException exception) {
-            String errorMessage = "SQL exception." + exception;
-            logger.fatal(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
-    }
 }
 

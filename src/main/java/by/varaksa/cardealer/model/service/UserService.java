@@ -22,6 +22,4 @@ public interface UserService {
     boolean isUserExist(String login) throws ServiceException;
 
     Role findRoleByLogin(String login) throws ServiceException;
-
-    void logOut(User user) throws ServiceException;
 }
