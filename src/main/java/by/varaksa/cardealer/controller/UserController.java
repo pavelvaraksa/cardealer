@@ -101,7 +101,6 @@ public class UserController extends HttpServlet {
     }
 
     private void saveUser(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
-        HttpSession session = request.getSession();
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         LocalDate birthDate;
@@ -130,7 +129,7 @@ public class UserController extends HttpServlet {
         String userCode = userNotificationUserEmail.getRandom();
 
         User user = new User(firstname, lastname, birthDate, login, password, email, userCode);
-        session.setAttribute("user", user);
+        request.setAttribute("user", user);
 
         List<User> existingUsers = findAllUsers(request, response);
 
@@ -148,7 +147,7 @@ public class UserController extends HttpServlet {
         boolean confirmCode = userNotificationUserEmail.sendEmail(user);
 
         if (confirmCode) {
-            session.setAttribute("authCode", user);
+            request.setAttribute("authCode", user);
             response.sendRedirect("/register/verify-page");
         }
     }
