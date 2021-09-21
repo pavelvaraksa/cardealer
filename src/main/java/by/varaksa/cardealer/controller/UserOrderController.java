@@ -21,8 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/user-order/save", "/user-order/find-all", "/user-order/find-by-id",
-        "/user-order/update", "/user-order/delete"})
+@WebServlet(urlPatterns = {"/user-order/save", "/user-order/find-all", "/user-order/update", "/user-order/delete"})
 public class UserOrderController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;
@@ -46,15 +45,9 @@ public class UserOrderController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-            switch (commandName) {
-                case FIND_ALL_USER_ORDERS:
-                    findAllUserOrders(request, response);
-                    break;
-                case FIND_USER_ORDER_BY_ID:
-                    findUserOrder(request, response);
-                    break;
-                default:
-                    break;
+
+            if (commandName == Commands.FIND_ALL_USER_ORDERS) {
+                findAllUserOrders(request, response);
             }
         } catch (ServiceException exception) {
             String errorMessage = "UserOrder controller exception." + exception;
@@ -67,17 +60,11 @@ public class UserOrderController extends HttpServlet {
 
         try {
             switch (commandName) {
-                case SAVE_USER_ORDER:
-                    saveUserOrder(request, response);
-                    break;
-                case UPDATE_USER_ORDER:
-                    updateUserOrder(request, response);
-                    break;
-                case DELETE_USER_ORDER:
-                    deleteUserOrder(request, response);
-                    break;
-                default:
-                    break;
+                case SAVE_USER_ORDER -> saveUserOrder(request, response);
+                case UPDATE_USER_ORDER -> updateUserOrder(request, response);
+                case DELETE_USER_ORDER -> deleteUserOrder(request, response);
+                default -> {
+                }
             }
         } catch (ServiceException | IOException | RepositoryException | ServletException exception) {
             String errorMessage = "User order controller exception." + exception;
@@ -107,14 +94,6 @@ public class UserOrderController extends HttpServlet {
         logger.info("User orders were watched");
         request.setAttribute("userOrderList", userOrderList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-user-orders");
-        dispatcher.forward(request, response);
-    }
-
-    private void findUserOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        UserOrder existingUserOrder = userOrderService.find(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("find-by-id");
-        request.setAttribute("oneUserOrder", existingUserOrder);
         dispatcher.forward(request, response);
     }
 

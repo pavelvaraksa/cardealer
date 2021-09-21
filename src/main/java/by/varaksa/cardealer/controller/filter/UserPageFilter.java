@@ -28,7 +28,7 @@ public class UserPageFilter implements Filter {
         Object login = session.getAttribute("login");
         Object role = session.getAttribute("role");
 
-        if (login == null || (role != Role.USER && role != Role.ADMIN)) {
+        if (login == null) {
             logger.error("User page filter blocked an attempt to enter a forbidden page");
             response.sendRedirect("/error-403");
             return;

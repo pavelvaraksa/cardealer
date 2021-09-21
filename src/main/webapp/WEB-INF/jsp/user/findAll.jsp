@@ -54,7 +54,7 @@ pageContext.request.locale}" scope="session"/>
 <div align="center">
     <h2><u>${users_list}</u></h2>
     <form action=<%=request.getContextPath()%>"/user/find-all" method="get">
-        <tbody>
+        <body>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -110,7 +110,7 @@ pageContext.request.locale}" scope="session"/>
 <%--            <c:when test="${role == Role.ADMIN}">${admin}</c:when>--%>
 <%--            <c:when test="${role == Role.USER}">${user}</c:when>--%>
 <%--        </c:choose>--%>
-        </tbody>
+        </body>
         <label>
             <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/admin-menu"
                role="button">${return_to_previous_page}</a>

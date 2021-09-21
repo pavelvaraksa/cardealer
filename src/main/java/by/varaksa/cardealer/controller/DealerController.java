@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/dealer/save", "/dealer/find-all", "/dealer/find-by-id", "/dealer/update", "/dealer/delete"})
+@WebServlet(urlPatterns = {"/dealer/save", "/dealer/find-all", "/dealer/update", "/dealer/delete"})
 public class DealerController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;
@@ -48,15 +48,9 @@ public class DealerController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-            switch (commandName) {
-                case FIND_ALL_DEALERS:
-                    findAllDealers(request, response);
-                    break;
-                case FIND_DEALER_BY_ID:
-                    findDealer(request, response);
-                    break;
-                default:
-                    break;
+
+            if (commandName == Commands.FIND_ALL_DEALERS) {
+                findAllDealers(request, response);
             }
         } catch (ServiceException exception) {
             String errorMessage = "Dealer controller exception." + exception;
@@ -69,17 +63,11 @@ public class DealerController extends HttpServlet {
 
         try {
             switch (commandName) {
-                case SAVE_DEALER:
-                    saveDealer(request, response);
-                    break;
-                case UPDATE_DEALER:
-                    updateDealer(request, response);
-                    break;
-                case DELETE_DEALER:
-                    deleteDealer(request, response);
-                    break;
-                default:
-                    break;
+                case SAVE_DEALER -> saveDealer(request, response);
+                case UPDATE_DEALER -> updateDealer(request, response);
+                case DELETE_DEALER -> deleteDealer(request, response);
+                default -> {
+                }
             }
         } catch (ServiceException | IOException | RepositoryException | ServletException exception) {
             String errorMessage = "Dealer controller exception." + exception;
@@ -114,14 +102,6 @@ public class DealerController extends HttpServlet {
         logger.info("Dealers were watched");
         request.setAttribute("dealerList", dealerList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-dealers");
-        dispatcher.forward(request, response);
-    }
-
-    private void findDealer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Dealer existingDealer = dealerService.find(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("find-by-id");
-        request.setAttribute("oneDealer", existingDealer);
         dispatcher.forward(request, response);
     }
 

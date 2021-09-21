@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/body/save", "/body/find-all", "/body/find-by-id", "/body/update", "/body/delete"})
+@WebServlet(urlPatterns = {"/body/save", "/body/find-all", "/body/update", "/body/delete"})
 public class BodyController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;
@@ -50,15 +50,9 @@ public class BodyController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-            switch (commandName) {
-                case FIND_ALL_BODIES:
-                    findAllBodies(request, response);
-                    break;
-                case FIND_BODY_BY_ID:
-                    findBody(request, response);
-                    break;
-                default:
-                    break;
+
+            if (commandName == Commands.FIND_ALL_BODIES) {
+                findAllBodies(request, response);
             }
         } catch (ServiceException exception) {
             String errorMessage = "Body controller exception." + exception;
@@ -71,17 +65,11 @@ public class BodyController extends HttpServlet {
 
         try {
             switch (commandName) {
-                case SAVE_BODY:
-                    saveBody(request, response);
-                    break;
-                case UPDATE_BODY:
-                    updateBody(request, response);
-                    break;
-                case DELETE_BODY:
-                    deleteBody(request, response);
-                    break;
-                default:
-                    break;
+                case SAVE_BODY -> saveBody(request, response);
+                case UPDATE_BODY -> updateBody(request, response);
+                case DELETE_BODY -> deleteBody(request, response);
+                default -> {
+                }
             }
         } catch (ControllerException | ServiceException | IOException | RepositoryException | ServletException exception) {
             String errorMessage = "Body controller exception." + exception;
@@ -112,14 +100,6 @@ public class BodyController extends HttpServlet {
         logger.info("Bodies were watched");
         request.setAttribute("bodyList", bodyList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-bodies");
-        dispatcher.forward(request, response);
-    }
-
-    private void findBody(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Body existingBody = bodyService.find(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("find-by-id");
-        request.setAttribute("oneBody", existingBody);
         dispatcher.forward(request, response);
     }
 

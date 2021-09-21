@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/engine/save", "/engine/find-all", "/engine/find-by-id", "/engine/update", "/engine/delete"})
+@WebServlet(urlPatterns = {"/engine/save", "/engine/find-all", "/engine/update", "/engine/delete"})
 public class EngineController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;
@@ -46,15 +46,9 @@ public class EngineController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-            switch (commandName) {
-                case FIND_ALL_ENGINES:
-                    findAllEngines(request, response);
-                    break;
-                case FIND_ENGINE_BY_ID:
-                    findEngine(request, response);
-                    break;
-                default:
-                    break;
+
+            if (commandName == Commands.FIND_ALL_ENGINES) {
+                findAllEngines(request, response);
             }
         } catch (ServiceException exception) {
             String errorMessage = "Engine controller exception." + exception;
@@ -67,17 +61,11 @@ public class EngineController extends HttpServlet {
 
         try {
             switch (commandName) {
-                case SAVE_ENGINE:
-                    saveEngine(request, response);
-                    break;
-                case UPDATE_ENGINE:
-                    updateEngine(request, response);
-                    break;
-                case DELETE_ENGINE:
-                    deleteEngine(request, response);
-                    break;
-                default:
-                    break;
+                case SAVE_ENGINE -> saveEngine(request, response);
+                case UPDATE_ENGINE -> updateEngine(request, response);
+                case DELETE_ENGINE -> deleteEngine(request, response);
+                default -> {
+                }
             }
         } catch (ServiceException | IOException | RepositoryException | ServletException exception) {
             String errorMessage = "Engine controller exception." + exception;

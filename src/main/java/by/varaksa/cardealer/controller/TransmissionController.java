@@ -22,8 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/transmission/save", "/transmission/find-all", "/transmission/find-by-id",
-        "/transmission/update", "/transmission/delete"})
+@WebServlet(urlPatterns = {"/transmission/save", "/transmission/find-all", "/transmission/update", "/transmission/delete"})
 
 public class TransmissionController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
@@ -48,15 +47,9 @@ public class TransmissionController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-            switch (commandName) {
-                case FIND_ALL_TRANSMISSIONS:
-                    findAllTransmissions(request, response);
-                    break;
-                case FIND_TRANSMISSION_BY_ID:
-                    findTransmission(request, response);
-                    break;
-                default:
-                    break;
+
+            if (commandName == Commands.FIND_ALL_TRANSMISSIONS) {
+                findAllTransmissions(request, response);
             }
         } catch (ServiceException exception) {
             String errorMessage = "Transmission controller exception." + exception;
@@ -69,17 +62,11 @@ public class TransmissionController extends HttpServlet {
 
         try {
             switch (commandName) {
-                case SAVE_TRANSMISSION:
-                    saveTransmission(request, response);
-                    break;
-                case UPDATE_TRANSMISSION:
-                    updateTransmission(request, response);
-                    break;
-                case DELETE_TRANSMISSION:
-                    deleteTransmission(request, response);
-                    break;
-                default:
-                    break;
+                case SAVE_TRANSMISSION -> saveTransmission(request, response);
+                case UPDATE_TRANSMISSION -> updateTransmission(request, response);
+                case DELETE_TRANSMISSION -> deleteTransmission(request, response);
+                default -> {
+                }
             }
         } catch (ServiceException | IOException | RepositoryException | ServletException exception) {
             String errorMessage = "Transmission controller exception." + exception;
@@ -113,14 +100,6 @@ public class TransmissionController extends HttpServlet {
         logger.info("Transmissions were watched");
         request.setAttribute("transmissionList", transmissionList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-transmissions");
-        dispatcher.forward(request, response);
-    }
-
-    private void findTransmission(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Transmission existingTransmission = transmissionService.find(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("find-by-id");
-        request.setAttribute("oneTransmission", existingTransmission);
         dispatcher.forward(request, response);
     }
 

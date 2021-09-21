@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/car/save", "/car/find-all", "/car/find-by-id", "/car/update", "/car/delete"})
+@WebServlet(urlPatterns = {"/car/save", "/car/find-all", "/car/update", "/car/delete"})
 public class CarController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private static final boolean isCheckStringFromUI = true;
@@ -48,15 +48,9 @@ public class CarController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-            switch (commandName) {
-                case FIND_ALL_CARS:
-                    findAllCars(request, response);
-                    break;
-                case FIND_CAR_BY_ID:
-                    findCar(request, response);
-                    break;
-                default:
-                    break;
+
+            if (commandName == Commands.FIND_ALL_CARS) {
+                findAllCars(request, response);
             }
         } catch (ServiceException exception) {
             String errorMessage = "Car controller exception." + exception;
@@ -69,17 +63,11 @@ public class CarController extends HttpServlet {
 
         try {
             switch (commandName) {
-                case SAVE_CAR:
-                    saveCar(request, response);
-                    break;
-                case UPDATE_CAR:
-                    updateCar(request, response);
-                    break;
-                case DELETE_CAR:
-                    deleteCar(request, response);
-                    break;
-                default:
-                    break;
+                case SAVE_CAR -> saveCar(request, response);
+                case UPDATE_CAR -> updateCar(request, response);
+                case DELETE_CAR -> deleteCar(request, response);
+                default -> {
+                }
             }
         } catch (ServiceException | IOException | RepositoryException | ServletException exception) {
             String errorMessage = "Car controller exception." + exception;
@@ -113,14 +101,6 @@ public class CarController extends HttpServlet {
         logger.info("Cars were watched");
         request.setAttribute("carList", carList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-cars");
-        dispatcher.forward(request, response);
-    }
-
-    private void findCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServiceException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Car existingCar = carService.find(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("find-by-id");
-        request.setAttribute("oneCar", existingCar);
         dispatcher.forward(request, response);
     }
 

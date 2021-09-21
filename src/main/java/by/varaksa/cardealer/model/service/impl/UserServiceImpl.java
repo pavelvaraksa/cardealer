@@ -1,5 +1,6 @@
 package by.varaksa.cardealer.model.service.impl;
 
+import by.varaksa.cardealer.exception.ControllerException;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.entity.Role;
@@ -19,11 +20,49 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger();
     private static final String REGEXP_FIRSTNAME = RegexpPropertiesReader.getRegexp("firstname.regexp");
     private static final String REGEXP_LASTNAME = RegexpPropertiesReader.getRegexp("lastname.regexp");
+    private static final String REGEXP_LOGIN = RegexpPropertiesReader.getRegexp("login.regexp");
+    private static final String REGEXP_PASSWORD = RegexpPropertiesReader.getRegexp("password.regexp");
+    private static final String REGEXP_EMAIL = RegexpPropertiesReader.getRegexp("email.regexp");
     private static final boolean isCheckStringFromUi = true;
     private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public User checkBeforeSave(User user) throws ServiceException {
+
+        try {
+
+            if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
+                    UserValidator.isUserValidate(REGEXP_LASTNAME, user.getLastName()) == isCheckStringFromUi &&
+                    UserValidator.isUserValidate(REGEXP_LOGIN, user.getLogin()) == isCheckStringFromUi &&
+                    UserValidator.isUserValidate(REGEXP_PASSWORD, user.getPassword()) == isCheckStringFromUi &&
+                    UserValidator.isUserValidate(REGEXP_EMAIL, user.getEmail()) == isCheckStringFromUi) {
+
+                logger.info("User " + user.getFirstName() + " " + user.getLastName() + " entered correct data");
+
+                List<User> existingUsers = userRepository.findAll();
+
+                for (User existingUser : existingUsers) {
+                    boolean hasSameUser = existingUser.getLogin().equals(user.getLogin());
+
+                    if (hasSameUser) {
+                        String errorMessage = "User with login " + user.getLogin() + " already exists";
+                        logger.error(errorMessage);
+                        throw new ServiceException(errorMessage);
+                    }
+                }
+
+                return user;
+            }
+
+            String errorMessage = "Wasn't correct input format for register user";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User service exception while trying to save user." + exception);
+        }
     }
 
     @Override
@@ -94,14 +133,13 @@ public class UserServiceImpl implements UserService {
                     UserValidator.isUserValidate(REGEXP_LASTNAME, user.getLastName()) == isCheckStringFromUi) {
                 logger.info("User " + user.getFirstName() + " " + user.getLastName() + " was updated");
                 return userRepository.update(user);
-            } else {
-                logger.error("User " + user.getFirstName() + " " + user.getLastName() + " wasn't updated");
-                return user;
             }
-        } catch (RepositoryException exception) {
-            String errorMessage = "Can't get user";
+
+            String errorMessage = "Wasn't correct input format for update user";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User service exception while trying to update user." + exception);
         }
     }
 
@@ -141,30 +179,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean isUserExist(String login) throws ServiceException {
-        try {
-
-            if (!userRepository.isUserExist(login)) {
-                logger.error("Login " + login + " wasn't correct");
-                return Boolean.parseBoolean(login);
-            }
-
-            logger.info("Login " + login + " was correct");
-            return userRepository.isUserExist(login);
-        } catch (RepositoryException exception) {
-            String errorMessage = "Login wasn't found";
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-    }
-
-    @Override
     public Role findRoleByLogin(String login) throws ServiceException {
         try {
             logger.info("Role is " + userRepository.findRoleByLogin(login));
             return userRepository.findRoleByLogin(login);
         } catch (RepositoryException exception) {
             String errorMessage = "Role is " + Role.GUEST;
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public boolean isUserExist(String login) throws ServiceException {
+        try {
+
+            if (!userRepository.isUserExist(login)) {
+                logger.error("Login " + login + " wasn't found in database");
+                return Boolean.parseBoolean(login);
+            }
+
+            logger.info("Login " + login + " was found in database");
+            return userRepository.isUserExist(login);
+        } catch (RepositoryException exception) {
+            String errorMessage = "Login wasn't found";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
