@@ -19,7 +19,6 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="dealer.city" var="city"/>
 <fmt:message key="info.created" var="created"/>
 <fmt:message key="info.changed" var="changed"/>
-<fmt:message key="car.car.id" var="car_id"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -65,7 +64,6 @@ pageContext.request.locale}" scope="session"/>
                 <th>${city}</th>
                 <th>${created}</th>
                 <th>${changed}</th>
-                <th>${car_id}</th>
             </tr>
             </thead>
 
@@ -80,7 +78,6 @@ pageContext.request.locale}" scope="session"/>
                     <td>${dealer.city}</td>
                     <td>${dealer.created}</td>
                     <td>${dealer.changed}</td>
-                    <td>${dealer.carId}</td>
                     <td>
                         <form action=<%=request.getContextPath()%>"update-dealer" method="post">
                             <input type="hidden" class="form-control" name="id" value="${dealer.id}">
@@ -89,7 +86,6 @@ pageContext.request.locale}" scope="session"/>
                             <input type="hidden" class="form-control" name="foundationDate"
                                    value="${dealer.foundationDate}">
                             <input type="hidden" class="form-control" name="city" value="${dealer.city}">
-                            <input type="hidden" class="form-control" name="carId" value="${dealer.carId}">
                             <input class="btn btn-outline-warning btn-sm" type="submit" value=${update}>
                         </form>
                     </td>

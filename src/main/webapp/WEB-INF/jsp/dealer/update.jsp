@@ -45,7 +45,7 @@ pageContext.request.locale}" scope="session"/>
             <div class="col-md-2">
                 <input type="hidden" name="id" value="${param.id}">
             </div>
-            <div class="col-md-23">
+            <div class="col-md-3">
                 <label for="validationName" class="form-label"><u>${name}</u></label>
                 <input type="text" class="form-control" id="validationName" name="name"
                        value="${param.name}" placeholder="${param.name}" required>

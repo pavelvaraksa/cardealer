@@ -8,7 +8,9 @@ import by.varaksa.cardealer.model.service.BodyService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BodyServiceImpl implements BodyService {
     private static final Logger logger = LogManager.getLogger();
@@ -22,7 +24,7 @@ public class BodyServiceImpl implements BodyService {
     public Body save(Body body) throws ServiceException {
         try {
             Body savedBody = bodyRepository.save(body);
-            logger.info("Body with type " + body.getBodyType() + " and color " + body.getColor() + " was saved");
+            logger.info("Body type " + body.getBodyType() + " with color " + body.getColor() + " was saved");
             return savedBody;
         } catch (RepositoryException exception) {
             throw new ServiceException("Body service exception while trying to save body." + exception);
@@ -35,6 +37,7 @@ public class BodyServiceImpl implements BodyService {
 
         try {
             existingBodies = bodyRepository.findAll();
+            existingBodies = existingBodies.stream().sorted(Comparator.comparing(Body::getId)).collect(Collectors.toList());
 
             if (existingBodies.isEmpty()) {
                 String errorMessage = "Bodies list is empty";
@@ -71,7 +74,7 @@ public class BodyServiceImpl implements BodyService {
             logger.info("Body with id " + id + " exists");
             return bodyRepository.find(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get a body";
+            String errorMessage = "Can't find body";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -80,10 +83,10 @@ public class BodyServiceImpl implements BodyService {
     @Override
     public Body update(Body body) throws ServiceException {
         try {
-            logger.info("Body with id " + body.getId() + " was updated");
+            logger.info("Body type " + body.getBodyType() + " with color " + body.getColor() + " was updated");
             return bodyRepository.update(body);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get body";
+            String errorMessage = "Can't update body";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -108,7 +111,7 @@ public class BodyServiceImpl implements BodyService {
             logger.info("Body with id " + id + " was deleted");
             return bodyRepository.delete(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get body";
+            String errorMessage = "Can't delete body";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }

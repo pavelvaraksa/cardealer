@@ -18,21 +18,14 @@ public class Dealer {
 
     private LocalDateTime changed;
 
-    private Long carId;
-
     public Dealer() {
     }
 
-    public Dealer(String name,
-                  String address,
-                  LocalDate foundationDate,
-                  City city,
-                  Long carId) {
+    public Dealer(String name, String address, LocalDate foundationDate, City city) {
         this.name = name;
         this.address = address;
         this.foundationDate = foundationDate;
         this.city = city;
-        this.carId = carId;
     }
 
     public Long getId() {
@@ -91,14 +84,6 @@ public class Dealer {
         this.changed = changed;
     }
 
-    public Long getCarId() {
-        return carId;
-    }
-
-    public void setCarId(Long carId) {
-        this.carId = carId;
-    }
-
     @Override
     public int hashCode() {
         return (int) (11 * id
@@ -107,8 +92,7 @@ public class Dealer {
                 + foundationDate.hashCode()
                 + city.hashCode()
                 + created.hashCode()
-                + changed.hashCode()
-                + carId.hashCode());
+                + changed.hashCode());
     }
 
     @Override
@@ -129,8 +113,7 @@ public class Dealer {
                 && (foundationDate == dealer.foundationDate || foundationDate != null && foundationDate.equals(dealer.getFoundationDate()))
                 && (city == dealer.city || city != null && city.equals(dealer.getCity()))
                 && (created == dealer.created || created != null && created.equals(dealer.getCreated()))
-                && (changed == dealer.changed || changed != null && changed.equals(dealer.getChanged()))
-                && (carId == dealer.carId || carId != null && carId.equals(dealer.getCarId()));
+                && (changed == dealer.changed || changed != null && changed.equals(dealer.getChanged()));
     }
 
     @Override
@@ -142,7 +125,6 @@ public class Dealer {
                 ", foundation date = " + foundationDate +
                 ", city is " + city +
                 ", created on " + created +
-                ", changed on " + changed +
-                ", car id = " + carId;
+                ", changed on " + changed;
     }
 }

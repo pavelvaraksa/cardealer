@@ -13,6 +13,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="user.firstname" var="firstname"/>
 <fmt:message key="user.lastname" var="lastname"/>
 <fmt:message key="user.birth_date" var="birth_date"/>
+<fmt:message key="user.phone_number" var="phone_number"/>
 <fmt:message key="user.email" var="email"/>
 <fmt:message key="user.role" var="role"/>
 <fmt:message key="user.is.blocked" var="is_blocked"/>
@@ -66,6 +67,12 @@ pageContext.request.locale}" scope="session"/>
                 <label for="validationBirthdate" class="form-label"><u>${birth_date}</u>
                     <input type="date" class="form-control" id="validationBirthdate" name="birth_date"
                            value="${param.birthDate}" placeholder=${param.birthDate}>
+                </label>
+            </div>
+            <div class="col-md-3">
+                <label for="validationPhoneNumber" class="form-label"><u>${birth_date}</u>
+                    <input type="tel" class="form-control" id="validationPhoneNumber" name="phone_number"
+                           value="${param.birthDate}" placeholder=${param.phoneNumber}>
                 </label>
             </div>
             <div class="col-md-3">

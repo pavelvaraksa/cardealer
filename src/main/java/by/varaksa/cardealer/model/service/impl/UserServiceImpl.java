@@ -1,6 +1,5 @@
 package by.varaksa.cardealer.model.service.impl;
 
-import by.varaksa.cardealer.exception.ControllerException;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.entity.Role;
@@ -8,7 +7,7 @@ import by.varaksa.cardealer.model.entity.User;
 import by.varaksa.cardealer.model.repository.UserRepository;
 import by.varaksa.cardealer.model.service.UserService;
 import by.varaksa.cardealer.util.RegexpPropertiesReader;
-import by.varaksa.cardealer.validator.UserValidator;
+import by.varaksa.cardealer.validator.StringValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,6 +19,7 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger();
     private static final String REGEXP_FIRSTNAME = RegexpPropertiesReader.getRegexp("firstname.regexp");
     private static final String REGEXP_LASTNAME = RegexpPropertiesReader.getRegexp("lastname.regexp");
+    private static final String REGEXP_PHONE_NUMBER = RegexpPropertiesReader.getRegexp("phone.number.regexp");
     private static final String REGEXP_LOGIN = RegexpPropertiesReader.getRegexp("login.regexp");
     private static final String REGEXP_PASSWORD = RegexpPropertiesReader.getRegexp("password.regexp");
     private static final String REGEXP_EMAIL = RegexpPropertiesReader.getRegexp("email.regexp");
@@ -31,14 +31,14 @@ public class UserServiceImpl implements UserService {
     }
 
     public User checkBeforeSave(User user) throws ServiceException {
-
         try {
-
-            if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
-                    UserValidator.isUserValidate(REGEXP_LASTNAME, user.getLastName()) == isCheckStringFromUi &&
-                    UserValidator.isUserValidate(REGEXP_LOGIN, user.getLogin()) == isCheckStringFromUi &&
-                    UserValidator.isUserValidate(REGEXP_PASSWORD, user.getPassword()) == isCheckStringFromUi &&
-                    UserValidator.isUserValidate(REGEXP_EMAIL, user.getEmail()) == isCheckStringFromUi) {
+            if (StringValidator.isStringValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_LASTNAME, user.getLastName()) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_PHONE_NUMBER, String.valueOf(user.getPhoneNumber())) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_LOGIN, user.getLogin()) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_PASSWORD, user.getPassword()) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_EMAIL, user.getEmail()) == isCheckStringFromUi) {
 
                 logger.info("User " + user.getFirstName() + " " + user.getLastName() + " entered correct data");
 
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
     public User save(User user) throws ServiceException {
         try {
             User savedUser = userRepository.save(user);
-            logger.info("User with login " + user.getLogin() + " was saved");
+            logger.info("User " + user.getFirstName() + " " + user.getLastName() + " was saved");
             return savedUser;
         } catch (RepositoryException exception) {
             throw new ServiceException("User service exception while trying to save user." + exception);
@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService {
             logger.info("User with id " + id + " exists");
             return userRepository.find(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get user";
+            String errorMessage = "Can't find user";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -126,11 +126,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user) throws ServiceException {
-
         try {
-
-            if (UserValidator.isUserValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
-                    UserValidator.isUserValidate(REGEXP_LASTNAME, user.getLastName()) == isCheckStringFromUi) {
+            if (StringValidator.isStringValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_LASTNAME, user.getLastName()) == isCheckStringFromUi) {
                 logger.info("User " + user.getFirstName() + " " + user.getLastName() + " was updated");
                 return userRepository.update(user);
             }
@@ -163,7 +161,7 @@ public class UserServiceImpl implements UserService {
             logger.info("User " + userToFindById.getFirstName() + " " + userToFindById.getLastName() + " was deleted");
             return userRepository.delete(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get user";
+            String errorMessage = "Can't delete user";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }

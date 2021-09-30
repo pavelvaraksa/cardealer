@@ -1,6 +1,7 @@
 package by.varaksa.cardealer.controller;
 
 import by.varaksa.cardealer.controller.command.Commands;
+import by.varaksa.cardealer.exception.ControllerException;
 import by.varaksa.cardealer.model.entity.City;
 import by.varaksa.cardealer.model.entity.Dealer;
 import by.varaksa.cardealer.exception.RepositoryException;
@@ -9,8 +10,6 @@ import by.varaksa.cardealer.model.repository.DealerRepository;
 import by.varaksa.cardealer.model.repository.impl.DealerRepositoryImpl;
 import by.varaksa.cardealer.model.service.DealerService;
 import by.varaksa.cardealer.model.service.impl.DealerServiceImpl;
-import by.varaksa.cardealer.validator.CarValidator;
-import by.varaksa.cardealer.validator.DealerValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,7 +26,6 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/dealer/save", "/dealer/find-all", "/dealer/update", "/dealer/delete"})
 public class DealerController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
-    private static final boolean isCheckStringFromUI = true;
     private Commands commandName;
     public DealerRepository dealerRepository = new DealerRepositoryImpl();
     public DealerService dealerService = new DealerServiceImpl(dealerRepository);
@@ -48,11 +46,10 @@ public class DealerController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-
             if (commandName == Commands.FIND_ALL_DEALERS) {
                 findAllDealers(request, response);
             }
-        } catch (ServiceException exception) {
+        } catch (ServiceException | ControllerException exception) {
             String errorMessage = "Dealer controller exception." + exception;
             logger.error(errorMessage);
         }
@@ -69,66 +66,74 @@ public class DealerController extends HttpServlet {
                 default -> {
                 }
             }
-        } catch (ServiceException | IOException | RepositoryException | ServletException exception) {
+        } catch (ServiceException | IOException | RepositoryException | ServletException | ControllerException exception) {
             String errorMessage = "Dealer controller exception." + exception;
             logger.error(errorMessage);
         }
     }
 
-    private void saveDealer(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException {
-        String name = (request.getParameter("name"));
-        String address = (request.getParameter("address"));
-        LocalDate foundationDate = LocalDate.parse((request.getParameter("foundation_date")));
-        City city = City.valueOf(((request.getParameter("city"))));
-
-        if (DealerValidator.isDealerValidate(DealerValidator.DEALER_NAME_REGEXP, request.getParameter("name")) == isCheckStringFromUI &&
-                DealerValidator.isDealerValidate(DealerValidator.DEALER_ADDRESS_REGEXP, request.getParameter("address")) == isCheckStringFromUI &&
-                CarValidator.isCarValidate(CarValidator.CAR_ID_REGEXP, request.getParameter("car_id")) == isCheckStringFromUI) {
-
-            Long carId = Long.valueOf(request.getParameter("car_id"));
-            Dealer dealer = new Dealer(name, address, foundationDate, city, carId);
+    private void saveDealer(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException, ControllerException {
+        try {
+            String name = (request.getParameter("name"));
+            String address = (request.getParameter("address"));
+            LocalDate foundationDate = LocalDate.parse((request.getParameter("foundation_date")));
+            City city = City.valueOf(((request.getParameter("city"))));
+            Dealer dealer = new Dealer(name, address, foundationDate, city);
 
             dealerService.save(dealer);
             response.sendRedirect("/dealer/find-all");
-            return;
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't save dealer";
+            logger.error(errorMessage);
+            response.sendRedirect("/error-400");
+            throw new ControllerException(errorMessage);
         }
-
-        logger.error("Dealer wasn't saved");
-        response.sendRedirect("/body/find-all");
     }
 
-    private void findAllDealers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException {
-        List<Dealer> dealerList = dealerService.findAll();
-        logger.info("Dealers were watched");
-        request.setAttribute("dealerList", dealerList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-dealers");
-        dispatcher.forward(request, response);
+    private void findAllDealers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
+        try {
+            List<Dealer> dealerList = dealerService.findAll();
+            logger.info("Dealers were watched");
+            request.setAttribute("dealerList", dealerList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-dealers");
+            dispatcher.forward(request, response);
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find dealers";
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
     }
 
-    private void updateDealer(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Dealer dealer = dealerService.find(id);
+    private void updateDealer(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException, ControllerException {
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            Dealer dealer = dealerService.find(id);
 
-        dealer.setName(request.getParameter("name"));
-        dealer.setAddress(request.getParameter("address"));
-        dealer.setFoundationDate(LocalDate.parse(request.getParameter("foundation_date")));
-        dealer.setCity(City.valueOf(request.getParameter("city")));
-
-        if (DealerValidator.isDealerValidate(DealerValidator.DEALER_NAME_REGEXP, request.getParameter("name")) == isCheckStringFromUI &&
-                DealerValidator.isDealerValidate(DealerValidator.DEALER_ADDRESS_REGEXP, request.getParameter("address")) == isCheckStringFromUI) {
-
+            dealer.setName(request.getParameter("name"));
+            dealer.setAddress(request.getParameter("address"));
+            dealer.setFoundationDate(LocalDate.parse(request.getParameter("foundation_date")));
+            dealer.setCity(City.valueOf(request.getParameter("city")));
             dealerService.update(dealer);
-            response.sendRedirect("/dealer/find-all");
-            return;
-        }
 
-        logger.error("Dealer wasn't updated");
-        response.sendRedirect("/body/find-all");
+            request.setAttribute("dealer", dealer);
+            response.sendRedirect("/dealer/find-all");
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't update dealer";
+            response.sendRedirect("/error-400");
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
     }
 
-    private void deleteDealer(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        dealerService.delete(id);
-        response.sendRedirect("/dealer/find-all");
+    private void deleteDealer(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, ControllerException {
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            dealerService.delete(id);
+            response.sendRedirect("/dealer/find-all");
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't delete dealer";
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
     }
 }

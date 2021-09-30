@@ -11,8 +11,6 @@ import by.varaksa.cardealer.model.repository.BodyRepository;
 import by.varaksa.cardealer.model.repository.impl.BodyRepositoryImpl;
 import by.varaksa.cardealer.model.service.BodyService;
 import by.varaksa.cardealer.model.service.impl.BodyServiceImpl;
-import by.varaksa.cardealer.util.RegexpPropertiesReader;
-import by.varaksa.cardealer.validator.CarValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,11 +26,9 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/body/save", "/body/find-all", "/body/update", "/body/delete"})
 public class BodyController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
-    private static final boolean isCheckStringFromUI = true;
     private Commands commandName;
     public BodyRepository bodyRepository = new BodyRepositoryImpl();
     public BodyService bodyService = new BodyServiceImpl(bodyRepository);
-    private static final String REGEXP_CAR_ID = RegexpPropertiesReader.getRegexp("car.id.regexp");
 
     public BodyController() {
         super();
@@ -50,11 +46,10 @@ public class BodyController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-
             if (commandName == Commands.FIND_ALL_BODIES) {
                 findAllBodies(request, response);
             }
-        } catch (ServiceException exception) {
+        } catch (ServiceException | ControllerException exception) {
             String errorMessage = "Body controller exception." + exception;
             logger.error(errorMessage);
         }
@@ -78,46 +73,64 @@ public class BodyController extends HttpServlet {
     }
 
     private void saveBody(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException, ServiceException, RepositoryException, ServletException {
-        Color color = Color.valueOf(request.getParameter("color"));
-        BodyType bodyType = BodyType.valueOf(request.getParameter("body_type"));
+        try {
+            Color color = Color.valueOf(request.getParameter("color"));
+            BodyType bodyType = BodyType.valueOf(request.getParameter("body_type"));
 
-        if (CarValidator.isCarValidate(REGEXP_CAR_ID, request.getParameter("car_id")) == isCheckStringFromUI) {
-            Long carId = Long.valueOf(request.getParameter("car_id"));
-
-            Body body = new Body(color, bodyType, carId);
+            Body body = new Body(color, bodyType);
 
             bodyService.save(body);
             response.sendRedirect("/body/find-all");
-            return;
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't save body";
+            logger.error(errorMessage);
+            response.sendRedirect("/error-400");
+            throw new ControllerException(errorMessage);
         }
-
-        logger.error("Body wasn't saved");
-        response.sendRedirect("/body/find-all");
     }
 
-    private void findAllBodies(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException {
-        List<Body> bodyList = bodyService.findAll();
-        logger.info("Bodies were watched");
-        request.setAttribute("bodyList", bodyList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-bodies");
-        dispatcher.forward(request, response);
+    private void findAllBodies(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
+        try {
+            List<Body> bodyList = bodyService.findAll();
+            logger.info("Bodies were watched");
+            request.setAttribute("bodyList", bodyList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-bodies");
+            dispatcher.forward(request, response);
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find bodies";
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
     }
 
-    private void updateBody(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Body body = bodyService.find(id);
+    private void updateBody(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException, ControllerException {
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            Body body = bodyService.find(id);
 
-        body.setColor(Color.valueOf(request.getParameter("color")));
-        body.setBodyType(BodyType.valueOf(request.getParameter("body_type")));
+            body.setColor(Color.valueOf(request.getParameter("color")));
+            body.setBodyType(BodyType.valueOf(request.getParameter("body_type")));
+            bodyService.update(body);
 
-        bodyService.update(body);
-        response.sendRedirect("/body/find-all");
+            request.setAttribute("body", body);
+            response.sendRedirect("/body/find-all");
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't update body";
+            response.sendRedirect("/error-400");
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
     }
 
-    private void deleteBody(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, ServletException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        bodyService.delete(id);
-        response.sendRedirect("/body/find-all");
+    private void deleteBody(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, ServletException, ControllerException {
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            bodyService.delete(id);
+            response.sendRedirect("/body/find-all");
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't delete body";
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
     }
 }
-

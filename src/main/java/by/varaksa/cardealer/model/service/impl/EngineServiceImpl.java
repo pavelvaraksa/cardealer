@@ -5,13 +5,21 @@ import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.repository.EngineRepository;
 import by.varaksa.cardealer.model.service.EngineService;
+import by.varaksa.cardealer.util.RegexpPropertiesReader;
+import by.varaksa.cardealer.validator.StringValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EngineServiceImpl implements EngineService {
     private static final Logger logger = LogManager.getLogger();
+    private static final String REGEXP_VOLUME = RegexpPropertiesReader.getRegexp("volume.regexp");
+    private static final String REGEXP_CYLINDERS_COUNT = RegexpPropertiesReader.getRegexp("cylinders.count.regexp");
+    private static final String REGEXP_CAR_ID = RegexpPropertiesReader.getRegexp("car.id.regexp");
+    private static final boolean isCheckStringFromUi = true;
     private final EngineRepository engineRepository;
 
     public EngineServiceImpl(EngineRepository engineRepository) {
@@ -21,9 +29,16 @@ public class EngineServiceImpl implements EngineService {
     @Override
     public Engine save(Engine engine) throws ServiceException {
         try {
-            Engine savedEngine = engineRepository.save(engine);
-            logger.info("Engine with fuel type " + engine.getFuelType() + " and volume = " + engine.getVolume() + " was saved");
-            return savedEngine;
+            if (StringValidator.isStringValidate(REGEXP_VOLUME, String.valueOf(engine.getVolume())) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_CYLINDERS_COUNT, String.valueOf(engine.getCylindersCount())) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_CAR_ID, String.valueOf(engine.getCarId())) == isCheckStringFromUi) {
+                logger.info("Engine type " + engine.getFuelType() + " with volume " + engine.getVolume() + " was saved");
+                return engineRepository.save(engine);
+            }
+
+            String errorMessage = "Wasn't correct input format for save engine";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
         } catch (RepositoryException exception) {
             throw new ServiceException("Engine service exception while trying to save engine." + exception);
         }
@@ -35,6 +50,7 @@ public class EngineServiceImpl implements EngineService {
 
         try {
             existingEngines = engineRepository.findAll();
+            existingEngines = existingEngines.stream().sorted(Comparator.comparing(Engine::getId)).collect(Collectors.toList());
 
             if (existingEngines.isEmpty()) {
                 String errorMessage = "Engines list is empty";
@@ -69,7 +85,7 @@ public class EngineServiceImpl implements EngineService {
             logger.info("Engine with id " + id + " exists");
             return engineRepository.find(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get engine";
+            String errorMessage = "Can't find engine";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -78,12 +94,18 @@ public class EngineServiceImpl implements EngineService {
     @Override
     public Engine update(Engine engine) throws ServiceException {
         try {
-            logger.info("Engine with id " + engine.getId() + " was updated");
-            return engineRepository.update(engine);
-        } catch (RepositoryException exception) {
-            String errorMessage = "Can't get engine";
+            if (StringValidator.isStringValidate(REGEXP_VOLUME, String.valueOf(engine.getVolume())) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_CYLINDERS_COUNT, String.valueOf(engine.getCylindersCount())) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_CAR_ID, String.valueOf(engine.getCarId())) == isCheckStringFromUi) {
+                logger.info("Engine type " + engine.getFuelType() + " with volume " + engine.getVolume() + " was updated");
+                return engineRepository.update(engine);
+            }
+
+            String errorMessage = "Wasn't correct input format for update engine";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Engine service exception while trying to update engine." + exception);
         }
     }
 
@@ -106,7 +128,7 @@ public class EngineServiceImpl implements EngineService {
             logger.info("Engine with id " + id + " was deleted");
             return engineRepository.delete(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get engine";
+            String errorMessage = "Can't delete engine";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }

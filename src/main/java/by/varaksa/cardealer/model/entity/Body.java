@@ -18,10 +18,9 @@ public class Body {
     public Body() {
     }
 
-    public Body(Color color, BodyType bodyType, Long carId) {
+    public Body(Color color, BodyType bodyType) {
         this.color = color;
         this.bodyType = bodyType;
-        this.carId = carId;
     }
 
     public Long getId() {

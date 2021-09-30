@@ -12,6 +12,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="user.firstname" var="firstname"/>
 <fmt:message key="user.lastname" var="lastname"/>
 <fmt:message key="user.birth_date" var="birth_date"/>
+<fmt:message key="user.phone_number" var="phone_number"/>
 <fmt:message key="user.login" var="login"/>
 <fmt:message key="user.password" var="password"/>
 <fmt:message key="user.email" var="email"/>
@@ -20,6 +21,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="info.birthdate.field" var="birth_date_field"/>
 <fmt:message key="text.firstname.help.text" var="firstname_help_text"/>
 <fmt:message key="text.lastname.help.text" var="lastname_help_text"/>
+<fmt:message key="text.phone.help.text" var="phone_help_text"/>
 <fmt:message key="text.login.help.text" var="login_help_text"/>
 <fmt:message key="text.password.help.text" var="password_help_text"/>
 <fmt:message key="text.email.help.text" var="email_help_text"/>
@@ -66,6 +68,11 @@ pageContext.request.locale}" scope="session"/>
             <div class="col-md-3">
                 <label for="validationBirthDate" class="form-label"><u>${birth_date}</u></label>
                 <input type="date" class="form-control" id="validationBirthDate" name="birth_date">
+            </div>
+            <div class="col-md-3">
+                <label for="validationPhoneNumber" class="form-label"><u>${phone_number}*</u></label>
+                <input type="tel" class="form-control" id="validationPhoneNumber" name="phone_number">
+                <small id="phoneHelpText" class="text-muted">${phone_help_text}</small>
             </div>
             <div class="col-md-3">
                 <label for="validationLogin" class="form-label"><u>${login}*</u></label>

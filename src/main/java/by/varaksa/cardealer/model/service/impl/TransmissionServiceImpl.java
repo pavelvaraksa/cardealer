@@ -5,13 +5,20 @@ import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.repository.TransmissionRepository;
 import by.varaksa.cardealer.model.service.TransmissionService;
+import by.varaksa.cardealer.util.RegexpPropertiesReader;
+import by.varaksa.cardealer.validator.StringValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TransmissionServiceImpl implements TransmissionService {
     private static final Logger logger = LogManager.getLogger();
+    private static final String REGEXP_GEARS_COUNT = RegexpPropertiesReader.getRegexp("gears.count.regexp");
+    private static final String REGEXP_WEIGHT = RegexpPropertiesReader.getRegexp("weight.regexp");
+    private static final boolean isCheckStringFromUi = true;
     private final TransmissionRepository transmissionRepository;
 
     public TransmissionServiceImpl(TransmissionRepository transmissionRepository) {
@@ -21,9 +28,15 @@ public class TransmissionServiceImpl implements TransmissionService {
     @Override
     public Transmission save(Transmission transmission) throws ServiceException {
         try {
-            Transmission savedTransmission = transmissionRepository.save(transmission);
-            logger.info("Transmission with type " + transmission.getTransmissionType() + " and gears count = " + transmission.getGearsCount() + " was saved");
-            return savedTransmission;
+            if (StringValidator.isStringValidate(REGEXP_GEARS_COUNT, String.valueOf(transmission.getGearsCount())) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_WEIGHT, String.valueOf(transmission.getWeight())) == isCheckStringFromUi) {
+                logger.info("Transmission type " + transmission.getTransmissionType() + " with gears count = " + transmission.getGearsCount() + " was saved");
+                return transmissionRepository.save(transmission);
+            }
+
+            String errorMessage = "Wasn't correct input format for save transmission";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
         } catch (RepositoryException exception) {
             throw new ServiceException("Transmission service exception while trying to save transmission." + exception);
         }
@@ -35,6 +48,7 @@ public class TransmissionServiceImpl implements TransmissionService {
 
         try {
             existingTransmissions = transmissionRepository.findAll();
+            existingTransmissions = existingTransmissions.stream().sorted(Comparator.comparing(Transmission::getId)).collect(Collectors.toList());
 
             if (existingTransmissions.isEmpty()) {
                 String errorMessage = "Transmissions list is empty";
@@ -69,7 +83,7 @@ public class TransmissionServiceImpl implements TransmissionService {
             logger.info("Transmission with id " + id + " exists");
             return transmissionRepository.find(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get transmission";
+            String errorMessage = "Can't find transmission";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }
@@ -78,12 +92,17 @@ public class TransmissionServiceImpl implements TransmissionService {
     @Override
     public Transmission update(Transmission transmission) throws ServiceException {
         try {
-            logger.info("Transmission with id " + transmission.getId() + " was updated");
-            return transmissionRepository.update(transmission);
-        } catch (RepositoryException exception) {
-            String errorMessage = "Can't get transmission";
+            if (StringValidator.isStringValidate(REGEXP_GEARS_COUNT, String.valueOf(transmission.getGearsCount())) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_WEIGHT, String.valueOf(transmission.getWeight())) == isCheckStringFromUi) {
+                logger.info("Transmission type " + transmission.getTransmissionType() + " with gears count = " + transmission.getGearsCount() + " was updated");
+                return transmissionRepository.update(transmission);
+            }
+
+            String errorMessage = "Wasn't correct input format for update transmission";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Transmission service exception while trying to update transmission." + exception);
         }
     }
 
@@ -106,7 +125,7 @@ public class TransmissionServiceImpl implements TransmissionService {
             logger.info("Transmission with id " + id + " was deleted");
             return transmissionRepository.delete(id);
         } catch (RepositoryException exception) {
-            String errorMessage = "Can't get transmission";
+            String errorMessage = "Can't delete transmission";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }

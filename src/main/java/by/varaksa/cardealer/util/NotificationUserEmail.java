@@ -30,7 +30,7 @@ public class NotificationUserEmail {
     }
 
     public boolean sendEmail(User user) {
-        boolean test = false;
+        boolean isNotification = false;
 
         String toEmail = user.getEmail();
 
@@ -56,13 +56,13 @@ public class NotificationUserEmail {
             message.setText("Registration completed successfully.Verify your account with this code: " + user.getCodeToRegister());
 
             Transport.send(message);
-            logger.info("Registration completed successfully for user with login " + user.getLogin());
+            logger.info("Registration completed successfully for user " + user.getFirstName() + " " + user.getLastName());
 
-            test = true;
+            isNotification = true;
         } catch (Exception exception) {
             logger.error("Exception from email service while trying to verify code." + exception);
         }
 
-        return test;
+        return isNotification;
     }
 }

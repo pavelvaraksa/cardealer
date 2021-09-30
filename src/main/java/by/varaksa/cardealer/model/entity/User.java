@@ -12,6 +12,8 @@ public class User {
 
     private LocalDate birthDate;
 
+    private String phoneNumber;
+
     private String login;
 
     private String password;
@@ -31,27 +33,27 @@ public class User {
     public User() {
     }
 
-    public User(String firstname, String lastName, LocalDate birthDate, Role role, boolean isBlocked) {
+    public User(String firstname, String lastName, LocalDate birthDate, String phoneNumber, Role role, boolean isBlocked) {
         this.firstName = firstname;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.phoneNumber = phoneNumber;
         this.role = role;
         this.isBlocked = isBlocked;
     }
 
-    public User(String firstName, String lastName, LocalDate birthDate, String login, String password, String email) {
+    public User(String firstName, String lastName, LocalDate birthDate, String phoneNumber, String login, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.phoneNumber = phoneNumber;
         this.login = login;
         this.password = password;
         this.email = email;
     }
 
-    public User(String firstName, String lastName,
-                LocalDate birthDate, String login, String password,
-                String email, String codeToRegister) {
-        this(firstName, lastName, birthDate, login, password, email);
+    public User(String firstName, String lastName, LocalDate birthDate, String phoneNumber, String login, String password, String email, String codeToRegister) {
+        this(firstName, lastName, birthDate, phoneNumber, login, password, email);
         this.codeToRegister = codeToRegister;
     }
 
@@ -85,6 +87,14 @@ public class User {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getLogin() {
@@ -153,6 +163,7 @@ public class User {
                 + firstName.hashCode()
                 + lastName.hashCode()
                 + birthDate.hashCode()
+                + phoneNumber.hashCode()
                 + login.hashCode()
                 + password.hashCode()
                 + email.hashCode()
@@ -177,6 +188,7 @@ public class User {
                 && (firstName == user.firstName || firstName != null && firstName.equals(user.getFirstName()))
                 && (lastName == user.lastName || lastName != null && lastName.equals(user.getLastName()))
                 && (birthDate == user.birthDate || birthDate != null && birthDate.equals(user.getBirthDate()))
+                && (phoneNumber == user.phoneNumber || phoneNumber != null && phoneNumber.equals(user.getPhoneNumber()))
                 && (login == user.login || login != null && login.equals(user.getLogin()))
                 && (password == user.password || password != null && password.equals(user.getPassword()))
                 && (email == user.email || email != null && email.equals(user.getEmail()))
@@ -192,6 +204,7 @@ public class User {
                 ", first name is " + firstName +
                 ", last name is " + lastName +
                 ", birth date = " + birthDate +
+                ", phone number = " + phoneNumber +
                 ", login is " + login +
                 ", password is " + password +
                 ", email is " + email +

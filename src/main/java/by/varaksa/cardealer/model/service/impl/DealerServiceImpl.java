@@ -5,13 +5,20 @@ import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.repository.DealerRepository;
 import by.varaksa.cardealer.model.service.DealerService;
+import by.varaksa.cardealer.util.RegexpPropertiesReader;
+import by.varaksa.cardealer.validator.StringValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DealerServiceImpl implements DealerService {
     private static final Logger logger = LogManager.getLogger();
+    private static final String REGEXP_DEALER_NAME = RegexpPropertiesReader.getRegexp("dealer.name.regexp");
+    private static final String REGEXP_DEALER_ADDRESS = RegexpPropertiesReader.getRegexp("dealer.address.regexp");
+    private static final boolean isCheckStringFromUi = true;
     private final DealerRepository dealerRepository;
 
     public DealerServiceImpl(DealerRepository dealerRepository) {
@@ -21,9 +28,15 @@ public class DealerServiceImpl implements DealerService {
     @Override
     public Dealer save(Dealer dealer) throws ServiceException {
         try {
-            Dealer savedDealer = dealerRepository.save(dealer);
-            logger.info("Dealer with name " + dealer.getName() + " was saved");
-            return savedDealer;
+            if (StringValidator.isStringValidate(REGEXP_DEALER_NAME, dealer.getName()) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_DEALER_ADDRESS, dealer.getAddress()) == isCheckStringFromUi) {
+                logger.info("Dealer " + dealer.getName() + " was saved");
+                return dealerRepository.save(dealer);
+            }
+
+            String errorMessage = "Wasn't correct input format for save dealer";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
         } catch (RepositoryException exception) {
             throw new ServiceException("Dealer service exception while trying to save dealer." + exception);
         }
@@ -35,6 +48,7 @@ public class DealerServiceImpl implements DealerService {
 
         try {
             existingDealers = dealerRepository.findAll();
+            existingDealers = existingDealers.stream().sorted(Comparator.comparing(Dealer::getId)).collect(Collectors.toList());
 
             if (existingDealers.isEmpty()) {
                 String errorMessage = "Dealers list is empty";
@@ -56,6 +70,7 @@ public class DealerServiceImpl implements DealerService {
 
         try {
             dealerToFindById = dealerRepository.find(id);
+
             if (dealerToFindById == null) {
                 String errorMessage = "Dealer id can't be null";
                 logger.error(errorMessage);
@@ -78,12 +93,17 @@ public class DealerServiceImpl implements DealerService {
     @Override
     public Dealer update(Dealer dealer) throws ServiceException {
         try {
-            logger.info("Dealer with id " + dealer.getId() + " was updated");
-            return dealerRepository.update(dealer);
-        } catch (RepositoryException exception) {
-            String errorMessage = "Can't get dealer";
+            if (StringValidator.isStringValidate(REGEXP_DEALER_NAME, dealer.getName()) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_DEALER_ADDRESS, dealer.getAddress()) == isCheckStringFromUi) {
+                logger.info("Dealer " + dealer.getName() + " was updated");
+                return dealerRepository.update(dealer);
+            }
+
+            String errorMessage = "Wasn't correct input format for update dealer";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Dealer service exception while trying to update dealer." + exception);
         }
     }
 
@@ -93,6 +113,7 @@ public class DealerServiceImpl implements DealerService {
 
         try {
             dealerToFindById = dealerRepository.find(id);
+
             if (dealerToFindById == null) {
                 String errorMessage = "Dealer id can't be null";
                 logger.error(errorMessage);

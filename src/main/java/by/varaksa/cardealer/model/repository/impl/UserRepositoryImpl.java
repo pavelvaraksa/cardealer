@@ -22,6 +22,7 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String FIRSTNAME = "firstname";
     private static final String LASTNAME = "lastname";
     private static final String BIRTH_DATE = "birth_date";
+    private static final String PHONE_NUMBER = "phone_number";
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
     private static final String EMAIL = "email";
@@ -30,9 +31,9 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String CREATED = "created";
     private static final String CHANGED = "changed";
 
-    private static final String SAVE_USER = "insert into users (firstname, lastname, birth_date, login, password, " +
+    private static final String SAVE_USER = "insert into users (firstname, lastname, birth_date, phone_number, login, password, " +
             "email, role, is_blocked, created, changed) " +
-            "values (?,?,?,?,?,?,?,?,?,?)";
+            "values (?,?,?,?,?,?,?,?,?,?,?)";
     private static final String FIND_ALL_USERS = "select * from users";
     private static final String FIND_PASSWORD_BY_LOGIN = "select password from users where login = ?";
     private static final String FIND_USER_BY_ID = "select * from users where id = ?";
@@ -41,6 +42,7 @@ public class UserRepositoryImpl implements UserRepository {
             "firstname = ?,  " +
             "lastname = ?,  " +
             "birth_date = ?,  " +
+            "phone_number = ?,  " +
             "login = ?,  " +
             "password = ?,  " +
             "email = ?,  " +
@@ -60,6 +62,7 @@ public class UserRepositoryImpl implements UserRepository {
         user.setFirstName(resultSet.getString(FIRSTNAME));
         user.setLastName(resultSet.getString(LASTNAME));
         user.setBirthDate(birthDate);
+        user.setPhoneNumber(resultSet.getString(PHONE_NUMBER));
         user.setLogin(resultSet.getString(LOGIN));
         user.setPassword(resultSet.getString(PASSWORD));
         user.setEmail(resultSet.getString(EMAIL));
@@ -82,13 +85,14 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
             statement.setDate(3, date);
-            statement.setString(4, user.getLogin());
-            statement.setString(5, EncryptionUserPassword.encodePassword(user.getPassword()));
-            statement.setString(6, user.getEmail());
-            statement.setString(7, String.valueOf(defaultSavedUserRole));
-            statement.setBoolean(8, user.isBlocked());
-            statement.setTimestamp(9, creationTimestamp);
+            statement.setString(4, user.getPhoneNumber());
+            statement.setString(5, user.getLogin());
+            statement.setString(6, EncryptionUserPassword.encodePassword(user.getPassword()));
+            statement.setString(7, user.getEmail());
+            statement.setString(8, String.valueOf(defaultSavedUserRole));
+            statement.setBoolean(9, user.isBlocked());
             statement.setTimestamp(10, creationTimestamp);
+            statement.setTimestamp(11, creationTimestamp);
             statement.executeUpdate();
 
             return user;
@@ -153,13 +157,14 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
             statement.setDate(3, date);
-            statement.setString(4, user.getLogin());
-            statement.setString(5, user.getPassword());
-            statement.setString(6, user.getEmail());
-            statement.setString(7, String.valueOf(user.getRole()));
-            statement.setBoolean(8, user.isBlocked());
-            statement.setTimestamp(9, updateTimestamp);
-            statement.setLong(10, user.getId());
+            statement.setString(4, user.getPhoneNumber());
+            statement.setString(5, user.getLogin());
+            statement.setString(6, user.getPassword());
+            statement.setString(7, user.getEmail());
+            statement.setString(8, String.valueOf(user.getRole()));
+            statement.setBoolean(9, user.isBlocked());
+            statement.setTimestamp(10, updateTimestamp);
+            statement.setLong(11, user.getId());
             statement.executeUpdate();
 
             return find(user.getId());

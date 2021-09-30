@@ -15,6 +15,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="user.firstname" var="firstname"/>
 <fmt:message key="user.lastname" var="lastname"/>
 <fmt:message key="user.birth_date" var="birth_date"/>
+<fmt:message key="user.phone_number" var="phone_number"/>
 <fmt:message key="user.login" var="login"/>
 <fmt:message key="user.email" var="email"/>
 <fmt:message key="user.role" var="role"/>
@@ -62,6 +63,7 @@ pageContext.request.locale}" scope="session"/>
                 <th>${firstname}</th>
                 <th>${lastname}</th>
                 <th>${birth_date}</th>
+                <th>${phone_number}</th>
                 <th>${login}</th>
                 <th>${email}</th>
                 <th>${role}</th>
@@ -78,6 +80,7 @@ pageContext.request.locale}" scope="session"/>
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
                     <td>${user.birthDate}</td>
+                    <td>${user.phoneNumber}</td>
                     <td>${user.login}</td>
                     <td>${user.email}</td>
                     <td>${user.role}</td>
@@ -91,6 +94,7 @@ pageContext.request.locale}" scope="session"/>
                             <input type="hidden" class="form-control" name="firstName" value="${user.firstName}">
                             <input type="hidden" class="form-control" name="lastName" value="${user.lastName}">
                             <input type="hidden" class="form-control" name="birthDate" value="${user.birthDate}">
+                            <input type="hidden" class="form-control" name="phoneNumber" value="${user.phoneNumber}">
                             <input type="hidden" class="form-control" name="role" value="${user.role}">
                             <input type="hidden" class="form-control" name="blocked" value="${user.blocked}">
                             <input class="btn btn-outline-warning btn-sm" type="submit" value=${update}>

@@ -14,7 +14,6 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="dealer.address" var="address"/>
 <fmt:message key="dealer.foundation.date" var="foundation_date"/>
 <fmt:message key="dealer.city" var="city"/>
-<fmt:message key="car.car.id" var="car_id"/>
 <fmt:message key="dealer.city" var="city"/>
 <fmt:message key="city.brest" var="brest"/>
 <fmt:message key="city.minsk" var="minsk"/>
@@ -75,10 +74,6 @@ pageContext.request.locale}" scope="session"/>
                         <option value="GRODNO">${grodno}</option>
                     </select>
                 </label>
-            </div>
-            <div class="col-md-3">
-                <label for="validationCarId" class="form-label"><u>${car_id}</u></label>
-                <input type="text" class="form-control" id="validationCarId" name="car_id" required>
             </div>
             <div class="col-12">
                 <input class="btn btn-outline-success btn-sm" type="submit" value=${save}>

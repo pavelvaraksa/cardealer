@@ -1,6 +1,7 @@
 package by.varaksa.cardealer.controller;
 
 import by.varaksa.cardealer.controller.command.Commands;
+import by.varaksa.cardealer.exception.ControllerException;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.entity.Car;
@@ -10,8 +11,6 @@ import by.varaksa.cardealer.model.repository.CarRepository;
 import by.varaksa.cardealer.model.repository.impl.CarRepositoryImpl;
 import by.varaksa.cardealer.model.service.CarService;
 import by.varaksa.cardealer.model.service.impl.CarServiceImpl;
-import by.varaksa.cardealer.validator.CarValidator;
-import by.varaksa.cardealer.validator.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,7 +26,6 @@ import java.util.List;
 @WebServlet(urlPatterns = {"/car/save", "/car/find-all", "/car/update", "/car/delete"})
 public class CarController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
-    private static final boolean isCheckStringFromUI = true;
     private Commands commandName;
     public CarRepository carRepository = new CarRepositoryImpl();
     public CarService carService = new CarServiceImpl(carRepository);
@@ -48,11 +46,10 @@ public class CarController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-
             if (commandName == Commands.FIND_ALL_CARS) {
                 findAllCars(request, response);
             }
-        } catch (ServiceException exception) {
+        } catch (ServiceException | ControllerException exception) {
             String errorMessage = "Car controller exception." + exception;
             logger.error(errorMessage);
         }
@@ -69,68 +66,75 @@ public class CarController extends HttpServlet {
                 default -> {
                 }
             }
-        } catch (ServiceException | IOException | RepositoryException | ServletException exception) {
+        } catch (ServiceException | IOException | RepositoryException | ServletException | ControllerException exception) {
             String errorMessage = "Car controller exception." + exception;
             logger.error(errorMessage);
         }
     }
 
-    private void saveCar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException {
-        Model model = Model.valueOf(request.getParameter("model"));
-        Country country = Country.valueOf(request.getParameter("issue_country"));
-
-        if (CarValidator.isCarValidate(CarValidator.GUARANTEE_PERIOD_REGEXP, request.getParameter("guarantee_period")) == isCheckStringFromUI &&
-                CarValidator.isCarValidate(CarValidator.PRICE_REGEXP, request.getParameter("price")) == isCheckStringFromUI) {
-
+    private void saveCar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException, ControllerException {
+        try {
+            Model model = Model.valueOf(request.getParameter("model"));
+            Country country = Country.valueOf(request.getParameter("issue_country"));
             Integer guaranteePeriod = Integer.valueOf((request.getParameter("guarantee_period")));
             Integer price = Integer.valueOf(request.getParameter("price"));
-
             Car car = new Car(model, country, guaranteePeriod, price);
 
             carService.save(car);
             response.sendRedirect("/car/find-all");
-            return;
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't save car";
+            logger.error(errorMessage);
+            response.sendRedirect("/error-400");
+            throw new ControllerException(errorMessage);
         }
-
-        logger.error("Car wasn't saved");
-        response.sendRedirect("/car/find-all");
     }
 
-    private void findAllCars(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException {
-        List<Car> carList = carService.findAll();
-        logger.info("Cars were watched");
-        request.setAttribute("carList", carList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-cars");
-        dispatcher.forward(request, response);
+    private void findAllCars(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
+        try {
+            List<Car> carList = carService.findAll();
+            logger.info("Cars were watched");
+            request.setAttribute("carList", carList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-cars");
+            dispatcher.forward(request, response);
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find cars";
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
     }
 
-    private void updateCar(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Car car = carService.find(id);
+    private void updateCar(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ControllerException {
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            Car car = carService.find(id);
 
-        car.setModel(Model.valueOf(request.getParameter("model")));
-        car.setIssueCountry(Country.valueOf((request.getParameter("issue_country"))));
-
-        if (CarValidator.isCarValidate(CarValidator.GUARANTEE_PERIOD_REGEXP, request.getParameter("guarantee_period")) == isCheckStringFromUI &&
-                CarValidator.isCarValidate(CarValidator.PRICE_REGEXP, request.getParameter("price")) == isCheckStringFromUI &&
-                UserValidator.isUserValidate(UserValidator.USER_ORDER_ID, request.getParameter("user_order_id")) == isCheckStringFromUI) {
-
+            car.setModel(Model.valueOf(request.getParameter("model")));
+            car.setIssueCountry(Country.valueOf((request.getParameter("issue_country"))));
             car.setGuaranteePeriod(Integer.valueOf(request.getParameter("guarantee_period")));
             car.setPrice(Integer.valueOf((request.getParameter("price"))));
             car.setUserOrderId(Long.valueOf((request.getParameter("user_order_id"))));
-
             carService.update(car);
-            response.sendRedirect("/car/find-all");
-            return;
-        }
 
-        logger.error("Car wasn't updated");
-        response.sendRedirect("/car/find-all");
+            request.setAttribute("car", car);
+            response.sendRedirect("/car/find-all");
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't update car";
+            response.sendRedirect("/error-400");
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
     }
 
-    private void deleteCar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        carService.delete(id);
-        response.sendRedirect("/car/find-all");
+    private void deleteCar(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, ControllerException {
+        try {
+            Long id = Long.parseLong(request.getParameter("id"));
+            carService.delete(id);
+            response.sendRedirect("/car/find-all");
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't delete car";
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
     }
 }

@@ -76,21 +76,20 @@ public class UserController extends HttpServlet {
     }
 
     private void findAllUsers(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
-
         try {
             List<User> userList = userService.findAll();
             request.setAttribute("userList", userList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-users");
-
             dispatcher.forward(request, response);
         } catch (ServiceException exception) {
             String errorMessage = "Can't find users";
-            logger.error((errorMessage));
+            logger.error(errorMessage);
             throw new ControllerException(errorMessage);
         }
     }
 
     private void saveUser(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException, ServiceException {
+        HttpSession session = request.getSession();
 
         try {
             String firstname = request.getParameter("firstname");
@@ -103,6 +102,7 @@ public class UserController extends HttpServlet {
                 birthDate = LocalDate.parse(request.getParameter("birth_date"));
             }
 
+            String phoneNumber = (request.getParameter("phone_number"));
             String login = request.getParameter("login");
             String password = request.getParameter("password");
             String email = request.getParameter("email");
@@ -110,7 +110,7 @@ public class UserController extends HttpServlet {
             NotificationUserEmail userEmail = new NotificationUserEmail();
             String userCode = userEmail.getRandom();
 
-            User user = new User(firstname, lastname, birthDate, login, password, email, userCode);
+            User user = new User(firstname, lastname, birthDate, phoneNumber, login, password, email, userCode);
             request.setAttribute("user", user);
 
             userService.checkBeforeSave(user);
@@ -118,20 +118,19 @@ public class UserController extends HttpServlet {
             boolean confirmCode = userEmail.sendEmail(user);
 
             if (confirmCode) {
-                request.setAttribute("authCode", user);
+                session.setAttribute("authCode", user);
                 response.sendRedirect("/register/verify-page");
             }
 
         } catch (ServiceException exception) {
             String errorMessage = "Can't save user";
-            logger.error((errorMessage));
+            logger.error(errorMessage);
             response.sendRedirect("/register");
             throw new ControllerException(errorMessage);
         }
     }
 
-    private void verifyUser(HttpServletRequest request, HttpServletResponse response) throws
-            IOException, ServiceException {
+    private void verifyUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, ControllerException {
         HttpSession session = request.getSession();
         String code = request.getParameter("authCode");
         User user = (User) session.getAttribute("authCode");
@@ -142,17 +141,23 @@ public class UserController extends HttpServlet {
 
             try {
                 userService.save(user);
-            } catch (RepositoryException e) {
-                logger.error("Confirmation code was wrong for user with login " + user.getLogin());
-                response.sendRedirect("/register/verify-page");
+            } catch (RepositoryException exception) {
+                String errorMessage = "Can't save user";
+                logger.error(errorMessage);
+                response.sendRedirect("/register");
+                throw new ControllerException(errorMessage);
             }
+
             response.sendRedirect("/user-menu");
             session.setAttribute("login", login);
+            return;
         }
+
+        logger.error("Confirmation code was wrong for user with login " + user.getLogin());
+        response.sendRedirect("/register/verify-page");
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ControllerException, IOException {
-
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             User user = userService.find(id);
@@ -168,9 +173,9 @@ public class UserController extends HttpServlet {
             }
 
             user.setBirthDate(birthDate);
+            user.setPhoneNumber(request.getParameter("phone_number"));
             user.setRole(Role.valueOf((request.getParameter("role"))));
             user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
-
             userService.update(user);
 
             request.setAttribute("user", user);
@@ -178,20 +183,19 @@ public class UserController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't update user";
             response.sendRedirect("/error-400");
-            logger.error((errorMessage));
+            logger.error(errorMessage);
             throw new ControllerException(errorMessage);
         }
     }
 
     public void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException {
-
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             userService.delete(id);
             response.sendRedirect("/user/find-all");
         } catch (ServiceException exception) {
-            String errorMessage = "Can't find user";
-            logger.error((errorMessage));
+            String errorMessage = "Can't delete user";
+            logger.error(errorMessage);
             throw new ControllerException(errorMessage);
         }
     }
@@ -199,7 +203,6 @@ public class UserController extends HttpServlet {
     public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         Object login = session.getAttribute("login");
-
         session.invalidate();
 
         logger.info("Logout was completed for user with login " + login);
