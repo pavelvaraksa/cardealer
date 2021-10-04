@@ -23,6 +23,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Class {@code BodyController} designed for communication between controller
+ * and service for actions related to body
+ *
+ * @author Pavel Varaksa
+ */
 @WebServlet(urlPatterns = {"/body/save", "/body/find-all", "/body/update", "/body/delete"})
 public class BodyController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();

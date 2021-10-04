@@ -15,6 +15,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class {@code CarRepositoryImpl} designed for communication between repository
+ * and database for actions related to car
+ *
+ * @author Pavel Varaksa
+ */
 public class CarRepositoryImpl implements CarRepository {
     private static final Logger logger = LogManager.getLogger();
 
@@ -26,6 +32,7 @@ public class CarRepositoryImpl implements CarRepository {
     private static final String CREATED = "created";
     private static final String CHANGED = "changed";
     private static final String USER_ORDER_ID = "user_order_id";
+    private static final String DEALER_ID = "dealer_id";
 
     private Car parseResultSet(ResultSet resultSet) throws SQLException {
         Car car = new Car();
@@ -37,12 +44,13 @@ public class CarRepositoryImpl implements CarRepository {
         car.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
         car.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
         car.setUserOrderId(resultSet.getLong(USER_ORDER_ID));
+        car.setDealerId(resultSet.getLong(DEALER_ID));
         return car;
     }
 
     private static final String SAVE_CAR = "insert into cars (model, issue_country, " +
-            "guarantee_period, price, created, changed) " +
-            "values (?,?,?,?,?,?)";
+            "guarantee_period, price, created, changed, user_order_id, dealer_id) " +
+            "values (?,?,?,?,?,?,?,?)";
     private static final String FIND_ALL_CARS = "select * from cars";
     private static final String FIND_CAR_BY_ID = "select * from cars where id = ?";
     private static final String UPDATE_CAR_BY_ID = "update cars " +
@@ -59,6 +67,7 @@ public class CarRepositoryImpl implements CarRepository {
     @Override
     public Car save(Car car) {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
+        Long userOrderId = car.getUserOrderId() != null ? car.getUserOrderId() : null;
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_CAR)) {
@@ -69,6 +78,10 @@ public class CarRepositoryImpl implements CarRepository {
             statement.setInt(4, car.getPrice());
             statement.setTimestamp(5, creationTimestamp);
             statement.setTimestamp(6, creationTimestamp);
+            if (userOrderId != null) {
+                statement.setLong(7, userOrderId);
+            }
+            statement.setLong(8, car.getDealerId());
             statement.executeUpdate();
 
             return car;

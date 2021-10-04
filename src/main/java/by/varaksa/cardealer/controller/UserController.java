@@ -2,7 +2,6 @@ package by.varaksa.cardealer.controller;
 
 import by.varaksa.cardealer.controller.command.Commands;
 import by.varaksa.cardealer.exception.ControllerException;
-import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
@@ -25,8 +24,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Class {@code UserController} designed for communication between controller
+ * and service for actions related to user
+ *
+ * @author Pavel Varaksa
+ */
 @WebServlet(urlPatterns = {"/user/save", "/user/find-all", "/user/update", "/user/delete", "/register/verify", "/logout"})
-
 public class UserController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private Commands commandName;
@@ -141,7 +145,7 @@ public class UserController extends HttpServlet {
 
             try {
                 userService.save(user);
-            } catch (RepositoryException exception) {
+            } catch (ServiceException exception) {
                 String errorMessage = "Can't save user";
                 logger.error(errorMessage);
                 response.sendRedirect("/register");

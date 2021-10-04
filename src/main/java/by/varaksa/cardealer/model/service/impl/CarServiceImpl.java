@@ -14,11 +14,18 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class {@code CarServiceImpl} designed for communication between service
+ * and repository for actions related to car
+ *
+ * @author Pavel Varaksa
+ */
 public class CarServiceImpl implements CarService {
     private static final Logger logger = LogManager.getLogger();
     private static final String REGEXP_GUARANTEE_PERIOD = RegexpPropertiesReader.getRegexp("guarantee.period.regexp");
     private static final String REGEXP_PRICE = RegexpPropertiesReader.getRegexp("price.regexp");
     private static final String REGEXP_USER_ORDER_ID = RegexpPropertiesReader.getRegexp("user.order.id.regexp");
+    private static final String REGEXP_DEALER_ID = RegexpPropertiesReader.getRegexp("dealer.id.regexp");
     private static final boolean isCheckStringFromUi = true;
     private final CarRepository carRepository;
 
@@ -31,7 +38,8 @@ public class CarServiceImpl implements CarService {
         try {
             if (StringValidator.isStringValidate(REGEXP_GUARANTEE_PERIOD, String.valueOf(car.getGuaranteePeriod())) == isCheckStringFromUi &&
                     StringValidator.isStringValidate(REGEXP_PRICE, String.valueOf(car.getPrice())) == isCheckStringFromUi &&
-                    StringValidator.isStringValidate(REGEXP_USER_ORDER_ID, String.valueOf(car.getUserOrderId())) == isCheckStringFromUi) {
+                    (StringValidator.isStringValidate(REGEXP_USER_ORDER_ID, String.valueOf(car.getUserOrderId())) == isCheckStringFromUi || car.getUserOrderId() == null) &&
+                    StringValidator.isStringValidate(REGEXP_DEALER_ID, String.valueOf(car.getDealerId())) == isCheckStringFromUi) {
                 logger.info("Car model " + car.getModel() + " was saved");
                 return carRepository.save(car);
             }

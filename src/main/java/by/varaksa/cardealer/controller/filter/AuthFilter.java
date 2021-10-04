@@ -19,6 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Class {@code AuthFilter} designed for filter requests
+ * for authorization and authentication
+ *
+ * @author Pavel Varaksa
+ */
 @WebFilter(filterName = "AuthFilter")
 public class AuthFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();

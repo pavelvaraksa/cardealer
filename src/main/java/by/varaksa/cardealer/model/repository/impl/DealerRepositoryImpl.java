@@ -14,6 +14,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class {@code DealerRepositoryImpl} designed for communication between repository
+ * and database for actions related to dealer
+ *
+ * @author Pavel Varaksa
+ */
 public class DealerRepositoryImpl implements DealerRepository {
     private static final Logger logger = LogManager.getLogger();
 

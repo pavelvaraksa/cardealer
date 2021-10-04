@@ -13,6 +13,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class {@code UserOrderRepositoryImpl} designed for communication between repository
+ * and database for actions related to user order
+ *
+ * @author Pavel Varaksa
+ */
 public class UserOrderRepositoryImpl implements UserOrderRepository {
     private static final Logger logger = LogManager.getLogger();
 

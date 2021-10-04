@@ -19,7 +19,8 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="car.price" var="price"/>
 <fmt:message key="info.created" var="created"/>
 <fmt:message key="info.changed" var="changed"/>
-<fmt:message key="order.user.order.id" var="user_order_id"/>
+<fmt:message key="order.user.order.id" var="order_id"/>
+<fmt:message key="dealer.id" var="dealer_id"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -65,7 +66,8 @@ pageContext.request.locale}" scope="session"/>
                 <th>${price}</th>
                 <th>${created}</th>
                 <th>${changed}</th>
-                <th>${user_order_id}</th>
+                <th>${order_id}</th>
+                <th>${dealer_id}</th>
             </tr>
             </thead>
 
@@ -81,6 +83,7 @@ pageContext.request.locale}" scope="session"/>
                     <td>${car.created}</td>
                     <td>${car.changed}</td>
                     <td>${car.userOrderId}</td>
+                    <td>${car.dealerId}</td>
                     <td>
                         <form action=<%=request.getContextPath()%>"update-car" method="post">
                             <input type="hidden" class="form-control" name="id" value="${car.id}">

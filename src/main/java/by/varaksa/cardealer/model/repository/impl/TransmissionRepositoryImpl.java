@@ -14,6 +14,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class {@code TransmissionRepositoryImpl} designed for communication between repository
+ * and database for actions related to transmission
+ *
+ * @author Pavel Varaksa
+ */
 public class TransmissionRepositoryImpl implements TransmissionRepository {
     private static final Logger logger = LogManager.getLogger();
 

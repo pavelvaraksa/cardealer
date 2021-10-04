@@ -4,6 +4,11 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
+/**
+ * Class {@code CharsetFilter} designed for filter encoding
+ *
+ * @author Pavel Varaksa
+ */
 @WebFilter(filterName = "CharsetFilter")
 public class CharsetFilter implements Filter {
     @Override

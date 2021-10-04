@@ -2,6 +2,11 @@ package by.varaksa.cardealer.model.entity;
 
 import java.time.LocalDateTime;
 
+/**
+ * Class {@code Transmission} designed to store data about a transmission
+ *
+ * @author Pavel Varaksa
+ */
 public class Transmission {
     private Long id;
 

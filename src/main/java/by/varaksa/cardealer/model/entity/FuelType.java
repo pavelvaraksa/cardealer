@@ -1,5 +1,8 @@
 package by.varaksa.cardealer.model.entity;
 
+/**
+ * Enum with different versions of a fuel
+ */
 public enum FuelType {
     PETROL("fuel.type.petrol"),
     DIESEL("fuel.type.diesel");

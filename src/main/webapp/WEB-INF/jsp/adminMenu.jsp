@@ -43,10 +43,10 @@ pageContext.request.locale}" scope="session"/>
                     <a class="nav-link" href=<%=request.getContextPath()%>"/user-order/find-all">${user_orders_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=<%=request.getContextPath()%>"/car/find-all">${cars_list}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/dealer/find-all">${dealers_list}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=<%=request.getContextPath()%>"/dealer/find-all">${dealers_list}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/car/find-all">${cars_list}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href=<%=request.getContextPath()%>"/body/find-all">${bodies_list}</a>

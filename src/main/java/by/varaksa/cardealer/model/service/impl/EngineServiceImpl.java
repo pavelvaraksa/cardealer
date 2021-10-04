@@ -14,6 +14,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class {@code EngineServiceImpl} designed for communication between service
+ * and repository for actions related to engine
+ *
+ * @author Pavel Varaksa
+ */
 public class EngineServiceImpl implements EngineService {
     private static final Logger logger = LogManager.getLogger();
     private static final String REGEXP_VOLUME = RegexpPropertiesReader.getRegexp("volume.regexp");

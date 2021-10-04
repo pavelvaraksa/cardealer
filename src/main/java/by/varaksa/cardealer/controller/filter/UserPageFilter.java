@@ -1,6 +1,5 @@
 package by.varaksa.cardealer.controller.filter;
 
-import by.varaksa.cardealer.model.entity.Role;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Class {@code UserPageFilter} designed for filter requests from users
+ *
+ * @author Pavel Varaksa
+ */
 @WebFilter(filterName = "UserPageFilter")
 public class UserPageFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();

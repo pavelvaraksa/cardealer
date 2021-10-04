@@ -15,6 +15,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class {@code UserServiceImpl} designed for communication between service
+ * and repository for actions related to user
+ *
+ * @author Pavel Varaksa
+ */
 public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger();
     private static final String REGEXP_FIRSTNAME = RegexpPropertiesReader.getRegexp("firstname.regexp");

@@ -6,6 +6,13 @@ import org.apache.logging.log4j.Logger;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+/**
+ * Class {@code RegexpPropertiesReader} designed for reading
+ * regexp.properties file
+ *
+ * @author Pavel Varaksa
+ *
+ */
 public class RegexpPropertiesReader {
     private static final Logger logger = LogManager.getLogger();
     private static final ResourceBundle resourceBundle;

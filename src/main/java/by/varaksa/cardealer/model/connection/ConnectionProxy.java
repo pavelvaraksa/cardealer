@@ -5,17 +5,36 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+/**
+ * Proxy for {@link Connection}
+ *
+ * @author Pavel Varaksa
+ */
 class ConnectionProxy implements Connection {
+
+    /**
+     * Connection to database
+     */
     private final Connection connection;
 
     ConnectionProxy(Connection connection) {
         this.connection = connection;
     }
 
-    public void close() throws SQLException {
+    /**
+     * Returns connection to free connections queue
+     *
+     * @see by.varaksa.cardealer.model.connection.ConnectionPool
+     */
+    public void close() {
         ConnectionPool.getInstance().releaseConnection(this);
     }
 
+    /**
+     * Closes {@link #connection}
+     *
+     * @throws SQLException if wasn't close connection
+     */
     public void reallyClose() throws SQLException {
         connection.close();
     }

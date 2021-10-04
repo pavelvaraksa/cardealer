@@ -12,8 +12,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class {@code BodyServiceImpl} designed for communication between service
+ * and repository for actions related to body
+ *
+ * @author Pavel Varaksa
+ */
 public class BodyServiceImpl implements BodyService {
     private static final Logger logger = LogManager.getLogger();
+
     private final BodyRepository bodyRepository;
 
     public BodyServiceImpl(BodyRepository bodyRepository) {

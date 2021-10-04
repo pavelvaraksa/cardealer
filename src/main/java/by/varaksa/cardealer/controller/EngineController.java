@@ -22,6 +22,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Class {@code EngineController} designed for communication between controller
+ * and service for actions related to engine
+ *
+ * @author Pavel Varaksa
+ */
 @WebServlet(urlPatterns = {"/engine/save", "/engine/find-all", "/engine/update", "/engine/delete"})
 public class EngineController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
@@ -76,7 +82,7 @@ public class EngineController extends HttpServlet {
             FuelType fuelType = FuelType.valueOf(request.getParameter("fuel_type"));
             Double volume = Double.valueOf((request.getParameter("volume")));
             Integer cylindersCount = Integer.valueOf((request.getParameter("cylinders_count")));
-            Long carId = Long.valueOf((request.getParameter("car_id")));
+            Long carId = Long.valueOf(request.getParameter("car_id"));
             Engine engine = new Engine(fuelType, volume, cylindersCount, carId);
 
             engineService.save(engine);

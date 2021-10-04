@@ -17,6 +17,9 @@ class ConnectionFactory {
     private static final String login;
     private static final String password;
 
+    /*
+     * Static block for database driver registration
+     */
     static {
         try {
             Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
@@ -31,6 +34,9 @@ class ConnectionFactory {
         }
     }
 
+    /**
+     * @return new {@link ConnectionProxy} with provided data
+     */
     static ConnectionProxy createConnection() {
         ConnectionProxy connection = null;
         try {

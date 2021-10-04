@@ -2,6 +2,13 @@ package by.varaksa.cardealer.util;
 
 import java.util.ResourceBundle;
 
+/**
+ * Class {@code DatabasePropertiesReader} designed for reading
+ * database.properties file
+ *
+ * @author Pavel Varaksa
+ *
+ */
 public class DatabasePropertiesReader {
     private static DatabasePropertiesReader instance;
     private ResourceBundle resourceBundle;

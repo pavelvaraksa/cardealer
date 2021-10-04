@@ -22,8 +22,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Class {@code TransmissionController} designed for communication between controller
+ * and service for actions related to transmission
+ *
+ * @author Pavel Varaksa
+ */
 @WebServlet(urlPatterns = {"/transmission/save", "/transmission/find-all", "/transmission/update", "/transmission/delete"})
-
 public class TransmissionController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private Commands commandName;

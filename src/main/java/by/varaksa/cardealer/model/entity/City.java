@@ -1,5 +1,8 @@
 package by.varaksa.cardealer.model.entity;
 
+/**
+ * Enum with different versions of a city
+ */
 public enum City {
     MINSK("city.minsk"),
     BREST("city.brest"),

@@ -1,5 +1,11 @@
 package by.varaksa.cardealer.exception;
 
+/**
+ * Exception for methods in the controller layer
+ *
+ * @author Pavel Varaksa
+ *
+ */
 public class ControllerException extends Exception {
     public ControllerException() {
     }

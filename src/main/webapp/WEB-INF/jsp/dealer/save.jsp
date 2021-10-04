@@ -14,7 +14,6 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="dealer.address" var="address"/>
 <fmt:message key="dealer.foundation.date" var="foundation_date"/>
 <fmt:message key="dealer.city" var="city"/>
-<fmt:message key="dealer.city" var="city"/>
 <fmt:message key="city.brest" var="brest"/>
 <fmt:message key="city.minsk" var="minsk"/>
 <fmt:message key="city.gomel" var="gomel"/>

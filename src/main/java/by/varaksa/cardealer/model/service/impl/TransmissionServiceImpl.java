@@ -14,6 +14,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class {@code TransmissionServiceImpl} designed for communication between service
+ * and repository for actions related to transmission
+ *
+ * @author Pavel Varaksa
+ */
 public class TransmissionServiceImpl implements TransmissionService {
     private static final Logger logger = LogManager.getLogger();
     private static final String REGEXP_GEARS_COUNT = RegexpPropertiesReader.getRegexp("gears.count.regexp");

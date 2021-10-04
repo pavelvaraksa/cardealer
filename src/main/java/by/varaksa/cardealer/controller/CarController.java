@@ -23,6 +23,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Class {@code CarController} designed for communication between controller
+ * and service for actions related to car
+ *
+ * @author Pavel Varaksa
+ */
 @WebServlet(urlPatterns = {"/car/save", "/car/find-all", "/car/update", "/car/delete"})
 public class CarController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
@@ -76,9 +82,18 @@ public class CarController extends HttpServlet {
         try {
             Model model = Model.valueOf(request.getParameter("model"));
             Country country = Country.valueOf(request.getParameter("issue_country"));
-            Integer guaranteePeriod = Integer.valueOf((request.getParameter("guarantee_period")));
+            Integer guaranteePeriod = Integer.valueOf(request.getParameter("guarantee_period"));
             Integer price = Integer.valueOf(request.getParameter("price"));
-            Car car = new Car(model, country, guaranteePeriod, price);
+            Long userOrderId;
+
+            if (request.getParameter("user_order_id").isEmpty()) {
+                userOrderId = null;
+            } else {
+                userOrderId = Long.valueOf(request.getParameter("user_order_id"));
+            }
+
+            Long dealerId = Long.valueOf(request.getParameter("dealer_id"));
+            Car car = new Car(model, country, guaranteePeriod, price, userOrderId, dealerId);
 
             carService.save(car);
             response.sendRedirect("/car/find-all");
@@ -113,7 +128,6 @@ public class CarController extends HttpServlet {
             car.setIssueCountry(Country.valueOf((request.getParameter("issue_country"))));
             car.setGuaranteePeriod(Integer.valueOf(request.getParameter("guarantee_period")));
             car.setPrice(Integer.valueOf((request.getParameter("price"))));
-            car.setUserOrderId(Long.valueOf((request.getParameter("user_order_id"))));
             carService.update(car);
 
             request.setAttribute("car", car);

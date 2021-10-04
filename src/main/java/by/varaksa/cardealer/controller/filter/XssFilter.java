@@ -5,6 +5,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * Class {@code XssFilter} designed for cross site scripting settings
+ *
+ * @author Pavel Varaksa
+ */
 @WebFilter(filterName = "XssFilter")
 public class XssFilter implements Filter {
     @Override

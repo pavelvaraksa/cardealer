@@ -10,6 +10,12 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 import java.util.Random;
 
+/**
+ * Class {@code NotificationUserEmail} designed for notify
+ * user about successfully registration
+ *
+ * @author Pavel Varaksa
+ */
 public class NotificationUserEmail {
     private static final Logger logger = LogManager.getLogger();
     private static final String HOST = EmailPropertiesReader.getEmail("host");
@@ -23,12 +29,23 @@ public class NotificationUserEmail {
     private static final String FROM_EMAIL = EmailPropertiesReader.getEmail("from.email");
     private static final String PASSWORD = EmailPropertiesReader.getEmail("password");
 
+    /**
+     * Generating a random number to confirm registration
+     *
+     * @return {@code String} the random six-digit number
+     */
     public String getRandom() {
         Random random = new Random();
         int number = random.nextInt(999999);
         return String.format("%06d", number);
     }
 
+    /**
+     * Sending a message to the user email
+     *
+     * @param user {@code String} new user
+     * @return {@code boolean} result of the notifying
+     */
     public boolean sendEmail(User user) {
         boolean isNotification = false;
 

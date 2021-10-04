@@ -1,5 +1,8 @@
 package by.varaksa.cardealer.model.entity;
 
+/**
+ * Enum with different versions of a country
+ */
 public enum Country {
     GERMANY("country.germany"),
     POLAND("country.poland"),

@@ -3,6 +3,11 @@ package by.varaksa.cardealer.model.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Class {@code Dealer} designed to store data about a dealer
+ *
+ * @author Pavel Varaksa
+ */
 public class Dealer {
     private Long id;
 

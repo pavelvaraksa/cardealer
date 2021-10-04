@@ -12,12 +12,27 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Creating connection pool with {@link ConnectionProxy} objects
+ *
+ * @author Pavel Varaksa
+ */
 public class ConnectionPool {
     private static final Logger logger = LogManager.getLogger();
     private static ConnectionPool instance;
     private static final int DEFAULT_POOL_SIZE = 5;
+    /**
+     * {@link AtomicBoolean} for {@link ConnectionPool#getInstance()} singleton
+     * implementation
+     */
     private static final AtomicBoolean isConnectionPoolCreated = new AtomicBoolean(false);
+    /**
+     * {@link BlockingQueue} with free connections to database
+     */
     private final BlockingQueue<ConnectionProxy> freeConnection;
+    /**
+     * {@link BlockingQueue} with busy connections to database
+     */
     private final BlockingQueue<ConnectionProxy> busyConnection;
 
     private ConnectionPool() {
@@ -43,6 +58,11 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Returns {@code ConnectionPool} instance
+     *
+     * @return new or existing {@link ConnectionPool} object
+     */
     public static ConnectionPool getInstance() {
         while (instance == null) {
 
@@ -54,6 +74,9 @@ public class ConnectionPool {
         return instance;
     }
 
+    /**
+     * @return {@link ConnectionProxy} object from {@link #freeConnection}
+     */
     public ConnectionProxy getConnection() {
         ConnectionProxy connection = null;
         try {
@@ -66,14 +89,16 @@ public class ConnectionPool {
         return connection;
     }
 
+    /**
+     * Releases connection from occupied connections
+     *
+     * @param connection {@code Connection} connection to release
+     */
     void releaseConnection(Connection connection) {
-
         if (!(connection instanceof ConnectionProxy)) {
             logger.error("Current connection wasn't instance of proxy connection");
         } else {
-
-            if (busyConnection.contains(connection) || freeConnection.contains(connection)) {
-                busyConnection.remove(connection);
+            if (busyConnection.remove(connection)) {
                 try {
                     freeConnection.put((ConnectionProxy) connection);
                 } catch (InterruptedException exception) {
@@ -86,6 +111,9 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Closes connections of connection pool
+     */
     public void destroyConnectionPool() {
         while (!freeConnection.isEmpty()) {
 
@@ -114,6 +142,9 @@ public class ConnectionPool {
         logger.info("Connection pool was destroyed");
     }
 
+    /**
+     * Deregister drivers
+     */
     private void deregisterDrivers() {
         Enumeration<Driver> drivers = DriverManager.getDrivers();
 

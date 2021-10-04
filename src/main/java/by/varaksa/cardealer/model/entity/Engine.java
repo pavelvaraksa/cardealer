@@ -2,6 +2,11 @@ package by.varaksa.cardealer.model.entity;
 
 import java.time.LocalDateTime;
 
+/**
+ * Class {@code Engine} designed to store data about an engine
+ *
+ * @author Pavel Varaksa
+ */
 public class Engine {
     private Long id;
 

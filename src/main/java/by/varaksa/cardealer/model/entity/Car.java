@@ -2,6 +2,11 @@ package by.varaksa.cardealer.model.entity;
 
 import java.time.LocalDateTime;
 
+/**
+ * Class {@code Car} designed to store data about a car
+ *
+ * @author Pavel Varaksa
+ */
 public class Car {
     private Long id;
 
@@ -19,17 +24,18 @@ public class Car {
 
     private Long userOrderId;
 
+    private Long dealerId;
+
     public Car() {
     }
 
-    public Car(Model model,
-               Country issueCountry,
-               Integer guaranteePeriod,
-               Integer price) {
+    public Car(Model model, Country issueCountry, Integer guaranteePeriod, Integer price, Long userOrderId, Long dealerId) {
         this.model = model;
         this.issueCountry = issueCountry;
         this.guaranteePeriod = guaranteePeriod;
         this.price = price;
+        this.userOrderId = userOrderId;
+        this.dealerId = dealerId;
     }
 
     public Long getId() {
@@ -96,6 +102,14 @@ public class Car {
         this.userOrderId = userOrderId;
     }
 
+    public Long getDealerId() {
+        return dealerId;
+    }
+
+    public void setDealerId(Long dealerId) {
+        this.dealerId = dealerId;
+    }
+
     @Override
     public int hashCode() {
         return (int) (11 * id
@@ -105,7 +119,8 @@ public class Car {
                 + price.hashCode()
                 + created.hashCode()
                 + changed.hashCode()
-                + userOrderId.hashCode());
+                + userOrderId.hashCode()
+                + dealerId.hashCode());
     }
 
     @Override
@@ -127,7 +142,8 @@ public class Car {
                 && (price == car.price || price != null && price.equals(car.getPrice()))
                 && (created == car.created || created != null && created.equals(car.getCreated()))
                 && (changed == car.changed || changed != null && changed.equals(car.getChanged()))
-                && (userOrderId == car.userOrderId || userOrderId != null && userOrderId.equals(car.getUserOrderId()));
+                && (userOrderId == car.userOrderId || userOrderId != null && userOrderId.equals(car.getUserOrderId()))
+                && (dealerId == car.dealerId || dealerId != null && dealerId.equals(car.getUserOrderId()));
     }
 
     @Override
@@ -140,6 +156,7 @@ public class Car {
                 ", price = " + price +
                 ", created on " + created +
                 ", changed on " + changed +
-                ", user order id = " + userOrderId;
+                ", user order id = " + userOrderId +
+                ", dealer id = " + dealerId;
     }
 }

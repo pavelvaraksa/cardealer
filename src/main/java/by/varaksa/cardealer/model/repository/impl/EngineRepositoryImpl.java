@@ -14,6 +14,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class {@code EngineRepositoryImpl} designed for communication between repository
+ * and database for actions related to engine
+ *
+ * @author Pavel Varaksa
+ */
 public class EngineRepositoryImpl implements EngineRepository {
     private static final Logger logger = LogManager.getLogger();
 

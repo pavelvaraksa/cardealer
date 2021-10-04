@@ -2,6 +2,11 @@ package by.varaksa.cardealer.model.entity;
 
 import java.time.LocalDateTime;
 
+/**
+ * Class {@code Body} designed to store data about a body
+ *
+ * @author Pavel Varaksa
+ */
 public class Body {
     private Long id;
 

@@ -14,6 +14,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class {@code DealerServiceImpl} designed for communication between service
+ * and repository for actions related to dealer
+ *
+ * @author Pavel Varaksa
+ */
 public class DealerServiceImpl implements DealerService {
     private static final Logger logger = LogManager.getLogger();
     private static final String REGEXP_DEALER_NAME = RegexpPropertiesReader.getRegexp("dealer.name.regexp");

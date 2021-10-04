@@ -2,6 +2,11 @@ package by.varaksa.cardealer.model.entity;
 
 import java.time.LocalDateTime;
 
+/**
+ * Class {@code UserOrder} designed to store data about a user order
+ *
+ * @author Pavel Varaksa
+ */
 public class UserOrder {
     private Long id;
 

@@ -1,5 +1,8 @@
 package by.varaksa.cardealer.model.entity;
 
+/**
+ * Enum with different versions of a color
+ */
 public enum Color {
     BLACK("color.black"),
     WHITE("color.white"),

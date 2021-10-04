@@ -21,6 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Class {@code UserOrderController} designed for communication between controller
+ * and service for actions related to user order
+ *
+ * @author Pavel Varaksa
+ */
 @WebServlet(urlPatterns = {"/user-order/save", "/user-order/find-all", "/user-order/update", "/user-order/delete"})
 public class UserOrderController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();

@@ -14,6 +14,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class {@code UserOrderServiceImpl} designed for communication between service
+ * and repository for actions related to user order
+ *
+ * @author Pavel Varaksa
+ */
 public class UserOrderServiceImpl implements UserOrderService {
     private static final Logger logger = LogManager.getLogger();
     private static final String REGEXP_ORDER_NAME = RegexpPropertiesReader.getRegexp("order.name.regexp");

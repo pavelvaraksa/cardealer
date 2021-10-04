@@ -23,6 +23,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Class {@code DealerController} designed for communication between controller
+ * and service for actions related to dealer
+ *
+ * @author Pavel Varaksa
+ */
 @WebServlet(urlPatterns = {"/dealer/save", "/dealer/find-all", "/dealer/update", "/dealer/delete"})
 public class DealerController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();

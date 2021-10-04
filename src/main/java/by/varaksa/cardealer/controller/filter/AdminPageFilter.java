@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Class {@code AdminPageFilter} designed for filter requests from admins
+ *
+ * @author Pavel Varaksa
+ */
 @WebFilter(filterName = "AdminPageFilter")
 public class AdminPageFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();

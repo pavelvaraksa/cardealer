@@ -6,6 +6,13 @@ import org.apache.logging.log4j.Logger;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+/**
+ * Class {@code EmailPropertiesReader} designed for reading
+ * email.properties file
+ *
+ * @author Pavel Varaksa
+ *
+ */
 public class EmailPropertiesReader {
     private static final Logger logger = LogManager.getLogger();
     private static final ResourceBundle resourceBundle;

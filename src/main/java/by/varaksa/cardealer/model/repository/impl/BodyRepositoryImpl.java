@@ -15,6 +15,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class {@code BodyRepositoryImpl} designed for communication between repository
+ * and database for actions related to body
+ *
+ * @author Pavel Varaksa
+ */
 public class BodyRepositoryImpl implements BodyRepository {
     private static final Logger logger = LogManager.getLogger();
 

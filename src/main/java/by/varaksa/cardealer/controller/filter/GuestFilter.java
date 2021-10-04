@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Class {@code GuestFilter} designed for filter requests
+ * from unauthenticated users
+ *
+ * @author Pavel Varaksa
+ */
 @WebFilter(filterName = "GuestFilter")
 public class GuestFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();

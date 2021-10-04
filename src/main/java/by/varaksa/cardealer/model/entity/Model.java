@@ -1,5 +1,8 @@
 package by.varaksa.cardealer.model.entity;
 
+/**
+ * Enum with different versions of a model
+ */
 public enum Model {
     A1,
     A3,

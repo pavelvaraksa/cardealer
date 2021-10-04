@@ -15,6 +15,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class {@code UserRepositoryImpl} designed for communication between repository
+ * and database for actions related to user
+ *
+ * @author Pavel Varaksa
+ */
 public class UserRepositoryImpl implements UserRepository {
     private static final Logger logger = LogManager.getLogger();
 

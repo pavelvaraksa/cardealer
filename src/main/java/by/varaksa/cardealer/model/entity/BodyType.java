@@ -1,5 +1,8 @@
 package by.varaksa.cardealer.model.entity;
 
+/**
+ * Enum with different versions of a body
+ */
 public enum BodyType {
     SEDAN("body.type.sedan"),
     COUPE("body.type.coupe"),

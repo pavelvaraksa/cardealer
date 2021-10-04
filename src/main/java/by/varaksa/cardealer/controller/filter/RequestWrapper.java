@@ -3,6 +3,11 @@ package by.varaksa.cardealer.controller.filter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
+/**
+ * Class {@code RequestWrapper} designed for cross site scripting settings
+ *
+ * @author Pavel Varaksa
+ */
 public class RequestWrapper extends HttpServletRequestWrapper {
     public RequestWrapper(HttpServletRequest request){
         super(request);

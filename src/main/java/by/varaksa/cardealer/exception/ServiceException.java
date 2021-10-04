@@ -1,5 +1,11 @@
 package by.varaksa.cardealer.exception;
 
+/**
+ * Exception for methods in the service layer
+ *
+ * @author Pavel Varaksa
+ *
+ */
 public class ServiceException extends Exception {
     public ServiceException() {
     }
