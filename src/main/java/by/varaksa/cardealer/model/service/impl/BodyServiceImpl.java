@@ -1,8 +1,8 @@
 package by.varaksa.cardealer.model.service.impl;
 
-import by.varaksa.cardealer.model.entity.Body;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
+import by.varaksa.cardealer.model.entity.Body;
 import by.varaksa.cardealer.model.repository.BodyRepository;
 import by.varaksa.cardealer.model.service.BodyService;
 import org.apache.logging.log4j.LogManager;

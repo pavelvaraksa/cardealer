@@ -1,10 +1,10 @@
 package by.varaksa.cardealer.model.repository.impl;
 
+import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.entity.Body;
 import by.varaksa.cardealer.model.entity.BodyType;
 import by.varaksa.cardealer.model.entity.Color;
 import by.varaksa.cardealer.model.connection.ConnectionPool;
-import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.repository.BodyRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

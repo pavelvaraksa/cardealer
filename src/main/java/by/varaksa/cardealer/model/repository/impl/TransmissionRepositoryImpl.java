@@ -1,9 +1,9 @@
 package by.varaksa.cardealer.model.repository.impl;
 
+import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.connection.ConnectionPool;
 import by.varaksa.cardealer.model.entity.Transmission;
 import by.varaksa.cardealer.model.entity.TransmissionType;
-import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.repository.TransmissionRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

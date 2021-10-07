@@ -7,8 +7,6 @@ import org.apache.logging.log4j.Logger;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static by.varaksa.cardealer.util.DatabasePropertiesReader.*;
-
 class ConnectionFactory {
     private static final Logger logger = LogManager.getLogger();
     private static final DatabasePropertiesReader reader = DatabasePropertiesReader.getInstance();
@@ -22,10 +20,10 @@ class ConnectionFactory {
      */
     static {
         try {
-            Class.forName(reader.getProperty(DATABASE_DRIVER_NAME));
-            url = reader.getProperty(DATABASE_URL);
-            login = reader.getProperty(DATABASE_LOGIN);
-            password = reader.getProperty(DATABASE_PASSWORD);
+            Class.forName(reader.getProperty(DatabasePropertiesReader.DATABASE_DRIVER_NAME));
+            url = reader.getProperty(DatabasePropertiesReader.DATABASE_URL);
+            login = reader.getProperty(DatabasePropertiesReader.DATABASE_LOGIN);
+            password = reader.getProperty(DatabasePropertiesReader.DATABASE_PASSWORD);
             logger.info("JDBC driver was loaded");
         } catch (ClassNotFoundException exception) {
             String errorMessage = "JDBC driver wasn't loaded." + exception;

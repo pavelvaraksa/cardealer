@@ -1,4 +1,4 @@
-package test.varaksa.cardealer.validator;
+package by.varaksa.cardealer.validator;
 
 import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.util.RegexpPropertiesReader;

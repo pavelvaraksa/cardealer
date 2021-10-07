@@ -24,7 +24,7 @@ class ConnectionProxy implements Connection {
     /**
      * Returns connection to free connections queue
      *
-     * @see by.varaksa.cardealer.model.connection.ConnectionPool
+     * @see ConnectionPool
      */
     public void close() {
         ConnectionPool.getInstance().releaseConnection(this);

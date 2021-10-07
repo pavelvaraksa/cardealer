@@ -5,9 +5,9 @@ import by.varaksa.cardealer.exception.ServiceException;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
 import by.varaksa.cardealer.model.repository.UserRepository;
-import by.varaksa.cardealer.model.service.UserService;
 import by.varaksa.cardealer.util.RegexpPropertiesReader;
 import by.varaksa.cardealer.validator.StringValidator;
+import by.varaksa.cardealer.model.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,7 +1,7 @@
 package by.varaksa.cardealer.model.service;
 
-import by.varaksa.cardealer.model.entity.Transmission;
 import by.varaksa.cardealer.exception.ServiceException;
+import by.varaksa.cardealer.model.entity.Transmission;
 
 import java.util.List;
 

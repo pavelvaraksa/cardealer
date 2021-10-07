@@ -1,12 +1,12 @@
 package by.varaksa.cardealer.model.service.impl;
 
-import by.varaksa.cardealer.model.entity.Dealer;
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.exception.ServiceException;
+import by.varaksa.cardealer.model.entity.Dealer;
 import by.varaksa.cardealer.model.repository.DealerRepository;
-import by.varaksa.cardealer.model.service.DealerService;
 import by.varaksa.cardealer.util.RegexpPropertiesReader;
 import by.varaksa.cardealer.validator.StringValidator;
+import by.varaksa.cardealer.model.service.DealerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
