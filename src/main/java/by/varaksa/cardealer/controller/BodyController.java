@@ -82,8 +82,9 @@ public class BodyController extends HttpServlet {
         try {
             Color color = Color.valueOf(request.getParameter("color"));
             BodyType bodyType = BodyType.valueOf(request.getParameter("body_type"));
+            Long carId = Long.valueOf(request.getParameter("car_id"));
 
-            Body body = new Body(color, bodyType);
+            Body body = new Body(color, bodyType, carId);
 
             bodyService.save(body);
             response.sendRedirect("/body/find-all");

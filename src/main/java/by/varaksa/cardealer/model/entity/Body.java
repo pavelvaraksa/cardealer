@@ -28,6 +28,12 @@ public class Body {
         this.bodyType = bodyType;
     }
 
+    public Body(Color color, BodyType bodyType, Long carId) {
+        this.color = color;
+        this.bodyType = bodyType;
+        this.carId = carId;
+    }
+
     public Long getId() {
         return id;
     }

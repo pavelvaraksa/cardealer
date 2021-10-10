@@ -83,7 +83,7 @@ pageContext.request.locale}" scope="session"/>
             <div class="col-md-3">
                 <label for="validationUserOrderId" class="form-label"><u>${user_order_id}</u>
                     <input type="text" class="form-control" id="validationUserOrderId" name="user_order_id"
-                           value="${param.userOrderId}" placeholder="${param.userOrderId}" required>
+                           value="${param.userOrderId}" placeholder="${param.userOrderId}">
                 </label>
             </div>
             <div class="col-12">

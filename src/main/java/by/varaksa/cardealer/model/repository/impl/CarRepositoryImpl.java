@@ -67,7 +67,7 @@ public class CarRepositoryImpl implements CarRepository {
     @Override
     public Car save(Car car) {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
-        Long userOrderId = car.getUserOrderId() != null ? car.getUserOrderId() : null;
+        long userOrderId = car.getUserOrderId() != null ? car.getUserOrderId() : 1;
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_CAR)) {
@@ -78,9 +78,7 @@ public class CarRepositoryImpl implements CarRepository {
             statement.setInt(4, car.getPrice());
             statement.setTimestamp(5, creationTimestamp);
             statement.setTimestamp(6, creationTimestamp);
-            if (userOrderId != null) {
-                statement.setLong(7, userOrderId);
-            }
+            statement.setLong(7, userOrderId);
             statement.setLong(8, car.getDealerId());
             statement.executeUpdate();
 
@@ -136,6 +134,7 @@ public class CarRepositoryImpl implements CarRepository {
     @Override
     public Car update(Car car) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
+        long userOrderId = car.getUserOrderId() != null ? car.getUserOrderId() : 1;
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_CAR_BY_ID)) {
@@ -145,7 +144,7 @@ public class CarRepositoryImpl implements CarRepository {
             statement.setInt(3, car.getGuaranteePeriod());
             statement.setInt(4, car.getPrice());
             statement.setTimestamp(5, updateTimestamp);
-            statement.setLong(6, car.getUserOrderId());
+            statement.setLong(6, userOrderId);
             statement.setLong(7, car.getId());
             statement.executeUpdate();
 

@@ -4,6 +4,7 @@ import by.varaksa.cardealer.util.DatabasePropertiesReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -32,11 +33,14 @@ class ConnectionFactory {
         }
     }
 
+    private ConnectionFactory() {
+    }
+
     /**
      * @return new {@link ConnectionProxy} with provided data
      */
-    static ConnectionProxy createConnection() {
-        ConnectionProxy connection = null;
+    static Connection createConnection() {
+        Connection connection = null;
         try {
             connection = new ConnectionProxy(DriverManager.getConnection(url, login, password));
             logger.info("Connection was created");
