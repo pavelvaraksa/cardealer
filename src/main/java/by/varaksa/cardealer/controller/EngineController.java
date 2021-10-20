@@ -98,7 +98,6 @@ public class EngineController extends HttpServlet {
     private void findAllEngines(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
         try {
             List<Engine> engineList = engineService.findAll();
-            logger.info("Engines were watched");
             request.setAttribute("engineList", engineList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-engines");
             dispatcher.forward(request, response);

@@ -9,12 +9,12 @@ public enum Commands {
     SAVE_USER("/user/save"),
     FIND_ALL_USERS("/user/find-all"),
     UPDATE_USER("/user/update"),
-    DELETE_USER("/user/delete"),
     VERIFY_USER("/register/verify"),
 
     //car
     SAVE_CAR("/car/save"),
     FIND_ALL_CARS("/car/find-all"),
+    FIND_ALL_CARS_FOR_ORDER("/car/find-all-for-order"),
     UPDATE_CAR("/car/update"),
     DELETE_CAR("/car/delete"),
 
@@ -44,7 +44,9 @@ public enum Commands {
 
     //user order
     SAVE_USER_ORDER("/user-order/save"),
+    SAVE_USER_ORDER_FOR_USER("/user-order/save-for-user"),
     FIND_ALL_USER_ORDERS("/user-order/find-all"),
+    FIND_ALL_USER_ORDERS_FOR_USER("/user-order/find-all-for-user"),
     UPDATE_USER_ORDER("/user-order/update"),
     DELETE_USER_ORDER("/user-order/delete"),
 

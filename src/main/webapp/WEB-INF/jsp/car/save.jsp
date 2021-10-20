@@ -19,7 +19,6 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="country.germany" var="germany"/>
 <fmt:message key="country.poland" var="poland"/>
 <fmt:message key="country.czech" var="czech"/>
-<fmt:message key="order.user.order.id" var="order_id"/>
 <fmt:message key="dealer.id" var="dealer_id"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
@@ -88,15 +87,9 @@ pageContext.request.locale}" scope="session"/>
                 </label>
             </div>
             <div class="col-md-3">
-                <label for="validationUserOrderId" class="form-label"><u>${order_id}</u>
-                    <input type="text" class="form-control" id="validationUserOrderId" name="user_order_id"
-                           value="${param.user_order_id}" placeholder="${param.user_order_id}">
-                </label>
-            </div>
-            <div class="col-md-3">
                 <label for="validationDealerId" class="form-label"><u>${dealer_id}</u>
                     <input type="text" class="form-control" id="validationDealerId" name="dealer_id"
-                           value="${param.dealer_id}" placeholder="${param.dealer_id}" required>
+                           value="${param.dealerId}" placeholder="${param.dealerId}" required>
                 </label>
             </div>
             <div class="col-12">

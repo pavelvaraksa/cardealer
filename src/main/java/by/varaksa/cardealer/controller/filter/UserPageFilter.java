@@ -30,7 +30,6 @@ public class UserPageFilter implements Filter {
         HttpSession session = request.getSession();
 
         Object login = session.getAttribute("login");
-        Object role = session.getAttribute("role");
 
         if (login == null) {
             logger.error("User page filter blocked an attempt to enter a forbidden page");

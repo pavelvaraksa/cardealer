@@ -10,16 +10,18 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="list.cars.list" var="cars_list_page"/>
 <fmt:message key="menu.title.cars.list" var="cars_list"/>
 <fmt:message key="button.add" var="add"/>
-<fmt:message key="button.update" var="update"/>
-<fmt:message key="button.delete" var="delete"/>
 <fmt:message key="id" var="id"/>
 <fmt:message key="car.model" var="model"/>
 <fmt:message key="car.issue_country" var="issue_country"/>
 <fmt:message key="car.guarantee_period" var="guarantee_period"/>
 <fmt:message key="car.price" var="price"/>
-<fmt:message key="info.created" var="created"/>
-<fmt:message key="info.changed" var="changed"/>
-<fmt:message key="dealer.id" var="dealer_id"/>
+<fmt:message key="dealer.name" var="name"/>
+<fmt:message key="engine.fuel.type" var="fuel_type"/>
+<fmt:message key="engine.volume" var="volume"/>
+<fmt:message key="transmission.transmission.type" var="transmission_type"/>
+<fmt:message key="transmission.gears.count" var="gears_count"/>
+<fmt:message key="car.color" var="color"/>
+<fmt:message key="car.body.type" var="body_type"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -48,61 +50,53 @@ pageContext.request.locale}" scope="session"/>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>${cars_list}</u></h2>
-    <td>
-        <form action=<%=request.getContextPath()%>"/car/save-car" method="post">
-            <input class="btn btn-outline-success btn-sm" type="submit" value=${add}>
-        </form>
-    </td>
-    <form action=<%=request.getContextPath()%>"/car/find-all" method="get">
+    <form action=<%=request.getContextPath()%>"/car/find-all-for-order" method="get">
         <tbody>
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>${id}</th>
+                <th></th>
                 <th>${model}</th>
                 <th>${issue_country}</th>
-                <th>${guarantee_period}</th>
                 <th>${price}</th>
-                <th>${created}</th>
-                <th>${changed}</th>
-                <th>${dealer_id}</th>
+                <th>${name}</th>
+                <th>${fuel_type}</th>
+                <th>${volume}</th>
+                <th>${transmission_type}</th>
+                <th>${gears_count}</th>
+                <th>${color}</th>
+                <th>${body_type}</th>
             </tr>
             </thead>
 
-            <%--@elvariable id="carList" type="java.util.List"--%>
-            <c:forEach var="car" items="${carList}">
+            <%--@elvariable id="carListForOrder" type="java.util.List"--%>
+            <c:forEach var="car" items="${carListForOrder}">
 
                 <tr>
                     <td>${car.id}</td>
                     <td>${car.model}</td>
                     <td>${car.issueCountry}</td>
-                    <td>${car.guaranteePeriod}</td>
                     <td>${car.price}</td>
-                    <td>${car.created}</td>
-                    <td>${car.changed}</td>
-                    <td>${car.dealerId}</td>
+                    <td>${car.name}</td>
+                    <td>${car.fuelType}</td>
+                    <td>${car.volume}</td>
+                    <td>${car.transmissionType}</td>
+                    <td>${car.gearsCount}</td>
+                    <td>${car.color}</td>
+                    <td>${car.bodyType}</td>
+
                     <td>
-                        <form action=<%=request.getContextPath()%>"update-car" method="post">
-                            <input type="hidden" class="form-control" name="id" value="${car.id}">
-                            <input type="hidden" class="form-control" name="model" value="${car.model}">
-                            <input type="hidden" class="form-control" name="guaranteePeriod"
-                                   value="${car.guaranteePeriod}">
-                            <input type="hidden" class="form-control" name="price" value="${car.price}">
-                            <input class="btn btn-outline-warning btn-sm" type="submit" value=${update}>
-                        </form>
-                    </td>
-                    <td>
-                        <form action=<%=request.getContextPath()%>"delete-car" method="post">
-                            <input type="hidden" class="form-control" name="id" value="${car.id}">
-                            <input class="btn btn-outline-danger btn-sm" type="submit" value=${delete}>
-                        </form>
+                    <form action=<%=request.getContextPath()%>"/user-order/save-user-order-for-user" method="post">
+                        <input type="hidden" class="form-control" name="id" value="${car.id}">
+                        <input class="btn btn-outline-success btn-sm" type="submit" value=${add}>
+                    </form>
                     </td>
                 </tr>
             </c:forEach>
         </table>
         </tbody>
         <label>
-            <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/admin-menu"
+            <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/user-menu"
                role="button">${return_to_previous_page}</a>
         </label>
     </form>

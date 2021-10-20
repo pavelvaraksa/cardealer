@@ -9,14 +9,11 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="list.user.orders.list" var="user_orders_list_page"/>
 <fmt:message key="menu.title.user.orders.list" var="user_orders_list"/>
-<fmt:message key="button.add" var="add"/>
-<fmt:message key="button.update" var="update"/>
-<fmt:message key="button.delete" var="delete"/>
-<fmt:message key="id" var="id"/>
+<fmt:message key="car.model" var="model"/>
+<fmt:message key="car.price" var="price"/>
+<fmt:message key="dealer.name" var="name"/>
+<fmt:message key="engine.fuel.type" var="fuel_type"/>
 <fmt:message key="info.created" var="created"/>
-<fmt:message key="info.changed" var="changed"/>
-<fmt:message key="user.user.id" var="user_id"/>
-<fmt:message key="car.car.id" var="car_id"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -45,53 +42,33 @@ pageContext.request.locale}" scope="session"/>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>${user_orders_list}</u></h2>
-    <td>
-        <form action=<%=request.getContextPath()%>"/user-order/save-user-order" method="post">
-            <input class="btn btn-outline-success btn-sm" type="submit" value=${add}>
-        </form>
-    </td>
-    <form action=<%=request.getContextPath()%>"/user-order/find-all" method="get">
+    <form action=<%=request.getContextPath()%>"/user-order/find-all-for-user" method="get">
         <tbody>
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>${id}</th>
+                <th>${model}</th>
+                <th>${price}</th>
+                <th>${name}</th>
+                <th>${fuel_type}</th>
                 <th>${created}</th>
-                <th>${changed}</th>
-                <th>${user_id}</th>
-                <th>${car_id}</th>
-            </tr>
             </thead>
 
             <%--@elvariable id="userOrderList" type="java.util.List"--%>
             <c:forEach var="user_order" items="${userOrderList}">
 
                 <tr>
-                    <td>${user_order.id}</td>
+                    <td>${user_order.model}</td>
+                    <td>${user_order.price}</td>
+                    <td>${user_order.name}</td>
+                    <td>${user_order.fuelType}</td>
                     <td>${user_order.created}</td>
-                    <td>${user_order.changed}</td>
-                    <td>${user_order.userId}</td>
-                    <td>${user_order.carId}</td>
-                    <td>
-                        <form action=<%=request.getContextPath()%>"update-user-order" method="post">
-                            <input type="hidden" class="form-control" name="id" value="${user_order.id}">
-                            <input type="hidden" class="form-control" name="userId" value="${user_order.userId}">
-                            <input type="hidden" class="form-control" name="carId" value="${user_order.carId}">
-                            <input class="btn btn-outline-warning btn-sm" type="submit" value=${update}>
-                        </form>
-                    </td>
-                    <td>
-                        <form action=<%=request.getContextPath()%>"delete-user-order" method="post">
-                            <input type="hidden" class="form-control" name="id" value="${user_order.id}">
-                            <input class="btn btn-outline-danger btn-sm" type="submit" value=${delete}>
-                        </form>
-                    </td>
                 </tr>
             </c:forEach>
         </table>
         </tbody>
         <label>
-            <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/admin-menu"
+            <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/user-menu"
                role="button">${return_to_previous_page}</a>
         </label>
     </form>

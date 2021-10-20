@@ -24,7 +24,6 @@ public class CarServiceImpl implements CarService {
     private static final Logger logger = LogManager.getLogger();
     private static final String REGEXP_GUARANTEE_PERIOD = RegexpPropertiesReader.getRegexp("guarantee.period.regexp");
     private static final String REGEXP_PRICE = RegexpPropertiesReader.getRegexp("price.regexp");
-    private static final String REGEXP_USER_ORDER_ID = RegexpPropertiesReader.getRegexp("user.order.id.regexp");
     private static final String REGEXP_DEALER_ID = RegexpPropertiesReader.getRegexp("dealer.id.regexp");
     private static final boolean isCheckStringFromUi = true;
     private final CarRepository carRepository;
@@ -38,7 +37,6 @@ public class CarServiceImpl implements CarService {
         try {
             if (StringValidator.isStringValidate(REGEXP_GUARANTEE_PERIOD, String.valueOf(car.getGuaranteePeriod())) == isCheckStringFromUi &&
                     StringValidator.isStringValidate(REGEXP_PRICE, String.valueOf(car.getPrice())) == isCheckStringFromUi &&
-                    (StringValidator.isStringValidate(REGEXP_USER_ORDER_ID, String.valueOf(car.getUserOrderId())) == isCheckStringFromUi || car.getUserOrderId() == null) &&
                     StringValidator.isStringValidate(REGEXP_DEALER_ID, String.valueOf(car.getDealerId())) == isCheckStringFromUi) {
                 logger.info("Car model " + car.getModel() + " was saved");
                 return carRepository.save(car);
@@ -59,6 +57,28 @@ public class CarServiceImpl implements CarService {
         try {
             existingCars = carRepository.findAll();
             existingCars = existingCars.stream().sorted(Comparator.comparing(Car::getId)).collect(Collectors.toList());
+
+            if (existingCars.isEmpty()) {
+                String errorMessage = "Cars list is empty";
+                logger.error(errorMessage);
+            } else {
+                logger.info("Cars exist");
+                return existingCars;
+            }
+
+        } catch (RepositoryException exception) {
+            throw new ServiceException("Car service exception while trying to find all cars." + exception);
+        }
+        return existingCars;
+    }
+
+    @Override
+    public List<Car> findAllForOrder() throws ServiceException {
+        List<Car> existingCars;
+
+        try {
+            existingCars = carRepository.findAllForOrder();
+            existingCars = existingCars.stream().sorted(Comparator.comparing(Car::getModel)).collect(Collectors.toList());
 
             if (existingCars.isEmpty()) {
                 String errorMessage = "Cars list is empty";
@@ -105,7 +125,7 @@ public class CarServiceImpl implements CarService {
         try {
             if (StringValidator.isStringValidate(REGEXP_GUARANTEE_PERIOD, String.valueOf(car.getGuaranteePeriod())) == isCheckStringFromUi &&
                     StringValidator.isStringValidate(REGEXP_PRICE, String.valueOf(car.getPrice())) == isCheckStringFromUi &&
-                    StringValidator.isStringValidate(REGEXP_USER_ORDER_ID, String.valueOf(car.getUserOrderId())) == isCheckStringFromUi) {
+                    StringValidator.isStringValidate(REGEXP_DEALER_ID, String.valueOf(car.getDealerId())) == isCheckStringFromUi) {
                 logger.info("Car model " + car.getModel() + " was updated");
                 return carRepository.update(car);
             }

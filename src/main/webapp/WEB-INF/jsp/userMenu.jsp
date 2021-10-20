@@ -9,6 +9,8 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="menu.title.main.menu" var="main_menu"/>
 <fmt:message key="menu.title.log.out" var="log_out"/>
+<fmt:message key="menu.title.cars.list" var="cars_list"/>
+<fmt:message key="menu.title.user.orders.list" var="orders_list"/>
 
 <html>
 <head>
@@ -28,6 +30,13 @@ pageContext.request.locale}" scope="session"/>
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                 <li class="nav-item">
                     <a class="nav-link" href=<%=request.getContextPath()%>"/logout">${log_out}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/car/find-all-for-order">${cars_list}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href=<%=request.getContextPath()%>"/user-order/find-all-for-user">${orders_list}</a>
                 </li>
             </ul>
         </div>

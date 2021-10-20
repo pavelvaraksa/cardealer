@@ -22,19 +22,30 @@ public class Car {
 
     private LocalDateTime changed;
 
-    private Long userOrderId;
-
     private Long dealerId;
+
+    private String name;
+
+    private FuelType fuelType;
+
+    private Double volume;
+
+    private TransmissionType transmissionType;
+
+    private Integer gearsCount;
+
+    private Color color;
+
+    private BodyType bodyType;
 
     public Car() {
     }
 
-    public Car(Model model, Country issueCountry, Integer guaranteePeriod, Integer price, Long userOrderId, Long dealerId) {
+    public Car(Model model, Country issueCountry, Integer guaranteePeriod, Integer price, Long dealerId) {
         this.model = model;
         this.issueCountry = issueCountry;
         this.guaranteePeriod = guaranteePeriod;
         this.price = price;
-        this.userOrderId = userOrderId;
         this.dealerId = dealerId;
     }
 
@@ -94,20 +105,68 @@ public class Car {
         this.changed = changed;
     }
 
-    public Long getUserOrderId() {
-        return userOrderId;
-    }
-
-    public void setUserOrderId(Long userOrderId) {
-        this.userOrderId = userOrderId;
-    }
-
     public Long getDealerId() {
         return dealerId;
     }
 
     public void setDealerId(Long dealerId) {
         this.dealerId = dealerId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public FuelType getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public Double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Double volume) {
+        this.volume = volume;
+    }
+
+    public TransmissionType getTransmissionType() {
+        return transmissionType;
+    }
+
+    public void setTransmissionType(TransmissionType transmissionType) {
+        this.transmissionType = transmissionType;
+    }
+
+    public Integer getGearsCount() {
+        return gearsCount;
+    }
+
+    public void setGearsCount(Integer gearsCount) {
+        this.gearsCount = gearsCount;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
     }
 
     @Override
@@ -119,7 +178,6 @@ public class Car {
                 + price.hashCode()
                 + created.hashCode()
                 + changed.hashCode()
-                + userOrderId.hashCode()
                 + dealerId.hashCode());
     }
 
@@ -142,8 +200,7 @@ public class Car {
                 && (price == car.price || price != null && price.equals(car.getPrice()))
                 && (created == car.created || created != null && created.equals(car.getCreated()))
                 && (changed == car.changed || changed != null && changed.equals(car.getChanged()))
-                && (userOrderId == car.userOrderId || userOrderId != null && userOrderId.equals(car.getUserOrderId()))
-                && (dealerId == car.dealerId || dealerId != null && dealerId.equals(car.getUserOrderId()));
+                && (dealerId == car.dealerId || dealerId != null && dealerId.equals(car.getDealerId()));
     }
 
     @Override
@@ -156,7 +213,6 @@ public class Car {
                 ", price = " + price +
                 ", created on " + created +
                 ", changed on " + changed +
-                ", user order id = " + userOrderId +
                 ", dealer id = " + dealerId;
     }
 }

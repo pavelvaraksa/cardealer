@@ -183,18 +183,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Role findRoleByLogin(String login) throws ServiceException {
-        try {
-            logger.info("Role is " + userRepository.findRoleByLogin(login));
-            return userRepository.findRoleByLogin(login);
-        } catch (RepositoryException exception) {
-            String errorMessage = "Role is " + Role.GUEST;
-            logger.error(errorMessage);
-            throw new ServiceException(errorMessage);
-        }
-    }
-
-    @Override
     public boolean isUserExist(String login) throws ServiceException {
         try {
 
@@ -207,6 +195,30 @@ public class UserServiceImpl implements UserService {
             return userRepository.isUserExist(login);
         } catch (RepositoryException exception) {
             String errorMessage = "Login wasn't found";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Role findRoleByLogin(String login) throws ServiceException {
+        try {
+            logger.info("Role is " + userRepository.findRoleByLogin(login));
+            return userRepository.findRoleByLogin(login);
+        } catch (RepositoryException exception) {
+            String errorMessage = "Role is " + Role.GUEST;
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public Long findIdByLogin(String login) throws ServiceException {
+        try {
+            logger.info("Id = " + userRepository.findIdByLogin(login));
+            return userRepository.findIdByLogin(login);
+        } catch (RepositoryException exception) {
+            String errorMessage = "Id is wasn't found";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }

@@ -20,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -29,7 +30,7 @@ import java.util.List;
  *
  * @author Pavel Varaksa
  */
-@WebServlet(urlPatterns = {"/car/save", "/car/find-all", "/car/update", "/car/delete"})
+@WebServlet(urlPatterns = {"/car/save", "/car/find-all", "/car/find-all-for-order", "/car/update", "/car/delete"})
 public class CarController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private Commands commandName;
@@ -52,8 +53,11 @@ public class CarController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-            if (commandName == Commands.FIND_ALL_CARS) {
-                findAllCars(request, response);
+            switch (commandName) {
+                case FIND_ALL_CARS -> findAllCars(request, response);
+                case FIND_ALL_CARS_FOR_ORDER -> findAllCarsForOrder(request, response);
+                default -> {
+                }
             }
         } catch (ServiceException | ControllerException exception) {
             String errorMessage = "Car controller exception." + exception;
@@ -84,16 +88,8 @@ public class CarController extends HttpServlet {
             Country country = Country.valueOf(request.getParameter("issue_country"));
             Integer guaranteePeriod = Integer.valueOf(request.getParameter("guarantee_period"));
             Integer price = Integer.valueOf(request.getParameter("price"));
-            Long userOrderId;
-
-            if (request.getParameter("user_order_id").isEmpty()) {
-                userOrderId = null;
-            } else {
-                userOrderId = Long.valueOf(request.getParameter("user_order_id"));
-            }
-
             Long dealerId = Long.valueOf(request.getParameter("dealer_id"));
-            Car car = new Car(model, country, guaranteePeriod, price, userOrderId, dealerId);
+            Car car = new Car(model, country, guaranteePeriod, price, dealerId);
 
             carService.save(car);
             response.sendRedirect("/car/find-all");
@@ -108,12 +104,26 @@ public class CarController extends HttpServlet {
     private void findAllCars(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
         try {
             List<Car> carList = carService.findAll();
-            logger.info("Cars were watched");
             request.setAttribute("carList", carList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-cars");
             dispatcher.forward(request, response);
         } catch (ServiceException exception) {
             String errorMessage = "Can't find cars";
+            response.sendRedirect("/error-400");
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
+    }
+
+    private void findAllCarsForOrder(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
+        try {
+            List<Car> carListForOrder = carService.findAllForOrder();
+            request.setAttribute("carListForOrder", carListForOrder);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-cars-for-order");
+            dispatcher.forward(request, response);
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find cars";
+            response.sendRedirect("/error-400");
             logger.error(errorMessage);
             throw new ControllerException(errorMessage);
         }
@@ -128,6 +138,7 @@ public class CarController extends HttpServlet {
             car.setIssueCountry(Country.valueOf((request.getParameter("issue_country"))));
             car.setGuaranteePeriod(Integer.valueOf(request.getParameter("guarantee_period")));
             car.setPrice(Integer.valueOf((request.getParameter("price"))));
+            car.setDealerId(Long.valueOf(request.getParameter("dealer_id")));
             carService.update(car);
 
             request.setAttribute("car", car);
@@ -147,6 +158,7 @@ public class CarController extends HttpServlet {
             response.sendRedirect("/car/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't delete car";
+            response.sendRedirect("/error-400");
             logger.error(errorMessage);
             throw new ControllerException(errorMessage);
         }

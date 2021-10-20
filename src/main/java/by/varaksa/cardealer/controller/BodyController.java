@@ -99,7 +99,6 @@ public class BodyController extends HttpServlet {
     private void findAllBodies(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
         try {
             List<Body> bodyList = bodyService.findAll();
-            logger.info("Bodies were watched");
             request.setAttribute("bodyList", bodyList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-bodies");
             dispatcher.forward(request, response);

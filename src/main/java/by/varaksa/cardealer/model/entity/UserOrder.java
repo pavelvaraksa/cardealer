@@ -10,20 +10,28 @@ import java.time.LocalDateTime;
 public class UserOrder {
     private Long id;
 
-    private String orderName;
-
     private LocalDateTime created;
 
     private LocalDateTime changed;
 
     private Long userId;
 
+    private Long carId;
+
+    private Model model;
+
+    private Integer price;
+
+    private String name;
+
+    private FuelType fuelType;
+
     public UserOrder() {
     }
 
-    public UserOrder(String orderName, Long userId) {
-        this.orderName = orderName;
+    public UserOrder(Long userId, Long carId) {
         this.userId = userId;
+        this.carId = carId;
     }
 
     public Long getId() {
@@ -32,14 +40,6 @@ public class UserOrder {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getOrderName() {
-        return orderName;
-    }
-
-    public void setOrderName(String orderName) {
-        this.orderName = orderName;
     }
 
     public LocalDateTime getCreated() {
@@ -66,14 +66,53 @@ public class UserOrder {
         this.userId = userId;
     }
 
+    public Long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Long carId) {
+        this.carId = carId;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public FuelType getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
+    }
 
     @Override
     public int hashCode() {
         return (int) (11 * id
-                + orderName.hashCode()
                 + created.hashCode()
                 + changed.hashCode()
-                + userId.hashCode());
+                + userId.hashCode())
+                + carId.hashCode();
     }
 
     @Override
@@ -89,19 +128,19 @@ public class UserOrder {
         UserOrder userOrder = (UserOrder) object;
 
         return id == userOrder.id
-                && (orderName == userOrder.orderName || orderName != null && orderName.equals(userOrder.getOrderName()))
                 && (created == userOrder.created || created != null && created.equals(userOrder.getCreated()))
                 && (changed == userOrder.changed || changed != null && changed.equals(userOrder.getChanged()))
-                && (userId == userOrder.userId || userId != null && userId.equals(userOrder.getUserId()));
+                && (userId == userOrder.userId || userId != null && userId.equals(userOrder.getUserId()))
+                && (carId == userOrder.carId || carId != null && carId.equals(userOrder.getCarId()));
     }
 
     @Override
     public String toString() {
         return "User order: " +
                 "id = " + id +
-                ", order name is " + orderName +
                 ", created on " + created +
                 ", changed on " + changed +
-                ", user id = " + userId;
+                ", user id = " + userId +
+                ", car id = " + carId;
     }
 }

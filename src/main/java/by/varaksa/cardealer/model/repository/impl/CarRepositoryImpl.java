@@ -2,9 +2,7 @@ package by.varaksa.cardealer.model.repository.impl;
 
 import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.connection.ConnectionPool;
-import by.varaksa.cardealer.model.entity.Car;
-import by.varaksa.cardealer.model.entity.Country;
-import by.varaksa.cardealer.model.entity.Model;
+import by.varaksa.cardealer.model.entity.*;
 import by.varaksa.cardealer.model.repository.CarRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,8 +29,14 @@ public class CarRepositoryImpl implements CarRepository {
     private static final String PRICE = "price";
     private static final String CREATED = "created";
     private static final String CHANGED = "changed";
-    private static final String USER_ORDER_ID = "user_order_id";
     private static final String DEALER_ID = "dealer_id";
+    private static final String NAME = "name";
+    private static final String FUEL_TYPE = "fuel_type";
+    private static final String VOLUME = "volume";
+    private static final String TRANSMISSION_TYPE = "transmission_type";
+    private static final String GEARS_COUNT = "gears_count";
+    private static final String COLOR = "color";
+    private static final String BODY_TYPE = "body_type";
 
     private Car parseResultSet(ResultSet resultSet) throws SQLException {
         Car car = new Car();
@@ -43,14 +47,29 @@ public class CarRepositoryImpl implements CarRepository {
         car.setPrice(resultSet.getInt(PRICE));
         car.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
         car.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
-        car.setUserOrderId(resultSet.getLong(USER_ORDER_ID));
         car.setDealerId(resultSet.getLong(DEALER_ID));
         return car;
     }
 
+    private Car parseResultSetForOrder(ResultSet resultSet) throws SQLException {
+        Car car = new Car();
+        car.setId(resultSet.getLong(ID));
+        car.setModel(Model.valueOf(resultSet.getString(MODEL)));
+        car.setIssueCountry(Country.valueOf(resultSet.getString(ISSUE_COUNTRY)));
+        car.setPrice(resultSet.getInt(PRICE));
+        car.setName(resultSet.getString(NAME));
+        car.setFuelType(FuelType.valueOf(resultSet.getString(FUEL_TYPE)));
+        car.setVolume(resultSet.getDouble(VOLUME));
+        car.setTransmissionType(TransmissionType.valueOf(resultSet.getString(TRANSMISSION_TYPE)));
+        car.setGearsCount(resultSet.getInt(GEARS_COUNT));
+        car.setColor(Color.valueOf(resultSet.getString(COLOR)));
+        car.setBodyType(BodyType.valueOf(resultSet.getString(BODY_TYPE)));
+        return car;
+    }
+
     private static final String SAVE_CAR = "insert into cars (model, issue_country, " +
-            "guarantee_period, price, created, changed, user_order_id, dealer_id) " +
-            "values (?,?,?,?,?,?,?,?)";
+            "guarantee_period, price, created, changed, dealer_id) " +
+            "values (?,?,?,?,?,?,?)";
     private static final String FIND_ALL_CARS = "select * from cars";
     private static final String FIND_CAR_BY_ID = "select * from cars where id = ?";
     private static final String UPDATE_CAR_BY_ID = "update cars " +
@@ -60,14 +79,19 @@ public class CarRepositoryImpl implements CarRepository {
             "guarantee_period = ?,  " +
             "price = ?,  " +
             "changed = ?,  " +
-            "user_order_id = ?  " +
+            "dealer_id = ?  " +
             "where id = ?";
     private static final String DELETE_CAR_BY_ID = "delete from cars where id = ?";
+    private static final String FIND_ALL_CARS_FOR_ORDER = "select cars.id, model, issue_country, price, name, fuel_type, volume, " +
+            "transmission_type, gears_count, color, body_type from cars " +
+            "join dealers on cars.dealer_id = dealers.id " +
+            "join engines on engines.car_id = cars.id " +
+            "join transmissions on transmissions.car_id = cars.id " +
+            "join bodies on bodies.car_id = cars.id";
 
     @Override
     public Car save(Car car) {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
-        long userOrderId = car.getUserOrderId() != null ? car.getUserOrderId() : 1;
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_CAR)) {
@@ -78,8 +102,7 @@ public class CarRepositoryImpl implements CarRepository {
             statement.setInt(4, car.getPrice());
             statement.setTimestamp(5, creationTimestamp);
             statement.setTimestamp(6, creationTimestamp);
-            statement.setLong(7, userOrderId);
-            statement.setLong(8, car.getDealerId());
+            statement.setLong(7, car.getDealerId());
             statement.executeUpdate();
 
             return car;
@@ -92,17 +115,37 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public List<Car> findAll() {
-        List<Car> result = new ArrayList<>();
+        List<Car> list = new ArrayList<>();
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_CARS);
 
             while (resultSet.next()) {
-                result.add(parseResultSet(resultSet));
+                list.add(parseResultSet(resultSet));
             }
 
-            return result;
+            return list;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
+            logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+    }
+
+    @Override
+    public List<Car> findAllForOrder() {
+        List<Car> list = new ArrayList<>();
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(FIND_ALL_CARS_FOR_ORDER);
+
+            while (resultSet.next()) {
+                list.add(parseResultSetForOrder(resultSet));
+            }
+
+            return list;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
@@ -134,7 +177,6 @@ public class CarRepositoryImpl implements CarRepository {
     @Override
     public Car update(Car car) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
-        long userOrderId = car.getUserOrderId() != null ? car.getUserOrderId() : 1;
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_CAR_BY_ID)) {
@@ -144,7 +186,7 @@ public class CarRepositoryImpl implements CarRepository {
             statement.setInt(3, car.getGuaranteePeriod());
             statement.setInt(4, car.getPrice());
             statement.setTimestamp(5, updateTimestamp);
-            statement.setLong(6, userOrderId);
+            statement.setLong(6, car.getDealerId());
             statement.setLong(7, car.getId());
             statement.executeUpdate();
 

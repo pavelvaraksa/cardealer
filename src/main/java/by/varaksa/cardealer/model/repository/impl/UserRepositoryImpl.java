@@ -151,6 +151,7 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
+
     @Override
     public User update(User user) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
@@ -173,7 +174,7 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setLong(11, user.getId());
             statement.executeUpdate();
 
-            return find(user.getId());
+            return user;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);
@@ -240,6 +241,21 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public boolean isUserExist(String login) {
+        boolean isStatus = false;
+        List<User> allUsers = new ArrayList<>(findAll());
+
+        for (User user : allUsers) {
+            if (user.getLogin().equals(login)) {
+                isStatus = true;
+                break;
+            }
+        }
+
+        return isStatus;
+    }
+
+    @Override
     public Role findRoleByLogin(String login) {
         Role role = Role.GUEST;
         List<User> allUsers = new ArrayList<>(findAll());
@@ -254,18 +270,17 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean isUserExist(String login) {
-        boolean isStatus = false;
+    public Long findIdByLogin(String login) {
+        Long id = null;
         List<User> allUsers = new ArrayList<>(findAll());
 
         for (User user : allUsers) {
             if (user.getLogin().equals(login)) {
-                isStatus = true;
-                break;
+                id = user.getId();
             }
         }
 
-        return isStatus;
+        return id;
     }
 }
 

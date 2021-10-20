@@ -9,8 +9,9 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="page.audi.dealer.update.user.order.page" var="update_page"/>
 <fmt:message key="form.update.form" var="update_form"/>
+<fmt:message key="user.user.id" var="user_id"/>
+<fmt:message key="car.car.id" var="car_id"/>
 <fmt:message key="button.update" var="update"/>
-<fmt:message key="order.order.name" var="order_name"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
@@ -37,9 +38,14 @@ pageContext.request.locale}" scope="session"/>
                 <input type="hidden" name="id" value="${param.id}">
             </div>
             <div class="col-md-3">
-                <label for="validationOrderName" class="form-label"><u>${order_name}</u></label>
-                <input type="text" class="form-control" id="validationOrderName" name="order_name"
-                       value="${param.orderName}" placeholder="${param.orderName}" required>
+                <label for="validationUserId" class="form-label"><u>${user_id}</u></label>
+                <input type="text" class="form-control" id="validationUserId" name="user_id"
+                       value="${param.userId}" placeholder="${param.userId}" required>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCarId" class="form-label"><u>${car_id}</u></label>
+                <input type="text" class="form-control" id="validationCarId" name="car_id"
+                       value="${param.carId}" placeholder="${param.carId}" required>
             </div>
             <div class="col-12">
                 <input class="btn btn-outline-success btn-sm" type="submit" value=${update}>

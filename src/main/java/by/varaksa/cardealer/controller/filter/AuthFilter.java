@@ -39,7 +39,7 @@ public class AuthFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
@@ -69,8 +69,10 @@ public class AuthFilter implements Filter {
 
                     if (userService.isAuthenticate(user)) {
 
+                        Long id = userService.findIdByLogin(login);
                         Role role = userService.findRoleByLogin(login);
 
+                        request.getSession().setAttribute("id", id);
                         request.getSession().setAttribute("login", login);
                         request.getSession().setAttribute("role", role);
 

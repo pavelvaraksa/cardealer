@@ -29,6 +29,13 @@ public interface CarService {
     List<Car> findAll() throws ServiceException;
 
     /**
+     * Find all cars for user order from the database
+     *
+     * @throws ServiceException if service exception happened
+     */
+    List<Car> findAllForOrder() throws ServiceException;
+
+    /**
      * Find car from the database by id
      *
      * @param id {@code Long} car id

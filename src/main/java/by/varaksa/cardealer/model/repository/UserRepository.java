@@ -38,4 +38,12 @@ public interface UserRepository extends CrudRepository<Long, User> {
      * @throws RepositoryException if repository exception happened
      */
     Role findRoleByLogin(String login) throws RepositoryException;
+
+    /**
+     * Find user id by login
+     *
+     * @param login {@code String} user id by login
+     * @throws RepositoryException if repository exception happened
+     */
+    Long findIdByLogin(String login) throws RepositoryException;
 }

@@ -5,8 +5,6 @@
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="text"/>
-<%@ page import="by.varaksa.cardealer.model.entity.Role" %>
-<%@ page import="by.varaksa.cardealer.model.entity.User" %>
 
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="list.users.list" var="users_list_page"/>
@@ -23,7 +21,6 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="info.created" var="created"/>
 <fmt:message key="info.changed" var="changed"/>
 <fmt:message key="button.update" var="update"/>
-<fmt:message key="button.delete" var="delete"/>
 <fmt:message key="role.admin" var="admin"/>
 <fmt:message key="role.user" var="user"/>
 <fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
@@ -100,20 +97,9 @@ pageContext.request.locale}" scope="session"/>
                             <input class="btn btn-outline-warning btn-sm" type="submit" value=${update}>
                         </form>
                     </td>
-
-                    <td>
-                        <form action=<%=request.getContextPath()%>"delete-user" method="post">
-                            <input type="hidden" class="form-control" name="id" value="${user.id}">
-                            <input class="btn btn-outline-danger btn-sm" type="submit" value=${delete}>
-                        </form>
-                    </td>
                 </tr>
             </c:forEach>
         </table>
-<%--        <c:choose>--%>
-<%--            <c:when test="${role == Role.ADMIN}">${admin}</c:when>--%>
-<%--            <c:when test="${role == Role.USER}">${user}</c:when>--%>
-<%--        </c:choose>--%>
         </body>
         <label>
             <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/admin-menu"

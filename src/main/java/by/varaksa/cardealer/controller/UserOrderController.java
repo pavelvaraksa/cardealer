@@ -18,7 +18,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,7 +30,7 @@ import java.util.List;
  *
  * @author Pavel Varaksa
  */
-@WebServlet(urlPatterns = {"/user-order/save", "/user-order/find-all", "/user-order/update", "/user-order/delete"})
+@WebServlet(urlPatterns = {"/user-order/save", "/user-order/save-for-user", "/user-order/find-all", "/user-order/find-all-for-user", "/user-order/update", "/user-order/delete"})
 public class UserOrderController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private Commands commandName;
@@ -50,8 +53,11 @@ public class UserOrderController extends HttpServlet {
         commandName = Commands.findByCommandName(request.getServletPath());
 
         try {
-            if (commandName == Commands.FIND_ALL_USER_ORDERS) {
-                findAllUserOrders(request, response);
+            switch (commandName) {
+                case FIND_ALL_USER_ORDERS -> findAllUserOrders(request, response);
+                case FIND_ALL_USER_ORDERS_FOR_USER -> findAllUserOrdersForUser(request, response);
+                default -> {
+                }
             }
         } catch (ServiceException | ControllerException exception) {
             String errorMessage = "UserOrder controller exception." + exception;
@@ -65,6 +71,7 @@ public class UserOrderController extends HttpServlet {
         try {
             switch (commandName) {
                 case SAVE_USER_ORDER -> saveUserOrder(request, response);
+                case SAVE_USER_ORDER_FOR_USER -> saveUserOrderForUser(request, response);
                 case UPDATE_USER_ORDER -> updateUserOrder(request, response);
                 case DELETE_USER_ORDER -> deleteUserOrder(request, response);
                 default -> {
@@ -78,9 +85,9 @@ public class UserOrderController extends HttpServlet {
 
     private void saveUserOrder(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException, ControllerException {
         try {
-            String orderName = (request.getParameter("order_name"));
-            Long userId = Long.valueOf((request.getParameter("user_id")));
-            UserOrder userOrder = new UserOrder(orderName, userId);
+            Long userId = Long.valueOf(request.getParameter("user_id"));
+            Long carId = Long.valueOf(request.getParameter("car_id"));
+            UserOrder userOrder = new UserOrder(userId, carId);
 
             userOrderService.save(userOrder);
             response.sendRedirect("/user-order/find-all");
@@ -92,10 +99,28 @@ public class UserOrderController extends HttpServlet {
         }
     }
 
+    private void saveUserOrderForUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException, ControllerException {
+        try {
+            HttpSession session = request.getSession();
+
+            Long userId = Long.parseLong(String.valueOf(session.getAttribute("id")));
+            Long carId = Long.parseLong(request.getParameter("id"));
+            UserOrder userOrder = new UserOrder(userId, carId);
+
+            userOrderService.save(userOrder);
+            response.sendRedirect("/car/find-all-for-order");
+        } catch (
+                ServiceException exception) {
+            String errorMessage = "Can't save user order";
+            logger.error(errorMessage);
+            response.sendRedirect("/error-400");
+            throw new ControllerException(errorMessage);
+        }
+    }
+
     private void findAllUserOrders(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
         try {
             List<UserOrder> userOrderList = userOrderService.findAll();
-            logger.info("User orders were watched");
             request.setAttribute("userOrderList", userOrderList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-user-orders");
             dispatcher.forward(request, response);
@@ -106,13 +131,28 @@ public class UserOrderController extends HttpServlet {
         }
     }
 
+    private void findAllUserOrdersForUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
+        try {
+            HttpSession session = request.getSession();
+            String login = String.valueOf(session.getAttribute("login"));
+            List<UserOrder> userOrderList = userOrderService.findAllForUser(login);
+            session.setAttribute("userOrderList", userOrderList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-user-orders-for-user");
+            dispatcher.forward(request, response);
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find user orders";
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
+    }
 
     private void updateUserOrder(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ControllerException {
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             UserOrder userOrder = userOrderService.find(id);
 
-            userOrder.setOrderName(request.getParameter("order_name"));
+            userOrder.setUserId(Long.valueOf(request.getParameter("user_id")));
+            userOrder.setCarId(Long.valueOf(request.getParameter("car_id")));
             userOrderService.update(userOrder);
 
             request.setAttribute("user_order", userOrder);
@@ -129,9 +169,11 @@ public class UserOrderController extends HttpServlet {
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             userOrderService.delete(id);
+
             response.sendRedirect("/user-order/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't delete user order";
+            response.sendRedirect("/error-400");
             logger.error(errorMessage);
             throw new ControllerException(errorMessage);
         }

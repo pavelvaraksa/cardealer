@@ -99,7 +99,6 @@ public class DealerController extends HttpServlet {
     private void findAllDealers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
         try {
             List<Dealer> dealerList = dealerService.findAll();
-            logger.info("Dealers were watched");
             request.setAttribute("dealerList", dealerList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-dealers");
             dispatcher.forward(request, response);

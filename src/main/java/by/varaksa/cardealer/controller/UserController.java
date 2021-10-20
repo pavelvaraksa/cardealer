@@ -30,7 +30,7 @@ import java.util.List;
  *
  * @author Pavel Varaksa
  */
-@WebServlet(urlPatterns = {"/user/save", "/user/find-all", "/user/update", "/user/delete", "/register/verify", "/logout"})
+@WebServlet(urlPatterns = {"/user/save", "/user/find-all", "/user/update", "/register/verify", "/logout"})
 public class UserController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private Commands commandName;
@@ -71,7 +71,6 @@ public class UserController extends HttpServlet {
                 case SAVE_USER -> saveUser(request, response);
                 case VERIFY_USER -> verifyUser(request, response);
                 case UPDATE_USER -> updateUser(request, response);
-                case DELETE_USER -> deleteUser(request, response);
             }
         } catch (ControllerException | ServiceException | IOException | ServletException exception) {
             String errorMessage = "User controller exception." + exception;
@@ -152,8 +151,11 @@ public class UserController extends HttpServlet {
                 throw new ControllerException(errorMessage);
             }
 
-            response.sendRedirect("/user-menu");
+            Long id = userService.findIdByLogin(login);
+
+            session.setAttribute("id", id);
             session.setAttribute("login", login);
+            response.sendRedirect("/user-menu");
             return;
         }
 
@@ -192,24 +194,16 @@ public class UserController extends HttpServlet {
         }
     }
 
-    public void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ControllerException {
-        try {
-            Long id = Long.parseLong(request.getParameter("id"));
-            userService.delete(id);
-            response.sendRedirect("/user/find-all");
-        } catch (ServiceException exception) {
-            String errorMessage = "Can't delete user";
-            logger.error(errorMessage);
-            throw new ControllerException(errorMessage);
-        }
-    }
-
     public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
-        Object login = session.getAttribute("login");
+        Long id = (Long) session.getAttribute("id");
+        String login = (String) session.getAttribute("login");
+
+        session.removeAttribute("id");
+        session.removeAttribute("login");
         session.invalidate();
 
-        logger.info("Logout was completed for user with login " + login);
+        logger.info("Logout was completed for user with login " + login + " and id = " + id);
         response.sendRedirect("/login-auth");
     }
 }

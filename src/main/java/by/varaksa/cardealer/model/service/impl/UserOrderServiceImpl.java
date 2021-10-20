@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
  */
 public class UserOrderServiceImpl implements UserOrderService {
     private static final Logger logger = LogManager.getLogger();
-    private static final String REGEXP_ORDER_NAME = RegexpPropertiesReader.getRegexp("order.name.regexp");
     private static final String REGEXP_USER_ID = RegexpPropertiesReader.getRegexp("user.id.regexp");
+    private static final String REGEXP_CAR_ID = RegexpPropertiesReader.getRegexp("car.id.regexp");
     private static final boolean isCheckStringFromUi = true;
     private final UserOrderRepository userOrderRepository;
 
@@ -34,9 +34,9 @@ public class UserOrderServiceImpl implements UserOrderService {
     @Override
     public UserOrder save(UserOrder userOrder) throws ServiceException {
         try {
-            if (StringValidator.isStringValidate(REGEXP_ORDER_NAME, userOrder.getOrderName()) == isCheckStringFromUi &&
-                    StringValidator.isStringValidate(REGEXP_USER_ID, String.valueOf(userOrder.getUserId())) == isCheckStringFromUi) {
-                logger.info("User order " + userOrder.getOrderName() + " was saved");
+            if (StringValidator.isStringValidate(REGEXP_USER_ID, String.valueOf(userOrder.getUserId())) == isCheckStringFromUi &&
+                    (StringValidator.isStringValidate(REGEXP_CAR_ID, String.valueOf(userOrder.getUserId())) == isCheckStringFromUi)) {
+                logger.info("User order for user with id " + userOrder.getUserId() + " was saved");
                 return userOrderRepository.save(userOrder);
             }
 
@@ -55,6 +55,28 @@ public class UserOrderServiceImpl implements UserOrderService {
         try {
             existingUserOrders = userOrderRepository.findAll();
             existingUserOrders = existingUserOrders.stream().sorted(Comparator.comparing(UserOrder::getId)).collect(Collectors.toList());
+
+            if (existingUserOrders.isEmpty()) {
+                String errorMessage = "User orders list is empty";
+                logger.error(errorMessage);
+            } else {
+                logger.info("User orders exist");
+                return existingUserOrders;
+            }
+
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User order service exception while trying to find all user orders." + exception);
+        }
+        return existingUserOrders;
+    }
+
+    @Override
+    public List<UserOrder> findAllForUser(String login) throws ServiceException {
+        List<UserOrder> existingUserOrders;
+
+        try {
+            existingUserOrders = userOrderRepository.findAllForUser(login);
+            existingUserOrders = existingUserOrders.stream().sorted(Comparator.comparing(UserOrder::getModel)).collect(Collectors.toList());
 
             if (existingUserOrders.isEmpty()) {
                 String errorMessage = "User orders list is empty";
@@ -98,9 +120,9 @@ public class UserOrderServiceImpl implements UserOrderService {
     @Override
     public UserOrder update(UserOrder userOrder) throws ServiceException {
         try {
-            if (StringValidator.isStringValidate(REGEXP_ORDER_NAME, userOrder.getOrderName()) == isCheckStringFromUi &&
-                    StringValidator.isStringValidate(REGEXP_USER_ID, String.valueOf(userOrder.getUserId())) == isCheckStringFromUi) {
-                logger.info("User order " + userOrder.getOrderName() + " was updated");
+            if (StringValidator.isStringValidate(REGEXP_USER_ID, String.valueOf(userOrder.getUserId())) == isCheckStringFromUi &&
+                    (StringValidator.isStringValidate(REGEXP_CAR_ID, String.valueOf(userOrder.getUserId())) == isCheckStringFromUi)) {
+                logger.info("User order for user with id " + userOrder.getUserId() + " was updated");
                 return userOrderRepository.update(userOrder);
             }
 

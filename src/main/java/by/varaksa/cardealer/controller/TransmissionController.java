@@ -98,7 +98,6 @@ public class TransmissionController extends HttpServlet {
     private void findAllTransmissions(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, ControllerException {
         try {
             List<Transmission> transmissionList = transmissionService.findAll();
-            logger.info("Transmissions were watched");
             request.setAttribute("transmissionList", transmissionList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-transmissions");
             dispatcher.forward(request, response);

@@ -29,6 +29,13 @@ public interface UserOrderService {
     List<UserOrder> findAll() throws ServiceException;
 
     /**
+     * Find all user orders for user from the database
+     *
+     * @throws ServiceException if service exception happened
+     */
+    List<UserOrder> findAllForUser(String login) throws ServiceException;
+
+    /**
      * Find user order from the database by id
      *
      * @param id {@code Long} user order id

@@ -1,153 +1,163 @@
 create database car_dealer_database
     with owner postgres;
 
-create table bodies
+create table if not exists users
 (
-	id bigserial
-		constraint bodies_pk
-			primary key,
-	color varchar(20) not null,
-	body_type varchar(20) not null,
-	created timestamp not null,
-	changed timestamp not null,
-	car_id bigint not null
-);
-
-alter table bodies owner to postgres;
-
-create unique index bodies_id_uindex
-	on bodies (id);
-
-create unique index bodies_car_id_uindex
-	on bodies (car_id);
-
-create table engines
-(
-	id bigserial
-		constraint engines_pk
-			primary key,
-	fuel_type varchar(15) not null,
-	volume double precision,
-	cylinders_count integer,
-	created timestamp not null,
-	changed timestamp not null,
-	car_id bigint not null
-);
-
-alter table engines owner to postgres;
-
-create unique index engines_id_uindex
-	on engines (id);
-
-create unique index engines_car_id_uindex
-	on engines (car_id);
-
-create table transmissions
-(
-	id serial
-		constraint transmissions_pk
-			primary key,
-	transmission_type varchar(15) not null,
-	gears_count integer not null,
-	weight integer not null,
-	created timestamp not null,
-	changed timestamp not null,
-	car_id bigint not null
-);
-
-alter table transmissions owner to postgres;
-
-create unique index transmissions_id_uindex
-	on transmissions (id);
-
-create unique index transmissions_car_id_uindex
-	on transmissions (car_id);
-
-create table users
-(
-	id bigserial
-		constraint users_pk
-			primary key,
-	firstname varchar(20) not null,
-	lastname varchar(30) not null,
-	birth_date date,
-	phone_number varchar(9) not null,
-	login varchar(30) not null,
-	password varchar(55) not null,
-	email varchar(55) not null,
-	role varchar(10) not null,
-	is_blocked boolean default false not null,
-	created timestamp not null,
-	changed timestamp not null
+    id bigserial
+        constraint users_pk
+            primary key,
+    firstname varchar(20) not null,
+    lastname varchar(30) not null,
+    birth_date date,
+    phone_number varchar(9) not null,
+    login varchar(30) not null,
+    password varchar(55) not null,
+    email varchar(55) not null,
+    role varchar(10) not null,
+    is_blocked boolean default false not null,
+    created timestamp not null,
+    changed timestamp not null
 );
 
 alter table users owner to postgres;
 
-create unique index users_id_uindex
-	on users (id);
+create unique index if not exists users_id_uindex
+    on users (id);
 
-create unique index users_login_uindex
-	on users (login);
+create unique index if not exists users_login_uindex
+    on users (login);
 
-create table user_orders
+create table if not exists dealers
 (
-	id bigserial
-		constraint user_orders_pk
-			primary key,
-	order_name varchar(30) not null,
-	created timestamp not null,
-	changed timestamp not null,
-	user_id bigint not null
-		constraint user_orders_users_id_fk
-			references users
-);
-
-alter table user_orders owner to postgres;
-
-create unique index user_orders_id_uindex
-	on user_orders (id);
-
-create table dealers
-(
-	id bigserial
-		constraint dealers_pk
-			primary key,
-	name varchar(30) not null,
-	address varchar(55) not null,
-	foundation_date date not null,
-	city varchar(15) not null,
-	created timestamp not null,
-	changed timestamp not null
+    id bigserial
+        constraint dealers_pk
+            primary key,
+    name varchar(30) not null,
+    address varchar(55) not null,
+    foundation_date date not null,
+    city varchar(15) not null,
+    created timestamp not null,
+    changed timestamp not null
 );
 
 alter table dealers owner to postgres;
 
-create unique index dealers_id_uindex
-	on dealers (id);
+create unique index if not exists dealers_id_uindex
+    on dealers (id);
 
-create table cars
+create table if not exists cars
 (
-	id bigserial
-		constraint cars_pk
-			primary key,
-	model varchar(20) not null,
-	issue_country varchar(20) not null,
-	guarantee_period integer not null,
-	price numeric not null,
-	created timestamp not null,
-	changed timestamp not null,
-	user_order_id bigint
-		constraint cars_user_orders_id_fk
-			references user_orders,
-	dealer_id bigint not null
-		constraint cars_dealers_id_fk
-			references dealers
+    id bigserial
+        constraint cars_pk
+            primary key,
+    model varchar(20) not null,
+    issue_country varchar(20) not null,
+    guarantee_period integer not null,
+    price numeric not null,
+    created timestamp not null,
+    changed timestamp not null,
+    dealer_id bigint not null
+        constraint cars_dealers_id_fk
+            references dealers
 );
 
 alter table cars owner to postgres;
 
-create unique index cars_id_uindex
-	on cars (id);
+create table if not exists bodies
+(
+    id bigserial
+        constraint bodies_pk
+            primary key,
+    color varchar(20) not null,
+    body_type varchar(20) not null,
+    created timestamp not null,
+    changed timestamp not null,
+    car_id bigint not null
+        constraint bodies_cars_id_fk
+            references cars
+            on update cascade on delete cascade
+);
+
+alter table bodies owner to postgres;
+
+create unique index if not exists bodies_id_uindex
+    on bodies (id);
+
+create unique index if not exists bodies_car_id_uindex
+    on bodies (car_id);
+
+create table if not exists engines
+(
+    id bigserial
+        constraint engines_pk
+            primary key,
+    fuel_type varchar(15) not null,
+    volume double precision,
+    cylinders_count integer,
+    created timestamp not null,
+    changed timestamp not null,
+    car_id bigint not null
+        constraint engines_cars_id_fk
+            references cars
+            on update cascade on delete cascade
+);
+
+alter table engines owner to postgres;
+
+create unique index if not exists engines_id_uindex
+    on engines (id);
+
+create unique index if not exists engines_car_id_uindex
+    on engines (car_id);
+
+create table if not exists transmissions
+(
+    id serial
+        constraint transmissions_pk
+            primary key,
+    transmission_type varchar(15) not null,
+    gears_count integer not null,
+    weight integer not null,
+    created timestamp not null,
+    changed timestamp not null,
+    car_id bigint not null
+        constraint transmissions_cars_id_fk
+            references cars
+            on update cascade on delete cascade
+);
+
+alter table transmissions owner to postgres;
+
+create unique index if not exists transmissions_id_uindex
+    on transmissions (id);
+
+create unique index if not exists transmissions_car_id_uindex
+    on transmissions (car_id);
+
+create table if not exists user_orders
+(
+    id bigserial
+        constraint user_orders_pk
+            primary key,
+    created timestamp not null,
+    changed timestamp not null,
+    user_id bigint not null
+        constraint user_orders_users_id_fk
+            references users,
+    car_id bigint not null
+        constraint user_orders_cars_id_fk
+            references cars
+);
+
+alter table user_orders owner to postgres;
+
+create unique index if not exists user_orders_id_uindex
+    on user_orders (id);
+
+create unique index if not exists cars_id_uindex
+    on cars (id);
+
+
 
 
 insert into users (firstname, lastname, phone_number, login, password, email, role, is_blocked, created, changed)
