@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%--@elvariable id="language" type=""--%>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language :
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
@@ -12,10 +13,9 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="user.login" var="login"/>
 <fmt:message key="user.password" var="password"/>
 <fmt:message key="button.enter" var="enter"/>
-<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
-
 <fmt:message key="text.login.help.text" var="login_help_text"/>
 <fmt:message key="text.password.help.text" var="password_help_text"/>
+<fmt:message key="button.return.to.previous.page" var="return_to_previous_page"/>
 
 <html>
 <head>

@@ -26,11 +26,11 @@ public class StringValidator {
         Matcher matcher = pattern.matcher(stringFromUi);
 
         if (matcher.matches()) {
-            logger.info("Entered string " + stringFromUi + " was correct");
+            logger.info("Entered string " + stringFromUi + " wasn't passed validation");
             return true;
         }
 
-        logger.error("Entered string " + stringFromUi + " wasn't correct");
+        logger.error("Entered string " + stringFromUi + " passed validation");
         return false;
     }
 }

@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -108,9 +106,8 @@ public class UserOrderController extends HttpServlet {
             UserOrder userOrder = new UserOrder(userId, carId);
 
             userOrderService.save(userOrder);
-            response.sendRedirect("/car/find-all-for-order");
-        } catch (
-                ServiceException exception) {
+            response.sendRedirect("/user-order/find-all-for-user");
+        } catch (ServiceException exception) {
             String errorMessage = "Can't save user order";
             logger.error(errorMessage);
             response.sendRedirect("/error-400");

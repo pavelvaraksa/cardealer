@@ -91,13 +91,14 @@ public class Dealer {
 
     @Override
     public int hashCode() {
-        return (int) (11 * id
-                + name.hashCode()
-                + address.hashCode()
-                + foundationDate.hashCode()
-                + city.hashCode()
-                + created.hashCode()
-                + changed.hashCode());
+        int result = id == null ? 0 : id.hashCode();
+        result = 11 * result + (name == null ? 0 : name.hashCode());
+        result = 11 * result + (address == null ? 0 : address.hashCode());
+        result = 11 * result + (foundationDate == null ? 0 : foundationDate.hashCode());
+        result = 11 * result + (city == null ? 0 : city.hashCode());
+        result = 11 * result + (created == null ? 0 : created.hashCode());
+        result = 11 * result + (changed == null ? 0 : changed.hashCode());
+        return result;
     }
 
     @Override
@@ -112,13 +113,13 @@ public class Dealer {
 
         Dealer dealer = (Dealer) object;
 
-        return id == dealer.id
-                && (name == dealer.name || name != null && name.equals(dealer.getName()))
-                && (address == dealer.address || address != null && address.equals(dealer.getAddress()))
-                && (foundationDate == dealer.foundationDate || foundationDate != null && foundationDate.equals(dealer.getFoundationDate()))
-                && (city == dealer.city || city != null && city.equals(dealer.getCity()))
-                && (created == dealer.created || created != null && created.equals(dealer.getCreated()))
-                && (changed == dealer.changed || changed != null && changed.equals(dealer.getChanged()));
+        return id == dealer.id &&
+                name == dealer.name &&
+                address == dealer.address &&
+                foundationDate == dealer.foundationDate &&
+                city == dealer.city &&
+                created == dealer.created &&
+                changed == dealer.changed;
     }
 
     @Override

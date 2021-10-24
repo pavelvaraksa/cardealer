@@ -90,13 +90,14 @@ public class Transmission {
 
     @Override
     public int hashCode() {
-        return (int) (11 * id
-                + transmissionType.hashCode()
-                + gearsCount.hashCode()
-                + weight.hashCode()
-                + created.hashCode()
-                + changed.hashCode()
-                + carId.hashCode());
+        int result = id == null ? 0 : id.hashCode();
+        result = 11 * result + (transmissionType == null ? 0 : transmissionType.hashCode());
+        result = 11 * result + (gearsCount == null ? 0 : gearsCount.hashCode());
+        result = 11 * result + (weight == null ? 0 : weight.hashCode());
+        result = 11 * result + (created == null ? 0 : created.hashCode());
+        result = 11 * result + (changed == null ? 0 : changed.hashCode());
+        result = 11 * result + (carId == null ? 0 : carId.hashCode());
+        return result;
     }
 
     @Override
@@ -111,13 +112,13 @@ public class Transmission {
 
         Transmission transmission = (Transmission) object;
 
-        return id == transmission.id
-                && (transmissionType == transmission.transmissionType || transmissionType != null && transmissionType.equals(transmission.getTransmissionType()))
-                && (gearsCount == transmission.gearsCount || gearsCount != null && gearsCount.equals(transmission.getGearsCount()))
-                && (weight == transmission.weight || weight != null && weight.equals(transmission.getWeight()))
-                && (created == transmission.created || created != null && created.equals(transmission.getCreated()))
-                && (changed == transmission.changed || changed != null && changed.equals(transmission.getChanged()))
-                && (carId == transmission.carId || carId != null && carId.equals(transmission.getCarId()));
+        return id == transmission.id &&
+                transmissionType == transmission.transmissionType &&
+                gearsCount == transmission.gearsCount &&
+                weight == transmission.weight &&
+                created == transmission.created &&
+                changed == transmission.changed &&
+                carId == transmission.carId;
     }
 
     @Override

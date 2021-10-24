@@ -76,7 +76,7 @@ public class UserOrderServiceImpl implements UserOrderService {
 
         try {
             existingUserOrders = userOrderRepository.findAllForUser(login);
-            existingUserOrders = existingUserOrders.stream().sorted(Comparator.comparing(UserOrder::getModel)).collect(Collectors.toList());
+            existingUserOrders = existingUserOrders.stream().sorted(Comparator.comparing(UserOrder::getCreated)).collect(Collectors.toList());
 
             if (existingUserOrders.isEmpty()) {
                 String errorMessage = "User orders list is empty";

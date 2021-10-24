@@ -93,13 +93,14 @@ public class Engine {
 
     @Override
     public int hashCode() {
-        return (int) (11 * id
-                + fuelType.hashCode()
-                + volume.hashCode()
-                + cylindersCount.hashCode()
-                + created.hashCode()
-                + changed.hashCode()
-                + carId.hashCode());
+        int result = id == null ? 0 : id.hashCode();
+        result = 11 * result + (fuelType == null ? 0 : fuelType.hashCode());
+        result = 11 * result + (volume == null ? 0 : volume.hashCode());
+        result = 11 * result + (cylindersCount == null ? 0 : cylindersCount.hashCode());
+        result = 11 * result + (created == null ? 0 : created.hashCode());
+        result = 11 * result + (changed == null ? 0 : changed.hashCode());
+        result = 11 * result + (carId == null ? 0 : carId.hashCode());
+        return result;
     }
 
     @Override
@@ -114,13 +115,13 @@ public class Engine {
 
         Engine engine = (Engine) object;
 
-        return id == engine.id
-                && (fuelType == engine.fuelType || fuelType != null && fuelType.equals(engine.getFuelType()))
-                && (volume == engine.volume || volume != null && volume.equals(engine.getVolume()))
-                && (cylindersCount == engine.cylindersCount || cylindersCount != null && cylindersCount.equals(engine.getCylindersCount()))
-                && (created == engine.created || created != null && created.equals(engine.getCreated()))
-                && (changed == engine.changed || changed != null && changed.equals(engine.getChanged()))
-                && (carId == engine.carId || carId != null && carId.equals(engine.getCarId()));
+        return id == engine.id &&
+                fuelType == engine.fuelType &&
+                volume == engine.volume &&
+                cylindersCount == engine.cylindersCount &&
+                created == engine.created &&
+                changed == engine.changed &&
+                carId == engine.carId;
     }
 
     @Override

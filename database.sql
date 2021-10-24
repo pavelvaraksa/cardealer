@@ -164,64 +164,60 @@ insert into users (firstname, lastname, phone_number, login, password, email, ro
 values ('Admin', 'Admin', '000000000', 'admin', 'YWRtaW4=', 'javaTestProject2000@gmail.com', 'ADMIN', false, '2000-01-01 00:00:00.000000', '2000-01-01 00:00:00.000000');
 
 
-insert into user_orders(order_name, created, changed, user_id)
-values ('Null', '2000-01-01 00:00:00.000000', '2000-01-01 00:00:00.000000', 1)
-
+insert into dealers (name, address, foundation_date, city, created, changed)
+values ('Audi center Minsk', 'Nezavisimosti Avenue, 198', '1998-04-01', 'MINSK', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000');
 
 insert into dealers (name, address, foundation_date, city, created, changed)
-values ('Audi center Minsk', 'Nezavisimosti Avenue, 198', '1998-04-01', 'MINSK', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000')
+values ('Audi center Brest', 'Gavrilova street, 17', '2001-07-22', 'BREST', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000');
 
 insert into dealers (name, address, foundation_date, city, created, changed)
-values ('Audi center Brest', 'Gavrilova street, 17', '2001-07-22', 'BREST', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000')
+values ('Audi center Grodno', 'Vostochnaya street, 64', '2002-2-13', 'GRODNO', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000');
 
 insert into dealers (name, address, foundation_date, city, created, changed)
-values ('Audi center Grodno', 'Vostochnaya street, 64', '2002-2-13', 'GRODNO', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000')
+values ('Audi center Vitebsk', 'Gornaya street, 23', '1999-12-05', 'VITEBSK', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000');
 
 insert into dealers (name, address, foundation_date, city, created, changed)
-values ('Audi center Vitebsk', 'Gornaya street, 23', '1999-12-05', 'VITEBSK', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000')
+values ('Audi center Mogilev', 'Mira Avenue, 11', '2005-06-03', 'MOGILEV', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000');
 
 insert into dealers (name, address, foundation_date, city, created, changed)
-values ('Audi center Mogilev', 'Mira Avenue, 11', '2005-06-03', 'MOGILEV', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000')
-
-insert into dealers (name, address, foundation_date, city, created, changed)
-values ('Audi center Gomel', 'Zhukova street, 198', '2001-08-17', 'GOMEL', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000')
+values ('Audi center Gomel', 'Zhukova street, 198', '2001-08-17', 'GOMEL', '2021-09-26 00:00:00.000000', '2021-09-26 00:00:00.000000');
 
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('A1', 'CZECH', 3, 18000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 1);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('A1', 'CZECH', 3, 18000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('A3', 'GERMANY', 3, 22000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 2);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('A3', 'GERMANY', 3, 22000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 2);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('A5', 'GERMANY', 3, 25000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 3);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('A5', 'GERMANY', 3, 25000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 3);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('A7', 'POLAND', 3, 30000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 4);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('A7', 'POLAND', 3, 30000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 4);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('A8', 'GERMANY', 3, 38000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 5);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('A8', 'GERMANY', 3, 38000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 5);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('Q3', 'GERMANY', 3, 33000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 6);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('Q3', 'GERMANY', 3, 33000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 6);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('Q5', 'GERMANY', 3, 41000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 2);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('Q5', 'GERMANY', 3, 41000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 2);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('Q7', 'CZECH', 3, 45000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 4);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('Q7', 'CZECH', 3, 45000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 4);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('Q8', 'POLAND', 3, 52000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 6);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('Q8', 'POLAND', 3, 52000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 6);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('A5', 'GERMANY', 3, 27000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 1);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('A5', 'GERMANY', 3, 27000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('A1', 'GERMANY', 3, 21000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 5);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('A1', 'GERMANY', 3, 21000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 5);
 
-insert into cars (model, issue_country, guarantee_period, price, created, changed, user_order_id, dealer_id)
-values ('Q3', 'POLAND', 3, 34000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 1, 3);
+insert into cars (model, issue_country, guarantee_period, price, created, changed, dealer_id)
+values ('Q3', 'POLAND', 3, 34000, '2021-10-10 22:19:23.000000', '2021-10-10 22:19:23.000000', 3);
 
 
 insert into bodies (color, body_type, created, changed, car_id)

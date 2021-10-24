@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<jsp:useBean id="dealerList" scope="request" type="java.util.List"/>
+<%--@elvariable id="language" type=""--%>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language :
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
@@ -67,7 +69,6 @@ pageContext.request.locale}" scope="session"/>
             </tr>
             </thead>
 
-            <%--@elvariable id="dealerList" type="java.util.List"--%>
             <c:forEach var="dealer" items="${dealerList}">
 
                 <tr>

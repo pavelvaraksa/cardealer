@@ -111,17 +111,17 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        List<User> result = new ArrayList<>();
+        List<User> userList = new ArrayList<>();
 
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_USERS);
 
             while (resultSet.next()) {
-                result.add(parseResultSet(resultSet));
+                userList.add(parseResultSet(resultSet));
             }
 
-            return result;
+            return userList;
         } catch (SQLException exception) {
             String errorMessage = "SQL exception." + exception;
             logger.error(errorMessage);

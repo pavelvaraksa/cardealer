@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%--@elvariable id="language" type=""--%>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language :
 pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
@@ -9,6 +10,8 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
 <fmt:message key="page.audi.dealer.save.user.order.page" var="save_page"/>
 <fmt:message key="button.save" var="save"/>
+<fmt:message key="button.yes" var="yes"/>
+<fmt:message key="button.no" var="no"/>
 <fmt:message key="text.add.user.order.text" var="add_to_order"/>
 <fmt:message key="user.user.id" var="user_id"/>
 <fmt:message key="car.car.id" var="car_id"/>

@@ -84,12 +84,12 @@ public class Body {
 
     @Override
     public int hashCode() {
-        return (int) (11 * id
-                + color.hashCode()
-                + bodyType.hashCode()
-                + created.hashCode()
-                + changed.hashCode()
-                + carId.hashCode());
+        int result = id == null ? 0 : id.hashCode();
+        result = 11 * result + (bodyType == null ? 0 : bodyType.hashCode());
+        result = 11 * result + (created == null ? 0 : created.hashCode());
+        result = 11 * result + (changed == null ? 0 : changed.hashCode());
+        result = 11 * result + (carId == null ? 0 : carId.hashCode());
+        return result;
     }
 
     @Override
@@ -104,12 +104,11 @@ public class Body {
 
         Body body = (Body) object;
 
-        return id == body.id
-                && (color == body.color || color != null && color.equals(body.getColor()))
-                && (bodyType == body.bodyType || bodyType != null && bodyType.equals(body.getBodyType()))
-                && (created == body.created || created != null && created.equals(body.getCreated()))
-                && (changed == body.changed || changed != null && changed.equals(body.getChanged()))
-                && (carId == body.carId || carId != null && carId.equals(body.getCarId()));
+        return id == body.id &&
+                bodyType == body.bodyType &&
+                created == body.created &&
+                changed == body.changed &&
+                carId == body.carId;
     }
 
     @Override

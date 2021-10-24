@@ -171,14 +171,15 @@ public class Car {
 
     @Override
     public int hashCode() {
-        return (int) (11 * id
-                + model.hashCode()
-                + issueCountry.hashCode()
-                + guaranteePeriod.hashCode()
-                + price.hashCode()
-                + created.hashCode()
-                + changed.hashCode()
-                + dealerId.hashCode());
+        int result = id == null ? 0 : id.hashCode();
+        result = 11 * result + (model == null ? 0 : model.hashCode());
+        result = 11 * result + (issueCountry == null ? 0 : issueCountry.hashCode());
+        result = 11 * result + (guaranteePeriod == null ? 0 : guaranteePeriod.hashCode());
+        result = 11 * result + (price == null ? 0 : price.hashCode());
+        result = 11 * result + (created == null ? 0 : created.hashCode());
+        result = 11 * result + (changed == null ? 0 : changed.hashCode());
+        result = 11 * result + (dealerId == null ? 0 : dealerId.hashCode());
+        return result;
     }
 
     @Override
@@ -193,14 +194,14 @@ public class Car {
 
         Car car = (Car) object;
 
-        return id == car.id
-                && (model == car.model || model != null && model.equals(car.getModel()))
-                && (issueCountry == car.issueCountry || issueCountry != null && issueCountry.equals(car.getIssueCountry()))
-                && (guaranteePeriod == car.guaranteePeriod || guaranteePeriod != null && guaranteePeriod.equals(car.getGuaranteePeriod()))
-                && (price == car.price || price != null && price.equals(car.getPrice()))
-                && (created == car.created || created != null && created.equals(car.getCreated()))
-                && (changed == car.changed || changed != null && changed.equals(car.getChanged()))
-                && (dealerId == car.dealerId || dealerId != null && dealerId.equals(car.getDealerId()));
+        return id == car.id &&
+                model == car.model &&
+                issueCountry == car.issueCountry &&
+                guaranteePeriod == car.guaranteePeriod &&
+                price == car.price &&
+                created == car.created &&
+                changed == car.changed &&
+                dealerId == car.dealerId;
     }
 
     @Override

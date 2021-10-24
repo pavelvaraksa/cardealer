@@ -108,11 +108,12 @@ public class UserOrder {
 
     @Override
     public int hashCode() {
-        return (int) (11 * id
-                + created.hashCode()
-                + changed.hashCode()
-                + userId.hashCode())
-                + carId.hashCode();
+        int result = id == null ? 0 : id.hashCode();
+        result = 11 * result + (created == null ? 0 : created.hashCode());
+        result = 11 * result + (changed == null ? 0 : changed.hashCode());
+        result = 11 * result + (userId == null ? 0 : userId.hashCode());
+        result = 11 * result + (carId == null ? 0 : carId.hashCode());
+        return result;
     }
 
     @Override
@@ -127,11 +128,11 @@ public class UserOrder {
 
         UserOrder userOrder = (UserOrder) object;
 
-        return id == userOrder.id
-                && (created == userOrder.created || created != null && created.equals(userOrder.getCreated()))
-                && (changed == userOrder.changed || changed != null && changed.equals(userOrder.getChanged()))
-                && (userId == userOrder.userId || userId != null && userId.equals(userOrder.getUserId()))
-                && (carId == userOrder.carId || carId != null && carId.equals(userOrder.getCarId()));
+        return id == userOrder.id &&
+                created == userOrder.created &&
+                changed == userOrder.changed &&
+                userId == userOrder.userId &&
+                carId == userOrder.carId;
     }
 
     @Override

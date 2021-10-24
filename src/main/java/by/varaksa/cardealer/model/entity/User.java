@@ -164,17 +164,18 @@ public class User {
 
     @Override
     public int hashCode() {
-        return (int) (11 * id
-                + firstName.hashCode()
-                + lastName.hashCode()
-                + birthDate.hashCode()
-                + phoneNumber.hashCode()
-                + login.hashCode()
-                + password.hashCode()
-                + email.hashCode()
-                + role.hashCode()
-                + created.hashCode()
-                + changed.hashCode());
+        int result = id == null ? 0 : id.hashCode();
+        result = 11 * result + (firstName == null ? 0 : firstName.hashCode());
+        result = 11 * result + (lastName == null ? 0 : lastName.hashCode());
+        result = 11 * result + (birthDate == null ? 0 : birthDate.hashCode());
+        result = 11 * result + (phoneNumber == null ? 0 : phoneNumber.hashCode());
+        result = 11 * result + (login == null ? 0 : login.hashCode());
+        result = 11 * result + (password == null ? 0 : password.hashCode());
+        result = 11 * result + (email == null ? 0 : email.hashCode());
+        result = 11 * result + (role == null ? 0 : role.hashCode());
+        result = 11 * result + (created == null ? 0 : created.hashCode());
+        result = 11 * result + (changed == null ? 0 : changed.hashCode());
+        return result;
     }
 
     @Override
@@ -189,17 +190,17 @@ public class User {
 
         User user = (User) object;
 
-        return id == user.id
-                && (firstName == user.firstName || firstName != null && firstName.equals(user.getFirstName()))
-                && (lastName == user.lastName || lastName != null && lastName.equals(user.getLastName()))
-                && (birthDate == user.birthDate || birthDate != null && birthDate.equals(user.getBirthDate()))
-                && (phoneNumber == user.phoneNumber || phoneNumber != null && phoneNumber.equals(user.getPhoneNumber()))
-                && (login == user.login || login != null && login.equals(user.getLogin()))
-                && (password == user.password || password != null && password.equals(user.getPassword()))
-                && (email == user.email || email != null && email.equals(user.getEmail()))
-                && (role == user.role || role != null && role.equals(user.getRole()))
-                && (created == user.created || created != null && created.equals(user.getCreated()))
-                && (changed == user.changed || changed != null && changed.equals(user.getChanged()));
+        return id == user.id &&
+                firstName == user.firstName &&
+                lastName == user.lastName &&
+                birthDate == user.birthDate &&
+                phoneNumber == user.phoneNumber &&
+                login == user.login &&
+                password == user.password &&
+                email == user.email &&
+                role == user.role &&
+                created == user.created &&
+                changed == user.changed;
     }
 
     @Override
