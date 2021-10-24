@@ -32,7 +32,7 @@ pageContext.request.locale}" scope="session"/>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h3><u>${add_to_order}?</u></h3>
-    <form action=<%=request.getContextPath()%>"/user-order/save-for-user" method="post">
+    <form action=<%=request.getContextPath()%>"/user-order-for-user/save-for-user" method="post">
         <form class="row g-3">
             <div class="col-md-3">
                 <input type="hidden" name="id" value="${param.id}">

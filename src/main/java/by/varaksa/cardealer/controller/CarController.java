@@ -30,7 +30,7 @@ import java.util.List;
  *
  * @author Pavel Varaksa
  */
-@WebServlet(urlPatterns = {"/car/save", "/car/find-all", "/car/find-all-for-order", "/car/update", "/car/delete"})
+@WebServlet(urlPatterns = {"/car/save", "/car/find-all", "/car-for-user/find-all-for-user", "/car/update", "/car/delete"})
 public class CarController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private Commands commandName;
@@ -55,7 +55,7 @@ public class CarController extends HttpServlet {
         try {
             switch (commandName) {
                 case FIND_ALL_CARS -> findAllCars(request, response);
-                case FIND_ALL_CARS_FOR_ORDER -> findAllCarsForOrder(request, response);
+                case FIND_ALL_CARS_FOR_USER -> findAllCarsForOrder(request, response);
                 default -> {
                 }
             }
@@ -119,7 +119,7 @@ public class CarController extends HttpServlet {
         try {
             List<Car> carListForOrder = carService.findAllForOrder();
             request.setAttribute("carListForOrder", carListForOrder);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-cars-for-order");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/find-all-cars-for-user");
             dispatcher.forward(request, response);
         } catch (ServiceException exception) {
             String errorMessage = "Can't find cars";

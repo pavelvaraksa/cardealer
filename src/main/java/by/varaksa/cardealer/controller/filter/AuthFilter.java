@@ -67,6 +67,12 @@ public class AuthFilter implements Filter {
 
                 if (userService.isUserExist(login)) {
 
+                    if (userService.isBlocking(login)) {
+                        logger.error("Authentication filter blocked an attempt to enter a forbidden page");
+                        response.sendRedirect("/error-403");
+                        return;
+                    }
+
                     if (userService.isAuthenticate(user)) {
 
                         Long id = userService.findIdByLogin(login);

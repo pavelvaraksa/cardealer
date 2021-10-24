@@ -44,7 +44,7 @@ pageContext.request.locale}" scope="session"/>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>${user_orders_list}</u></h2>
-    <form action=<%=request.getContextPath()%>"/user-order/find-all-for-user" method="get">
+    <form action=<%=request.getContextPath()%>"/user-order-for-user/find-all-for-user" method="get">
         <tbody>
         <table class="table table-bordered">
             <thead>

@@ -1,5 +1,6 @@
 package by.varaksa.cardealer.controller.filter;
 
+import by.varaksa.cardealer.model.entity.Role;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,13 +12,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Class {@code GuestFilter} designed for filter requests
+ * Class {@code CarFilterForUser} designed for filter requests
  * from unauthenticated users
  *
  * @author Pavel Varaksa
  */
-@WebFilter(filterName = "GuestFilter")
-public class GuestFilter implements Filter {
+@WebFilter(filterName = "CarFilterForUser")
+public class CarFilterForUser implements Filter {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
@@ -30,11 +31,11 @@ public class GuestFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
 
-        Object sessionLogin = session.getAttribute("login");
-        Object requestLogin = request.getParameter("login");
+        Object login = session.getAttribute("login");
+        Object role = session.getAttribute("role");
 
-        if (sessionLogin == null && requestLogin == null) {
-            logger.error("Guest filter blocked an attempt to enter a forbidden page");
+        if (login == null || role != Role.USER) {
+            logger.error("Car filter for user blocked an attempt to enter a forbidden page");
             response.sendRedirect("/error-403");
             return;
         }

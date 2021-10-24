@@ -52,7 +52,7 @@ pageContext.request.locale}" scope="session"/>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>${cars_list}</u></h2>
-    <form action=<%=request.getContextPath()%>"/car/find-all-for-order" method="get">
+    <form action=<%=request.getContextPath()%>"/car-for-user/find-all-for-user" method="get">
         <tbody>
         <table class="table table-bordered">
             <thead>
@@ -87,7 +87,7 @@ pageContext.request.locale}" scope="session"/>
                     <td>${car.bodyType}</td>
 
                     <td>
-                    <form action=<%=request.getContextPath()%>"/user-order/save-user-order-for-user" method="post">
+                    <form action=<%=request.getContextPath()%>"/user-order-for-user/save-user-order-for-user" method="post">
                         <input type="hidden" class="form-control" name="id" value="${car.id}">
                         <input class="btn btn-outline-success btn-sm" type="submit" value=${add}>
                     </form>

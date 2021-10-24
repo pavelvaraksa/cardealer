@@ -1,5 +1,6 @@
 package by.varaksa.cardealer.model.repository.impl;
 
+import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.util.EncryptionUserPassword;
 import by.varaksa.cardealer.model.connection.ConnectionPool;
 import by.varaksa.cardealer.model.entity.Role;
@@ -281,6 +282,21 @@ public class UserRepositoryImpl implements UserRepository {
         }
 
         return id;
+    }
+
+    @Override
+    public boolean isBlocking(String login) {
+        boolean isBlocked = false;
+        List<User> allUsers = new ArrayList<>(findAll());
+
+        for (User user : allUsers) {
+            if (user.getLogin().equals(login) && user.isBlocked()) {
+                isBlocked = true;
+                break;
+            }
+        }
+
+        return isBlocked;
     }
 }
 

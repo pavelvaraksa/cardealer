@@ -95,4 +95,12 @@ public interface UserService {
      * @throws ServiceException if service exception happened
      */
     Long findIdByLogin(String login) throws ServiceException;
+
+    /**
+     * Find user blocking by login
+     *
+     * @param login {@code String} user blocking by login
+     * @throws ServiceException if service exception happened
+     */
+    boolean isBlocking(String login) throws ServiceException;
 }

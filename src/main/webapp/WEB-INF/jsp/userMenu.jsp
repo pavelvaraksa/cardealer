@@ -33,11 +33,11 @@ pageContext.request.locale}" scope="session"/>
                     <a class="nav-link" href=<%=request.getContextPath()%>"/logout">${log_out}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=<%=request.getContextPath()%>"/car/find-all-for-order">${cars_list}</a>
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/car-for-user/find-all-for-user">${cars_list}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
-                       href=<%=request.getContextPath()%>"/user-order/find-all-for-user">${orders_list}</a>
+                       href=<%=request.getContextPath()%>"/user-order-for-user/find-all-for-user">${orders_list}</a>
                 </li>
             </ul>
         </div>

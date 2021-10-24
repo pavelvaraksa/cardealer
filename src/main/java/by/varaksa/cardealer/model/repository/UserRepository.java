@@ -46,4 +46,12 @@ public interface UserRepository extends CrudRepository<Long, User> {
      * @throws RepositoryException if repository exception happened
      */
     Long findIdByLogin(String login) throws RepositoryException;
+
+    /**
+     * Find user blocking by login
+     *
+     * @param login {@code String} user blocking by login
+     * @throws RepositoryException if repository exception happened
+     */
+    boolean isBlocking(String login) throws RepositoryException;
 }

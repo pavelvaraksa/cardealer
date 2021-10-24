@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequestWrapper;
  *
  * @author Pavel Varaksa
  */
-public class RequestWrapper extends HttpServletRequestWrapper {
-    public RequestWrapper(HttpServletRequest request){
+public class XssRequestWrapper extends HttpServletRequestWrapper {
+    public XssRequestWrapper(HttpServletRequest request){
         super(request);
     }
 
@@ -24,7 +24,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         String[] encodedValues = new String[count];
 
         for (int i = 0; i < count; i++) {
-            encodedValues[i] = cleanXSS(values[i]);
+            encodedValues[i] = cleanXss(values[i]);
         }
 
         return encodedValues;
@@ -37,7 +37,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
             return null;
         }
 
-        return cleanXSS(value);
+        return cleanXss(value);
     }
 
     public String getHeader(String name) {
@@ -46,10 +46,10 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         if (value == null)
             return null;
 
-        return cleanXSS(value);
+        return cleanXss(value);
     }
 
-    private String cleanXSS(String value) {
+    private String cleanXss(String value) {
         value = value.replaceAll("<", "& lt;").replaceAll(">", "& gt;");
         value = value.replaceAll("\\(", "& #40;").replaceAll("\\)", "& #41;");
         value = value.replaceAll("'", "& #39;");

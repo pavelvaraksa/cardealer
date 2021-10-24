@@ -223,4 +223,22 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(errorMessage);
         }
     }
+
+    @Override
+    public boolean isBlocking(String login) throws ServiceException {
+        try {
+
+            if (userRepository.isBlocking(login)) {
+                logger.error("User with login " + login + " was blocked");
+                return userRepository.isBlocking(login);
+            }
+
+            logger.info("User with login " + login + " wasn't blocked");
+            return Boolean.parseBoolean(login);
+        } catch (RepositoryException exception) {
+            String errorMessage = "Login wasn't found";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
 }

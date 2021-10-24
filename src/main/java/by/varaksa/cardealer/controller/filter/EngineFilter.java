@@ -12,12 +12,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Class {@code UserPageFilter} designed for filter requests from users
+ * Class {@code EngineFilter} designed for filter requests
+ * from unauthenticated users
  *
  * @author Pavel Varaksa
  */
-@WebFilter(filterName = "UserPageFilter")
-public class UserPageFilter implements Filter {
+@WebFilter(filterName = "EngineFilter")
+public class EngineFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
@@ -33,8 +34,8 @@ public class UserPageFilter implements Filter {
         Object login = session.getAttribute("login");
         Object role = session.getAttribute("role");
 
-        if (login == null || role != Role.USER) {
-            logger.error("User page filter blocked an attempt to enter a forbidden page");
+        if (login == null || role != Role.ADMIN) {
+            logger.error("Engine filter blocked an attempt to enter a forbidden page");
             response.sendRedirect("/error-403");
             return;
         }

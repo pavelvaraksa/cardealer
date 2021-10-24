@@ -211,12 +211,12 @@
 
     <servlet>
         <servlet-name>Cars list for order</servlet-name>
-        <jsp-file>/WEB-INF/jsp/car/findAllForOrder.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/car/findAllForUser.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Cars list for order</servlet-name>
-        <url-pattern>/find-all-cars-for-order</url-pattern>
+        <url-pattern>/find-all-cars-for-user</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -381,7 +381,7 @@
 
     <servlet-mapping>
         <servlet-name>Save user order for user</servlet-name>
-        <url-pattern>/user-order/save-user-order-for-user</url-pattern>
+        <url-pattern>/user-order-for-user/save-user-order-for-user</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -434,23 +434,63 @@
     </filter-mapping>
 
     <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/login</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
         <filter-name>UserPageFilter</filter-name>
         <url-pattern>/user-menu</url-pattern>
     </filter-mapping>
 
     <filter-mapping>
         <filter-name>AdminPageFilter</filter-name>
-        <url-pattern>/admin-menu</url-pattern>
+        <url-pattern>/admin-menu/*</url-pattern>
     </filter-mapping>
 
     <filter-mapping>
-        <filter-name>GuestFilter</filter-name>
+        <filter-name>UserFilter</filter-name>
         <url-pattern>/user/*</url-pattern>
     </filter-mapping>
 
     <filter-mapping>
-        <filter-name>AuthFilter</filter-name>
-        <url-pattern>/login</url-pattern>
+        <filter-name>CarFilter</filter-name>
+        <url-pattern>/car/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CarFilterForUser</filter-name>
+        <url-pattern>/car-for-user/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>BodyFilter</filter-name>
+        <url-pattern>/body/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>DealerFilter</filter-name>
+        <url-pattern>/dealer/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>EngineFilter</filter-name>
+        <url-pattern>/engine/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>TransmissionFilter</filter-name>
+        <url-pattern>/transmission/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>UserOrderFilter</filter-name>
+        <url-pattern>/user-order/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>UserOrderFilterForUser</filter-name>
+        <url-pattern>/user-order-for-user/*</url-pattern>
     </filter-mapping>
 
     <filter-mapping>
@@ -459,19 +499,19 @@
     </filter-mapping>
 
 
-<!--    <error-page>-->
-<!--        <location>/WEB-INF/jsp/error/404.jsp</location>-->
-<!--    </error-page>-->
+    <error-page>
+        <location>/WEB-INF/jsp/error/404.jsp</location>
+    </error-page>
 
-<!--    <servlet>-->
-<!--        <servlet-name>Error 400</servlet-name>-->
-<!--        <jsp-file>/WEB-INF/jsp/error/400.jsp</jsp-file>-->
-<!--    </servlet>-->
+    <servlet>
+        <servlet-name>Error 400</servlet-name>
+        <jsp-file>/WEB-INF/jsp/error/400.jsp</jsp-file>
+    </servlet>
 
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>Error 400</servlet-name>-->
-<!--        <url-pattern>/error-400</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>Error 400</servlet-name>
+        <url-pattern>/error-400</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>Error 403</servlet-name>

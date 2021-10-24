@@ -28,7 +28,7 @@ import java.util.List;
  *
  * @author Pavel Varaksa
  */
-@WebServlet(urlPatterns = {"/user-order/save", "/user-order/save-for-user", "/user-order/find-all", "/user-order/find-all-for-user", "/user-order/update", "/user-order/delete"})
+@WebServlet(urlPatterns = {"/user-order/save", "/user-order-for-user/save-for-user", "/user-order/find-all", "/user-order-for-user/find-all-for-user", "/user-order/update", "/user-order/delete"})
 public class UserOrderController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private Commands commandName;
@@ -106,7 +106,7 @@ public class UserOrderController extends HttpServlet {
             UserOrder userOrder = new UserOrder(userId, carId);
 
             userOrderService.save(userOrder);
-            response.sendRedirect("/user-order/find-all-for-user");
+            response.sendRedirect("/user-order-for-user/find-all-for-user");
         } catch (ServiceException exception) {
             String errorMessage = "Can't save user order";
             logger.error(errorMessage);
@@ -124,6 +124,7 @@ public class UserOrderController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't find user orders";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -139,6 +140,7 @@ public class UserOrderController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't find user orders";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -156,8 +158,8 @@ public class UserOrderController extends HttpServlet {
             response.sendRedirect("/user-order/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't update user order";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -170,8 +172,8 @@ public class UserOrderController extends HttpServlet {
             response.sendRedirect("/user-order/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't delete user order";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
