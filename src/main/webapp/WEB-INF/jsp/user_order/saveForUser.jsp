@@ -43,7 +43,7 @@ pageContext.request.locale}" scope="session"/>
         </form>
     </form>
     <label>
-        <a class="btn btn-outline-primary btn-sm" href=<%=request.getContextPath()%>"/car/find-all-for-order"
+        <a class="btn btn-outline-primary btn-sm" href=<%=request.getContextPath()%>"/car-for-user/find-all-for-user"
            role="button">${return_to_previous_page}</a>
     </label>
 </div>

@@ -1,6 +1,5 @@
 package by.varaksa.cardealer.model.repository.impl;
 
-import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.util.EncryptionUserPassword;
 import by.varaksa.cardealer.model.connection.ConnectionPool;
 import by.varaksa.cardealer.model.entity.Role;
@@ -42,17 +41,17 @@ public class UserRepositoryImpl implements UserRepository {
             "email, role, is_blocked, created, changed) " +
             "values (?,?,?,?,?,?,?,?,?,?,?)";
     private static final String FIND_ALL_USERS = "select * from users";
+    private static final String FIND_ONE_BY_LOGIN = "select firstname, lastname, birth_date, phone_number, login, " +
+            "email, created, changed from users where login = ?";
     private static final String FIND_PASSWORD_BY_LOGIN = "select password from users where login = ?";
     private static final String FIND_USER_BY_ID = "select * from users where id = ?";
+    private static final String FIND_USER_BY_LOGIN = "select * from users where login = ?";
     private static final String UPDATE_USER_BY_ID = "update users " +
             "set " +
             "firstname = ?,  " +
             "lastname = ?,  " +
             "birth_date = ?,  " +
             "phone_number = ?,  " +
-            "login = ?,  " +
-            "password = ?,  " +
-            "email = ?,  " +
             "role = ?,  " +
             "is_blocked = ?,  " +
             "changed = ?  " +
@@ -75,6 +74,22 @@ public class UserRepositoryImpl implements UserRepository {
         user.setEmail(resultSet.getString(EMAIL));
         user.setRole(Role.valueOf(resultSet.getString(ROLE)));
         user.setBlocked(resultSet.getBoolean(IS_BLOCKED));
+        user.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
+        user.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
+        return user;
+    }
+
+    private User parseResultSetForOne(ResultSet resultSet) throws SQLException {
+        Date date = resultSet.getDate(BIRTH_DATE);
+        LocalDate birthDate = date != null ? date.toLocalDate() : null;
+
+        User user = new User();
+        user.setFirstName(resultSet.getString(FIRSTNAME));
+        user.setLastName(resultSet.getString(LASTNAME));
+        user.setBirthDate(birthDate);
+        user.setPhoneNumber(resultSet.getString(PHONE_NUMBER));
+        user.setLogin(resultSet.getString(LOGIN));
+        user.setEmail(resultSet.getString(EMAIL));
         user.setCreated(resultSet.getTimestamp(CREATED).toLocalDateTime());
         user.setChanged(resultSet.getTimestamp(CHANGED).toLocalDateTime());
         return user;
@@ -152,6 +167,27 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
+    @Override
+    public User findByLogin(String login) {
+        User user = new User();
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_LOGIN)) {
+
+            statement.setString(1, login);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return parseResultSet(resultSet);
+            }
+
+            return user;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
+            logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
+    }
 
     @Override
     public User update(User user) {
@@ -166,13 +202,10 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setString(2, user.getLastName());
             statement.setDate(3, date);
             statement.setString(4, user.getPhoneNumber());
-            statement.setString(5, user.getLogin());
-            statement.setString(6, user.getPassword());
-            statement.setString(7, user.getEmail());
-            statement.setString(8, String.valueOf(user.getRole()));
-            statement.setBoolean(9, user.isBlocked());
-            statement.setTimestamp(10, updateTimestamp);
-            statement.setLong(11, user.getId());
+            statement.setString(5, String.valueOf(user.getRole()));
+            statement.setBoolean(6, user.isBlocked());
+            statement.setTimestamp(7, updateTimestamp);
+            statement.setLong(8, user.getId());
             statement.executeUpdate();
 
             return user;
@@ -282,6 +315,28 @@ public class UserRepositoryImpl implements UserRepository {
         }
 
         return id;
+    }
+
+    @Override
+    public List<User> findOneByLogin(String login) {
+        List<User> list = new ArrayList<>();
+
+        try (Connection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ONE_BY_LOGIN)) {
+
+            statement.setString(1, login);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                list.add(parseResultSetForOne(resultSet));
+            }
+
+            return list;
+        } catch (SQLException exception) {
+            String errorMessage = "SQL exception." + exception;
+            logger.error(errorMessage);
+            throw new RuntimeException(errorMessage);
+        }
     }
 
     @Override

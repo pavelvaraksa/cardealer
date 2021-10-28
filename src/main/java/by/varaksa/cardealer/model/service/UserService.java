@@ -97,6 +97,22 @@ public interface UserService {
     Long findIdByLogin(String login) throws ServiceException;
 
     /**
+     * Find user by login
+     *
+     * @param login {@code String} user by login
+     * @throws ServiceException if service exception happened
+     */
+    List<User> findOneByLogin(String login) throws ServiceException;
+
+    /**
+     * Find user by login
+     *
+     * @param login {@code String} user by login
+     * @throws ServiceException if service exception happened
+     */
+    User findByLogin(String login) throws ServiceException;
+
+    /**
      * Find user blocking by login
      *
      * @param login {@code String} user blocking by login

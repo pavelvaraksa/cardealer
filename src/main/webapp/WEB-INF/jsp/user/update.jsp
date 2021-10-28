@@ -73,7 +73,7 @@ pageContext.request.locale}" scope="session"/>
             <div class="col-md-3">
                 <label for="validationPhoneNumber" class="form-label"><u>${phone_number}</u>
                     <input type="tel" class="form-control" id="validationPhoneNumber" name="phone_number"
-                           value="${param.phoneNumber}" placeholder=${param.phoneNumber}>
+                           value="${param.phoneNumber}" placeholder="${param.phoneNumber}" required>
                 </label>
             </div>
             <div class="col-md-3">

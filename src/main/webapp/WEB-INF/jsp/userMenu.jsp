@@ -12,6 +12,7 @@ pageContext.request.locale}" scope="session"/>
 <fmt:message key="menu.title.log.out" var="log_out"/>
 <fmt:message key="menu.title.cars.list" var="cars_list"/>
 <fmt:message key="menu.title.user.orders.list" var="orders_list"/>
+<fmt:message key="menu.title.user.profile" var="user_profile"/>
 
 <html>
 <head>
@@ -33,11 +34,15 @@ pageContext.request.locale}" scope="session"/>
                     <a class="nav-link" href=<%=request.getContextPath()%>"/logout">${log_out}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href=<%=request.getContextPath()%>"/car-for-user/find-all-for-user">${cars_list}</a>
+                    <a class="nav-link"
+                       href=<%=request.getContextPath()%>"/car-for-user/find-all-for-user">${cars_list}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
                        href=<%=request.getContextPath()%>"/user-order-for-user/find-all-for-user">${orders_list}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=<%=request.getContextPath()%>"/user-info/find-user">${user_profile}</a>
                 </li>
             </ul>
         </div>

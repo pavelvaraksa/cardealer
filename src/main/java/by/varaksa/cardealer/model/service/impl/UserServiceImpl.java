@@ -131,10 +131,37 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByLogin(String login) throws ServiceException {
+        User userToFindByLogin;
+
+        try {
+            userToFindByLogin = userRepository.findByLogin(login);
+
+            if (userToFindByLogin == null) {
+                String errorMessage = "User login can't be null";
+                logger.error(errorMessage);
+                throw new ServiceException(errorMessage);
+            }
+        } catch (RepositoryException exception) {
+            throw new ServiceException("User service exception while trying to find user." + exception);
+        }
+
+        try {
+            logger.info("User with login " + login + " exists");
+            return userRepository.findByLogin(login);
+        } catch (RepositoryException exception) {
+            String errorMessage = "Can't find user";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
     public User update(User user) throws ServiceException {
         try {
             if (StringValidator.isStringValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
-                    StringValidator.isStringValidate(REGEXP_LASTNAME, user.getLastName()) == isCheckStringFromUi) {
+                    StringValidator.isStringValidate(REGEXP_LASTNAME, user.getLastName()) == isCheckStringFromUi &&
+                    StringValidator.isStringValidate(REGEXP_PHONE_NUMBER, user.getPhoneNumber()) == isCheckStringFromUi) {
                 logger.info("User " + user.getFirstName() + " " + user.getLastName() + " was updated");
                 return userRepository.update(user);
             }
@@ -219,6 +246,18 @@ public class UserServiceImpl implements UserService {
             return userRepository.findIdByLogin(login);
         } catch (RepositoryException exception) {
             String errorMessage = "Id is wasn't found";
+            logger.error(errorMessage);
+            throw new ServiceException(errorMessage);
+        }
+    }
+
+    @Override
+    public List<User> findOneByLogin(String login) throws ServiceException {
+        try {
+            logger.info("User with login " + login + " watched his profile page");
+            return userRepository.findOneByLogin(login);
+        } catch (RepositoryException exception) {
+            String errorMessage = "User with login " + login + " wasn't found";
             logger.error(errorMessage);
             throw new ServiceException(errorMessage);
         }

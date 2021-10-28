@@ -127,6 +127,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Find user</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/findOneByLogin.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Find user</servlet-name>
+        <url-pattern>/find-user-by-login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Update user</servlet-name>
         <jsp-file>/WEB-INF/jsp/user/update.jsp</jsp-file>
     </servlet>
@@ -134,6 +144,16 @@
     <servlet-mapping>
         <servlet-name>Update user</servlet-name>
         <url-pattern>/user/update-user</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Update user by login</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/updateUserByLogin.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Update user by login</servlet-name>
+        <url-pattern>/user-info/update-user-by-login</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -425,9 +445,6 @@
     </servlet-mapping>
 
 
-
-
-
     <filter-mapping>
         <filter-name>CharsetFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -491,6 +508,11 @@
     <filter-mapping>
         <filter-name>UserOrderFilterForUser</filter-name>
         <url-pattern>/user-order-for-user/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>UserProfileFilter</filter-name>
+        <url-pattern>/user-info/*</url-pattern>
     </filter-mapping>
 
     <filter-mapping>

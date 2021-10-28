@@ -4,6 +4,8 @@ import by.varaksa.cardealer.exception.RepositoryException;
 import by.varaksa.cardealer.model.entity.Role;
 import by.varaksa.cardealer.model.entity.User;
 
+import java.util.List;
+
 /**
  * Interface {@code UserRepository} designed for communication between repository
  * and database for actions related to user
@@ -46,6 +48,22 @@ public interface UserRepository extends CrudRepository<Long, User> {
      * @throws RepositoryException if repository exception happened
      */
     Long findIdByLogin(String login) throws RepositoryException;
+
+    /**
+     * Find user by login
+     *
+     * @param login {@code String} user id by login
+     * @throws RepositoryException if repository exception happened
+     */
+    List<User> findOneByLogin(String login) throws RepositoryException;
+
+    /**
+     * Find user by login
+     *
+     * @param login {@code String} user by login
+     * @throws RepositoryException if repository exception happened
+     */
+    User findByLogin(String login) throws RepositoryException;
 
     /**
      * Find user blocking by login

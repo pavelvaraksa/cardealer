@@ -30,7 +30,7 @@ import java.util.List;
  *
  * @author Pavel Varaksa
  */
-@WebServlet(urlPatterns = {"/user/save", "/user/find-all", "/user/update", "/register/verify", "/logout"})
+@WebServlet(urlPatterns = {"/user/save", "/user/find-all", "/user-info/find-user", "/user/update", "/user-info/update-user", "/register/verify", "/logout"})
 public class UserController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private Commands commandName;
@@ -55,6 +55,7 @@ public class UserController extends HttpServlet {
         try {
             switch (commandName) {
                 case FIND_ALL_USERS -> findAllUsers(request, response);
+                case FIND_USER_BY_LOGIN -> findUserByLogin(request, response);
                 case LOGOUT -> logOut(request, response);
             }
         } catch (ControllerException exception) {
@@ -71,6 +72,7 @@ public class UserController extends HttpServlet {
                 case SAVE_USER -> saveUser(request, response);
                 case VERIFY_USER -> verifyUser(request, response);
                 case UPDATE_USER -> updateUser(request, response);
+                case UPDATE_USER_BY_LOGIN -> updateUserByLogin(request, response);
             }
         } catch (ControllerException | ServiceException | IOException | ServletException exception) {
             String errorMessage = "User controller exception." + exception;
@@ -91,10 +93,24 @@ public class UserController extends HttpServlet {
         }
     }
 
-    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException, ServiceException {
-        HttpSession session = request.getSession();
-
+    private void findUserByLogin(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
         try {
+            HttpSession session = request.getSession();
+            String login = String.valueOf(session.getAttribute("login"));
+            List<User> user = userService.findOneByLogin(login);
+            request.setAttribute("user", user);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/find-user-by-login");
+            dispatcher.forward(request, response);
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find user";
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
+    }
+
+    private void saveUser(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException, ServiceException {
+        try {
+            HttpSession session = request.getSession();
             String firstname = request.getParameter("firstname");
             String lastname = request.getParameter("lastname");
             LocalDate birthDate;
@@ -189,6 +205,37 @@ public class UserController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't update user";
             response.sendRedirect("/error-400");
+            logger.error(errorMessage);
+            throw new ControllerException(errorMessage);
+        }
+    }
+
+    private void updateUserByLogin(HttpServletRequest request, HttpServletResponse response) throws ControllerException, IOException {
+        try {
+            HttpSession session = request.getSession();
+            String login = String.valueOf(session.getAttribute("login"));
+            User user = userService.findByLogin(login);
+
+            user.setFirstName(request.getParameter("firstname"));
+            user.setLastName(request.getParameter("lastname"));
+            LocalDate birthDate;
+
+            if (request.getParameter("birth_date").isEmpty()) {
+                birthDate = null;
+            } else {
+                birthDate = LocalDate.parse(request.getParameter("birth_date"));
+            }
+
+            user.setBirthDate(birthDate);
+            user.setPhoneNumber(request.getParameter("phone_number"));
+            user.setPassword(request.getParameter("password"));
+            userService.update(user);
+
+            request.setAttribute("user", user);
+            response.sendRedirect("/user-info/find-user");
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't update user";
+            response.sendRedirect("/user-info/update-user-by-login");
             logger.error(errorMessage);
             throw new ControllerException(errorMessage);
         }

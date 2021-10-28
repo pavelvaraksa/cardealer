@@ -7,7 +7,7 @@
     <groupId>by.varaksa</groupId>
     <artifactId>cardealer</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
