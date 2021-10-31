@@ -37,6 +37,17 @@ pageContext.request.locale}" scope="session"/>
           crossorigin="anonymous">
 </head>
 
+<script type="text/javascript">
+    function preventbackbutton() {
+        window.history.forward();
+    }
+
+    setTimeout("preventbackbutton()", 0);
+    window.onunload = function () {
+        null
+    };
+</script>
+
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
     <div class="container-fluid">

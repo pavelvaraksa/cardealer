@@ -70,10 +70,10 @@ public class NotificationUserEmail {
             message.setFrom(new InternetAddress(FROM_EMAIL));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
             message.setSubject("User email verification");
-            message.setText("Registration completed successfully.Verify your account with this code: " + user.getCodeToRegister());
+            message.setText("Pre-registration completed successfully.Verify your account with this code: " + user.getCodeToRegister());
 
             Transport.send(message);
-            logger.info("Registration completed successfully for user " + user.getFirstName() + " " + user.getLastName());
+            logger.info("Pre-registration completed successfully for user " + user.getFirstName() + " " + user.getLastName());
 
             isNotification = true;
         } catch (Exception exception) {

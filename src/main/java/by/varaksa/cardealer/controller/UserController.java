@@ -138,6 +138,7 @@ public class UserController extends HttpServlet {
 
             if (confirmCode) {
                 session.setAttribute("authCode", user);
+                session.setAttribute("login", login);
                 response.sendRedirect("/register/verify-page");
             }
 
@@ -152,7 +153,7 @@ public class UserController extends HttpServlet {
     private void verifyUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, ControllerException {
         HttpSession session = request.getSession();
         String code = request.getParameter("authCode");
-        String login = request.getParameter("login");
+        String login = (String) session.getAttribute("login");
         User user = (User) session.getAttribute("authCode");
 
         if (code.equals(user.getCodeToRegister())) {

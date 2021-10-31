@@ -32,6 +32,16 @@ pageContext.request.locale}" scope="session"/>
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                 <li class="nav-item">
                     <a class="nav-link" href=<%=request.getContextPath()%>"/logout">${log_out}</a>
+                    <script type="text/javascript">
+                        function preventbackbutton() {
+                            window.history.forward();
+                        }
+
+                        setTimeout("preventbackbutton()", 0);
+                        window.onunload = function () {
+                            null
+                        };
+                    </script>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
