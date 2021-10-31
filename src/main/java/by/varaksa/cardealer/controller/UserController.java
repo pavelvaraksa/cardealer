@@ -121,7 +121,7 @@ public class UserController extends HttpServlet {
                 birthDate = LocalDate.parse(request.getParameter("birth_date"));
             }
 
-            String phoneNumber = (request.getParameter("phone_number"));
+            String phoneNumber = request.getParameter("phone_number");
             String login = request.getParameter("login");
             String password = request.getParameter("password");
             String email = request.getParameter("email");
@@ -130,7 +130,7 @@ public class UserController extends HttpServlet {
             String userCode = userEmail.getRandom();
 
             User user = new User(firstname, lastname, birthDate, phoneNumber, login, password, email, userCode);
-            request.setAttribute("user", user);
+            session.setAttribute("user", user);
 
             userService.checkBeforeSave(user);
 
@@ -152,8 +152,8 @@ public class UserController extends HttpServlet {
     private void verifyUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, ControllerException {
         HttpSession session = request.getSession();
         String code = request.getParameter("authCode");
+        String login = request.getParameter("login");
         User user = (User) session.getAttribute("authCode");
-        String login = user.getLogin();
 
         if (code.equals(user.getCodeToRegister())) {
             logger.info("Confirmation code was right for user with login " + user.getLogin());
@@ -228,7 +228,6 @@ public class UserController extends HttpServlet {
 
             user.setBirthDate(birthDate);
             user.setPhoneNumber(request.getParameter("phone_number"));
-            user.setPassword(request.getParameter("password"));
             userService.update(user);
 
             request.setAttribute("user", user);

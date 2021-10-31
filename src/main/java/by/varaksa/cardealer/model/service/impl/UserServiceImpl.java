@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
     public User checkBeforeSave(User user) throws ServiceException {
         try {
             if (StringValidator.isStringValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
-                    StringValidator.isStringValidate(REGEXP_FIRSTNAME, user.getFirstName()) == isCheckStringFromUi &&
                     StringValidator.isStringValidate(REGEXP_LASTNAME, user.getLastName()) == isCheckStringFromUi &&
                     StringValidator.isStringValidate(REGEXP_PHONE_NUMBER, String.valueOf(user.getPhoneNumber())) == isCheckStringFromUi &&
                     StringValidator.isStringValidate(REGEXP_LOGIN, user.getLogin()) == isCheckStringFromUi &&

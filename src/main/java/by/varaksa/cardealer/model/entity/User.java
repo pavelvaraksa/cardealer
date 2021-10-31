@@ -190,17 +190,19 @@ public class User {
 
         User user = (User) object;
 
-        return id == user.id &&
-                firstName == user.firstName &&
-                lastName == user.lastName &&
-                birthDate == user.birthDate &&
-                phoneNumber == user.phoneNumber &&
-                login == user.login &&
-                password == user.password &&
-                email == user.email &&
-                role == user.role &&
-                created == user.created &&
-                changed == user.changed;
+        if (id != null ? !id.equals(user.id) : user.id == null) return false;
+        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+        if (birthDate != null ? !birthDate.equals(user.birthDate) : user.birthDate != null) return false;
+        if (phoneNumber != null ? !phoneNumber.equals(user.phoneNumber) : user.phoneNumber != null) return false;
+        if (login != null ? !login.equals(user.login) : user.login != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (role != null ? !role.equals(user.role) : user.role != null) return false;
+        if (created != null ? !created.equals(user.created) : user.created != null) return false;
+        if (changed != null ? !changed.equals(user.changed) : user.changed != null) return false;
+
+        return true;
     }
 
     @Override

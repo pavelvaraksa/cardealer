@@ -113,13 +113,15 @@ public class Dealer {
 
         Dealer dealer = (Dealer) object;
 
-        return id == dealer.id &&
-                name == dealer.name &&
-                address == dealer.address &&
-                foundationDate == dealer.foundationDate &&
-                city == dealer.city &&
-                created == dealer.created &&
-                changed == dealer.changed;
+        if (id != null ? !id.equals(dealer.id) : dealer.id != null) return false;
+        if (name != null ? !name.equals(dealer.name) : dealer.name != null) return false;
+        if (address != null ? !address.equals(dealer.address) : dealer.address != null) return false;
+        if (foundationDate != null ? !foundationDate.equals(dealer.foundationDate) : dealer.foundationDate != null) return false;
+        if (city != null ? !city.equals(dealer.city) : dealer.city != null) return false;
+        if (created != null ? !created.equals(dealer.created) : dealer.created != null) return false;
+        if (changed != null ? !changed.equals(dealer.changed) : dealer.changed != null) return false;
+
+        return true;
     }
 
     @Override

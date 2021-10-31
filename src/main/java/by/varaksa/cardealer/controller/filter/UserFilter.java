@@ -31,17 +31,18 @@ public class UserFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
 
-        Object login = session.getAttribute("login");
+        Object sessionLogin = session.getAttribute("login");
+        Object requestLogin = request.getParameter("login");
         Object role = session.getAttribute("role");
 
-        if (login == null || role != Role.ADMIN) {
+        if (sessionLogin == null && role != Role.ADMIN && requestLogin == null) {
             logger.error("User filter blocked an attempt to enter a forbidden page");
             response.sendRedirect("/error-403");
             return;
         }
 
-        chain.doFilter(request, response);
-    }
+        chain.doFilter(request,response);
+}
 
     @Override
     public void destroy() {

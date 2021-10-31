@@ -112,13 +112,15 @@ public class Transmission {
 
         Transmission transmission = (Transmission) object;
 
-        return id == transmission.id &&
-                transmissionType == transmission.transmissionType &&
-                gearsCount == transmission.gearsCount &&
-                weight == transmission.weight &&
-                created == transmission.created &&
-                changed == transmission.changed &&
-                carId == transmission.carId;
+        if (id != null ? !id.equals(transmission.id) : transmission.id != null) return false;
+        if (transmissionType != null ? !transmissionType.equals(transmission.transmissionType) : transmission.transmissionType != null) return false;
+        if (gearsCount != null ? !gearsCount.equals(transmission.gearsCount) : transmission.gearsCount != null) return false;
+        if (weight != null ? !weight.equals(transmission.weight) : transmission.weight != null) return false;
+        if (created != null ? !created.equals(transmission.created) : transmission.created != null) return false;
+        if (changed != null ? !changed.equals(transmission.changed) : transmission.changed != null) return false;
+        if (carId != null ? !carId.equals(transmission.carId) : transmission.carId != null) return false;
+
+        return true;
     }
 
     @Override

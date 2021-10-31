@@ -194,14 +194,16 @@ public class Car {
 
         Car car = (Car) object;
 
-        return id == car.id &&
-                model == car.model &&
-                issueCountry == car.issueCountry &&
-                guaranteePeriod == car.guaranteePeriod &&
-                price == car.price &&
-                created == car.created &&
-                changed == car.changed &&
-                dealerId == car.dealerId;
+        if (id != null ? !id.equals(car.id) : car.id != null) return false;
+        if (model != null ? !model.equals(car.model) : car.model != null) return false;
+        if (issueCountry != null ? !issueCountry.equals(car.issueCountry) : car.issueCountry != null) return false;
+        if (guaranteePeriod != null ? !guaranteePeriod.equals(car.guaranteePeriod) : car.guaranteePeriod != null) return false;
+        if (price != null ? !price.equals(car.price) : car.price != null) return false;
+        if (created != null ? !created.equals(car.created) : car.created != null) return false;
+        if (changed != null ? !changed.equals(car.changed) : car.changed != null) return false;
+        if (dealerId != null ? !dealerId.equals(car.dealerId) : car.dealerId != null) return false;
+
+        return true;
     }
 
     @Override

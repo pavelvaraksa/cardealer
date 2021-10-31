@@ -115,13 +115,15 @@ public class Engine {
 
         Engine engine = (Engine) object;
 
-        return id == engine.id &&
-                fuelType == engine.fuelType &&
-                volume == engine.volume &&
-                cylindersCount == engine.cylindersCount &&
-                created == engine.created &&
-                changed == engine.changed &&
-                carId == engine.carId;
+        if (id != null ? !id.equals(engine.id) : engine.id != null) return false;
+        if (fuelType != null ? !fuelType.equals(engine.fuelType) : engine.fuelType != null) return false;
+        if (volume != null ? !volume.equals(engine.volume) : engine.volume != null) return false;
+        if (cylindersCount != null ? !cylindersCount.equals(engine.cylindersCount) : engine.cylindersCount != null) return false;
+        if (created != null ? !created.equals(engine.created) : engine.created != null) return false;
+        if (changed != null ? !changed.equals(engine.changed) : engine.changed != null) return false;
+        if (carId != null ? !carId.equals(engine.carId) : engine.carId != null) return false;
+
+        return true;
     }
 
     @Override

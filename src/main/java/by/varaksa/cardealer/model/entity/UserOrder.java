@@ -128,11 +128,13 @@ public class UserOrder {
 
         UserOrder userOrder = (UserOrder) object;
 
-        return id == userOrder.id &&
-                created == userOrder.created &&
-                changed == userOrder.changed &&
-                userId == userOrder.userId &&
-                carId == userOrder.carId;
+        if (id != null ? !id.equals(userOrder.id) : userOrder.id != null) return false;
+        if (created != null ? !created.equals(userOrder.created) : userOrder.created != null) return false;
+        if (changed != null ? !changed.equals(userOrder.changed) : userOrder.changed != null) return false;
+        if (userId != null ? !userId.equals(userOrder.userId) : userOrder.userId != null) return false;
+        if (carId != null ? !carId.equals(userOrder.carId) : userOrder.carId != null) return false;
+
+        return true;
     }
 
     @Override

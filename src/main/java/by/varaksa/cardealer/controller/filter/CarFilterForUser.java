@@ -34,7 +34,7 @@ public class CarFilterForUser implements Filter {
         Object login = session.getAttribute("login");
         Object role = session.getAttribute("role");
 
-        if (login == null || role != Role.USER) {
+        if (login == null || role == Role.ADMIN) {
             logger.error("Car filter for user blocked an attempt to enter a forbidden page");
             response.sendRedirect("/error-403");
             return;
