@@ -9,6 +9,7 @@ public enum Commands {
     SAVE_USER("/user/save"),
     FIND_ALL_USERS("/user/find-all"),
     FIND_USER_BY_LOGIN("/user-info/find-user"),
+    FIND_USER_BY_ID("/user/find"),
     UPDATE_USER("/user/update"),
     UPDATE_USER_BY_LOGIN("/user-info/update-user"),
     VERIFY_USER("/register/verify"),

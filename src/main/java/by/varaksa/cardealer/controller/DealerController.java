@@ -85,7 +85,6 @@ public class DealerController extends HttpServlet {
             LocalDate foundationDate = LocalDate.parse((request.getParameter("foundation_date")));
             City city = City.valueOf(((request.getParameter("city"))));
             Dealer dealer = new Dealer(name, address, foundationDate, city);
-
             dealerService.save(dealer);
             response.sendRedirect("/dealer/find-all");
         } catch (ServiceException exception) {
@@ -105,6 +104,7 @@ public class DealerController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't find dealers";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -113,19 +113,17 @@ public class DealerController extends HttpServlet {
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             Dealer dealer = dealerService.find(id);
-
             dealer.setName(request.getParameter("name"));
             dealer.setAddress(request.getParameter("address"));
             dealer.setFoundationDate(LocalDate.parse(request.getParameter("foundation_date")));
             dealer.setCity(City.valueOf(request.getParameter("city")));
             dealerService.update(dealer);
-
             request.setAttribute("dealer", dealer);
             response.sendRedirect("/dealer/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't update dealer";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -138,6 +136,7 @@ public class DealerController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't delete dealer";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }

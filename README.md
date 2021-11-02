@@ -1,7 +1,7 @@
 # Car dealer project
 
 # Description:
-This project is a website for purchasing Audi cars. It allows you to view cars, select or configure them for ordering. You can choose a dealer depending on the location you need. Dealerships are represented in all major cities of Belarus.
+This project is a website for purchasing Audi cars. It allows you to view cars and select them for ordering. You can choose a dealer depending on the location you need. Dealerships are represented in all major cities of Belarus.
 
 # Roles:
 Guest - has the opportunity to get acquainted with the history of the company, find out the data of the number or e-mail for communication, as well as register on the site.

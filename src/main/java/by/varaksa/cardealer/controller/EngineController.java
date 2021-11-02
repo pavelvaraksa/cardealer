@@ -84,7 +84,6 @@ public class EngineController extends HttpServlet {
             Integer cylindersCount = Integer.valueOf((request.getParameter("cylinders_count")));
             Long carId = Long.valueOf(request.getParameter("car_id"));
             Engine engine = new Engine(fuelType, volume, cylindersCount, carId);
-
             engineService.save(engine);
             response.sendRedirect("/engine/find-all");
         } catch (ServiceException exception) {
@@ -104,6 +103,7 @@ public class EngineController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't find engines";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -112,18 +112,16 @@ public class EngineController extends HttpServlet {
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             Engine engine = engineService.find(id);
-
             engine.setFuelType(FuelType.valueOf(request.getParameter("fuel_type")));
             engine.setVolume(Double.valueOf(request.getParameter("volume")));
             engine.setCylindersCount(Integer.valueOf(request.getParameter("cylinders_count")));
             engineService.update(engine);
-
             request.setAttribute("engine", engine);
             response.sendRedirect("/engine/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't update engine";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -136,6 +134,7 @@ public class EngineController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't delete engine";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }

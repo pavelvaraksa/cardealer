@@ -84,7 +84,6 @@ public class TransmissionController extends HttpServlet {
             Integer weight = Integer.valueOf(request.getParameter("weight"));
             Long carId = Long.valueOf((request.getParameter("car_id")));
             Transmission transmission = new Transmission(transmissionType, gearsCount, weight, carId);
-
             transmissionService.save(transmission);
             response.sendRedirect("/transmission/find-all");
         } catch (ServiceException exception) {
@@ -104,6 +103,7 @@ public class TransmissionController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't find transmissions";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -112,18 +112,16 @@ public class TransmissionController extends HttpServlet {
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             Transmission transmission = transmissionService.find(id);
-
             transmission.setTransmissionType(TransmissionType.valueOf(request.getParameter("transmission_type")));
             transmission.setGearsCount(Integer.valueOf(request.getParameter("gears_count")));
             transmission.setWeight(Integer.valueOf((request.getParameter("weight"))));
             transmissionService.update(transmission);
-
             request.setAttribute("transmission", transmission);
             response.sendRedirect("/transmission/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't update transmission";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -136,6 +134,7 @@ public class TransmissionController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't delete transmission";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }

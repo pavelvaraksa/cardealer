@@ -90,7 +90,6 @@ public class CarController extends HttpServlet {
             Integer price = Integer.valueOf(request.getParameter("price"));
             Long dealerId = Long.valueOf(request.getParameter("dealer_id"));
             Car car = new Car(model, country, guaranteePeriod, price, dealerId);
-
             carService.save(car);
             response.sendRedirect("/car/find-all");
         } catch (ServiceException exception) {
@@ -109,8 +108,8 @@ public class CarController extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (ServiceException exception) {
             String errorMessage = "Can't find cars";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -123,8 +122,8 @@ public class CarController extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (ServiceException exception) {
             String errorMessage = "Can't find cars";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -133,20 +132,18 @@ public class CarController extends HttpServlet {
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             Car car = carService.find(id);
-
             car.setModel(Model.valueOf(request.getParameter("model")));
             car.setIssueCountry(Country.valueOf((request.getParameter("issue_country"))));
             car.setGuaranteePeriod(Integer.valueOf(request.getParameter("guarantee_period")));
             car.setPrice(Integer.valueOf((request.getParameter("price"))));
             car.setDealerId(Long.valueOf(request.getParameter("dealer_id")));
             carService.update(car);
-
             request.setAttribute("car", car);
             response.sendRedirect("/car/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't update car";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -158,8 +155,8 @@ public class CarController extends HttpServlet {
             response.sendRedirect("/car/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't delete car";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }

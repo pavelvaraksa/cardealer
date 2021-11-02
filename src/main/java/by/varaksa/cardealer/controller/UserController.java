@@ -30,7 +30,7 @@ import java.util.List;
  *
  * @author Pavel Varaksa
  */
-@WebServlet(urlPatterns = {"/user/save", "/user/find-all", "/user-info/find-user", "/user/update", "/user-info/update-user", "/register/verify", "/logout"})
+@WebServlet(urlPatterns = {"/user/save", "/user/find-all", "/user/find", "/user-info/find-user", "/user/update", "/user-info/update-user", "/register/verify", "/logout"})
 public class UserController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger();
     private Commands commandName;
@@ -56,6 +56,7 @@ public class UserController extends HttpServlet {
             switch (commandName) {
                 case FIND_ALL_USERS -> findAllUsers(request, response);
                 case FIND_USER_BY_LOGIN -> findUserByLogin(request, response);
+                case FIND_USER_BY_ID -> findUserById(request, response);
                 case LOGOUT -> logOut(request, response);
             }
         } catch (ControllerException exception) {
@@ -89,6 +90,7 @@ public class UserController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't find users";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -104,6 +106,21 @@ public class UserController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't find user";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
+            throw new ControllerException(errorMessage);
+        }
+    }
+
+    private void findUserById(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
+        try {
+            Long id = Long.valueOf(request.getParameter("id"));
+            User user = userService.find(id);
+            request.setAttribute("user", user);
+            response.sendRedirect("/user/find");
+        } catch (ServiceException exception) {
+            String errorMessage = "Can't find user";
+            logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -125,15 +142,11 @@ public class UserController extends HttpServlet {
             String login = request.getParameter("login");
             String password = request.getParameter("password");
             String email = request.getParameter("email");
-
             NotificationUserEmail userEmail = new NotificationUserEmail();
             String userCode = userEmail.getRandom();
-
             User user = new User(firstname, lastname, birthDate, phoneNumber, login, password, email, userCode);
             session.setAttribute("user", user);
-
             userService.checkBeforeSave(user);
-
             boolean confirmCode = userEmail.sendEmail(user);
 
             if (confirmCode) {
@@ -169,7 +182,6 @@ public class UserController extends HttpServlet {
             }
 
             Long id = userService.findIdByLogin(login);
-
             session.setAttribute("id", id);
             session.setAttribute("login", login);
             response.sendRedirect("/user-menu");
@@ -184,7 +196,6 @@ public class UserController extends HttpServlet {
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             User user = userService.find(id);
-
             user.setFirstName(request.getParameter("firstname"));
             user.setLastName(request.getParameter("lastname"));
             LocalDate birthDate;
@@ -200,13 +211,12 @@ public class UserController extends HttpServlet {
             user.setRole(Role.valueOf((request.getParameter("role"))));
             user.setBlocked(Boolean.parseBoolean(request.getParameter("is_blocked")));
             userService.update(user);
-
             request.setAttribute("user", user);
             response.sendRedirect("/user/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't update user";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -216,7 +226,6 @@ public class UserController extends HttpServlet {
             HttpSession session = request.getSession();
             String login = String.valueOf(session.getAttribute("login"));
             User user = userService.findByLogin(login);
-
             user.setFirstName(request.getParameter("firstname"));
             user.setLastName(request.getParameter("lastname"));
             LocalDate birthDate;
@@ -230,7 +239,6 @@ public class UserController extends HttpServlet {
             user.setBirthDate(birthDate);
             user.setPhoneNumber(request.getParameter("phone_number"));
             userService.update(user);
-
             request.setAttribute("user", user);
             response.sendRedirect("/user-info/find-user");
         } catch (ServiceException exception) {
@@ -245,11 +253,9 @@ public class UserController extends HttpServlet {
         HttpSession session = request.getSession();
         Long id = (Long) session.getAttribute("id");
         String login = (String) session.getAttribute("login");
-
         session.removeAttribute("id");
         session.removeAttribute("login");
         session.invalidate();
-
         logger.info("Logout was completed for user with login " + login + " and id = " + id);
         response.sendRedirect("/login-auth");
     }

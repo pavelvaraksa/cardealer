@@ -27,6 +27,9 @@ create unique index if not exists users_id_uindex
 create unique index if not exists users_login_uindex
     on users (login);
 
+create unique index if not exists users_email_uindex
+    on users (email);
+
 create table if not exists dealers
 (
     id bigserial

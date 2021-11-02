@@ -86,7 +86,6 @@ public class UserOrderController extends HttpServlet {
             Long userId = Long.valueOf(request.getParameter("user_id"));
             Long carId = Long.valueOf(request.getParameter("car_id"));
             UserOrder userOrder = new UserOrder(userId, carId);
-
             userOrderService.save(userOrder);
             response.sendRedirect("/user-order/find-all");
         } catch (ServiceException exception) {
@@ -100,11 +99,9 @@ public class UserOrderController extends HttpServlet {
     private void saveUserOrderForUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException, RepositoryException, ServletException, ControllerException {
         try {
             HttpSession session = request.getSession();
-
             Long userId = Long.parseLong(String.valueOf(session.getAttribute("id")));
             Long carId = Long.parseLong(request.getParameter("id"));
             UserOrder userOrder = new UserOrder(userId, carId);
-
             userOrderService.save(userOrder);
             response.sendRedirect("/user-order-for-user/find-all-for-user");
         } catch (ServiceException exception) {
@@ -149,11 +146,9 @@ public class UserOrderController extends HttpServlet {
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             UserOrder userOrder = userOrderService.find(id);
-
             userOrder.setUserId(Long.valueOf(request.getParameter("user_id")));
             userOrder.setCarId(Long.valueOf(request.getParameter("car_id")));
             userOrderService.update(userOrder);
-
             request.setAttribute("user_order", userOrder);
             response.sendRedirect("/user-order/find-all");
         } catch (ServiceException exception) {
@@ -168,7 +163,6 @@ public class UserOrderController extends HttpServlet {
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             userOrderService.delete(id);
-
             response.sendRedirect("/user-order/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't delete user order";

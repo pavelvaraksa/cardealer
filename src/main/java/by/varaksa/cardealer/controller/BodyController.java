@@ -83,9 +83,7 @@ public class BodyController extends HttpServlet {
             Color color = Color.valueOf(request.getParameter("color"));
             BodyType bodyType = BodyType.valueOf(request.getParameter("body_type"));
             Long carId = Long.valueOf(request.getParameter("car_id"));
-
             Body body = new Body(color, bodyType, carId);
-
             bodyService.save(body);
             response.sendRedirect("/body/find-all");
         } catch (ServiceException exception) {
@@ -105,6 +103,7 @@ public class BodyController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't find bodies";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -113,17 +112,15 @@ public class BodyController extends HttpServlet {
         try {
             Long id = Long.parseLong(request.getParameter("id"));
             Body body = bodyService.find(id);
-
             body.setColor(Color.valueOf(request.getParameter("color")));
             body.setBodyType(BodyType.valueOf(request.getParameter("body_type")));
             bodyService.update(body);
-
             request.setAttribute("body", body);
             response.sendRedirect("/body/find-all");
         } catch (ServiceException exception) {
             String errorMessage = "Can't update body";
-            response.sendRedirect("/error-400");
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }
@@ -136,6 +133,7 @@ public class BodyController extends HttpServlet {
         } catch (ServiceException exception) {
             String errorMessage = "Can't delete body";
             logger.error(errorMessage);
+            response.sendRedirect("/error-400");
             throw new ControllerException(errorMessage);
         }
     }

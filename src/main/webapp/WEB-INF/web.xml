@@ -127,12 +127,22 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Find user</servlet-name>
+        <servlet-name>Find user by id</servlet-name>
+        <jsp-file>/WEB-INF/jsp/user/findOneById.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Find user by id</servlet-name>
+        <url-pattern>/find</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Find user by login</servlet-name>
         <jsp-file>/WEB-INF/jsp/user/findOneByLogin.jsp</jsp-file>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Find user</servlet-name>
+        <servlet-name>Find user by login</servlet-name>
         <url-pattern>/find-user-by-login</url-pattern>
     </servlet-mapping>
 
@@ -520,7 +530,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
     <error-page>
         <location>/WEB-INF/jsp/error/404.jsp</location>
     </error-page>
@@ -574,7 +583,6 @@
         <servlet-name>Company contacts</servlet-name>
         <url-pattern>/request-information</url-pattern>
     </servlet-mapping>
-
 </web-app>
 
 
