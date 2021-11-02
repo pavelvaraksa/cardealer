@@ -11,29 +11,29 @@ User - has the ability to view the presented cars, add them to the order, view a
 Admin - is the controller of all data stored on the site.
 
 # Cases:
-Three interface languages(english, german, russian)
-Authentication
-Authorization
-Log in
-Log out
-Register with e-mail confirmation
-User password encryption
-CRUD operations
-Logging actions
-Three application layers(controller, service, repository)
-Used design patterns:singleton, MVC, chain of responsibility, proxy
-Filters to check input parameters
-Testing of methods
+* Three interface languages(english, german, russian)
+* Authentication
+* Authorization
+* Log in
+* Log out
+* Register with e-mail confirmation
+* User password encryption
+* CRUD operations
+* Logging actions
+* Three application layers(controller, service, repository)
+* Used design patterns:singleton, MVC, chain of responsibility, proxy
+* Filters to check input parameters
+* Testing of methods
 
 # Technologies:
-Java 14
-Maven 3.0
-JDBC
-Postgres 12
-Tomcat 8
-Log4j2
-Java mail API 1.4
-Java servlet API 4.0
-Bootstrap 5
-TestNG 6.14
+* Java 14
+* Maven 3.0
+* JDBC
+* Postgres 12
+* Tomcat 8
+* Log4j2
+* Java mail API 1.4
+* Java servlet API 4.0
+* Bootstrap 5
+* TestNG 6.14
 
