@@ -61,7 +61,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
     public Transmission save(Transmission transmission) throws RepositoryException {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_TRANSMISSION)) {
 
             statement.setString(1, String.valueOf(transmission.getTransmissionType()));
@@ -84,7 +84,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
     public List<Transmission> findAll() {
         List<Transmission> result = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_TRANSMISSIONS);
 
@@ -102,7 +102,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
 
     @Override
     public Transmission find(Long id) throws RepositoryException {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_TRANSMISSION_BY_ID)) {
 
             statement.setLong(1, id);
@@ -125,7 +125,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
     public Transmission update(Transmission transmission) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_TRANSMISSION_BY_ID)) {
 
             statement.setString(1, String.valueOf(transmission.getTransmissionType()));
@@ -148,7 +148,7 @@ public class TransmissionRepositoryImpl implements TransmissionRepository {
     public Transmission delete(Long id) {
         Transmission transmission = new Transmission();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_TRANSMISSION_BY_ID)) {
 
             statement.setLong(1, id);

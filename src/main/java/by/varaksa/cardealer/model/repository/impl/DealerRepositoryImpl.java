@@ -61,7 +61,7 @@ public class DealerRepositoryImpl implements DealerRepository {
     public Dealer save(Dealer dealer) throws RepositoryException {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_DEALER)) {
 
             statement.setString(1, dealer.getName());
@@ -84,7 +84,7 @@ public class DealerRepositoryImpl implements DealerRepository {
     public List<Dealer> findAll() {
         List<Dealer> result = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_DEALERS);
 
@@ -102,7 +102,7 @@ public class DealerRepositoryImpl implements DealerRepository {
 
     @Override
     public Dealer find(Long id) throws RepositoryException {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_DEALER_BY_ID)) {
 
             statement.setLong(1, id);
@@ -125,7 +125,7 @@ public class DealerRepositoryImpl implements DealerRepository {
     public Dealer update(Dealer dealer) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_DEALER_BY_ID)) {
 
             statement.setString(1, dealer.getName());
@@ -148,7 +148,7 @@ public class DealerRepositoryImpl implements DealerRepository {
     public Dealer delete(Long id) {
         Dealer dealer = new Dealer();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_DEALER_BY_ID)) {
 
             statement.setLong(1, id);

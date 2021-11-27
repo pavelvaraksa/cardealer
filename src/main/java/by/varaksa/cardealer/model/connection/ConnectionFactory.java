@@ -37,12 +37,12 @@ class ConnectionFactory {
     }
 
     /**
-     * @return new {@link ConnectionProxy} with provided data
+     * @return new {@link ProxyConnection} with provided data
      */
     static Connection createConnection() {
         Connection connection = null;
         try {
-            connection = new ConnectionProxy(DriverManager.getConnection(url, login, password));
+            connection = new ProxyConnection(DriverManager.getConnection(url, login, password));
             logger.info("Connection was created");
         } catch (SQLException exception) {
             logger.error("Connection wasn't created." + exception);

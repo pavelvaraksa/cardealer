@@ -75,7 +75,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public UserOrder save(UserOrder userOrder) throws RepositoryException {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_USER_ORDER)) {
 
             statement.setTimestamp(1, creationTimestamp);
@@ -96,7 +96,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public List<UserOrder> findAll() {
         List<UserOrder> list = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_USER_ORDERS);
 
@@ -116,7 +116,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public List<UserOrder> findAllForUser(String login) {
         List<UserOrder> list = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_USER_ORDER_BY_LOGIN)) {
 
             statement.setString(1, login);
@@ -136,7 +136,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
 
     @Override
     public UserOrder find(Long id) throws RepositoryException {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_USER_ORDER_BY_ID)) {
 
             statement.setLong(1, id);
@@ -159,7 +159,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public UserOrder update(UserOrder userOrder) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_USER_ORDER_BY_ID)) {
 
             statement.setTimestamp(1, updateTimestamp);
@@ -180,7 +180,7 @@ public class UserOrderRepositoryImpl implements UserOrderRepository {
     public UserOrder delete(Long id) {
         UserOrder userOrder = new UserOrder();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_ORDER_BY_ID)) {
 
             statement.setLong(1, id);

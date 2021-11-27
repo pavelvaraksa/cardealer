@@ -105,45 +105,4 @@ public class UserOrder {
     public void setFuelType(FuelType fuelType) {
         this.fuelType = fuelType;
     }
-
-    @Override
-    public int hashCode() {
-        int result = id == null ? 0 : id.hashCode();
-        result = 11 * result + (created == null ? 0 : created.hashCode());
-        result = 11 * result + (changed == null ? 0 : changed.hashCode());
-        result = 11 * result + (userId == null ? 0 : userId.hashCode());
-        result = 11 * result + (carId == null ? 0 : carId.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (object == this) {
-            return true;
-        }
-
-        if (object == null || getClass() != object.getClass()) {
-            return false;
-        }
-
-        UserOrder userOrder = (UserOrder) object;
-
-        if (id != null ? !id.equals(userOrder.id) : userOrder.id != null) return false;
-        if (created != null ? !created.equals(userOrder.created) : userOrder.created != null) return false;
-        if (changed != null ? !changed.equals(userOrder.changed) : userOrder.changed != null) return false;
-        if (userId != null ? !userId.equals(userOrder.userId) : userOrder.userId != null) return false;
-        if (carId != null ? !carId.equals(userOrder.carId) : userOrder.carId != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "User order: " +
-                "id = " + id +
-                ", created on " + created +
-                ", changed on " + changed +
-                ", user id = " + userId +
-                ", car id = " + carId;
-    }
 }

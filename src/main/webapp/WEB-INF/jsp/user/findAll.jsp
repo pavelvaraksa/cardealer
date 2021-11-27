@@ -53,6 +53,15 @@ pageContext.request.locale}" scope="session"/>
 <body style="background-color:antiquewhite"></body>
 <div align="center">
     <h2><u>${users_list}</u></h2>
+    <form action=<%=request.getContextPath()%>"/user/find" method="get">
+        <label>
+            <input type="number" class="form-control" name="id" value="${id}">
+        </label>
+        <div class="col-12">
+            <input class="btn btn-outline-success btn-sm" type="submit" value=Go>
+        </div>
+    </form>
+
     <form action=<%=request.getContextPath()%>"/user/find-all" method="get">
         <body>
         <table class="table table-bordered">
@@ -110,3 +119,5 @@ pageContext.request.locale}" scope="session"/>
 </div>
 </body>
 </html>
+
+

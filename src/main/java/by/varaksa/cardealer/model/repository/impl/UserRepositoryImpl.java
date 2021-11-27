@@ -102,7 +102,7 @@ public class UserRepositoryImpl implements UserRepository {
         LocalDate birthDate = user.getBirthDate();
         Date date = birthDate != null ? Date.valueOf(birthDate) : null;
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_USER)) {
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
@@ -129,7 +129,7 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> findAll() {
         List<User> userList = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_USERS);
 
@@ -149,14 +149,14 @@ public class UserRepositoryImpl implements UserRepository {
     public User find(Long id) {
         User user = new User();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_ID)) {
 
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                return parseResultSet(resultSet);
+                user = parseResultSet(resultSet);
             }
 
             return user;
@@ -171,7 +171,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User findByLogin(String login) {
         User user = new User();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_LOGIN)) {
 
             statement.setString(1, login);
@@ -195,7 +195,7 @@ public class UserRepositoryImpl implements UserRepository {
         LocalDate birthDate = user.getBirthDate();
         Date date = birthDate != null ? Date.valueOf(birthDate) : null;
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_USER_BY_ID)) {
 
             statement.setString(1, user.getFirstName());
@@ -220,7 +220,7 @@ public class UserRepositoryImpl implements UserRepository {
     public User delete(Long id) {
         User user = new User();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_BY_ID)) {
 
             statement.setLong(1, id);
@@ -241,7 +241,7 @@ public class UserRepositoryImpl implements UserRepository {
         String decryptedPassword;
         String enteredPassword = user.getPassword();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement prepareStatementByLogin = connection.prepareStatement(FIND_PASSWORD_BY_LOGIN)) {
             prepareStatementByLogin.setString(1, user.getLogin());
             ResultSet resultSet = prepareStatementByLogin.executeQuery();
@@ -321,7 +321,7 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> findOneByLogin(String login) {
         List<User> list = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ONE_BY_LOGIN)) {
 
             statement.setString(1, login);

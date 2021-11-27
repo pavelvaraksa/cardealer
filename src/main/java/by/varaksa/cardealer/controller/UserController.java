@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -111,12 +112,20 @@ public class UserController extends HttpServlet {
         }
     }
 
-    private void findUserById(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
+    private void findUserById(HttpServletRequest request, HttpServletResponse response) throws ControllerException, IOException {
         try {
-            Long id = Long.valueOf(request.getParameter("id"));
-            User user = userService.find(id);
-            request.setAttribute("user", user);
-            response.sendRedirect("/user/find");
+            Long id;
+
+            if (request.getParameter("id").isEmpty() || Long.parseLong(request.getParameter("id")) < 1) {
+                response.sendRedirect("/error-400");
+                return;
+            } else {
+                id = Long.parseLong(request.getParameter("id"));
+            }
+
+            User singleUser = userService.find(id);
+            request.setAttribute("user", Collections.singletonList(singleUser));
+            response.sendRedirect("/find");
         } catch (ServiceException exception) {
             String errorMessage = "Can't find user";
             logger.error(errorMessage);

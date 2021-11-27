@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%--@elvariable id="user" type="java.util.List"--%>
 <fmt:setBundle basename="text"/>
 
 <fmt:message key="audi.car.dealer" var="audi_car_dealer"/>
@@ -41,7 +40,11 @@
 
 <body style="background-color:antiquewhite"></body>
 <div align="center">
+<%--    <div class="col-md-2">--%>
+<%--        <input type="hidden" name="id" value="${param.id}">--%>
+<%--    </div>--%>
     <body>
+    ${singleUser}
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -59,25 +62,28 @@
         </tr>
         </thead>
 
-        <c:forEach var="user" items="${user}">
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.firstName}</td>
-                <td>${user.lastName}</td>
-                <td>${user.birthDate}</td>
-                <td>${user.phoneNumber}</td>
-                <td>${user.login}</td>
-                <td>${user.email}</td>
-                <td>${user.role}</td>
-                <td>${user.blocked}</td>
-                <td>${user.created}</td>
-                <td>${user.changed}</td>
-            </tr>
-        </c:forEach>
+        <div>${singleUser}</div>
+
+        <%--@elvariable id="singleUser" type="java.util.List"--%>
+<%--        <c:forEach var="user" items="${singleUser}">--%>
+<%--            <tr>--%>
+<%--                <td>${user.id}</td>--%>
+<%--                <td>${user.firstName}</td>--%>
+<%--                <td>${user.lastName}</td>--%>
+<%--                <td>${user.birthDate}</td>--%>
+<%--                <td>${user.phoneNumber}</td>--%>
+<%--                <td>${user.login}</td>--%>
+<%--                <td>${user.email}</td>--%>
+<%--                <td>${user.role}</td>--%>
+<%--                <td>${user.blocked}</td>--%>
+<%--                <td>${user.created}</td>--%>
+<%--                <td>${user.changed}</td>--%>
+<%--            </tr>--%>
+<%--        </c:forEach>--%>
     </table>
     </body>
     <label>
-        <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/user-menu"
+        <a class="btn btn-outline-primary" href=<%=request.getContextPath()%>"/user/find-all"
            role="button">${return_to_previous_page}</a>
     </label>
 </div>

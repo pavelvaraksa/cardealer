@@ -93,7 +93,7 @@ public class CarRepositoryImpl implements CarRepository {
     public Car save(Car car) {
         Timestamp creationTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(SAVE_CAR)) {
 
             statement.setString(1, String.valueOf(car.getModel()));
@@ -117,7 +117,7 @@ public class CarRepositoryImpl implements CarRepository {
     public List<Car> findAll() {
         List<Car> list = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_CARS);
 
@@ -137,7 +137,7 @@ public class CarRepositoryImpl implements CarRepository {
     public List<Car> findAllForOrder() {
         List<Car> list = new ArrayList<>();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(FIND_ALL_CARS_FOR_ORDER);
 
@@ -155,7 +155,7 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public Car find(Long id) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_CAR_BY_ID)) {
 
             statement.setLong(1, id);
@@ -178,7 +178,7 @@ public class CarRepositoryImpl implements CarRepository {
     public Car update(Car car) {
         Timestamp updateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_CAR_BY_ID)) {
 
             statement.setString(1, String.valueOf(car.getModel()));
@@ -202,7 +202,7 @@ public class CarRepositoryImpl implements CarRepository {
     public Car delete(Long id) {
         Car car = new Car();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (Connection connection = ConnectionPool.INSTANCE.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_CAR_BY_ID)) {
 
             statement.setLong(1, id);

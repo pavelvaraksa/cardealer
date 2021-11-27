@@ -163,62 +163,21 @@ public class User {
     }
 
     @Override
-    public int hashCode() {
-        int result = id == null ? 0 : id.hashCode();
-        result = 11 * result + (firstName == null ? 0 : firstName.hashCode());
-        result = 11 * result + (lastName == null ? 0 : lastName.hashCode());
-        result = 11 * result + (birthDate == null ? 0 : birthDate.hashCode());
-        result = 11 * result + (phoneNumber == null ? 0 : phoneNumber.hashCode());
-        result = 11 * result + (login == null ? 0 : login.hashCode());
-        result = 11 * result + (password == null ? 0 : password.hashCode());
-        result = 11 * result + (email == null ? 0 : email.hashCode());
-        result = 11 * result + (role == null ? 0 : role.hashCode());
-        result = 11 * result + (created == null ? 0 : created.hashCode());
-        result = 11 * result + (changed == null ? 0 : changed.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (object == this) {
-            return true;
-        }
-
-        if (object == null || getClass() != object.getClass()) {
-            return false;
-        }
-
-        User user = (User) object;
-
-        if (id != null ? !id.equals(user.id) : user.id == null) return false;
-        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
-        if (birthDate != null ? !birthDate.equals(user.birthDate) : user.birthDate != null) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(user.phoneNumber) : user.phoneNumber != null) return false;
-        if (login != null ? !login.equals(user.login) : user.login != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (role != null ? !role.equals(user.role) : user.role != null) return false;
-        if (created != null ? !created.equals(user.created) : user.created != null) return false;
-        if (changed != null ? !changed.equals(user.changed) : user.changed != null) return false;
-
-        return true;
-    }
-
-    @Override
     public String toString() {
-        return "User: " +
-                "id = " + id +
-                ", first name is " + firstName +
-                ", last name is " + lastName +
-                ", birth date = " + birthDate +
-                ", phone number = " + phoneNumber +
-                ", login is " + login +
-                ", password is " + password +
-                ", email is " + email +
-                ", role is " + role +
-                ", blocked is " + isBlocked +
-                ", created on " + created +
-                ", changed on " + changed;
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", codeToRegister='" + codeToRegister + '\'' +
+                ", role=" + role +
+                ", isBlocked=" + isBlocked +
+                ", created=" + created +
+                ", changed=" + changed +
+                '}';
     }
 }

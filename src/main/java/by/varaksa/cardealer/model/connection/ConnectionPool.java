@@ -4,49 +4,34 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Enumeration;
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Creating connection pool with {@link ConnectionProxy} objects
+ * Creating connection pool with {@link ProxyConnection} objects
  *
  * @author Pavel Varaksa
  */
-public class ConnectionPool {
-    private static final Logger logger = LogManager.getLogger();
-    private static ConnectionPool instance;
-    private static final int DEFAULT_POOL_SIZE = 5;
-    /**
-     * {@link AtomicBoolean} for {@link ConnectionPool#getInstance()} singleton
-     * implementation
-     */
-    private static final AtomicBoolean isConnectionPoolCreated = new AtomicBoolean(false);
-    /**
-     * {@link BlockingQueue} with free connections to database
-     */
-    private final BlockingQueue<ConnectionProxy> freeConnection;
-    /**
-     * {@link BlockingQueue} with busy connections to database
-     */
-    private final BlockingQueue<ConnectionProxy> busyConnection;
+public enum ConnectionPool {
+    INSTANCE;
 
-    private ConnectionPool() {
-        busyConnection = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
+    private final Logger logger = LogManager.getLogger();
+    private final BlockingQueue<ProxyConnection> freeConnection;
+    private final Queue<ProxyConnection> givenAwayConnection;
+    private static final int DEFAULT_POOL_SIZE = 5;
+
+    ConnectionPool() {
         freeConnection = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
+        givenAwayConnection = new ArrayDeque<>();
 
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
-            try {
-                Connection connection = ConnectionFactory.createConnection();
-                ConnectionProxy connectionProxy = new ConnectionProxy(connection);
-                freeConnection.put(connectionProxy);
-            } catch (InterruptedException exception) {
-                Thread.currentThread().interrupt();
-            }
+            Connection connection = ConnectionFactory.createConnection();
+            ProxyConnection connectionProxy = new ProxyConnection(connection);
+            freeConnection.offer(connectionProxy);
         }
 
         if (freeConnection.isEmpty()) {
@@ -59,54 +44,33 @@ public class ConnectionPool {
     }
 
     /**
-     * Returns {@code ConnectionPool} instance
-     *
-     * @return new or existing {@link ConnectionPool} object
+     * @return {@link ProxyConnection} object from {@link #freeConnection}
      */
-    public static ConnectionPool getInstance() {
-        while (instance == null) {
+    public Connection getConnection() {
+        ProxyConnection connection = null;
 
-            if (isConnectionPoolCreated.compareAndSet(false, true)) {
-                instance = new ConnectionPool();
-            }
-        }
-
-        return instance;
-    }
-
-    /**
-     * @return {@link ConnectionProxy} object from {@link #freeConnection}
-     */
-    public ConnectionProxy getConnection() {
-        ConnectionProxy connection = null;
         try {
             connection = freeConnection.take();
-            busyConnection.put(connection);
+            givenAwayConnection.offer(connection);
         } catch (InterruptedException exception) {
             logger.error("Current thread was interrupted." + exception);
-            Thread.currentThread().interrupt();
         }
+
         return connection;
     }
 
     /**
-     * Releases connection from occupied connections
+     * Releases connection from busy connections
      *
      * @param connection {@code Connection} connection to release
      */
-    void releaseConnection(Connection connection) {
-        if (!(connection instanceof ConnectionProxy)) {
+    public void releaseConnection(Connection connection) {
+
+        if (!(connection instanceof ProxyConnection)) {
             logger.error("Current connection wasn't instance of proxy connection");
         } else {
-            if (busyConnection.remove(connection)) {
-                try {
-                    freeConnection.put((ConnectionProxy) connection);
-                } catch (InterruptedException exception) {
-                    logger.error("Current thread was interrupted." + exception);
-                    Thread.currentThread().interrupt();
-                }
-            } else {
-                logger.error("Current connection wasn't refer to connection pool");
+            if (givenAwayConnection.remove(connection)) {
+                freeConnection.offer((ProxyConnection) connection);
             }
         }
     }
@@ -114,47 +78,27 @@ public class ConnectionPool {
     /**
      * Closes connections of connection pool
      */
-    public void destroyConnectionPool() {
-        while (!freeConnection.isEmpty()) {
-
+    public void destroyPool() {
+        for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {
                 freeConnection.take().reallyClose();
-            } catch (SQLException exception) {
-                logger.error("Connection wasn't closed");
-            } catch (InterruptedException exception) {
-                logger.error("Connection was interrupted." + exception);
-                Thread.currentThread().interrupt();
-            }
-        }
-
-        while (!busyConnection.isEmpty()) {
-            try {
-                ConnectionProxy connection = busyConnection.take();
-                connection.reallyClose();
-            } catch (SQLException e) {
-                logger.error("Connection wasn't closed");
-            } catch (InterruptedException exception) {
-                logger.error("Connection was interrupted." + exception);
-                Thread.currentThread().interrupt();
+            } catch (SQLException | InterruptedException exception) {
+                logger.error("Connection wasn't closed." + exception);
             }
         }
         deregisterDrivers();
-        logger.info("Connection pool was destroyed");
     }
 
     /**
      * Deregister drivers
      */
     private void deregisterDrivers() {
-        Enumeration<Driver> drivers = DriverManager.getDrivers();
-
-        while (drivers.hasMoreElements()) {
-            Driver driver = drivers.nextElement();
+        DriverManager.getDrivers().asIterator().forEachRemaining(driver -> {
             try {
                 DriverManager.deregisterDriver(driver);
             } catch (SQLException exception) {
                 logger.error("Driver registration error." + exception);
             }
-        }
+        });
     }
 }
