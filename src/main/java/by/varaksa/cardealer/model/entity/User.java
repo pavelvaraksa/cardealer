@@ -2,6 +2,7 @@ package by.varaksa.cardealer.model.entity;
 
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Class {@code User} designed to store data about a user
@@ -160,24 +161,5 @@ public class User {
 
     public void setChanged(LocalDateTime changed) {
         this.changed = changed;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthDate +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", codeToRegister='" + codeToRegister + '\'' +
-                ", role=" + role +
-                ", isBlocked=" + isBlocked +
-                ", created=" + created +
-                ", changed=" + changed +
-                '}';
     }
 }

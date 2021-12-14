@@ -40,11 +40,7 @@
 
 <body style="background-color:antiquewhite"></body>
 <div align="center">
-<%--    <div class="col-md-2">--%>
-<%--        <input type="hidden" name="id" value="${param.id}">--%>
-<%--    </div>--%>
     <body>
-    ${singleUser}
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -61,25 +57,24 @@
             <th>${changed}</th>
         </tr>
         </thead>
+        <div>${user}</div>
 
-        <div>${singleUser}</div>
-
-        <%--@elvariable id="singleUser" type="java.util.List"--%>
-<%--        <c:forEach var="user" items="${singleUser}">--%>
-<%--            <tr>--%>
-<%--                <td>${user.id}</td>--%>
-<%--                <td>${user.firstName}</td>--%>
-<%--                <td>${user.lastName}</td>--%>
-<%--                <td>${user.birthDate}</td>--%>
-<%--                <td>${user.phoneNumber}</td>--%>
-<%--                <td>${user.login}</td>--%>
-<%--                <td>${user.email}</td>--%>
-<%--                <td>${user.role}</td>--%>
-<%--                <td>${user.blocked}</td>--%>
-<%--                <td>${user.created}</td>--%>
-<%--                <td>${user.changed}</td>--%>
-<%--            </tr>--%>
-<%--        </c:forEach>--%>
+        @elvariable id="singleUser" type="java.util.List"
+        <c:forEach var="user" items="${user}">
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.firstName}</td>
+                <td>${user.lastName}</td>
+                <td>${user.birthDate}</td>
+                <td>${user.phoneNumber}</td>
+                <td>${user.login}</td>
+                <td>${user.email}</td>
+                <td>${user.role}</td>
+                <td>${user.blocked}</td>
+                <td>${user.created}</td>
+                <td>${user.changed}</td>
+            </tr>
+        </c:forEach>
     </table>
     </body>
     <label>
